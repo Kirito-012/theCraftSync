@@ -251,10 +251,10 @@ export default function WhoWeAre() {
 			</div>
 
 			{/* Enhanced floating decorative elements with glow - hidden on mobile */}
-			<div className='hidden sm:block absolute top-20 right-1/4 w-3 h-3 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full animate-float shadow-lg shadow-purple-200/30'></div>
-			<div className='hidden sm:block absolute bottom-32 left-1/4 w-4 h-4 bg-gradient-to-br from-blue-400/20 to-teal-400/20 rounded-full animate-float-delayed shadow-lg shadow-blue-200/30'></div>
-			<div className='hidden md:block absolute top-1/3 right-1/3 w-2 h-2 bg-gradient-to-br from-orange-400/20 to-yellow-400/20 rounded-full animate-float-slow shadow-lg shadow-orange-200/30'></div>
-			<div className='hidden md:block absolute bottom-1/4 left-1/3 w-3.5 h-3.5 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-full animate-float shadow-lg shadow-green-200/30'></div>
+			<div className='hidden sm:block absolute top-20 right-1/4 w-3 h-3 bg-linear-to-br from-purple-400/20 to-pink-400/20 rounded-full animate-float shadow-lg shadow-purple-200/30'></div>
+			<div className='hidden sm:block absolute bottom-32 left-1/4 w-4 h-4 bg-linear-to-br from-blue-400/20 to-teal-400/20 rounded-full animate-float-delayed shadow-lg shadow-blue-200/30'></div>
+			<div className='hidden md:block absolute top-1/3 right-1/3 w-2 h-2 bg-linear-to-br from-orange-400/20 to-yellow-400/20 rounded-full animate-float-slow shadow-lg shadow-orange-200/30'></div>
+			<div className='hidden md:block absolute bottom-1/4 left-1/3 w-3.5 h-3.5 bg-linear-to-br from-green-400/20 to-emerald-400/20 rounded-full animate-float shadow-lg shadow-green-200/30'></div>
 
 			<div className='w-full h-full flex items-center relative'>
 				<div className='w-full max-w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 relative'>
@@ -396,20 +396,20 @@ export default function WhoWeAre() {
 								{/* Premium stats card */}
 								<div className='relative pt-6 sm:pt-8 md:pt-10 group/card'>
 									{/* Outer glow effect */}
-									<div className='absolute -inset-1 bg-gradient-to-br from-black/5 via-transparent to-black/5 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500'></div>
+									<div className='absolute -inset-1 bg-linear-to-br from-black/5 via-transparent to-black/5 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500'></div>
 
 									{/* Main border with gradient */}
 									<div className='absolute inset-0 rounded-2xl overflow-hidden'>
 										<div className='absolute inset-0 border-[1.5px] border-black/15 rounded-2xl'></div>
-										<div className='absolute inset-0 bg-gradient-to-br from-white via-gray-50/30 to-white rounded-2xl'></div>
+										<div className='absolute inset-0 bg-linear-to-br from-white via-gray-50/30 to-white rounded-2xl'></div>
 									</div>
 
 									{/* Premium corner accents */}
-									<div className='absolute -top-1 -left-1 w-10 sm:w-12 md:w-14 lg:w-16 h-10 sm:h-12 md:h-14 lg:h-16 border-t-[2px] sm:border-t-[2.5px] border-l-[2px] sm:border-l-[2.5px] border-black/20 rounded-tl-xl transition-all duration-500 group-hover/card:w-14 sm:group-hover/card:w-16 md:group-hover/card:w-18 lg:group-hover/card:w-20 group-hover/card:h-14 sm:group-hover/card:h-16 md:group-hover/card:h-18 lg:group-hover/card:h-20 group-hover/card:border-black/30'></div>
-									<div className='absolute -bottom-1 -right-1 w-10 sm:w-12 md:w-14 lg:w-16 h-10 sm:h-12 md:h-14 lg:h-16 border-b-[2px] sm:border-b-[2.5px] border-r-[2px] sm:border-r-[2.5px] border-black/20 rounded-br-xl transition-all duration-500 group-hover/card:w-14 sm:group-hover/card:w-16 md:group-hover/card:w-18 lg:group-hover/card:w-20 group-hover/card:h-14 sm:group-hover/card:h-16 md:group-hover/card:h-18 lg:group-hover/card:h-20 group-hover/card:border-black/30'></div>
+									<div className='absolute -top-1 -left-1 w-10 sm:w-12 md:w-14 lg:w-16 h-10 sm:h-12 md:h-14 lg:h-16 border-t-2 sm:border-t-[2.5px] border-l-2 sm:border-l-[2.5px] border-black/20 rounded-tl-xl transition-all duration-500 group-hover/card:w-14 sm:group-hover/card:w-16 md:group-hover/card:w-18 lg:group-hover/card:w-20 group-hover/card:h-14 sm:group-hover/card:h-16 md:group-hover/card:h-18 lg:group-hover/card:h-20 group-hover/card:border-black/30'></div>
+									<div className='absolute -bottom-1 -right-1 w-10 sm:w-12 md:w-14 lg:w-16 h-10 sm:h-12 md:h-14 lg:h-16 border-b-2 sm:border-b-[2.5px] border-r-2 sm:border-r-[2.5px] border-black/20 rounded-br-xl transition-all duration-500 group-hover/card:w-14 sm:group-hover/card:w-16 md:group-hover/card:w-18 lg:group-hover/card:w-20 group-hover/card:h-14 sm:group-hover/card:h-16 md:group-hover/card:h-18 lg:group-hover/card:h-20 group-hover/card:border-black/30'></div>
 
 									{/* Subtle top accent line */}
-									<div className='absolute top-0 left-12 sm:left-16 md:left-20 right-12 sm:right-16 md:right-20 h-[1px] bg-gradient-to-r from-transparent via-black/10 to-transparent'></div>
+									<div className='absolute top-0 left-12 sm:left-16 md:left-20 right-12 sm:right-16 md:right-20 h-px bg-linear-to-r from-transparent via-black/10 to-transparent'></div>
 
 									<div className='relative flex flex-col sm:flex-row gap-6 sm:gap-8 md:gap-10 who-we-are-stats px-6 sm:px-8 md:px-10 py-6 sm:py-8 md:py-10 justify-between'>
 										{/* Stat 1 - Brands */}
@@ -423,7 +423,7 @@ export default function WhoWeAre() {
 										</div>
 
 										{/* Divider 1 */}
-										<div className='h-[1px] sm:h-auto sm:w-[1px] bg-gradient-to-r sm:bg-gradient-to-b from-transparent via-gray-300 to-transparent w-full sm:w-auto sm:self-stretch'></div>
+										<div className='h-px sm:h-auto sm:w-px bg-linear-to-r sm:bg-linear-to-b from-transparent via-gray-300 to-transparent w-full sm:self-stretch'></div>
 
 										{/* Stat 2 - Years */}
 										<div className='flex flex-col items-center gap-2 sm:gap-3 group/stat cursor-default flex-1'>
@@ -436,7 +436,7 @@ export default function WhoWeAre() {
 										</div>
 
 										{/* Divider 2 */}
-										<div className='h-[1px] sm:h-auto sm:w-[1px] bg-gradient-to-r sm:bg-gradient-to-b from-transparent via-gray-300 to-transparent w-full sm:w-auto sm:self-stretch'></div>
+										<div className='h-px sm:h-auto sm:w-px bg-linear-to-r sm:bg-linear-to-b from-transparent via-gray-300 to-transparent w-full sm:self-stretch'></div>
 
 										{/* Stat 3 - Growth */}
 										<div className='flex flex-col items-center gap-2 sm:gap-3 group/stat cursor-default flex-1'>

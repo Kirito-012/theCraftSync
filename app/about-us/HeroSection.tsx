@@ -53,7 +53,7 @@ export default function HeroSection() {
 	return (
 		<section
 			ref={heroRef}
-			className='relative w-full min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-20 pb-32'>
+			className='relative w-full min-h-[80vh] sm:min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-12 lg:px-24 pt-24 sm:pt-20 pb-20 sm:pb-32'>
 			{/* Background Image with Overlay */}
 			<div className='absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden'>
 				<div
@@ -71,13 +71,13 @@ export default function HeroSection() {
 
 			{/* Content */}
 			<div className='relative z-10 w-full max-w-7xl mx-auto text-left'>
-				<h1 className='text-5xl md:text-6xl lg:text-[76px] mb-8 font-heading'>
-					<span className='font-normal'>Crafting</span>{' '}
-					<span className='font-bold'>Dreams</span>
-					<br />
-					<span className='font-normal'>and</span>{' '}
-					<span className='font-bold'>Syncing</span>{' '}
-					<span className='font-normal'>Reality</span>
+				<h1 className='text-[3.5rem] leading-[1.1] sm:text-6xl md:text-[5rem] lg:text-[76px] mb-6 sm:mb-8 font-heading'>
+					<span className='font-normal block sm:inline'>Crafting</span>{' '}
+					<span className='font-bold block sm:inline'>Dreams</span>
+					<br className='hidden sm:block' />
+					<span className='font-normal block sm:inline'>and</span>{' '}
+					<span className='font-bold block sm:inline'>Syncing</span>{' '}
+					<span className='font-normal block sm:inline'>Reality</span>
 				</h1>
 				<p className=' leading-[1.6] opacity-100 max-w-200 font-descriptive'>
 					The Craft Sync is a digital marketing agency designed to provide
