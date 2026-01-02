@@ -1,4 +1,5 @@
 import type {Metadata} from 'next'
+import './aboutus.css'
 import HeroSection from './HeroSection'
 import WhoWeAre from './WhoWeAre'
 import OurTeam from './OurTeam'
