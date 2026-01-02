@@ -400,7 +400,7 @@ export default function AboutContent() {
 
 				{/* Large decorative text background */}
 				<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none'>
-					<span className='text-[20vw] font-heading font-black text-black/[0.02] tracking-tighter leading-none whitespace-nowrap'>
+					<span className='text-[20vw] font-heading font-black text-black/2 tracking-tighter leading-none whitespace-nowrap'>
 						CRAFT
 					</span>
 				</div>
@@ -413,49 +413,82 @@ export default function AboutContent() {
 
 				<div className='w-full h-full flex items-center relative'>
 					<div className='w-full max-w-full mx-auto grid grid-cols-1 lg:grid-cols-2 relative'>
-						{/* Left Side - Image */}
+						{/* Left Side - Images Gallery */}
 						<div className='relative order-2 lg:order-1 h-screen flex items-center justify-center px-16 lg:px-20'>
-							<div className='relative group'>
-								{/* Premium border frame with hover effect */}
-								<div className='absolute -inset-6 border border-black/8 transition-all duration-700 group-hover:border-black/15'></div>
-								<div className='absolute -inset-3 border border-black/5 transition-all duration-700 group-hover:border-black/10'></div>
+							<div className='relative w-full max-w-xl'>
+								{/* Main large image */}
+								<div className='relative group/main mb-6'>
+									{/* Premium border frame */}
+									<div className='absolute -inset-4 border border-black/8 transition-all duration-700 group-hover/main:border-black/15'></div>
 
-								<div
-									className='who-we-are-image-container relative w-100 h-100 overflow-hidden will-change-transform'
-									style={{
-										transform: `translate3d(${mousePosition.x * 0.5}px, ${
-											mousePosition.y * 0.5
-										}px, 0)`,
-										transition: 'transform 0.3s ease-out',
-									}}>
-									{/* Subtle spotlight effect */}
 									<div
-										className='absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500'
+										className='who-we-are-image-container relative w-full h-96 overflow-hidden will-change-transform'
 										style={{
-											background: `radial-gradient(circle 300px at ${
-												50 + mousePosition.x * 0.5
-											}% ${
-												50 + mousePosition.y * 0.5
-											}%, rgba(255,255,255,0.15) 0%, transparent 100%)`,
-										}}></div>
+											transform: `translate3d(${mousePosition.x * 0.5}px, ${
+												mousePosition.y * 0.5
+											}px, 0)`,
+											transition: 'transform 0.3s ease-out',
+										}}>
+										{/* Subtle spotlight effect */}
+										<div
+											className='absolute inset-0 z-20 pointer-events-none opacity-0 group-hover/main:opacity-100 transition-opacity duration-500'
+											style={{
+												background: `radial-gradient(circle 300px at ${
+													50 + mousePosition.x * 0.5
+												}% ${
+													50 + mousePosition.y * 0.5
+												}%, rgba(255,255,255,0.15) 0%, transparent 100%)`,
+											}}></div>
 
-									{/* Animated overlay on hover */}
-									<div className='absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-700 z-10'></div>
-									<div
-										ref={whoWeAreImageRef}
-										className='absolute inset-0 w-full h-full will-change-transform'>
+										{/* Animated overlay on hover */}
+										<div className='absolute inset-0 bg-black/0 group-hover/main:bg-black/5 transition-all duration-700 z-10'></div>
+										<div
+											ref={whoWeAreImageRef}
+											className='absolute inset-0 w-full h-full will-change-transform'>
+											<Image
+												src={aboutus}
+												alt='TheCraftSync team collaboration'
+												className='w-full h-full object-cover transition-transform duration-700 group-hover/main:scale-105'
+											/>
+										</div>
+									</div>
+
+									{/* Corner accent marks */}
+									<div className='absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-black transition-all duration-500 group-hover/main:w-8 group-hover/main:h-8 group-hover/main:-top-3 group-hover/main:-left-3'></div>
+									<div className='absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-black transition-all duration-500 group-hover/main:w-8 group-hover/main:h-8 group-hover/main:-bottom-3 group-hover/main:-right-3'></div>
+								</div>
+
+								{/* Secondary images grid */}
+								<div className='grid grid-cols-3 gap-4'>
+									{/* Image 2 */}
+									<div className='relative group/img overflow-hidden h-32 border border-black/10 hover:border-black/20 transition-all duration-500'>
+										<div className='absolute inset-0 bg-black/0 group-hover/img:bg-black/5 transition-all duration-500 z-10'></div>
 										<Image
-											// src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2940&auto=format&fit=crop'
-											src={aboutus}
-											alt='TheCraftSync team collaboration'
-											className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-105'
+											src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop'
+											alt='Team brainstorming'
+											width={400}
+											height={300}
+										/>
+										<div className='absolute inset-0 bg-black/0 group-hover/img:bg-black/5 transition-all duration-500 z-10'></div>
+										<Image
+											src='https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2940&auto=format&fit=crop'
+											alt='Creative workspace'
+											width={400}
+											height={300}
+										/>
+										<div className='absolute inset-0 bg-black/0 group-hover/img:bg-black/5 transition-all duration-500 z-10'></div>
+										<Image
+											src='https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2940&auto=format&fit=crop'
+											alt='Team meeting'
+											width={400}
+											height={300}
+											className='w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-110'
 										/>
 									</div>
 								</div>
 
-								{/* Corner accent marks with animation */}
-								<div className='absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-black transition-all duration-500 group-hover:w-12 group-hover:h-12 group-hover:-top-5 group-hover:-left-5'></div>
-								<div className='absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-black transition-all duration-500 group-hover:w-12 group-hover:h-12 group-hover:-bottom-5 group-hover:-right-5'></div>
+								{/* Decorative accent line */}
+								<div className='absolute -right-8 top-1/2 -translate-y-1/2 w-px h-48 bg-linear-to-b from-transparent via-black/20 to-transparent'></div>
 							</div>
 						</div>
 
@@ -805,4 +838,3 @@ export default function AboutContent() {
 		</div>
 	)
 }
-
