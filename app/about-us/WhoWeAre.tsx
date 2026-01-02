@@ -414,7 +414,7 @@ export default function WhoWeAre() {
 									<div className='relative flex gap-10 who-we-are-stats px-10 py-10 justify-between'>
 										{/* Stat 1 - Brands */}
 										<div className='flex flex-col items-center gap-3 group/stat cursor-default flex-1'>
-											<span className='text-6xl font-heading font-bold text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
+											<span className='text-6xl font-heading font-bold w-[2ch] text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
 												{brandsCount}+
 											</span>
 											<span className='text-[10px] uppercase tracking-[0.35em] text-gray-500 font-descriptive font-medium transition-all duration-300 group-hover/stat:text-black group-hover/stat:tracking-[0.4em]'>
@@ -427,7 +427,7 @@ export default function WhoWeAre() {
 
 										{/* Stat 2 - Years */}
 										<div className='flex flex-col items-center gap-3 group/stat cursor-default flex-1'>
-											<span className='text-6xl font-heading font-bold text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
+											<span className='text-6xl font-heading font-bold w-[2ch] text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
 												{yearsCount}+
 											</span>
 											<span className='text-[10px] uppercase tracking-[0.35em] text-gray-500 font-descriptive font-medium transition-all duration-300 group-hover/stat:text-black group-hover/stat:tracking-[0.4em]'>
@@ -440,7 +440,7 @@ export default function WhoWeAre() {
 
 										{/* Stat 3 - Growth */}
 										<div className='flex flex-col items-center gap-3 group/stat cursor-default flex-1'>
-											<span className='text-6xl font-heading font-bold text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
+											<span className='text-6xl font-heading font-bold w-[3.25ch] text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
 												{growthCount}%
 											</span>
 											<span className='text-[10px] uppercase tracking-[0.35em] text-gray-500 font-descriptive font-medium transition-all duration-300 group-hover/stat:text-black group-hover/stat:tracking-[0.4em]'>

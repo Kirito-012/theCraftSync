@@ -9,6 +9,7 @@ import arrowRight from '../assets/arrow-right.png'
 export default function OurTeam() {
 	const carouselRef = useRef<HTMLDivElement>(null)
 	const teamSectionRef = useRef<HTMLDivElement>(null)
+	const teamSubheadingRef = useRef<HTMLDivElement>(null)
 	const teamHeaderRef = useRef<HTMLDivElement>(null)
 	const teamDescRef = useRef<HTMLDivElement>(null)
 	const [canScrollLeft, setCanScrollLeft] = useState(false)
@@ -20,6 +21,21 @@ export default function OurTeam() {
 			gsap.registerPlugin(ScrollTrigger)
 
 			const ctx = gsap.context(() => {
+				// Smooth team subheading animation
+				if (teamSubheadingRef.current) {
+					gsap.from(teamSubheadingRef.current, {
+						y: 40,
+						opacity: 0,
+						duration: 1.4,
+						ease: 'power3.out',
+						scrollTrigger: {
+							trigger: teamSectionRef.current,
+							start: 'top 75%',
+							toggleActions: 'play none none none',
+						},
+					})
+				}
+
 				// Smooth team section header animation
 				if (teamHeaderRef.current) {
 					gsap.from(teamHeaderRef.current, {
@@ -81,6 +97,7 @@ export default function OurTeam() {
 		}
 	}, [])
 
+	// Debounced scroll check for better performance
 	const checkScrollPosition = () => {
 		if (carouselRef.current) {
 			const {scrollLeft, scrollWidth, clientWidth} = carouselRef.current
@@ -108,11 +125,17 @@ export default function OurTeam() {
 		const carousel = carouselRef.current
 		if (carousel) {
 			checkScrollPosition()
-			carousel.addEventListener('scroll', checkScrollPosition)
-			window.addEventListener('resize', checkScrollPosition)
+
+			// Use passive event listeners for better scroll performance
+			const scrollHandler = () => {
+				requestAnimationFrame(checkScrollPosition)
+			}
+
+			carousel.addEventListener('scroll', scrollHandler, {passive: true})
+			window.addEventListener('resize', checkScrollPosition, {passive: true})
 
 			return () => {
-				carousel.removeEventListener('scroll', checkScrollPosition)
+				carousel.removeEventListener('scroll', scrollHandler)
 				window.removeEventListener('resize', checkScrollPosition)
 			}
 		}
@@ -129,7 +152,17 @@ export default function OurTeam() {
 			<div className='w-full max-w-350 mx-auto px-6 md:px-12 lg:px-24 mb-16 flex flex-col md:flex-row justify-between items-start gap-10'>
 				<div
 					ref={teamHeaderRef}
-					className='relative'>
+					className='relative space-y-6'>
+					{/* Small subheading to match other sections */}
+					<div
+						ref={teamSubheadingRef}
+						className='flex items-center gap-4'>
+						<div className='h-px w-12 bg-black'></div>
+						<span className='text-black uppercase text-[9px] font-descriptive tracking-[0.4em] font-medium'>
+							Meet The Crew
+						</span>
+					</div>
+
 					<h2 className='text-black text-[12vw] md:text-[8vw] lg:text-[130px] leading-[0.85] font-bold font-heading uppercase tracking-tighter'>
 						Our
 						<br />
@@ -198,20 +231,37 @@ export default function OurTeam() {
 				</button>
 			</div>
 
-			{/* Team Carousel */}
+			{/* Team Carousel - Optimized for smooth scrolling */}
 			<div
 				ref={carouselRef}
 				className='flex gap-8 overflow-x-auto pl-6 md:pl-12 lg:pl-24 pr-12 pb-12 scrollbar-none custom-scrollbar cursor-grab active:cursor-grabbing'
-				style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}>
+				style={{
+					scrollbarWidth: 'none',
+					msOverflowStyle: 'none',
+					contain: 'layout style paint',
+					transform: 'translate3d(0, 0, 0)',
+					WebkitOverflowScrolling: 'touch',
+				}}>
 				{/* Team Member 1 - Nicola */}
-				<div className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 will-change-transform'>
-					<div className='relative w-full aspect-3/4 overflow-hidden rounded-tl-[5rem] rounded-br-[5rem] shadow-lg group-hover:shadow-2xl transition-all duration-500 border-4 border-transparent group-hover:border-teal-500/30 backface-hidden'>
+				<div
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5'
+					style={{contain: 'layout style paint'}}>
+					<div
+						className='relative w-full aspect-3/4 overflow-hidden rounded-tl-[5rem] rounded-br-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-teal-500/30'
+						style={{
+							backfaceVisibility: 'hidden',
+							transform: 'translate3d(0, 0, 0)',
+						}}>
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute top-4 right-4 w-16 h-1 bg-teal-500 transform translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
-						<img
-							src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2776&auto=format&fit=crop'
+						<Image
+							src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop'
 							alt='Nicola'
-							className='w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0'
+							width={400}
+							height={533}
+							loading='lazy'
+							quality={85}
+							className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0'
 						/>
 						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500'>
 							<p className='text-white text-sm leading-relaxed'>
@@ -231,14 +281,25 @@ export default function OurTeam() {
 				</div>
 
 				{/* Team Member 2 - Julian */}
-				<div className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-12 will-change-transform'>
-					<div className='relative w-full aspect-3/4 overflow-hidden rounded-tr-[5rem] rounded-bl-[5rem] shadow-lg group-hover:shadow-2xl transition-all duration-500 border-4 border-transparent group-hover:border-purple-500/30'>
+				<div
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-12'
+					style={{contain: 'layout style paint'}}>
+					<div
+						className='relative w-full aspect-3/4 overflow-hidden rounded-tr-[5rem] rounded-bl-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-purple-500/30'
+						style={{
+							backfaceVisibility: 'hidden',
+							transform: 'translate3d(0, 0, 0)',
+						}}>
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute top-4 left-4 w-16 h-1 bg-purple-500 transform -translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
-						<img
-							src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2787&auto=format&fit=crop'
+						<Image
+							src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'
 							alt='Julian'
-							className='w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0'
+							width={400}
+							height={533}
+							loading='lazy'
+							quality={85}
+							className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0'
 						/>
 						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500'>
 							<p className='text-white text-sm leading-relaxed'>
@@ -258,14 +319,25 @@ export default function OurTeam() {
 				</div>
 
 				{/* Team Member 3 - Jonny */}
-				<div className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 will-change-transform'>
-					<div className='relative w-full aspect-3/4 overflow-hidden rounded-t-[5rem] shadow-lg group-hover:shadow-2xl transition-all duration-500 border-4 border-transparent group-hover:border-orange-500/30'>
+				<div
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5'
+					style={{contain: 'layout style paint'}}>
+					<div
+						className='relative w-full aspect-3/4 overflow-hidden rounded-t-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-orange-500/30'
+						style={{
+							backfaceVisibility: 'hidden',
+							transform: 'translate3d(0, 0, 0)',
+						}}>
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute bottom-4 right-4 w-1 h-16 bg-orange-500 transform translate-y-20 group-hover:translate-y-0 transition-transform duration-500 z-20'></div>
-						<img
-							src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2787&auto=format&fit=crop'
+						<Image
+							src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop'
 							alt='Jonny'
-							className='w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0'
+							width={400}
+							height={533}
+							loading='lazy'
+							quality={85}
+							className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0'
 						/>
 						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500'>
 							<p className='text-white text-sm leading-relaxed'>
@@ -285,14 +357,25 @@ export default function OurTeam() {
 				</div>
 
 				{/* Team Member 4 - Maja */}
-				<div className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-16 will-change-transform'>
-					<div className='relative w-full aspect-3/4 overflow-hidden rounded-b-[5rem] shadow-lg group-hover:shadow-2xl transition-all duration-500 border-4 border-transparent group-hover:border-blue-500/30'>
+				<div
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-16'
+					style={{contain: 'layout style paint'}}>
+					<div
+						className='relative w-full aspect-3/4 overflow-hidden rounded-b-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-blue-500/30'
+						style={{
+							backfaceVisibility: 'hidden',
+							transform: 'translate3d(0, 0, 0)',
+						}}>
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute bottom-4 left-4 w-1 h-16 bg-blue-500 transform translate-y-20 group-hover:translate-y-0 transition-transform duration-500 z-20'></div>
-						<img
-							src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2940&auto=format&fit=crop'
+						<Image
+							src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=800&auto=format&fit=crop'
 							alt='Maja'
-							className='w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0'
+							width={400}
+							height={533}
+							loading='lazy'
+							quality={85}
+							className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0'
 						/>
 						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500'>
 							<p className='text-white text-sm leading-relaxed'>
@@ -312,14 +395,25 @@ export default function OurTeam() {
 				</div>
 
 				{/* Team Member 5 - Em */}
-				<div className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 will-change-transform'>
-					<div className='relative w-full aspect-3/4 overflow-hidden rounded-bl-[5rem] rounded-tr-[5rem] shadow-lg group-hover:shadow-2xl transition-all duration-500 border-4 border-transparent group-hover:border-pink-500/30'>
+				<div
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5'
+					style={{contain: 'layout style paint'}}>
+					<div
+						className='relative w-full aspect-3/4 overflow-hidden rounded-bl-[5rem] rounded-tr-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-pink-500/30'
+						style={{
+							backfaceVisibility: 'hidden',
+							transform: 'translate3d(0, 0, 0)',
+						}}>
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute top-4 right-4 w-16 h-1 bg-pink-500 transform translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
-						<img
-							src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=2788&auto=format&fit=crop'
+						<Image
+							src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop'
 							alt='Em'
-							className='w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0'
+							width={400}
+							height={533}
+							loading='lazy'
+							quality={85}
+							className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0'
 						/>
 						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500'>
 							<p className='text-white text-sm leading-relaxed'>
@@ -339,14 +433,25 @@ export default function OurTeam() {
 				</div>
 
 				{/* Team Member 6 - Piper */}
-				<div className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-8 will-change-transform'>
-					<div className='relative w-full aspect-3/4 overflow-hidden rounded-br-[5rem] rounded-tl-[5rem] shadow-lg group-hover:shadow-2xl transition-all duration-500 border-4 border-transparent group-hover:border-indigo-500/30'>
+				<div
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-8'
+					style={{contain: 'layout style paint'}}>
+					<div
+						className='relative w-full aspect-3/4 overflow-hidden rounded-br-[5rem] rounded-tl-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-indigo-500/30'
+						style={{
+							backfaceVisibility: 'hidden',
+							transform: 'translate3d(0, 0, 0)',
+						}}>
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute top-4 left-4 w-16 h-1 bg-indigo-500 transform -translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
-						<img
-							src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2864&auto=format&fit=crop'
+						<Image
+							src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop'
 							alt='Piper'
-							className='w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0'
+							width={400}
+							height={533}
+							loading='lazy'
+							quality={85}
+							className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0'
 						/>
 						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500'>
 							<p className='text-white text-sm leading-relaxed'>
