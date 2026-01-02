@@ -128,3 +128,156 @@
 	background-color: #14b8a6;
 	color: white;
 }
+
+/* Premium Animations */
+@keyframes shimmer {
+	0% {
+		background-position: -200% center;
+	}
+	100% {
+		background-position: 200% center;
+	}
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0px) translateX(0px);
+	}
+	33% {
+		transform: translateY(-15px) translateX(10px);
+	}
+	66% {
+		transform: translateY(-8px) translateX(-10px);
+	}
+}
+
+@keyframes float-delayed {
+	0%,
+	100% {
+		transform: translateY(0px) translateX(0px);
+	}
+	33% {
+		transform: translateY(-12px) translateX(-8px);
+	}
+	66% {
+		transform: translateY(-18px) translateX(8px);
+	}
+}
+
+@keyframes float-slow {
+	0%,
+	100% {
+		transform: translateY(0px) translateX(0px) scale(1);
+	}
+	50% {
+		transform: translateY(-20px) translateX(5px) scale(1.1);
+	}
+}
+
+@keyframes gradient-x {
+	0%,
+	100% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+}
+
+@keyframes gradient-y {
+	0%,
+	100% {
+		background-position: 50% 0%;
+	}
+	50% {
+		background-position: 50% 100%;
+	}
+}
+
+@keyframes pulse-glow {
+	0%,
+	100% {
+		opacity: 1;
+		box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+	}
+	50% {
+		opacity: 0.8;
+		box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+	}
+}
+
+/* Animation Utilities */
+.animate-shimmer {
+	background: linear-gradient(
+		90deg,
+		transparent 0%,
+		rgba(255, 255, 255, 0.03) 50%,
+		transparent 100%
+	);
+	background-size: 200% 100%;
+	animation: shimmer 8s ease-in-out infinite;
+}
+
+.animate-float {
+	animation: float 12s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+	animation: float-delayed 14s ease-in-out infinite;
+}
+
+.animate-float-slow {
+	animation: float-slow 16s ease-in-out infinite;
+}
+
+.animate-gradient-x {
+	background-size: 200% 200%;
+	animation: gradient-x 6s ease infinite;
+}
+
+.animate-gradient-y {
+	background-size: 200% 200%;
+	animation: gradient-y 6s ease infinite;
+}
+
+.animate-pulse-glow {
+	animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+	background: rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-light {
+	background: rgba(255, 255, 255, 0.7);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Text Gradient Utilities */
+.text-gradient {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.text-gradient-gold {
+	background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
