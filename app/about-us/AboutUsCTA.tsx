@@ -177,63 +177,64 @@ export default function AboutUsCTA() {
 				{/* Main heading - fully responsive */}
 				<h2
 					ref={headingRef}
-					className='text-[2.5rem] leading-[1.1] sm:text-5xl sm:leading-[1.08] md:text-6xl md:leading-[1.06] lg:text-7xl lg:leading-[1.05] xl:text-8xl 2xl:text-[115px] font-heading font-bold text-white tracking-tight mb-12 sm:mb-16 md:mb-20 lg:mb-24 px-2'
+					className='text-[2.5rem] leading-[1.1] sm:text-5xl sm:leading-[1.08] md:text-6xl md:leading-[1.06] lg:text-7xl lg:leading-[1.05] xl:text-8xl 2xl:text-[115px] font-heading font-bold text-white tracking-tight mb-12 sm:mb-16 md:mb-20 lg:mb-24 px-2 flex flex-col sm:block items-center'
 					style={{transform: 'translate3d(0, 0, 0)'}}>
-					Ready to{' '}
-					<span
-						className='relative inline-block align-baseline whitespace-nowrap'
-						style={{perspective: '1000px'}}>
-						{/* Phantom element to establish baseline and height */}
+					<span className='inline-flex items-baseline justify-center flex-wrap gap-x-3 sm:gap-x-4 md:gap-x-5'>
+						<span>Ready to</span>
 						<span
-							className='opacity-0 pointer-events-none select-none relative'
-							aria-hidden='true'>
-							Transform
+							className='relative inline-block align-baseline whitespace-nowrap min-w-[3ch] text-center sm:text-left'
+							style={{perspective: '1000px'}}>
+							{/* Phantom element to establish baseline and height */}
+							<span
+								className='opacity-0 pointer-events-none select-none relative'
+								aria-hidden='true'>
+								Transform
+							</span>
+
+							{rotatingWords.map((word, index) => {
+								const isActive = index === currentWordIndex
+								const isPrevious =
+									index ===
+									(currentWordIndex - 1 + rotatingWords.length) %
+										rotatingWords.length
+
+								return (
+									<span
+										key={word}
+										className='absolute left-0 top-0 w-full transition-all duration-1000 ease-out flex justify-center sm:justify-start'
+										style={{
+											transform: isActive
+												? 'translateY(0%) rotateX(0deg) scale(1)'
+												: isPrevious
+												? 'translateY(-100%) rotateX(-90deg) scale(0.8)'
+												: 'translateY(100%) rotateX(90deg) scale(0.8)',
+											opacity: isActive ? 1 : 0,
+											transformStyle: 'preserve-3d',
+											filter: isActive ? 'blur(0px)' : 'blur(4px)',
+											willChange: isActive ? 'transform, opacity' : 'auto',
+										}}>
+										{word.split('').map((char, charIndex) => (
+											<span
+												key={charIndex}
+												className='inline-block transition-all duration-700'
+												style={{
+													transitionDelay: isActive
+														? `${charIndex * 50}ms`
+														: '0ms',
+													transform: isActive
+														? 'translateY(0px)'
+														: 'translateY(20px)',
+													opacity: isActive ? 1 : 0,
+												}}>
+												{char}
+											</span>
+										))}
+									</span>
+								)
+							})}
 						</span>
-
-						{rotatingWords.map((word, index) => {
-							const isActive = index === currentWordIndex
-							const isPrevious =
-								index ===
-								(currentWordIndex - 1 + rotatingWords.length) %
-									rotatingWords.length
-
-							return (
-								<span
-									key={word}
-									className='absolute left-0 top-0 w-full transition-all duration-1000 ease-out'
-									style={{
-										transform: isActive
-											? 'translateY(0%) rotateX(0deg) scale(1)'
-											: isPrevious
-											? 'translateY(-100%) rotateX(-90deg) scale(0.8)'
-											: 'translateY(100%) rotateX(90deg) scale(0.8)',
-										opacity: isActive ? 1 : 0,
-										transformStyle: 'preserve-3d',
-										filter: isActive ? 'blur(0px)' : 'blur(4px)',
-										willChange: isActive ? 'transform, opacity' : 'auto',
-									}}>
-									{word.split('').map((char, charIndex) => (
-										<span
-											key={charIndex}
-											className='inline-block transition-all duration-700'
-											style={{
-												transitionDelay: isActive
-													? `${charIndex * 50}ms`
-													: '0ms',
-												transform: isActive
-													? 'translateY(0px)'
-													: 'translateY(20px)',
-												opacity: isActive ? 1 : 0,
-											}}>
-											{char}
-										</span>
-									))}
-								</span>
-							)
-						})}
 					</span>
-					<br />
-					Your Brand?
+					<span className='block sm:inline mt-2 sm:mt-0'>Your Brand?</span>
 				</h2>
 
 				{/* CTA Button - Fully responsive with touch optimization */}
@@ -273,7 +274,7 @@ export default function AboutUsCTA() {
 						</span>
 
 						{/* Premium arrow icon - responsive sizing */}
-						<div className='relative z-10 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-black/5 group-hover:bg-black flex items-center justify-center transition-all duration-500 ease-out group-hover:rotate-45 flex-shrink-0'>
+						<div className='relative z-10 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-black/5 group-hover:bg-black flex items-center justify-center transition-all duration-500 ease-out group-hover:rotate-45 shrink-0'>
 							<svg
 								className='w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 text-black group-hover:text-white transition-all duration-500 ease-out group-hover:scale-110'
 								fill='none'
