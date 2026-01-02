@@ -41,30 +41,6 @@ const slides = [
 	},
 ]
 
-// Fixed positions for dots to avoid hydration mismatch
-const dotPositions = [
-	{left: 15, top: 20, delay: 0, duration: 8},
-	{left: 85, top: 30, delay: 1, duration: 10},
-	{left: 45, top: 10, delay: 2, duration: 9},
-	{left: 70, top: 80, delay: 0.5, duration: 11},
-	{left: 25, top: 60, delay: 1.5, duration: 8.5},
-	{left: 90, top: 50, delay: 2.5, duration: 10.5},
-	{left: 10, top: 70, delay: 3, duration: 9.5},
-	{left: 60, top: 25, delay: 3.5, duration: 11.5},
-	{left: 35, top: 85, delay: 4, duration: 8.8},
-	{left: 80, top: 15, delay: 4.5, duration: 10.2},
-	{left: 50, top: 45, delay: 0.8, duration: 9.2},
-	{left: 20, top: 35, delay: 1.8, duration: 11.2},
-	{left: 75, top: 65, delay: 2.8, duration: 8.7},
-	{left: 40, top: 55, delay: 3.8, duration: 10.7},
-	{left: 65, top: 90, delay: 4.8, duration: 9.7},
-	{left: 30, top: 40, delay: 1.2, duration: 11.8},
-	{left: 95, top: 75, delay: 2.2, duration: 8.9},
-	{left: 55, top: 20, delay: 3.2, duration: 10.9},
-	{left: 12, top: 50, delay: 4.2, duration: 9.9},
-	{left: 88, top: 60, delay: 0.3, duration: 11.3},
-]
-
 export default function HowWeWork() {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const slidesRef = useRef<HTMLDivElement>(null)
@@ -107,48 +83,37 @@ export default function HowWeWork() {
 	return (
 		<section
 			ref={containerRef}
-			className='relative w-full h-screen overflow-hidden bg-linear-to-br from-[#000000] via-[#000000] to-[#1b1b1b]'>
-			{/* Section Title - Fixed at top */}
-			<div className='absolute top-0 left-0 right-0 z-20 pt-16 pb-8 bg-linear-to-b from-black/90 via-black/50 to-transparent'>
+			className='relative w-full h-screen overflow-hidden bg-linear-to-br from-[#0a0a0a] via-[#000000] to-[#1a1a1a]'>
+			{/* Section Title - Fixed at top with glassmorphism */}
+			<div className='absolute top-0 left-0 right-0 z-20 pt-16 pb-8'>
 				<div className='max-w-7xl mx-auto px-6'>
-					<div className='flex items-center gap-4 mb-2'>
-						<div className='h-px w-16 bg-white/40'></div>
-						<span className='text-white/60 uppercase text-[9px] font-descriptive tracking-[0.4em] font-medium'>
+					<div className='flex items-center gap-4 mb-3'>
+						<div className='h-px w-20 bg-gradient-to-r from-white/60 to-white/20'></div>
+						<span className='text-white/70 uppercase text-[9px] font-descriptive tracking-[0.4em] font-medium'>
 							Our Process
 						</span>
 					</div>
-					<h2 className='text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight'>
+					<h2 className='text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight drop-shadow-2xl'>
 						How We Work
 					</h2>
 				</div>
 			</div>
 
-			{/* Subtle grid pattern overlay */}
+			{/* Enhanced grid pattern overlay */}
 			<div
-				className='absolute inset-0 opacity-[0.03]'
+				className='absolute inset-0 opacity-[0.04]'
 				style={{
 					backgroundImage:
-						'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
-					backgroundSize: '50px 50px',
+						'linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
+					backgroundSize: '60px 60px',
 				}}></div>
 
-			{/* Animated dot pattern */}
-			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
-				{dotPositions.map((dot, i) => (
-					<div
-						key={i}
-						className='absolute w-1 h-1 bg-white/20 rounded-full animate-float'
-						style={{
-							left: `${dot.left}%`,
-							top: `${dot.top}%`,
-							animationDelay: `${dot.delay}s`,
-							animationDuration: `${dot.duration}s`,
-						}}></div>
-				))}
-			</div>
+			{/* Ambient light effects */}
+			<div className='absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl'></div>
+			<div className='absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl'></div>
 
-			{/* Radial gradient overlay for depth */}
-			<div className='absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/40 pointer-events-none'></div>
+			{/* Enhanced radial gradient overlay */}
+			<div className='absolute inset-0 bg-radial-gradient from-transparent via-black/20 to-black/60 pointer-events-none'></div>
 
 			{/* Slides container */}
 			<div
@@ -160,83 +125,67 @@ export default function HowWeWork() {
 						key={slide.step}
 						className='flex items-center justify-center w-screen h-full px-[8vw] py-[8vh] relative'>
 						{/* Slide-specific decorative elements */}
-						<div className='absolute inset-0 pointer-events-none'>
-							{/* Large decorative circles */}
-							<div
-								className='absolute w-96 h-96 rounded-full border border-white/5 -top-20 -right-20'
-								style={{
-									background:
-										'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)',
-								}}></div>
-							<div
-								className='absolute w-64 h-64 rounded-full border border-white/5 -bottom-10 -left-10'
-								style={{
-									background:
-										'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)',
-								}}></div>
+						<div className='absolute inset-0 pointer-events-none'></div>
 
-							{/* Floating accent dots */}
-							<div className='absolute top-1/4 right-1/4 w-2 h-2 bg-white/20 rounded-full animate-pulse'></div>
-							<div
-								className='absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-white/15 rounded-full animate-pulse'
-								style={{animationDelay: '1s'}}></div>
-							<div
-								className='absolute top-2/3 right-1/3 w-2.5 h-2.5 bg-white/10 rounded-full animate-pulse'
-								style={{animationDelay: '2s'}}></div>
-						</div>
-
-						<div className='max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10'>
-							{/* Left side - Visual element */}
+						<div className='max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10'>
+							{/* Left side - Enhanced Visual element */}
 							<div className='relative order-2 lg:order-1'>
 								<div className='relative group'>
-									{/* Large icon circle */}
-									<div className='relative w-80 h-80 mx-auto rounded-full bg-linear-to-br from-white/5 to-white/10 border border-white/10 flex items-center justify-center overflow-hidden group-hover:border-white/20 transition-all duration-500 backdrop-blur-sm'>
-										{/* Icon */}
-										<span className='text-[120px] transform transition-transform duration-500 group-hover:scale-110'>
+									{/* Premium icon circle with glassmorphism */}
+									<div className='relative w-80 h-80 mx-auto rounded-full glass flex items-center justify-center overflow-hidden group-hover:shadow-2xl group-hover:shadow-white/10 transition-all duration-700'>
+										{/* Animated gradient background */}
+										<div className='absolute inset-0 bg-gradient-to-br from-white/10 via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700'></div>
+
+										{/* Icon with enhanced shadow */}
+										<span className='relative z-10 text-[120px] transform transition-all duration-700 group-hover:scale-110 drop-shadow-2xl'>
 											{slide.icon}
 										</span>
 
-										{/* Decorative circles */}
-										<div className='absolute top-8 right-8 w-16 h-16 rounded-full border-2 border-white/10 group-hover:border-white/20 transition-all duration-500'></div>
-										<div className='absolute bottom-12 left-12 w-12 h-12 rounded-full border-2 border-white/10 group-hover:border-white/20 transition-all duration-500'></div>
+										{/* Rotating ring effect */}
+										<div className='absolute inset-0 rounded-full border-t-2 border-white/10 opacity-0 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-1000'></div>
 									</div>
 
-									{/* Step number - floating */}
-									<div className='absolute -top-4 -right-4 w-20 h-20 rounded-full bg-white text-black flex items-center justify-center text-2xl font-heading font-bold shadow-lg'>
+									{/* Premium step number badge */}
+									<div className='absolute -top-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-br from-white to-gray-100 text-black flex items-center justify-center text-3xl font-heading font-bold shadow-2xl ring-4 ring-white/20 group-hover:scale-110 transition-transform duration-500'>
 										{slide.step}
 									</div>
 								</div>
 							</div>
 
-							{/* Right side - Content */}
-							<div className='relative order-1 lg:order-2 space-y-6'>
-								{/* Title */}
-								<div>
-									<h3 className='text-6xl md:text-7xl font-heading font-bold text-white leading-none tracking-tight mb-2'>
-										{slide.title}
-									</h3>
-									<div className='flex items-center gap-3 mt-3'>
-										<div className='h-0.5 w-12 bg-white/40'></div>
-										<span className='text-lg font-heading text-white/60 tracking-wide'>
-											{slide.subtitle}
-										</span>
+							{/* Right side - Enhanced Content card */}
+							<div className='relative order-1 lg:order-2'>
+								{/* Premium content card */}
+								<div className='rounded-3xl p-8 space-y-6 transition-all duration-700 group/card'>
+									{/* Title with gradient accent */}
+									<div>
+										<h3 className='text-6xl md:text-7xl font-heading font-bold text-white leading-none tracking-tight mb-3 drop-shadow-lg'>
+											{slide.title}
+										</h3>
+										<div className='flex items-center gap-3 mt-4'>
+											<div className='h-1 w-16 bg-gradient-to-r from-white/60 to-white/20 rounded-full'></div>
+											<span className='text-lg font-heading text-white/70 tracking-wide'>
+												{slide.subtitle}
+											</span>
+										</div>
 									</div>
-								</div>
 
-								{/* Description */}
-								<p className='text-white/80 font-descriptive leading-[1.9] text-base md:text-lg font-light'>
-									{slide.description}
-								</p>
+									{/* Enhanced description */}
+									<p className='text-white/85 font-descriptive leading-[2] text-base md:text-lg font-light'>
+										{slide.description}
+									</p>
 
-								{/* Progress dots */}
-								<div className='flex gap-2 pt-4'>
-									{slides.map((_, i) => (
-										<div
-											key={i}
-											className={`h-1.5 rounded-full transition-all duration-300 ${
-												i === index ? 'w-12 bg-white' : 'w-1.5 bg-white/30'
-											}`}></div>
-									))}
+									{/* Premium progress dots */}
+									<div className='flex gap-3 pt-6'>
+										{slides.map((_, i) => (
+											<div
+												key={i}
+												className={`h-2 rounded-full transition-all duration-500 ${
+													i === index
+														? 'w-16 bg-gradient-to-r from-white to-white/80 shadow-lg shadow-white/20'
+														: 'w-2 bg-white/30 hover:bg-white/50'
+												}`}></div>
+										))}
+									</div>
 								</div>
 							</div>
 						</div>
@@ -244,13 +193,13 @@ export default function HowWeWork() {
 				))}
 			</div>
 
-			{/* Scroll indicator */}
-			<div className='absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-60'>
-				<span className='text-xs tracking-widest text-white/60 uppercase font-descriptive'>
+			{/* Enhanced scroll indicator */}
+			<div className='absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-70 hover:opacity-100 transition-opacity duration-300'>
+				<span className='text-xs tracking-widest text-white/70 uppercase font-descriptive'>
 					Scroll
 				</span>
-				<div className='w-5 h-8 rounded-full border-2 border-white/30 flex items-start justify-center p-1.5'>
-					<div className='w-1 h-2 bg-white/60 rounded-full animate-bounce' />
+				<div className='w-6 h-10 rounded-full border-2 border-white/40 flex items-start justify-center p-2 hover:border-white/60 transition-colors duration-300'>
+					<div className='w-1.5 h-3 bg-white/70 rounded-full animate-bounce' />
 				</div>
 			</div>
 		</section>

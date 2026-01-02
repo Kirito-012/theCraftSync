@@ -36,16 +36,22 @@ export default function WhoWeAre() {
 				if (whoWeAreRef.current) {
 					// Smooth parallax effect for image
 					if (whoWeAreImageRef.current) {
-						gsap.to(whoWeAreImageRef.current, {
-							yPercent: 20,
-							ease: 'none',
-							scrollTrigger: {
-								trigger: whoWeAreRef.current,
-								start: 'top bottom',
-								end: 'bottom top',
-								scrub: 1.2,
+						gsap.fromTo(
+							whoWeAreImageRef.current,
+							{
+								yPercent: -10,
 							},
-						})
+							{
+								yPercent: 10,
+								ease: 'none',
+								scrollTrigger: {
+									trigger: whoWeAreRef.current,
+									start: 'top bottom',
+									end: 'bottom top',
+									scrub: 1.2,
+								},
+							}
+						)
 					}
 
 					// Buttery smooth vertical line animation
@@ -176,7 +182,7 @@ export default function WhoWeAre() {
 										{value: 0},
 										{
 											value: 50,
-											duration: 3,
+											duration: 2,
 											ease: 'power2.out',
 											onUpdate: function () {
 												setBrandsCount(Math.round(this.targets()[0].value))
@@ -188,7 +194,7 @@ export default function WhoWeAre() {
 										{value: 0},
 										{
 											value: 3,
-											duration: 3,
+											duration: 2,
 											ease: 'power2.out',
 											onUpdate: function () {
 												setYearsCount(Math.round(this.targets()[0].value))
@@ -200,7 +206,7 @@ export default function WhoWeAre() {
 										{value: 0},
 										{
 											value: 100,
-											duration: 3,
+											duration: 2,
 											ease: 'power2.out',
 											onUpdate: function () {
 												setGrowthCount(Math.round(this.targets()[0].value))
@@ -244,21 +250,21 @@ export default function WhoWeAre() {
 				</span>
 			</div>
 
-			{/* Floating decorative elements */}
-			<div className='absolute top-20 right-1/4 w-2 h-2 bg-black/10 rounded-full animate-float'></div>
-			<div className='absolute bottom-32 left-1/4 w-3 h-3 bg-black/5 rounded-full animate-float-delayed'></div>
-			<div className='absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-black/10 rounded-full animate-float-slow'></div>
-			<div className='absolute bottom-1/4 left-1/3 w-2.5 h-2.5 bg-black/5 rounded-full animate-float'></div>
+			{/* Enhanced floating decorative elements with glow */}
+			<div className='absolute top-20 right-1/4 w-3 h-3 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full animate-float shadow-lg shadow-purple-200/30'></div>
+			<div className='absolute bottom-32 left-1/4 w-4 h-4 bg-gradient-to-br from-blue-400/20 to-teal-400/20 rounded-full animate-float-delayed shadow-lg shadow-blue-200/30'></div>
+			<div className='absolute top-1/3 right-1/3 w-2 h-2 bg-gradient-to-br from-orange-400/20 to-yellow-400/20 rounded-full animate-float-slow shadow-lg shadow-orange-200/30'></div>
+			<div className='absolute bottom-1/4 left-1/3 w-3.5 h-3.5 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-full animate-float shadow-lg shadow-green-200/30'></div>
 
 			<div className='w-full h-full flex items-center relative'>
 				<div className='w-full max-w-full mx-auto grid grid-cols-1 lg:grid-cols-2 relative'>
 					{/* Left Side - Images Gallery */}
 					<div className='relative order-2 lg:order-1 h-full flex items-center justify-center px-16 lg:px-20'>
 						<div className='relative w-full max-w-xl'>
-							{/* Main large image */}
+							{/* Main large image with premium treatment */}
 							<div className='relative group/main mb-6'>
-								{/* Premium border frame */}
-								<div className='absolute -inset-4 border border-black/8 transition-all duration-700 group-hover/main:border-black/15'></div>
+								{/* Premium border frame with shadow */}
+								<div className='absolute -inset-4 border-2 border-black/10 rounded-sm transition-all duration-700 group-hover/main:border-black/20 group-hover/main:shadow-2xl group-hover/main:shadow-black/10'></div>
 
 								<div
 									className='who-we-are-image-container relative w-full h-96 overflow-hidden will-change-transform'
@@ -287,14 +293,14 @@ export default function WhoWeAre() {
 										<Image
 											src={aboutus}
 											alt='TheCraftSync team collaboration'
-											className='w-full h-full object-cover transition-transform duration-700 group-hover/main:scale-105'
+											className='w-full h-full object-cover object-center transition-transform duration-700 group-hover/main:scale-105'
 										/>
 									</div>
 								</div>
 
-								{/* Corner accent marks */}
-								<div className='absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-black transition-all duration-500 group-hover/main:w-8 group-hover/main:h-8 group-hover/main:-top-3 group-hover/main:-left-3'></div>
-								<div className='absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-black transition-all duration-500 group-hover/main:w-8 group-hover/main:h-8 group-hover/main:-bottom-3 group-hover/main:-right-3'></div>
+								{/* Enhanced corner accent marks */}
+								<div className='absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-black/80 transition-all duration-500 group-hover/main:w-12 group-hover/main:h-12 group-hover/main:-top-4 group-hover/main:-left-4 group-hover/main:border-black'></div>
+								<div className='absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-black/80 transition-all duration-500 group-hover/main:w-12 group-hover/main:h-12 group-hover/main:-bottom-4 group-hover/main:-right-4 group-hover/main:border-black'></div>
 							</div>
 
 							{/* Secondary images grid with gentle magnetic snap scrolling */}
@@ -387,40 +393,57 @@ export default function WhoWeAre() {
 									</p>
 								</div>
 
-								{/* Stats with premium border wrapper */}
-								<div className='relative pt-10'>
-									{/* Animated gradient border */}
-									<div className='absolute inset-0 bg-linear-to-r from-black/10 via-black/5 to-black/10 animate-gradient-x opacity-40'></div>
-									<div className='absolute inset-0 bg-white m-px'></div>
+								{/* Premium stats card */}
+								<div className='relative pt-10 group/card'>
+									{/* Outer glow effect */}
+									<div className='absolute -inset-1 bg-gradient-to-br from-black/5 via-transparent to-black/5 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500'></div>
 
-									{/* Animated border corners */}
-									<div className='absolute top-8 left-0 w-8 h-8 border-t border-l border-black/10 transition-all duration-300'></div>
-									<div className='absolute bottom-0 right-0 w-8 h-8 border-b border-r border-black/10 transition-all duration-300'></div>
+									{/* Main border with gradient */}
+									<div className='absolute inset-0 rounded-2xl overflow-hidden'>
+										<div className='absolute inset-0 border-[1.5px] border-black/15 rounded-2xl'></div>
+										<div className='absolute inset-0 bg-gradient-to-br from-white via-gray-50/30 to-white rounded-2xl'></div>
+									</div>
 
-									<div className='relative flex gap-10 who-we-are-stats px-6 py-8'>
-										<div className='flex flex-col gap-2 group/stat cursor-default'>
-											<span className='text-5xl font-heading font-bold text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 group-hover/stat:text-black/80 tabular-nums'>
+									{/* Premium corner accents */}
+									<div className='absolute -top-1 -left-1 w-16 h-16 border-t-[2.5px] border-l-[2.5px] border-black/20 rounded-tl-xl transition-all duration-500 group-hover/card:w-20 group-hover/card:h-20 group-hover/card:border-black/30'></div>
+									<div className='absolute -bottom-1 -right-1 w-16 h-16 border-b-[2.5px] border-r-[2.5px] border-black/20 rounded-br-xl transition-all duration-500 group-hover/card:w-20 group-hover/card:h-20 group-hover/card:border-black/30'></div>
+
+									{/* Subtle top accent line */}
+									<div className='absolute top-0 left-20 right-20 h-[1px] bg-gradient-to-r from-transparent via-black/10 to-transparent'></div>
+
+									<div className='relative flex gap-10 who-we-are-stats px-10 py-10 justify-between'>
+										{/* Stat 1 - Brands */}
+										<div className='flex flex-col items-center gap-3 group/stat cursor-default flex-1'>
+											<span className='text-6xl font-heading font-bold text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
 												{brandsCount}+
 											</span>
-											<span className='text-[9px] uppercase tracking-[0.25em] text-gray-400 font-descriptive font-normal mt-1 transition-all duration-300 group-hover/stat:text-black'>
+											<span className='text-[10px] uppercase tracking-[0.35em] text-gray-500 font-descriptive font-medium transition-all duration-300 group-hover/stat:text-black group-hover/stat:tracking-[0.4em]'>
 												Brands
 											</span>
 										</div>
-										<div className='w-px bg-gray-200 self-stretch'></div>
-										<div className='flex flex-col gap-2 group/stat cursor-default'>
-											<span className='text-5xl font-heading font-bold text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 group-hover/stat:text-black/80 tabular-nums'>
+
+										{/* Divider 1 */}
+										<div className='w-[1px] bg-gradient-to-b from-transparent via-gray-300 to-transparent self-stretch'></div>
+
+										{/* Stat 2 - Years */}
+										<div className='flex flex-col items-center gap-3 group/stat cursor-default flex-1'>
+											<span className='text-6xl font-heading font-bold text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
 												{yearsCount}+
 											</span>
-											<span className='text-[9px] uppercase tracking-[0.25em] text-gray-400 font-descriptive font-normal mt-1 transition-all duration-300 group-hover/stat:text-black'>
+											<span className='text-[10px] uppercase tracking-[0.35em] text-gray-500 font-descriptive font-medium transition-all duration-300 group-hover/stat:text-black group-hover/stat:tracking-[0.4em]'>
 												Years
 											</span>
 										</div>
-										<div className='w-px bg-gray-200 self-stretch'></div>
-										<div className='flex flex-col gap-2 group/stat cursor-default'>
-											<span className='text-5xl font-heading font-bold text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 group-hover/stat:text-black/80 tabular-nums'>
+
+										{/* Divider 2 */}
+										<div className='w-[1px] bg-gradient-to-b from-transparent via-gray-300 to-transparent self-stretch'></div>
+
+										{/* Stat 3 - Growth */}
+										<div className='flex flex-col items-center gap-3 group/stat cursor-default flex-1'>
+											<span className='text-6xl font-heading font-bold text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
 												{growthCount}%
 											</span>
-											<span className='text-[9px] uppercase tracking-[0.25em] text-gray-400 font-descriptive font-normal mt-1 transition-all duration-300 group-hover/stat:text-black'>
+											<span className='text-[10px] uppercase tracking-[0.35em] text-gray-500 font-descriptive font-medium transition-all duration-300 group-hover/stat:text-black group-hover/stat:tracking-[0.4em]'>
 												Growth
 											</span>
 										</div>
