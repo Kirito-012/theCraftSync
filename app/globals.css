@@ -28,29 +28,3 @@ body {
 	background-color: rgba(0, 0, 0, 0.1);
 	color: inherit;
 }
-
-/* Custom Scrollbar for Main Website */
-body::-webkit-scrollbar {
-	width: 10px;
-}
-
-body::-webkit-scrollbar-track {
-	background: rgba(0, 0, 0, 0.05);
-	border-radius: 10px;
-}
-
-body::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, 0.2);
-	border-radius: 10px;
-	transition: background 0.3s ease;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-	background: rgba(0, 0, 0, 0.35);
-}
-
-/* Firefox scrollbar */
-body {
-	scrollbar-width: thin;
-	scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
-}

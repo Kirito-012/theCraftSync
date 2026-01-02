@@ -195,6 +195,22 @@
 	}
 }
 
+@keyframes gradient-xy {
+	0%,
+	100% {
+		background-position: 0% 0%;
+	}
+	25% {
+		background-position: 100% 0%;
+	}
+	50% {
+		background-position: 100% 100%;
+	}
+	75% {
+		background-position: 0% 100%;
+	}
+}
+
 @keyframes pulse-glow {
 	0%,
 	100% {
@@ -239,6 +255,11 @@
 .animate-gradient-y {
 	background-size: 200% 200%;
 	animation: gradient-y 6s ease infinite;
+}
+
+.animate-gradient-xy {
+	background-size: 200% 200%;
+	animation: gradient-xy 8s ease infinite;
 }
 
 .animate-pulse-glow {

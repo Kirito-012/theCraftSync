@@ -108,7 +108,23 @@ export default function OurTeam() {
 
 	const scrollCarousel = (direction: 'left' | 'right') => {
 		if (carouselRef.current) {
-			const scrollAmount = 400
+			// Get the first two team cards to calculate width and gap
+			const cards = carouselRef.current.querySelectorAll('.team-card')
+			if (cards.length < 2) return
+
+			const firstCard = cards[0] as HTMLElement
+			const secondCard = cards[1] as HTMLElement
+
+			// Calculate the actual card width using offsetWidth
+			const cardWidth = firstCard.offsetWidth
+			
+			// Calculate gap from actual positions
+			const firstCardRect = firstCard.getBoundingClientRect()
+			const secondCardRect = secondCard.getBoundingClientRect()
+			const gap = secondCardRect.left - firstCardRect.right
+			
+			const scrollAmount = cardWidth + gap
+
 			const newScrollLeft =
 				direction === 'left'
 					? carouselRef.current.scrollLeft - scrollAmount
