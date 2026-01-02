@@ -233,7 +233,7 @@ export default function WhoWeAre() {
 	return (
 		<section
 			ref={whoWeAreRef}
-			className='relative h-screen w-full bg-linear-to-br from-white via-gray-50/30 to-white flex items-center overflow-hidden'>
+			className='relative min-h-screen w-full bg-linear-to-br from-white via-gray-50/30 to-white flex items-center overflow-hidden py-12 sm:py-16 md:py-20 lg:py-0'>
 			{/* Subtle grid pattern overlay */}
 			<div
 				className='absolute inset-0 opacity-[0.015]'
@@ -245,29 +245,29 @@ export default function WhoWeAre() {
 
 			{/* Large decorative text background */}
 			<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none'>
-				<span className='text-[20vw] font-heading font-black text-black/2 tracking-tighter leading-none whitespace-nowrap'>
+				<span className='text-[20vw] sm:text-[18vw] md:text-[16vw] lg:text-[20vw] font-heading font-black text-black/2 tracking-tighter leading-none whitespace-nowrap'>
 					CRAFT
 				</span>
 			</div>
 
-			{/* Enhanced floating decorative elements with glow */}
-			<div className='absolute top-20 right-1/4 w-3 h-3 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full animate-float shadow-lg shadow-purple-200/30'></div>
-			<div className='absolute bottom-32 left-1/4 w-4 h-4 bg-gradient-to-br from-blue-400/20 to-teal-400/20 rounded-full animate-float-delayed shadow-lg shadow-blue-200/30'></div>
-			<div className='absolute top-1/3 right-1/3 w-2 h-2 bg-gradient-to-br from-orange-400/20 to-yellow-400/20 rounded-full animate-float-slow shadow-lg shadow-orange-200/30'></div>
-			<div className='absolute bottom-1/4 left-1/3 w-3.5 h-3.5 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-full animate-float shadow-lg shadow-green-200/30'></div>
+			{/* Enhanced floating decorative elements with glow - hidden on mobile */}
+			<div className='hidden sm:block absolute top-20 right-1/4 w-3 h-3 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full animate-float shadow-lg shadow-purple-200/30'></div>
+			<div className='hidden sm:block absolute bottom-32 left-1/4 w-4 h-4 bg-gradient-to-br from-blue-400/20 to-teal-400/20 rounded-full animate-float-delayed shadow-lg shadow-blue-200/30'></div>
+			<div className='hidden md:block absolute top-1/3 right-1/3 w-2 h-2 bg-gradient-to-br from-orange-400/20 to-yellow-400/20 rounded-full animate-float-slow shadow-lg shadow-orange-200/30'></div>
+			<div className='hidden md:block absolute bottom-1/4 left-1/3 w-3.5 h-3.5 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-full animate-float shadow-lg shadow-green-200/30'></div>
 
 			<div className='w-full h-full flex items-center relative'>
-				<div className='w-full max-w-full mx-auto grid grid-cols-1 lg:grid-cols-2 relative'>
+				<div className='w-full max-w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 relative'>
 					{/* Left Side - Images Gallery */}
-					<div className='relative order-2 lg:order-1 h-full flex items-center justify-center px-16 lg:px-20'>
+					<div className='relative order-2 lg:order-1 h-full flex items-center justify-center px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20'>
 						<div className='relative w-full max-w-xl'>
 							{/* Main large image with premium treatment */}
-							<div className='relative group/main mb-6'>
+							<div className='relative group/main mb-4 sm:mb-5 md:mb-6'>
 								{/* Premium border frame with shadow */}
 								<div className='absolute -inset-4 border-2 border-black/10 rounded-sm transition-all duration-700 group-hover/main:border-black/20 group-hover/main:shadow-2xl group-hover/main:shadow-black/10'></div>
 
 								<div
-									className='who-we-are-image-container relative w-full h-96 overflow-hidden will-change-transform'
+									className='who-we-are-image-container relative w-full h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden will-change-transform'
 									style={{
 										transform: `translate3d(${mousePosition.x * 0.5}px, ${
 											mousePosition.y * 0.5
@@ -304,9 +304,9 @@ export default function WhoWeAre() {
 							</div>
 
 							{/* Secondary images grid with gentle magnetic snap scrolling */}
-							<div className='grid grid-cols-3 gap-4 snap-x snap-proximity overflow-x-auto scrollbar-hide scroll-smooth'>
+							<div className='grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 snap-x snap-proximity overflow-x-auto scrollbar-hide scroll-smooth'>
 								{/* Image 2 */}
-								<div className='relative group/img overflow-hidden h-32 border border-black/10 hover:border-black/20 transition-all duration-500 snap-center'>
+								<div className='relative group/img overflow-hidden h-20 sm:h-24 md:h-28 lg:h-32 border border-black/10 hover:border-black/20 transition-all duration-500 snap-center'>
 									<div className='absolute inset-0 bg-black/0 group-hover/img:bg-black/5 transition-all duration-500 z-10'></div>
 									<Image
 										src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop'
@@ -318,7 +318,7 @@ export default function WhoWeAre() {
 								</div>
 
 								{/* Image 3 */}
-								<div className='relative group/img overflow-hidden h-32 border border-black/10 hover:border-black/20 transition-all duration-500 snap-center'>
+								<div className='relative group/img overflow-hidden h-20 sm:h-24 md:h-28 lg:h-32 border border-black/10 hover:border-black/20 transition-all duration-500 snap-center'>
 									<div className='absolute inset-0 bg-black/0 group-hover/img:bg-black/5 transition-all duration-500 z-10'></div>
 									<Image
 										src='https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2940&auto=format&fit=crop'
@@ -330,7 +330,7 @@ export default function WhoWeAre() {
 								</div>
 
 								{/* Image 4 */}
-								<div className='relative group/img overflow-hidden h-32 border border-black/10 hover:border-black/20 transition-all duration-500 snap-center'>
+								<div className='relative group/img overflow-hidden h-20 sm:h-24 md:h-28 lg:h-32 border border-black/10 hover:border-black/20 transition-all duration-500 snap-center'>
 									<div className='absolute inset-0 bg-black/0 group-hover/img:bg-black/5 transition-all duration-500 z-10'></div>
 									<Image
 										src='https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2940&auto=format&fit=crop'
@@ -348,8 +348,8 @@ export default function WhoWeAre() {
 					</div>
 
 					{/* Right Side - Content */}
-					<div className='relative order-1 lg:order-2 flex items-center h-full px-16 lg:px-20 py-20'>
-						<div className='flex gap-10 w-full max-w-xl'>
+					<div className='relative order-1 lg:order-2 flex items-center h-full px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-8 sm:py-12 md:py-16 lg:py-20'>
+						<div className='flex gap-6 sm:gap-8 md:gap-10 w-full max-w-xl'>
 							{/* Animated Vertical Line with gradient effect */}
 							<div className='relative shrink-0 w-0.5'>
 								<div
@@ -358,35 +358,35 @@ export default function WhoWeAre() {
 							</div>
 
 							{/* Content */}
-							<div className='flex flex-col gap-14 py-4'>
+							<div className='flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-14 py-2 sm:py-3 md:py-4'>
 								{/* Small Heading */}
-								<div className='who-we-are-small-heading will-change-transform flex items-center gap-4'>
-									<div className='h-px w-12 bg-black'></div>
-									<span className='text-black uppercase text-[9px] font-descriptive tracking-[0.4em] font-medium'>
+								<div className='who-we-are-small-heading will-change-transform flex items-center gap-3 sm:gap-4'>
+									<div className='h-px w-8 sm:w-10 md:w-12 bg-black'></div>
+									<span className='text-black uppercase text-[8px] sm:text-[9px] font-descriptive tracking-[0.3em] sm:tracking-[0.4em] font-medium'>
 										Who we are
 									</span>
 								</div>
 
 								{/* Main Heading */}
-								<h2 className='who-we-are-main-heading text-6xl lg:text-7xl font-heading font-bold text-black leading-[0.95] tracking-tight will-change-transform'>
+								<h2 className='who-we-are-main-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-black leading-[0.95] tracking-tight will-change-transform'>
 									We are{' '}
-									<span className='block mt-3 italic font-black relative group/title animate-shimmer'>
+									<span className='block mt-2 sm:mt-3 italic font-black relative group/title animate-shimmer'>
 										TheCraftSync
-										<span className='absolute -bottom-2 left-0 w-20 h-0.75 bg-black transition-all duration-500 group-hover/title:w-full'></span>
+										<span className='absolute -bottom-1 sm:-bottom-2 left-0 w-12 sm:w-16 md:w-20 h-0.75 bg-black transition-all duration-500 group-hover/title:w-full'></span>
 										{/* Decorative quotes */}
-										<span className='absolute -left-8 -top-2 text-6xl text-black/10 font-serif'>
+										<span className='hidden sm:block absolute -left-6 sm:-left-8 -top-1 sm:-top-2 text-4xl sm:text-5xl md:text-6xl text-black/10 font-serif'>
 											"
 										</span>
 									</span>
 								</h2>
 
-								<div className='flex flex-col gap-7'>
-									<p className='who-we-are-paragraph text-gray-700 font-descriptive leading-[1.9] text-[15px] will-change-transform font-light'>
+								<div className='flex flex-col gap-4 sm:gap-5 md:gap-6 lg:gap-7'>
+									<p className='who-we-are-paragraph text-gray-700 font-descriptive leading-[1.7] sm:leading-[1.8] md:leading-[1.9] text-[13px] sm:text-[14px] md:text-[15px] will-change-transform font-light'>
 										A digital marketing agency built on authentic connection and
 										strategic storytelling. We help brands find their voice and
 										deliver measurable results through data-driven creativity.
 									</p>
-									<p className='who-we-are-paragraph text-gray-600 font-descriptive leading-[1.9] text-[15px] will-change-transform font-light'>
+									<p className='who-we-are-paragraph text-gray-600 font-descriptive leading-[1.7] sm:leading-[1.8] md:leading-[1.9] text-[13px] sm:text-[14px] md:text-[15px] will-change-transform font-light'>
 										We listen, create, and sync your vision with your audience's
 										needs. From social media to comprehensive digital
 										strategies, we're partners in your growth.
@@ -394,7 +394,7 @@ export default function WhoWeAre() {
 								</div>
 
 								{/* Premium stats card */}
-								<div className='relative pt-10 group/card'>
+								<div className='relative pt-6 sm:pt-8 md:pt-10 group/card'>
 									{/* Outer glow effect */}
 									<div className='absolute -inset-1 bg-gradient-to-br from-black/5 via-transparent to-black/5 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500'></div>
 
@@ -405,29 +405,29 @@ export default function WhoWeAre() {
 									</div>
 
 									{/* Premium corner accents */}
-									<div className='absolute -top-1 -left-1 w-16 h-16 border-t-[2.5px] border-l-[2.5px] border-black/20 rounded-tl-xl transition-all duration-500 group-hover/card:w-20 group-hover/card:h-20 group-hover/card:border-black/30'></div>
-									<div className='absolute -bottom-1 -right-1 w-16 h-16 border-b-[2.5px] border-r-[2.5px] border-black/20 rounded-br-xl transition-all duration-500 group-hover/card:w-20 group-hover/card:h-20 group-hover/card:border-black/30'></div>
+									<div className='absolute -top-1 -left-1 w-10 sm:w-12 md:w-14 lg:w-16 h-10 sm:h-12 md:h-14 lg:h-16 border-t-[2px] sm:border-t-[2.5px] border-l-[2px] sm:border-l-[2.5px] border-black/20 rounded-tl-xl transition-all duration-500 group-hover/card:w-14 sm:group-hover/card:w-16 md:group-hover/card:w-18 lg:group-hover/card:w-20 group-hover/card:h-14 sm:group-hover/card:h-16 md:group-hover/card:h-18 lg:group-hover/card:h-20 group-hover/card:border-black/30'></div>
+									<div className='absolute -bottom-1 -right-1 w-10 sm:w-12 md:w-14 lg:w-16 h-10 sm:h-12 md:h-14 lg:h-16 border-b-[2px] sm:border-b-[2.5px] border-r-[2px] sm:border-r-[2.5px] border-black/20 rounded-br-xl transition-all duration-500 group-hover/card:w-14 sm:group-hover/card:w-16 md:group-hover/card:w-18 lg:group-hover/card:w-20 group-hover/card:h-14 sm:group-hover/card:h-16 md:group-hover/card:h-18 lg:group-hover/card:h-20 group-hover/card:border-black/30'></div>
 
 									{/* Subtle top accent line */}
-									<div className='absolute top-0 left-20 right-20 h-[1px] bg-gradient-to-r from-transparent via-black/10 to-transparent'></div>
+									<div className='absolute top-0 left-12 sm:left-16 md:left-20 right-12 sm:right-16 md:right-20 h-[1px] bg-gradient-to-r from-transparent via-black/10 to-transparent'></div>
 
-									<div className='relative flex gap-10 who-we-are-stats px-10 py-10 justify-between'>
+									<div className='relative flex flex-col sm:flex-row gap-6 sm:gap-8 md:gap-10 who-we-are-stats px-6 sm:px-8 md:px-10 py-6 sm:py-8 md:py-10 justify-between'>
 										{/* Stat 1 - Brands */}
-										<div className='flex flex-col items-center gap-3 group/stat cursor-default flex-1'>
-											<span className='text-6xl font-heading font-bold w-[2ch] text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
+										<div className='flex flex-col items-center gap-2 sm:gap-3 group/stat cursor-default flex-1'>
+											<span className='text-4xl sm:text-5xl md:text-6xl font-heading font-bold w-[2ch] text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
 												{brandsCount}+
 											</span>
-											<span className='text-[10px] uppercase tracking-[0.35em] text-gray-500 font-descriptive font-medium transition-all duration-300 group-hover/stat:text-black group-hover/stat:tracking-[0.4em]'>
+											<span className='text-[9px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-gray-500 font-descriptive font-medium transition-all duration-300 group-hover/stat:text-black group-hover/stat:tracking-[0.3em] sm:group-hover/stat:tracking-[0.4em]'>
 												Brands
 											</span>
 										</div>
 
 										{/* Divider 1 */}
-										<div className='w-[1px] bg-gradient-to-b from-transparent via-gray-300 to-transparent self-stretch'></div>
+										<div className='h-[1px] sm:h-auto sm:w-[1px] bg-gradient-to-r sm:bg-gradient-to-b from-transparent via-gray-300 to-transparent w-full sm:w-auto sm:self-stretch'></div>
 
 										{/* Stat 2 - Years */}
-										<div className='flex flex-col items-center gap-3 group/stat cursor-default flex-1'>
-											<span className='text-6xl font-heading font-bold w-[2ch] text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
+										<div className='flex flex-col items-center gap-2 sm:gap-3 group/stat cursor-default flex-1'>
+											<span className='text-4xl sm:text-5xl md:text-6xl font-heading font-bold w-[2ch] text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
 												{yearsCount}+
 											</span>
 											<span className='text-[10px] uppercase tracking-[0.35em] text-gray-500 font-descriptive font-medium transition-all duration-300 group-hover/stat:text-black group-hover/stat:tracking-[0.4em]'>
@@ -436,11 +436,11 @@ export default function WhoWeAre() {
 										</div>
 
 										{/* Divider 2 */}
-										<div className='w-[1px] bg-gradient-to-b from-transparent via-gray-300 to-transparent self-stretch'></div>
+										<div className='h-[1px] sm:h-auto sm:w-[1px] bg-gradient-to-r sm:bg-gradient-to-b from-transparent via-gray-300 to-transparent w-full sm:w-auto sm:self-stretch'></div>
 
 										{/* Stat 3 - Growth */}
-										<div className='flex flex-col items-center gap-3 group/stat cursor-default flex-1'>
-											<span className='text-6xl font-heading font-bold w-[3.25ch] text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
+										<div className='flex flex-col items-center gap-2 sm:gap-3 group/stat cursor-default flex-1'>
+											<span className='text-4xl sm:text-5xl md:text-6xl font-heading font-bold w-[3.25ch] text-black tracking-tighter leading-none transition-all duration-300 group-hover/stat:scale-110 tabular-nums block text-center'>
 												{growthCount}%
 											</span>
 											<span className='text-[10px] uppercase tracking-[0.35em] text-gray-500 font-descriptive font-medium transition-all duration-300 group-hover/stat:text-black group-hover/stat:tracking-[0.4em]'>
