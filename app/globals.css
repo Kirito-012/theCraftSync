@@ -17,9 +17,24 @@
     --radius: 0.625rem;
 }
 
+:root {
+	--snow-white: #f8fafc;
+}
+
 body {
-    font-family: var(--font-descriptive);
-    background-color: oklch(1 0 0);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+	font-family: var(--font-descriptive);
+	background-color: var(--snow-white);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth Transitions */
+* {
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Selection Styling */
+::selection {
+	background-color: rgba(0, 0, 0, 0.1);
+	color: inherit;
 }
