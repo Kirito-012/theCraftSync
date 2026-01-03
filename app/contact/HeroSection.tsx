@@ -135,19 +135,19 @@ const HeroSection = () => {
 						<h1
 							ref={titleRef}
 							className='text-2xl sm:text-3xl lg:text-4xl xl:text-6xl leading-[1.1] mb-4 sm:mb-6 opacity-0'>
-							<span className='font-light text-zinc-300 block mb-1 sm:mb-2 text-xl sm:text-2xl md:text-4xl xl:text-5xl'>
+							<span className='font-light text-zinc-300 block mb-1 sm:mb-2 text-2xl md:text-4xl xl:text-5xl'>
 								Let's build
 							</span>
-							<span className='font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tighter text-transparent bg-clip-text bg-linear-to-b from-white to-zinc-500 block uppercase'>
+							<span className='font-bold text-4xl md:text-5xl lg:text-6xl tracking-tighter text-transparent bg-clip-text bg-linear-to-b from-white to-zinc-500 block uppercase'>
 								Exceptional
 							</span>
-							<span className='font-heading italic font-light text-zinc-500 text-lg sm:text-2xl md:text-3xl lg:text-4xl block mt-1'>
+							<span className='font-heading italic font-light text-zinc-500 text-2xl md:text-3xl lg:text-4xl block mt-1'>
 								digital products.
 							</span>
 						</h1>
 						<p
 							ref={descRef}
-							className='text-zinc-400 text-sm sm:text-base lg:text-lg leading-relaxed max-w-md border-l border-zinc-800 pl-4 sm:pl-6 font-light opacity-0'>
+							className='text-zinc-400 text-sm lg:text-lg leading-relaxed max-w-md border-l border-zinc-800 pl-4 sm:pl-6 font-light opacity-0'>
 							We help ambitious brands and businesses define their future with
 							design and technology.
 						</p>
