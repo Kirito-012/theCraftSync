@@ -1,15 +1,18 @@
-"use client";
+'use client'
 
-import React from 'react';
-import HeroSection from './HeroSection';
+import React from 'react'
+import HeroSection from './HeroSection'
+import ContactInfoSection from './ContactInfoSection'
+import WhatHappensNext from './WhatHappensNext'
 
 const ContactPage = () => {
-    return (
-        <div className="min-h-screen w-full bg-black flex items-center justify-center py-12 px-4 sm:px-8">
-            <HeroSection />
-        </div>
-    );
-};
+	return (
+		<>
+			<HeroSection />
+			<WhatHappensNext />
+			<ContactInfoSection />
+		</>
+	)
+}
 
-export default ContactPage;
-
+export default ContactPage
