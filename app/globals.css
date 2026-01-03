@@ -1,1 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/agrandir');
 @import 'tailwindcss';
+
+@theme {
+    --font-heading: 'Agrandir', sans-serif;
+    --font-descriptive: 'Montserrat', sans-serif;
+    --color-background: oklch(1 0 0);
+    --color-foreground: oklch(0.145 0 0);
+    --color-border: oklch(0.922 0 0);
+    --color-primary: oklch(0.205 0 0);
+    --color-secondary: oklch(0.97 0 0);
+    --color-accent: oklch(0.97 0 0);
+    --color-destructive: oklch(0.577 0.245 27.325);
+    --color-muted: oklch(0.97 0 0);
+    --color-ring: oklch(0.708 0 0);
+    --radius: 0.625rem;
+}
+
+body {
+    font-family: var(--font-descriptive);
+    background-color: oklch(1 0 0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
