@@ -53,7 +53,7 @@ export default function HeroSection() {
 	return (
 		<section
 			ref={heroRef}
-			className='relative w-full min-h-[80vh] sm:min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-12 lg:px-24 pt-24 sm:pt-20 pb-20 sm:pb-32'>
+			className='relative w-full min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-12 lg:px-24 pt-24 sm:pt-20 pb-20 sm:pb-32'>
 			{/* Background Image with Overlay */}
 			<div className='absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden'>
 				<div

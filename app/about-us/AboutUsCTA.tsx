@@ -234,7 +234,7 @@ export default function AboutUsCTA() {
 							})}
 						</span>
 					</span>
-					<span className='block sm:inline mt-2 sm:mt-0'>Your Brand?</span>
+					<span className='block mt-2 sm:mt-0'>Your Brand?</span>
 				</h2>
 
 				{/* CTA Button - Fully responsive with touch optimization */}
