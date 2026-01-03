@@ -2,14 +2,15 @@
 import CurvesDemo from "./Components/Curves";
 import HeroSection from "./Components/Home";
 import ServicesSection from "./Components/Services";
-import WhiteBg from "./Components/whitebg";
+import WhyChooseSection from "./Components/Whyus";
+
 
 export default function Home() {
   return (
  <>
  <HeroSection />
- <WhiteBg />
  <ServicesSection />
+<WhyChooseSection />
 <CurvesDemo />
  </>
   );
