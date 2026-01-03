@@ -39,12 +39,12 @@ const steps = [
 
 const WhatHappensNext = () => {
 	const [activeStep, setActiveStep] = useState<number>(1)
-	
-    // Animation Refs
-    const containerRef = useRef<HTMLDivElement>(null)
-    const badgeRef = useRef<HTMLDivElement>(null)
-    const titleRef = useRef<HTMLHeadingElement>(null)
-    const descRef = useRef<HTMLParagraphElement>(null)
+
+	// Animation Refs
+	const containerRef = useRef<HTMLDivElement>(null)
+	const badgeRef = useRef<HTMLDivElement>(null)
+	const titleRef = useRef<HTMLHeadingElement>(null)
+	const descRef = useRef<HTMLParagraphElement>(null)
 	const stepsRef = useRef<(HTMLDivElement | null)[]>([])
 	const textRefs = useRef<(HTMLDivElement | null)[]>([])
 
@@ -54,36 +54,42 @@ const WhatHappensNext = () => {
 			gsap.registerPlugin(ScrollTrigger)
 
 			const ctx = gsap.context(() => {
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: containerRef.current,
-                        start: 'top 75%', // Trigger slightly earlier for better flow
-                    }
-                })
+				const tl = gsap.timeline({
+					scrollTrigger: {
+						trigger: containerRef.current,
+						start: 'top 75%', // Trigger slightly earlier for better flow
+					},
+				})
 
-                // Initial States
-                gsap.set([badgeRef.current, titleRef.current, descRef.current], { opacity: 0, y: 30 })
-                gsap.set(stepsRef.current, { opacity: 0, y: 60 })
+				// Initial States
+				gsap.set([badgeRef.current, titleRef.current, descRef.current], {
+					opacity: 0,
+					y: 30,
+				})
+				gsap.set(stepsRef.current, {opacity: 0, y: 60})
 
-                // 1. Header Sequence (Cascading)
-                tl.to([badgeRef.current, titleRef.current, descRef.current], {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    stagger: 0.15,
-                    ease: 'power4.out',
-                })
+				// 1. Header Sequence (Cascading)
+				tl.to([badgeRef.current, titleRef.current, descRef.current], {
+					opacity: 1,
+					y: 0,
+					duration: 1,
+					stagger: 0.15,
+					ease: 'power4.out',
+				})
 
-                // 2. Steps Sequence (Slide Up)
-                tl.to(stepsRef.current, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.2, // Slightly slower for elegance
-                    stagger: 0.15,
-                    ease: 'power4.out',
-                    clearProps: 'transform' // Important to clear transform so hover effects work cleanly
-                }, '-=0.5') // Overlap slightly with header animation
-
+				// 2. Steps Sequence (Slide Up)
+				tl.to(
+					stepsRef.current,
+					{
+						opacity: 1,
+						y: 0,
+						duration: 1.2, // Slightly slower for elegance
+						stagger: 0.15,
+						ease: 'power4.out',
+						clearProps: 'transform', // Important to clear transform so hover effects work cleanly
+					},
+					'-=0.5'
+				) // Overlap slightly with header animation
 			}, containerRef)
 
 			return () => ctx.revert()
@@ -128,19 +134,25 @@ const WhatHappensNext = () => {
 			ref={containerRef}>
 			<div className='max-w-[1600px] mx-auto'>
 				<div className='mb-24 flex flex-col items-center text-center'>
-					<div ref={badgeRef} className='flex items-center gap-2 mb-8 border border-white/10 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-sm opacity-0'>
+					<div
+						ref={badgeRef}
+						className='flex items-center gap-2 mb-8 border border-white/10 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-sm opacity-0'>
 						<span className='w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse'></span>
 						<span className='text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400'>
 							The Process
 						</span>
 					</div>
 
-					<h2 ref={titleRef} className='text-6xl md:text-8xl font-black text-white tracking-tighter mb-8 leading-[0.9] opacity-0'>
+					<h2
+						ref={titleRef}
+						className='text-6xl md:text-8xl font-black text-white tracking-tighter mb-8 leading-[0.9] opacity-0'>
 						What happens <br className='hidden md:block' />
 						<span className='text-zinc-500 font-serif italic'>next?</span>
 					</h2>
 
-					<p ref={descRef} className='text-zinc-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl opacity-0'>
+					<p
+						ref={descRef}
+						className='text-zinc-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl opacity-0'>
 						We believe in a transparent and collaborative process. Here is a
 						breakdown of how we go from initial contact to a signed partnership.
 					</p>
@@ -163,12 +175,11 @@ const WhatHappensNext = () => {
 									p-8 lg:p-10 group flex flex-col justify-between
 									${
 										isActive
-											? 'lg:flex-[3] bg-zinc-900 border-zinc-700'
+											? 'lg:flex-3 bg-zinc-900 border-zinc-700'
 											: 'lg:flex-1 bg-zinc-950 hover:bg-zinc-900'
 									}
 								`}
 								style={{willChange: 'flex-grow, flex-basis'}}>
-								
 								{/* Top Content */}
 								<div className='relative z-10 flex justify-between items-start'>
 									<div className='flex flex-col'>
@@ -185,7 +196,7 @@ const WhatHappensNext = () => {
 									<div
 										className={`w-12 h-12 rounded-full border border-white/10 flex items-center justify-center transition-all duration-300 transform ${
 											isActive
-												? 'bg-white text-black rotate-[-45deg]'
+												? 'bg-white text-black -rotate-45'
 												: 'bg-transparent text-white group-hover:bg-white/10'
 										}`}>
 										<ArrowRight className='w-5 h-5' />

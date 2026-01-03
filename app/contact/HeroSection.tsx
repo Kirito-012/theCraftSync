@@ -127,7 +127,7 @@ const HeroSection = () => {
 							ref={badgeRef}
 							className='inline-flex items-center gap-2 px-4 py-2 mb-8 border border-white/10 rounded-full bg-white/5 backdrop-blur-md opacity-0'>
 							<span className='w-2 h-2 rounded-full bg-emerald-500 animate-pulse'></span>
-							<span className='text-[10px] font-bold tracking-[0.1em] uppercase text-zinc-400'>
+							<span className='text-[10px] font-bold tracking-widest uppercase text-zinc-400'>
 								Available for new projects
 							</span>
 						</div>
@@ -209,7 +209,7 @@ const HeroSection = () => {
 							<div className='group relative'>
 								<label
 									htmlFor='name'
-									className='block text-[10px] font-bold text-zinc-900 uppercase tracking-[0.1em] mb-2'>
+									className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-2'>
 									Your Name
 								</label>
 								<input
@@ -223,7 +223,7 @@ const HeroSection = () => {
 							<div className='group relative'>
 								<label
 									htmlFor='email'
-									className='block text-[10px] font-bold text-zinc-900 uppercase tracking-[0.1em] mb-2'>
+									className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-2'>
 									Email Address
 								</label>
 								<input
@@ -240,7 +240,7 @@ const HeroSection = () => {
 							<div className='group relative'>
 								<label
 									htmlFor='company'
-									className='block text-[10px] font-bold text-zinc-900 uppercase tracking-[0.1em] mb-2'>
+									className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-2'>
 									Company{' '}
 									<span className='text-zinc-400 font-medium normal-case tracking-normal ml-1'>
 										(Optional)
@@ -256,7 +256,7 @@ const HeroSection = () => {
 							<div className='group relative'>
 								<label
 									htmlFor='budget'
-									className='block text-[10px] font-bold text-zinc-900 uppercase tracking-[0.1em] mb-2'>
+									className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-2'>
 									Budget Range
 								</label>
 								<input
@@ -270,7 +270,7 @@ const HeroSection = () => {
 
 						{/* Services */}
 						<div className='pt-1'>
-							<label className='block text-[10px] font-bold text-zinc-900 uppercase tracking-[0.1em] mb-4'>
+							<label className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-4'>
 								I'm interested in...
 							</label>
 							<div className='flex flex-wrap gap-x-8 gap-y-4'>
@@ -307,7 +307,7 @@ const HeroSection = () => {
 						<div className='group relative'>
 							<label
 								htmlFor='message'
-								className='block text-[10px] font-bold text-zinc-900 uppercase tracking-[0.1em] mb-2'>
+								className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-2'>
 								Project Details
 							</label>
 							<textarea
