@@ -64,7 +64,7 @@ const HeroSection: React.FC = () => {
 
     // Infinite scroll animations for columns
     const animateColumn = (
-      ref: React.RefObject<HTMLDivElement>, 
+      ref: React.RefObject<HTMLDivElement | null>, 
       direction: 'up' | 'down', 
       duration: number
     ): void => {
@@ -93,7 +93,7 @@ const HeroSection: React.FC = () => {
 
   }, []);
 
-  const renderColumn = (): JSX.Element[] => {
+  const renderColumn = (): React.ReactElement[] => {
     return [...images, ...images, ...images, ...images].map((img: string, idx: number) => (
       <React.Fragment key={idx}>
         <div className="w-full aspect-[3/4] mb-4 overflow-hidden">
