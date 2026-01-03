@@ -37,3 +37,12 @@ body {
 	background-color: rgba(0, 0, 0, 0.1);
 	color: inherit;
 }
+
+/* Hide Scrollbar Utility */
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+.no-scrollbar {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
