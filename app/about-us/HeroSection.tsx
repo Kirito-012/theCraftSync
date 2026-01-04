@@ -14,13 +14,13 @@ export default function HeroSection() {
 
 			const ctx = gsap.context(() => {
 				gsap.to(bgRef.current, {
-					yPercent: 20,
+					yPercent: 12,
 					ease: 'none',
 					scrollTrigger: {
 						trigger: heroRef.current,
 						start: 'top top',
 						end: 'bottom top',
-						scrub: 4,
+						scrub: 1,
 					},
 				})
 
@@ -61,8 +61,10 @@ export default function HeroSection() {
 					className='absolute top-[-10%] left-0 w-full h-[120%] bg-cover bg-center bg-no-repeat will-change-transform'
 					style={{
 						backgroundImage:
-							"url('https://images.unsplash.com/photo-1660496247667-3fb697c396af?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+							"url('https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_1920,c_limit/v1767509751/photo-1660496247667-3fb697c396af_yvgb2m.avif')",
 						backgroundPosition: 'center center',
+						transform: 'translate3d(0, 0, 0)',
+						backfaceVisibility: 'hidden',
 					}}
 				/>
 				<div className='absolute inset-0 bg-black/40 mix-blend-multiply'></div>
