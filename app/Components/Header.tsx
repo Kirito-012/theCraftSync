@@ -1,11 +1,13 @@
 'use client'
-import {useState, useRef} from 'react'
+import {useState, useRef, useEffect} from 'react'
 import Image from 'next/image'
 import logo1 from '../assets/logo1.png'
 import Link from 'next/link'
 
 export default function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const [isVisible, setIsVisible] = useState(true)
+	const [lastScrollY, setLastScrollY] = useState(0)
 	const navRef = useRef<HTMLDivElement>(null)
 
 	const navItems: {name: string; href: string; hasDropdown?: boolean}[] = [
@@ -16,10 +18,34 @@ export default function Navbar() {
 		{name: 'Blog', href: '/blogs'},
 	]
 
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollY = window.scrollY
+
+			if (currentScrollY > lastScrollY && currentScrollY > 100) {
+				// Scrolling down and past 100px
+				setIsVisible(false)
+			} else if (currentScrollY < lastScrollY) {
+				// Scrolling up
+				setIsVisible(true)
+			}
+
+			setLastScrollY(currentScrollY)
+		}
+
+		window.addEventListener('scroll', handleScroll, {passive: true})
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll)
+		}
+	}, [lastScrollY])
+
 	return (
 		<nav
 			ref={navRef}
-			className='fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[85%] md:w-[80%] max-w-4xl'>
+			className={`fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[85%] md:w-[80%] max-w-4xl transition-transform duration-300 ${
+				isVisible ? 'translate-y-0' : '-translate-y-[125%]'
+			}`}>
 			<div className='bg-black backdrop-blur-md rounded-full px-6 md:px-8 py-4 shadow-2xl border border-amber-900/20'>
 				<div className='flex items-center justify-between md:mx-10 gap-20'>
 					{/* Logo */}
