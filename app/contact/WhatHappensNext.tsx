@@ -38,7 +38,7 @@ const steps = [
 ]
 
 const WhatHappensNext = () => {
-	const [activeStep, setActiveStep] = useState<number>(1)
+	const [activeStep, setActiveStep] = useState<number>(0)
 
 	// Animation Refs
 	const containerRef = useRef<HTMLDivElement>(null)

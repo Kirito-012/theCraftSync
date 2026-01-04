@@ -3,7 +3,6 @@
 import {useEffect, useRef, useState} from 'react'
 import gsap from 'gsap'
 import Image from 'next/image'
-import aboutus from '../assets/aboutus.jpg'
 
 export default function WhoWeAre() {
 	const whoWeAreRef = useRef<HTMLDivElement>(null)
@@ -291,8 +290,10 @@ export default function WhoWeAre() {
 										ref={whoWeAreImageRef}
 										className='absolute inset-0 w-full h-full will-change-transform'>
 										<Image
-											src={aboutus}
+											src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_1200,c_limit/v1767509856/aboutus_n75dvh.jpg'
 											alt='TheCraftSync team collaboration'
+											fill
+											sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
 											className='w-full h-full object-cover object-center transition-transform duration-700 group-hover/main:scale-105'
 										/>
 									</div>
@@ -309,7 +310,7 @@ export default function WhoWeAre() {
 								<div className='relative group/img overflow-hidden h-20 sm:h-24 md:h-28 lg:h-32 border border-black/10 hover:border-black/20 transition-all duration-500 snap-center'>
 									<div className='absolute inset-0 bg-black/0 group-hover/img:bg-black/5 transition-all duration-500 z-10'></div>
 									<Image
-										src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop'
+										src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_400,c_limit/v1767510655/photo-1522071820081-009f0129c71c_xqyihe.avif'
 										alt='Team brainstorming'
 										width={400}
 										height={300}
@@ -321,7 +322,7 @@ export default function WhoWeAre() {
 								<div className='relative group/img overflow-hidden h-20 sm:h-24 md:h-28 lg:h-32 border border-black/10 hover:border-black/20 transition-all duration-500 snap-center'>
 									<div className='absolute inset-0 bg-black/0 group-hover/img:bg-black/5 transition-all duration-500 z-10'></div>
 									<Image
-										src='https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2940&auto=format&fit=crop'
+										src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_400,c_limit/v1767510656/photo-1531482615713-2afd69097998_xifvbc.avif'
 										alt='Creative workspace'
 										width={400}
 										height={300}
@@ -333,7 +334,7 @@ export default function WhoWeAre() {
 								<div className='relative group/img overflow-hidden h-20 sm:h-24 md:h-28 lg:h-32 border border-black/10 hover:border-black/20 transition-all duration-500 snap-center'>
 									<div className='absolute inset-0 bg-black/0 group-hover/img:bg-black/5 transition-all duration-500 z-10'></div>
 									<Image
-										src='https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2940&auto=format&fit=crop'
+										src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_400,c_limit/v1767510655/photo-1552664730-d307ca884978_itez96.avif'
 										alt='Team meeting'
 										width={400}
 										height={300}
