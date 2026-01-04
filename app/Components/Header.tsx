@@ -60,13 +60,13 @@ export default function Navbar() {
 				isVisible ? 'translate-y-0' : '-translate-y-[150%]'
 			}`}>
 			<div
-				className={`bg-black/90 backdrop-blur-xl shadow-2xl border border-white/10 transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] overflow-hidden flex flex-col ${
+				className={`bg-black/90 px-6 backdrop-blur-xl shadow-2xl border border-white/10 transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] overflow-hidden flex flex-col ${
 					isMenuOpen
-						? 'rounded-[32px] px-6 pt-6 pb-12 h-[85vh]'
-						: 'rounded-[34px] px-6 md:px-8 py-3 h-[68px]'
+						? 'rounded-4xl pt-6 pb-12 h-[85vh]'
+						: 'rounded-[34px] md:px-8 py-3 h-17'
 				}`}>
 				<div
-					className={`flex items-center justify-between w-full md:mx-10 gap-20 transition-all duration-300`}>
+					className={`flex items-center justify-between w-full gap-20 transition-all duration-300`}>
 					{/* Logo */}
 					<Link href='/'>
 						<Image
