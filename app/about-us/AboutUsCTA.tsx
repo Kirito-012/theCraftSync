@@ -220,7 +220,7 @@ export default function AboutUsCTA() {
 					className='flex justify-center'
 					style={{transform: 'translate3d(0, 0, 0)'}}>
 					<a
-						href='#contact'
+						href='/contact'
 						onMouseEnter={() => setIsHovering(true)}
 						onMouseLeave={() => setIsHovering(false)}
 						className='group relative inline-flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 lg:px-12 lg:py-7 xl:px-14 xl:py-8 bg-white text-black font-heading font-semibold text-sm sm:text-base md:text-lg lg:text-xl tracking-wide rounded-full overflow-hidden transition-all duration-700 ease-out shadow-lg shadow-white/20 hover:shadow-2xl hover:shadow-white/40 active:scale-95 touch-manipulation'

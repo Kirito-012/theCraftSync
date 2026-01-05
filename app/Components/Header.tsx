@@ -106,12 +106,13 @@ export default function Navbar() {
 					</div>
 
 					{/* Contact Button - Desktop */}
-					<button className='hidden lg:flex items-center gap-2 border-2 border-gray-800 text-white px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 hover:bg-white hover:text-black group'>
+					<div>
 						<Link href='/contact'>
-							<span className='w-2 h-2 bg-white rounded-full transition-all duration-300 group-hover:bg-black'></span>
-							Contact Us
+							<button className='hidden lg:flex items-center gap-2 border-2 border-gray-800 text-white px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 hover:bg-white hover:text-black group'>
+								Contact Us
+							</button>
 						</Link>
-					</button>
+					</div>
 
 					{/* Mobile Menu Button */}
 					<button
