@@ -4,6 +4,7 @@ import Image from 'next/image'
 import logo1 from '../assets/logo1.png'
 import Link from 'next/link'
 import gsap from 'gsap'
+import {usePathname} from 'next/navigation'
 
 export default function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -11,6 +12,7 @@ export default function Navbar() {
 	const [lastScrollY, setLastScrollY] = useState(0)
 	const navRef = useRef<HTMLDivElement>(null)
 	const menuRef = useRef<HTMLDivElement>(null)
+	const pathname = usePathname()
 
 	const navItems: {name: string; href: string; hasDropdown?: boolean}[] = [
 		{name: 'Home', href: '/'},
@@ -85,7 +87,11 @@ export default function Navbar() {
 							<Link
 								key={index}
 								href={item.href}
-								className='text-zinc-400 hover:text-white transition-colors duration-300 text-sm font-medium flex items-center gap-1 group whitespace-nowrap'>
+								className={`transition-colors duration-300 text-sm font-medium flex items-center gap-1 group whitespace-nowrap ${
+									pathname === item.href
+										? 'text-white'
+										: 'text-zinc-400 hover:text-white'
+								}`}>
 								{item.name}
 								{item.hasDropdown && (
 									<svg
@@ -149,7 +155,11 @@ export default function Navbar() {
 								<Link
 									key={index}
 									href={item.href}
-									className='text-3xl font-heading font-bold text-white/90 hover:text-white transition-colors'
+									className={`text-3xl font-heading font-bold transition-colors ${
+										pathname === item.href
+											? 'text-white'
+											: 'text-zinc-500 hover:text-white'
+									}`}
 									onClick={() => setIsMenuOpen(false)}>
 									{item.name}
 								</Link>

@@ -23,66 +23,82 @@ export default function OurTeam() {
 			const ctx = gsap.context(() => {
 				// Smooth team subheading animation
 				if (teamSubheadingRef.current) {
-					gsap.from(teamSubheadingRef.current, {
-						y: 40,
-						opacity: 0,
-						duration: 1.4,
-						ease: 'power3.out',
-						scrollTrigger: {
-							trigger: teamSectionRef.current,
-							start: 'top 75%',
-							toggleActions: 'play none none none',
-						},
-					})
+					gsap.fromTo(
+						teamSubheadingRef.current,
+						{y: 40, opacity: 0},
+						{
+							y: 0,
+							opacity: 1,
+							duration: 1.4,
+							ease: 'power3.out',
+							scrollTrigger: {
+								trigger: teamSectionRef.current,
+								start: 'top 75%',
+								toggleActions: 'play none none none',
+							},
+						}
+					)
 				}
 
 				// Smooth team section header animation
 				if (teamHeaderRef.current) {
-					gsap.from(teamHeaderRef.current, {
-						y: 80,
-						opacity: 0,
-						duration: 1.2,
-						ease: 'power3.out',
-						scrollTrigger: {
-							trigger: teamSectionRef.current,
-							start: 'top 75%',
-							toggleActions: 'play none none none',
-						},
-					})
+					gsap.fromTo(
+						teamHeaderRef.current,
+						{y: 80, opacity: 0},
+						{
+							y: 0,
+							opacity: 1,
+							duration: 1.2,
+							ease: 'power3.out',
+							scrollTrigger: {
+								trigger: teamSectionRef.current,
+								start: 'top 75%',
+								toggleActions: 'play none none none',
+							},
+						}
+					)
 				}
 
 				// Smooth team description animation
 				if (teamDescRef.current) {
-					gsap.from(teamDescRef.current, {
-						y: 60,
-						opacity: 0,
-						duration: 1,
-						ease: 'power3.out',
-						delay: 0.2,
-						scrollTrigger: {
-							trigger: teamSectionRef.current,
-							start: 'top 75%',
-							toggleActions: 'play none none none',
-						},
-					})
+					gsap.fromTo(
+						teamDescRef.current,
+						{y: 60, opacity: 0},
+						{
+							y: 0,
+							opacity: 1,
+							duration: 1,
+							ease: 'power3.out',
+							delay: 0.2,
+							scrollTrigger: {
+								trigger: teamSectionRef.current,
+								start: 'top 75%',
+								toggleActions: 'play none none none',
+							},
+						}
+					)
 				}
 
 				// Optimized team cards animation
 				const teamCards = gsap.utils.toArray('.team-card')
 				teamCards.forEach((card: any, index: number) => {
-					gsap.from(card, {
-						y: 80,
-						opacity: 0,
-						scale: 0.95,
-						duration: 1,
-						ease: 'power3.out',
-						delay: 0.2 + index * 0.08,
-						scrollTrigger: {
-							trigger: teamSectionRef.current,
-							start: 'top 75%',
-							toggleActions: 'play none none none',
-						},
-					})
+					gsap.fromTo(
+						card,
+						{y: 80, opacity: 0, scale: 0.95},
+						{
+							y: 0,
+							opacity: 1,
+							scale: 1,
+							duration: 1,
+							ease: 'power3.out',
+							delay: 0.2 + index * 0.08,
+							scrollTrigger: {
+								trigger: teamSectionRef.current,
+								start: 'top 75%',
+								toggleActions: 'play none none none',
+							},
+						}
+					)
 				})
 			}, teamSectionRef)
 			return () => ctx.revert()
@@ -167,7 +183,7 @@ export default function OurTeam() {
 			<div className='w-full max-w-350 mx-auto px-6 md:px-12 lg:px-24 mb-16 flex flex-col md:flex-row justify-between items-start gap-10'>
 				<div
 					ref={teamHeaderRef}
-					className='relative space-y-6'>
+					className='relative space-y-6 opacity-0'>
 					{/* Small subheading to match other sections */}
 					<div
 						ref={teamSubheadingRef}
@@ -189,7 +205,7 @@ export default function OurTeam() {
 				</div>
 				<div
 					ref={teamDescRef}
-					className='md:max-w-md space-y-4'>
+					className='md:max-w-md space-y-4 opacity-0'>
 					<p className='text-gray-800 font-descriptive leading-relaxed text-lg'>
 						We're more than just experts—we're collaborators, problem-solvers,
 						and creators. Meet the people who make big things happen behind the
@@ -259,7 +275,7 @@ export default function OurTeam() {
 				}}>
 				{/* Team Member 1 - Nicola */}
 				<div
-					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5'
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 opacity-0'
 					style={{contain: 'layout style paint'}}>
 					<div
 						className='relative w-full aspect-3/4 overflow-hidden rounded-tl-[5rem] rounded-br-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-300 border-4 border-transparent group-hover:border-teal-500/30'
@@ -297,7 +313,7 @@ export default function OurTeam() {
 
 				{/* Team Member 2 - Julian */}
 				<div
-					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-12'
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-12 opacity-0'
 					style={{contain: 'layout style paint'}}>
 					<div
 						className='relative w-full aspect-3/4 overflow-hidden rounded-tr-[5rem] rounded-bl-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-purple-500/30'
@@ -335,7 +351,7 @@ export default function OurTeam() {
 
 				{/* Team Member 3 - Jonny */}
 				<div
-					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5'
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 opacity-0'
 					style={{contain: 'layout style paint'}}>
 					<div
 						className='relative w-full aspect-3/4 overflow-hidden rounded-t-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-orange-500/30'
@@ -373,7 +389,7 @@ export default function OurTeam() {
 
 				{/* Team Member 4 - Maja */}
 				<div
-					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-16'
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-16 opacity-0'
 					style={{contain: 'layout style paint'}}>
 					<div
 						className='relative w-full aspect-3/4 overflow-hidden rounded-b-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-blue-500/30'
@@ -411,7 +427,7 @@ export default function OurTeam() {
 
 				{/* Team Member 5 - Em */}
 				<div
-					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5'
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 opacity-0'
 					style={{contain: 'layout style paint'}}>
 					<div
 						className='relative w-full aspect-3/4 overflow-hidden rounded-bl-[5rem] rounded-tr-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-pink-500/30'
@@ -449,7 +465,7 @@ export default function OurTeam() {
 
 				{/* Team Member 6 - Piper */}
 				<div
-					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-8'
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-8 opacity-0'
 					style={{contain: 'layout style paint'}}>
 					<div
 						className='relative w-full aspect-3/4 overflow-hidden rounded-br-[5rem] rounded-tl-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-indigo-500/30'

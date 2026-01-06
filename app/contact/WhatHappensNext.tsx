@@ -145,9 +145,9 @@ const WhatHappensNext = () => {
 
 					<h2
 						ref={titleRef}
-						className='text-6xl md:text-8xl font-black text-white tracking-tighter mb-8 leading-[0.9] opacity-0'>
+						className='text-6xl md:text-8xl font-heading font-bold text-white tracking-tight mb-8 leading-[0.9] opacity-0'>
 						What happens <br className='hidden md:block' />
-						<span className='text-zinc-500 font-serif italic'>next?</span>
+						<span className='text-zinc-500 italic'>next?</span>
 					</h2>
 
 					<p
@@ -193,14 +193,14 @@ const WhatHappensNext = () => {
 											Step
 										</span>
 									</div>
-									<div
+									{/* <div
 										className={`w-12 h-12 rounded-full border border-white/10 flex items-center justify-center transition-all duration-300 transform ${
 											isActive
 												? 'bg-white text-black -rotate-45'
 												: 'bg-transparent text-white group-hover:bg-white/10'
 										}`}>
 										<ArrowRight className='w-5 h-5' />
-									</div>
+									</div> */}
 								</div>
 
 								{/* Bottom Content */}

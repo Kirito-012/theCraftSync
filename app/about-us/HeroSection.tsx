@@ -24,20 +24,26 @@ export default function HeroSection() {
 					},
 				})
 
-				gsap.from('h1', {
-					y: 50,
-					opacity: 0,
-					duration: 1,
-					ease: 'power3.out',
-					delay: 0.2,
-				})
-				gsap.from('p', {
-					y: 30,
-					opacity: 0,
-					duration: 1,
-					ease: 'power3.out',
-					delay: 0.5,
-				})
+				gsap.fromTo('h1', 
+					{ y: 50, opacity: 0 },
+					{
+						y: 0,
+						opacity: 1,
+						duration: 1,
+						ease: 'power3.out',
+						delay: 0.2,
+					}
+				)
+				gsap.fromTo('p', 
+					{ y: 30, opacity: 0 },
+					{
+						y: 0,
+						opacity: 1,
+						duration: 1,
+						ease: 'power3.out',
+						delay: 0.5,
+					}
+				)
 			}, heroRef)
 			return () => ctx.revert()
 		}
@@ -73,7 +79,7 @@ export default function HeroSection() {
 
 			{/* Content */}
 			<div className='relative z-10 w-full max-w-7xl mx-auto text-left'>
-				<h1 className='text-[3.5rem] leading-[1.1] sm:text-6xl md:text-[5rem] lg:text-[76px] mb-6 sm:mb-8 font-heading'>
+				<h1 className='text-[3.5rem] leading-[1.1] sm:text-6xl md:text-[5rem] lg:text-[76px] mb-6 sm:mb-8 font-heading opacity-0'>
 					<span className='font-normal block sm:inline'>Crafting</span>{' '}
 					<span className='font-bold block sm:inline'>Dreams</span>
 					<br className='hidden sm:block' />
@@ -81,7 +87,7 @@ export default function HeroSection() {
 					<span className='font-bold block sm:inline'>Syncing</span>{' '}
 					<span className='font-normal block sm:inline'>Reality</span>
 				</h1>
-				<p className=' leading-[1.6] opacity-100 max-w-200 font-descriptive'>
+				<p className=' leading-[1.6] opacity-0 max-w-200 font-descriptive'>
 					The Craft Sync is a digital marketing agency designed to provide
 					integrated marketing partnerships for great brands.
 				</p>
