@@ -116,9 +116,9 @@ const HeroSection = () => {
 				className='w-full lg:w-[40%] h-[80vh] lg:h-full bg-black text-white rounded-[24px] sm:rounded-[32px] p-6 pb-20 md:pb-24 sm:p-8 lg:p-10 xl:p-14 flex flex-col justify-between relative overflow-hidden shadow-2xl border border-white/5 opacity-0'>
 				{/* Background Aesthetics - Increased Opacity */}
 				<div className='glow-blob w-[500px] h-[500px] bg-white/20 top-[-200px] left-[-200px] animate-float blur-[120px] rounded-full absolute pointer-events-none'></div>
-				<div
+				{/* <div
 					className='glow-blob w-[400px] h-[400px] bg-blue-900/30 bottom-[-100px] right-[-100px] animate-pulse-glow blur-[100px] rounded-full absolute pointer-events-none'
-					style={{animationDelay: '2s'}}></div>
+					style={{animationDelay: '2s'}}></div> */}
 
 				{/* Content */}
 				<div className='relative z-10 flex flex-col h-full justify-between'>
@@ -325,7 +325,7 @@ const HeroSection = () => {
 						<div className='pt-4 flex justify-end'>
 							<button
 								type='submit'
-								className='group flex items-center justify-center gap-3 bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-4 overflow-hidden transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-[0.98]'>
+								className='group flex items-center cursor-pointer justify-center gap-3 bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-4 overflow-hidden transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-[0.98]'>
 								<div className='relative overflow-hidden'>
 									<span className='block text-xs font-black uppercase tracking-[0.15em] transition-transform duration-300 group-hover:-translate-y-full'>
 										Send Message
