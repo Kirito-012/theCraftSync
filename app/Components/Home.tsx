@@ -10,14 +10,14 @@ const HeroSection: React.FC = () => {
   const subtextRef = useRef<HTMLDivElement>(null);
 
   const images: string[] = [
-    'https://images.pexels.com/photos/6476808/pexels-photo-6476808.jpeg',
-    'https://images.pexels.com/photos/6476808/pexels-photo-6476808.jpeg',
-    'https://images.pexels.com/photos/6476808/pexels-photo-6476808.jpeg',
-    'https://images.pexels.com/photos/6476808/pexels-photo-6476808.jpeg',
-    'https://images.pexels.com/photos/6476808/pexels-photo-6476808.jpeg',
-    'https://images.pexels.com/photos/6476808/pexels-photo-6476808.jpeg',
-    'https://images.pexels.com/photos/6476808/pexels-photo-6476808.jpeg',
-    'https://images.pexels.com/photos/6476808/pexels-photo-6476808.jpeg'
+    'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80',
+    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80',
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
+    'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80',
+    'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80',
+    'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80',
+    'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80',
+    'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80'
   ];
 
   useEffect(() => {
@@ -64,14 +64,15 @@ const HeroSection: React.FC = () => {
 
     // Infinite scroll animations for columns
     const animateColumn = (
-      ref: React.RefObject<HTMLDivElement>, 
+      ref: React.RefObject<HTMLDivElement | null>, 
       direction: 'up' | 'down', 
       duration: number
     ): void => {
       const element = ref.current;
       if (!element) return;
       
-      const scrollHeight = element.scrollHeight / 4;
+      // Get half the scroll height since we duplicate the images
+      const scrollHeight = element.scrollHeight / 2;
       
       gsap.fromTo(element, 
         {
@@ -93,25 +94,44 @@ const HeroSection: React.FC = () => {
 
   }, []);
 
-  const renderColumn = (): JSX.Element[] => {
-    return [...images, ...images, ...images, ...images].map((img: string, idx: number) => (
-      <React.Fragment key={idx}>
-        <div className="w-full aspect-[3/4] mb-4 overflow-hidden">
+  const renderColumn = (): React.ReactElement[] => {
+    // Duplicate images twice for seamless infinite scroll
+    const doubledImages = [...images, ...images];
+    const elements: React.ReactElement[] = [];
+    
+    doubledImages.forEach((img: string, idx: number) => {
+      // Add image
+      elements.push(
+        <div 
+          key={`img-${idx}`} 
+          className="w-full mb-4 overflow-hidden rounded-md"
+          style={{ height: '20rem', minHeight: '20rem' }}
+        >
           <img 
             src={img} 
             alt={`Gallery ${idx}`}
-            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            className="w-full h-full object-cover hover:scale-110 transition-all duration-700"
           />
         </div>
-        <div className="w-full aspect-[3/4] mb-4 bg-black"></div>
-      </React.Fragment>
-    ));
+      );
+      
+      // Add black block after each image
+      elements.push(
+        <div 
+          key={`block-${idx}`} 
+          className="w-full mb-4 rounded-md bg-black"
+          style={{ height: '20rem', minHeight: '20rem' }}
+        />
+      );
+    });
+    
+    return elements;
   };
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-white">
-      {/* Left Side - 60% */}
-      <div className="w-3/5 flex items-center justify-center px-12 lg:px-20 relative overflow-hidden">
+      {/* Left Side - 50% */}
+      <div className="w-1/2 flex items-center justify-center px-12 lg:px-20 relative overflow-hidden">
         {/* Animated background grid */}
         <div className="absolute inset-0 opacity-[0.02]"
           style={{
@@ -143,8 +163,8 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Right Side - 40% */}
-      <div className="w-2/5 flex gap-4 p-4 overflow-hidden bg-white">
+      {/* Right Side - 50% */}
+      <div className="w-1/2 flex gap-6 p-4 overflow-hidden bg-black">
         {/* Column 1 */}
         <div ref={column1Ref} className="flex-1 flex flex-col">
           {renderColumn()}
@@ -160,6 +180,7 @@ const HeroSection: React.FC = () => {
           {renderColumn()}
         </div>
       </div>
+
     </div>
   );
 };

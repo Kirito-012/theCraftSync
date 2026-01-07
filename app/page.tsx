@@ -1,8 +1,13 @@
 'use client';
-import CurvesDemo from "./Components/Curves";
 import HeroSection from "./Components/Home";
 import ServicesSection from "./Components/Services";
 import WhyChooseSection from "./Components/Whyus";
+import FAQSection from "./Components/Faq";
+import TestimonialsSection from "./Components/Testimonials";
+import Footer from "./Components/Footer";
+import ProjectSection from "./Components/Ourworks";
+import Blogs from "./Components/Blogs";
+import Clients from "./Components/Clients";
 
 
 export default function Home() {
@@ -11,7 +16,12 @@ export default function Home() {
  <HeroSection />
  <ServicesSection />
 <WhyChooseSection />
-<CurvesDemo />
+<ProjectSection />
+<TestimonialsSection />
+<Clients />
+<FAQSection />
+<Blogs />
+<Footer />
  </>
   );
 }

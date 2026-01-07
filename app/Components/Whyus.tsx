@@ -17,7 +17,7 @@ export default function WhyChooseSection() {
       title: 'Expert Team',
       subtitle: '7+ Years Experience • Senior Engineers • Certified Specialists',
       description: 'Experienced professionals delivering reliable, production-ready systems.',
-      image: '/expert-team.jpg',
+      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
       buttonText: 'Meet The Team'
     },
     {
@@ -25,7 +25,7 @@ export default function WhyChooseSection() {
       title: 'Engineering-First',
       subtitle: 'Architecture-Led Builds • Code Quality Focus • Production Standards',
       description: 'Every solution is engineered for performance, stability, and scale.',
-      image: '/engineering.jpg',
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80',
       buttonText: 'Our Approach'
     },
     {
@@ -33,7 +33,7 @@ export default function WhyChooseSection() {
       title: 'Strategy + Execution',
       subtitle: 'Practical Roadmaps • Build-Ready Plans • Hands-On Delivery',
       description: 'We recommend only what can be built, deployed, and supported.',
-      image: '/strategy.jpg',
+      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
       buttonText: 'View Process'
     },
     {
@@ -41,7 +41,7 @@ export default function WhyChooseSection() {
       title: 'Built to Scale',
       subtitle: 'High-Performance Systems • Secure by Design • Future-Ready Architecture',
       description: 'Systems designed to grow with your business.',
-      image: '/scale.jpg',
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
       buttonText: 'Learn More'
     },
     {
@@ -49,7 +49,7 @@ export default function WhyChooseSection() {
       title: 'Clear Process',
       subtitle: 'Defined Milestones • Direct Communication • Full Transparency',
       description: 'You stay informed, aligned, and in control throughout the project.',
-      image: '/process.jpg',
+      image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80',
       buttonText: 'Our Workflow'
     },
     {
@@ -57,7 +57,7 @@ export default function WhyChooseSection() {
       title: 'Long-Term Partner',
       subtitle: 'Beyond One-Off Work • Continuous Improvement • Full IP Ownership',
       description: 'A dependable technology partner invested in your long-term success.',
-      image: '/partner.jpg',
+      image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80',
       buttonText: 'Start Partnership'
     }
   ];

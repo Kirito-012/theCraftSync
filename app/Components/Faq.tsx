@@ -1,0 +1,228 @@
+'use client';
+
+import { useState } from 'react';
+import { Plus, X } from 'lucide-react';
+import Link from 'next/link';
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = [
+  {
+    question: "What does The Craftsync do?",
+    answer: "The Craftsync is a custom software and AI development company that helps businesses build scalable digital solutions, including enterprise software, AI-powered systems, and platforms designed to support growth and operational efficiency."
+  },
+  {
+    question: "Do you provide custom software development services?",
+    answer: "Yes. We provide custom software development services that help businesses replace manual processes, streamline operations, and scale reliably as teams, users, and data grow."
+  },
+  {
+    question: "What AI and machine learning solutions do you offer?",
+    answer: "We offer AI & machine learning solutions such as generative AI integration, AI automation, computer vision, and analytics that help businesses improve efficiency, automate decisions, and scale operations intelligently."
+  },
+  {
+    question: "How do digital solutions help businesses scale?",
+    answer: "Digital solutions help businesses scale by automating repetitive work, improving data visibility, reducing operational bottlenecks, and enabling systems to handle increased users and complexity without breaking."
+  },
+  {
+    question: "Do you work with startups or enterprises?",
+    answer: "We work with growing startups and enterprise teams that need technology built to scale, supporting business expansion without constant rework or performance issues."
+  },
+  {
+    question: "Will we own the source code and intellectual property?",
+    answer: "Yes. Clients retain 100% ownership of the source code and intellectual property, giving them full control to scale, evolve, and extend their digital solutions independently."
+  },
+  {
+    question: "How long does custom software development take?",
+    answer: "Timelines depend on scope and complexity. Smaller systems may take a few weeks, while scalable enterprise software platforms typically require several months after discovery and planning."
+  },
+  {
+    question: "Can you integrate with our existing tools and systems?",
+    answer: "Yes. We specialize in API integrations and enterprise system connectivity, allowing businesses to scale without replacing existing tools or disrupting current operations."
+  },
+  {
+    question: "Do you offer consulting before development starts?",
+    answer: "Yes. Our technology consulting services help businesses plan scalable architecture, choose the right tech stack, and avoid costly rebuilds as they grow."
+  },
+  {
+    question: "Do you provide post-launch support and maintenance?",
+    answer: "Yes. We provide ongoing support and optimization to ensure your digital solutions continue to perform, scale, and adapt as business needs evolve."
+  }
+];
+
+export default function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  // Generate JSON-LD structured data for SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
+  return (
+    <section 
+      style={{ 
+        backgroundColor: '#000000', 
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '5rem 5%',
+        fontFamily: "'Montreal', sans-serif",
+        boxSizing: 'border-box'
+      }}
+    >
+      {/* JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <div 
+        style={{ 
+          maxWidth: '1200px', 
+          margin: '0 auto',
+          width: '100%',
+        }}
+        className="faq-wrapper"
+      >
+        {/* Heading on Top */}
+        <div className="faq-heading" style={{ marginBottom: '3rem' }}>
+          <h2 style={{
+            fontSize: 'clamp(3.5rem, 9vw, 8rem)',
+            fontWeight: '300',
+            color: 'var(--snow-white)',
+            margin: 0,
+            lineHeight: '0.95',
+            letterSpacing: '-0.02em'
+          }}>
+            FAQ's
+          </h2>
+        </div>
+
+        {/* Accordion List Below */}
+        <div className="faq-list">
+          {faqs.map((faq, index) => (
+            <div 
+              key={index}
+              className="faq-item"
+              style={{
+                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                paddingBottom: '1.5rem',
+                marginBottom: '1.5rem'
+              }}
+            >
+              {/* Question/Header with + on LEFT */}
+              <button
+                onClick={() => toggleFAQ(index)}
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '0.5rem 0',
+                  textAlign: 'left',
+                  gap: '1.5rem'
+                }}
+                aria-expanded={openIndex === index}
+              >
+                {/* Plus/X Icon on LEFT */}
+                <div style={{
+                  width: '32px',
+                  height: '32px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  transition: 'transform 0.3s ease'
+                }}>
+                  {openIndex === index ? (
+                    <X size={28} strokeWidth={1.5} color="var(--snow-white)" />
+                  ) : (
+                    <Plus size={28} strokeWidth={1.5} color="var(--snow-white)" />
+                  )}
+                </div>
+
+                <span style={{
+                  fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
+                  fontWeight: '400',
+                  color: 'var(--snow-white)',
+                  lineHeight: '1.4',
+                  flex: 1
+                }}>
+                  {faq.question}
+                </span>
+              </button>
+
+              {/* Answer/Content with BLACK BACKGROUND */}
+              <div 
+                style={{
+                  maxHeight: openIndex === index ? '500px' : '0',
+                  overflow: 'hidden',
+                  transition: 'max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease',
+                  opacity: openIndex === index ? 1 : 0,
+                  marginTop: openIndex === index ? '1.5rem' : '0'
+                }}
+              >
+                <div style={{
+                  fontSize: 'clamp(1rem, 2.2vw, 1.25rem)',
+                  lineHeight: '1.6',
+                  color: 'var(--snow-white)',
+                  backgroundColor: '#000000',
+                  padding: openIndex === index ? '1rem 0 1rem 3.5rem' : '0',
+                  transition: 'padding 0.4s ease'
+                }}>
+                  {faq.answer}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        :global(:root) {
+          --navy-dark: #0f172a;
+          --slate-blue: #475569;
+          --snow-white: #ffffff;
+          --alice-blue: #e2e8f0;
+          --teal-accent: #14b8a6;
+          --emerald-accent: #10b981;
+        }
+
+        .faq-list {
+          width: 100%;
+        }
+
+        .faq-item button:hover span {
+          color: var(--emerald-accent);
+        }
+
+        .faq-item:last-child {
+          border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+          .faq-heading {
+            text-align: center;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
