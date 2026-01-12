@@ -164,20 +164,29 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Right Side - 50% */}
-      <div className="w-1/2 flex gap-6 p-4 overflow-hidden bg-black">
-        {/* Column 1 */}
-        <div ref={column1Ref} className="flex-1 flex flex-col">
-          {renderColumn()}
-        </div>
+      <div className="w-1/2 p-4 overflow-hidden bg-black">
+        {/* Wrapper for all 3 columns with white background */}
+        <div className="flex gap-2 h-full bg-white ">
+          {/* Column 1 */}
+          <div className="flex-1 bg-black overflow-hidden">
+            <div ref={column1Ref} className="flex flex-col">
+              {renderColumn()}
+            </div>
+          </div>
 
-        {/* Column 2 */}
-        <div ref={column2Ref} className="flex-1 flex flex-col">
-          {renderColumn()}
-        </div>
+          {/* Column 2 */}
+          <div className="flex-1 bg-black overflow-hidden">
+            <div ref={column2Ref} className="flex flex-col">
+              {renderColumn()}
+            </div>
+          </div>
 
-        {/* Column 3 */}
-        <div ref={column3Ref} className="flex-1 flex flex-col">
-          {renderColumn()}
+          {/* Column 3 */}
+          <div className="flex-1 bg-black overflow-hidden">
+            <div ref={column3Ref} className="flex flex-col">
+              {renderColumn()}
+            </div>
+          </div>
         </div>
       </div>
 

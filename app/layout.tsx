@@ -1,6 +1,11 @@
 import type {Metadata} from 'next'
 import './globals.css'
 import Navbar from './Components/Header'
+import Footer from './Components/Footer'
+import SmoothScroll from './Components/SmoothScroll';
+
+
+
 
 export const metadata: Metadata = {
 	title: 'TheCraftSync',
@@ -16,8 +21,11 @@ export default function RootLayout({
 		<html lang='en'>
 			<body className='antialiased'>
 			<Navbar />
-			{children}
+		
+			          <SmoothScroll>{children}</SmoothScroll>
+			<Footer />
 			</body>
+
 		</html>
 	)
 }

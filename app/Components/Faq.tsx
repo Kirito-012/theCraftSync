@@ -1,8 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Plus, X } from 'lucide-react';
 import Link from 'next/link';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface FAQItem {
   question: string;
@@ -54,10 +58,60 @@ const faqs: FAQItem[] = [
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  useEffect(() => {
+    // Heading animation
+    if (headingRef.current) {
+      gsap.fromTo(
+        headingRef.current,
+        {
+          opacity: 0,
+          y: 80,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }
+
+    // FAQ items stagger animation
+    if (listRef.current) {
+      const items = listRef.current.querySelectorAll('.faq-item');
+      gsap.fromTo(
+        items,
+        {
+          opacity: 0,
+          x: -50,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: listRef.current,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }
+  }, []);
 
   // Generate JSON-LD structured data for SEO
   const jsonLd = {
@@ -100,7 +154,7 @@ export default function FAQSection() {
         className="faq-wrapper"
       >
         {/* Heading on Top */}
-        <div className="faq-heading" style={{ marginBottom: '3rem' }}>
+        <div ref={headingRef} className="faq-heading" style={{ marginBottom: '3rem' }}>
           <h2 style={{
             fontSize: 'clamp(3.5rem, 9vw, 8rem)',
             fontWeight: '300',
@@ -114,7 +168,7 @@ export default function FAQSection() {
         </div>
 
         {/* Accordion List Below */}
-        <div className="faq-list">
+        <div ref={listRef} className="faq-list">
           {faqs.map((faq, index) => (
             <div 
               key={index}
