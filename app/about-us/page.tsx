@@ -16,7 +16,7 @@ export default function AboutPage() {
 		<div className='relative w-full min-h-screen bg-navy-dark text-white overflow-x-hidden selection:bg-teal-accent selection:text-white'>
 			<HeroSection />
 			<WhoWeAre />
-			<HowWeWork />
+			{/* <HowWeWork /> */}
 			<OurTeam />
 			<AboutUsCTA />
 		</div>

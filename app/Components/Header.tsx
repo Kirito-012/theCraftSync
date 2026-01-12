@@ -1,6 +1,7 @@
 'use client'
 import {useState, useRef, useEffect} from 'react'
 import Image from 'next/image'
+import logo1 from '../assets/logo1.png'
 import Link from 'next/link'
 import gsap from 'gsap'
 import {usePathname} from 'next/navigation'
@@ -72,7 +73,7 @@ export default function Navbar() {
 					{/* Logo */}
 					<Link href='/'>
 						<Image
-							src="/logo1.png"
+							src={logo1}
 							alt='Logo'
 							width={40}
 							height={40}
