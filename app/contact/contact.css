@@ -1,0 +1,19 @@
+.bg-grid {
+	background-image: linear-gradient(
+			rgba(0, 0, 0, 0.25) 0.4px,
+			transparent 0.4px
+		),
+		linear-gradient(90deg, rgba(0, 0, 0, 0.25) 0.4px, transparent 0.4px);
+	background-size: 80px 80px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+	width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+	background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 20px;
+}
