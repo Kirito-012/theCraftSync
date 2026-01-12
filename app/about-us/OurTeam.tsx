@@ -16,11 +16,18 @@ export default function OurTeam() {
 	const [canScrollRight, setCanScrollRight] = useState(true)
 
 	useEffect(() => {
+		let ctx: gsap.Context | null = null
+		let isMounted = true
+
 		const initGsap = async () => {
+			if (!isMounted) return
+
 			const {ScrollTrigger} = await import('gsap/ScrollTrigger')
 			gsap.registerPlugin(ScrollTrigger)
 
-			const ctx = gsap.context(() => {
+			if (!isMounted || !teamSectionRef.current) return
+
+			ctx = gsap.context(() => {
 				// Smooth team subheading animation
 				if (teamSubheadingRef.current) {
 					gsap.fromTo(
@@ -101,14 +108,13 @@ export default function OurTeam() {
 					)
 				})
 			}, teamSectionRef)
-			return () => ctx.revert()
 		}
 
-		let cleanup: (() => void) | undefined
-		initGsap().then((c) => (cleanup = c))
+		initGsap()
 
 		return () => {
-			if (cleanup) cleanup()
+			isMounted = false
+			if (ctx) ctx.revert()
 		}
 	}, [])
 

@@ -1,7 +1,7 @@
 'use client'
 import {useState, useRef, useEffect} from 'react'
 import Image from 'next/image'
-import logo1 from '../assets/logo1.png'
+import logo from '../assets/logo.png'
 import Link from 'next/link'
 import gsap from 'gsap'
 import {usePathname} from 'next/navigation'
@@ -48,11 +48,15 @@ export default function Navbar() {
 	useEffect(() => {
 		if (isMenuOpen && menuRef.current) {
 			const items = menuRef.current.children
-			gsap.fromTo(
+			const anim = gsap.fromTo(
 				items,
 				{y: 50, opacity: 0},
 				{y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power3.out'}
 			)
+			
+			return () => {
+				if (anim) anim.kill()
+			}
 		}
 	}, [isMenuOpen])
 
@@ -73,7 +77,7 @@ export default function Navbar() {
 					{/* Logo */}
 					<Link href='/'>
 						<Image
-							src={logo1}
+							src={logo}
 							alt='Logo'
 							width={40}
 							height={40}

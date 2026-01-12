@@ -65,50 +65,83 @@ export default function FAQSection() {
   };
 
   useEffect(() => {
+    let ctx: any = null
+
     // Heading animation
     if (headingRef.current) {
-      gsap.fromTo(
-        headingRef.current,
-        {
-          opacity: 0,
-          y: 80,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          headingRef.current,
+          {
+            opacity: 0,
+            y: 80,
           },
-        }
-      );
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }, headingRef)
     }
 
     // FAQ items stagger animation
     if (listRef.current) {
-      const items = listRef.current.querySelectorAll('.faq-item');
-      gsap.fromTo(
-        items,
-        {
-          opacity: 0,
-          x: -50,
-        },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: listRef.current,
-            start: 'top 75%',
-            toggleActions: 'play none none reverse',
+      if (!ctx) {
+        ctx = gsap.context(() => {
+          const items = listRef.current.querySelectorAll('.faq-item');
+          gsap.fromTo(
+            items,
+            {
+              opacity: 0,
+              x: -50,
+            },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.8,
+              stagger: 0.1,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: listRef.current,
+                start: 'top 75%',
+                toggleActions: 'play none none reverse',
+              },
+            }
+          );
+        }, listRef)
+      } else {
+        const items = listRef.current.querySelectorAll('.faq-item');
+        gsap.fromTo(
+          items,
+          {
+            opacity: 0,
+            x: -50,
           },
-        }
-      );
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: listRef.current,
+              start: 'top 75%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }
+    }
+
+    return () => {
+      if (ctx) ctx.revert()
     }
   }, []);
 
