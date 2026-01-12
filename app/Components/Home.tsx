@@ -22,12 +22,13 @@ const HeroSection: React.FC = () => {
 
   useEffect(() => {
     const tl = gsap.timeline();
+    const animations: gsap.core.Tween[] = [];
 
     // Epic text reveal animation
     if (textRef.current?.children) {
       Array.from(textRef.current.children).forEach((child, index) => {
         // Split effect
-        tl.fromTo(child,
+        const anim = tl.fromTo(child,
           {
             opacity: 0,
             y: 100,
@@ -45,22 +46,25 @@ const HeroSection: React.FC = () => {
           },
           index * 0.15
         );
+        animations.push(anim);
       });
     }
 
     // Animated line
-    tl.fromTo(lineRef.current,
+    const lineAnim = tl.fromTo(lineRef.current,
       { scaleX: 0, opacity: 0 },
       { scaleX: 1, opacity: 1, duration: 1.5, ease: 'power4.out' },
       0.6
     );
+    if (lineAnim) animations.push(lineAnim);
 
     // Subtext animation
-    tl.fromTo(subtextRef.current,
+    const subtextAnim = tl.fromTo(subtextRef.current,
       { opacity: 0, y: 30 },
       { opacity: 1, y: 0, duration: 1, ease: 'power3.out' },
       1
     );
+    if (subtextAnim) animations.push(subtextAnim);
 
     // Infinite scroll animations for columns
     const animateColumn = (
@@ -74,7 +78,7 @@ const HeroSection: React.FC = () => {
       // Get half the scroll height since we duplicate the images
       const scrollHeight = element.scrollHeight / 2;
       
-      gsap.fromTo(element, 
+      const anim = gsap.fromTo(element, 
         {
           y: direction === 'down' ? 0 : -scrollHeight
         },
@@ -85,6 +89,7 @@ const HeroSection: React.FC = () => {
           repeat: -1,
         }
       );
+      animations.push(anim);
     };
 
     // Start column animations immediately
@@ -92,6 +97,13 @@ const HeroSection: React.FC = () => {
     animateColumn(column2Ref, 'up', 25);
     animateColumn(column3Ref, 'down', 22);
 
+    return () => {
+      // Kill all animations on unmount
+      animations.forEach(anim => {
+        if (anim) anim.kill();
+      });
+      tl.kill();
+    };
   }, []);
 
   const renderColumn = (): React.ReactElement[] => {

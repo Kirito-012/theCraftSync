@@ -22,18 +22,30 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     });
 
     // Connect Lenis with GSAP ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update);
+    const onScroll = () => ScrollTrigger.update();
+    lenis.on('scroll', onScroll);
 
-    gsap.ticker.add((time) => {
+    const tickCallback = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
 
+    gsap.ticker.add(tickCallback);
     gsap.ticker.lagSmoothing(0);
 
-    // Cleanup
+    // Cleanup - must be in correct order
     return () => {
+      // Remove ticker callback first
+      gsap.ticker.remove(tickCallback);
+      
+      // Remove scroll listener from Lenis
+      lenis.off('scroll', onScroll);
+      
+      // Destroy Lenis instance
       lenis.destroy();
-      gsap.ticker.remove(() => {});
+      
+      // Do NOT kill all ScrollTriggers globally here —
+      // individual components manage their own contexts and cleanup.
+      // Removing global kill prevents double-removal race conditions.
     };
   }, []);
 

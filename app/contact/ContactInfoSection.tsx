@@ -22,11 +22,15 @@ const ContactInfoSection = () => {
 	const rightCardRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
+		let ctx: any
+
 		const initGsap = async () => {
 			const {ScrollTrigger} = await import('gsap/ScrollTrigger')
 			gsap.registerPlugin(ScrollTrigger)
 
-			const ctx = gsap.context(() => {
+			if (!containerRef.current) return
+
+			ctx = gsap.context(() => {
 				const tl = gsap.timeline({
 					scrollTrigger: {
 						trigger: containerRef.current,
@@ -40,38 +44,48 @@ const ContactInfoSection = () => {
 					locationBlockRef.current,
 					inquiryBlockRef.current,
 					socialsRef.current,
-				]
+				].filter(Boolean)
 
-				gsap.set(leftElements, {opacity: 0, y: 30})
-				gsap.set(rightCardRef.current, {opacity: 0, y: 50})
+				if (leftElements.length > 0) {
+					gsap.set(leftElements, {opacity: 0, y: 30})
+				}
+				if (rightCardRef.current) {
+					gsap.set(rightCardRef.current, {opacity: 0, y: 50})
+				}
 
 				// 1. Left Column Stagger
-				tl.to(leftElements, {
-					opacity: 1,
-					y: 0,
-					duration: 1,
-					stagger: 0.15,
-					ease: 'power4.out',
-				})
-
-				// 2. Right Card Entrance
-				tl.to(
-					rightCardRef.current,
-					{
+				if (leftElements.length > 0) {
+					tl.to(leftElements, {
 						opacity: 1,
 						y: 0,
-						duration: 1.2,
+						duration: 1,
+						stagger: 0.15,
 						ease: 'power4.out',
-						clearProps: 'transform', // Important for hover scale effects
-					},
-					'-=0.8'
-				)
-			}, containerRef)
+					})
+				}
 
-			return () => ctx.revert()
+				// 2. Right Card Entrance
+				if (rightCardRef.current) {
+					tl.to(
+						rightCardRef.current,
+						{
+							opacity: 1,
+							y: 0,
+							duration: 1.2,
+							ease: 'power4.out',
+							clearProps: 'transform', // Important for hover scale effects
+						},
+						'-=0.8'
+					)
+				}
+			}, containerRef)
 		}
 
 		initGsap()
+
+		return () => {
+			if (ctx) ctx.revert()
+		}
 	}, [])
 
 	return (

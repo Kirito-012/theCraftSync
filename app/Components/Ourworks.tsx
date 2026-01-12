@@ -98,7 +98,9 @@ const ProjectSection: React.FC = () => {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   return (

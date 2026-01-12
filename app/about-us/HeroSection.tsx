@@ -8,11 +8,18 @@ export default function HeroSection() {
 	const bgRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
+		let ctx: gsap.Context | null = null
+		let isMounted = true
+
 		const initGsap = async () => {
+			if (!isMounted) return
+
 			const {ScrollTrigger} = await import('gsap/ScrollTrigger')
 			gsap.registerPlugin(ScrollTrigger)
 
-			const ctx = gsap.context(() => {
+			if (!isMounted || !heroRef.current) return
+
+			ctx = gsap.context(() => {
 				gsap.to(bgRef.current, {
 					yPercent: 12,
 					ease: 'none',
@@ -45,14 +52,13 @@ export default function HeroSection() {
 					}
 				)
 			}, heroRef)
-			return () => ctx.revert()
 		}
 
-		let cleanup: (() => void) | undefined
-		initGsap().then((c) => (cleanup = c))
+		initGsap()
 
 		return () => {
-			if (cleanup) cleanup()
+			isMounted = false
+			if (ctx) ctx.revert()
 		}
 	}, [])
 

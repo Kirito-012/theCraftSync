@@ -49,11 +49,15 @@ const WhatHappensNext = () => {
 	const textRefs = useRef<(HTMLDivElement | null)[]>([])
 
 	useEffect(() => {
+		let ctx: any
+
 		const initGsap = async () => {
 			const {ScrollTrigger} = await import('gsap/ScrollTrigger')
 			gsap.registerPlugin(ScrollTrigger)
 
-			const ctx = gsap.context(() => {
+			if (!containerRef.current) return
+
+			ctx = gsap.context(() => {
 				const tl = gsap.timeline({
 					scrollTrigger: {
 						trigger: containerRef.current,
@@ -62,40 +66,50 @@ const WhatHappensNext = () => {
 				})
 
 				// Initial States
-				gsap.set([badgeRef.current, titleRef.current, descRef.current], {
-					opacity: 0,
-					y: 30,
-				})
-				gsap.set(stepsRef.current, {opacity: 0, y: 60})
+				if (badgeRef.current && titleRef.current && descRef.current) {
+					gsap.set([badgeRef.current, titleRef.current, descRef.current], {
+						opacity: 0,
+						y: 30,
+					})
+				}
+				if (stepsRef.current && stepsRef.current.length > 0) {
+					gsap.set(stepsRef.current, {opacity: 0, y: 60})
+				}
 
 				// 1. Header Sequence (Cascading)
-				tl.to([badgeRef.current, titleRef.current, descRef.current], {
-					opacity: 1,
-					y: 0,
-					duration: 1,
-					stagger: 0.15,
-					ease: 'power4.out',
-				})
-
-				// 2. Steps Sequence (Slide Up)
-				tl.to(
-					stepsRef.current,
-					{
+				if (badgeRef.current && titleRef.current && descRef.current) {
+					tl.to([badgeRef.current, titleRef.current, descRef.current], {
 						opacity: 1,
 						y: 0,
-						duration: 1.2, // Slightly slower for elegance
+						duration: 1,
 						stagger: 0.15,
 						ease: 'power4.out',
-						clearProps: 'transform', // Important to clear transform so hover effects work cleanly
-					},
-					'-=0.5'
-				) // Overlap slightly with header animation
-			}, containerRef)
+					})
+				}
 
-			return () => ctx.revert()
+				// 2. Steps Sequence (Slide Up)
+				if (stepsRef.current && stepsRef.current.length > 0) {
+					tl.to(
+						stepsRef.current,
+						{
+							opacity: 1,
+							y: 0,
+							duration: 1.2, // Slightly slower for elegance
+							stagger: 0.15,
+							ease: 'power4.out',
+							clearProps: 'transform', // Important to clear transform so hover effects work cleanly
+						},
+						'-=0.5'
+					) // Overlap slightly with header animation
+				}
+			}, containerRef)
 		}
 
 		initGsap()
+
+		return () => {
+			if (ctx) ctx.revert()
+		}
 	}, [])
 
 	const handleStepChange = (index: number) => {
@@ -113,6 +127,7 @@ const WhatHappensNext = () => {
 				opacity: 1,
 				duration: 0.6,
 				ease: 'power3.out', // Smooth ease
+				overwrite: 'auto'
 			})
 		}
 
@@ -123,6 +138,7 @@ const WhatHappensNext = () => {
 					opacity: 0,
 					duration: 0.4,
 					ease: 'power3.out',
+					overwrite: 'auto'
 				})
 			}
 		})

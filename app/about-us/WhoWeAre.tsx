@@ -26,11 +26,18 @@ export default function WhoWeAre() {
 	}, [])
 
 	useEffect(() => {
+		let ctx: gsap.Context | null = null
+		let isMounted = true
+
 		const initGsap = async () => {
+			if (!isMounted) return
+
 			const {ScrollTrigger} = await import('gsap/ScrollTrigger')
 			gsap.registerPlugin(ScrollTrigger)
 
-			const ctx = gsap.context(() => {
+			if (!isMounted || !whoWeAreRef.current) return
+
+			ctx = gsap.context(() => {
 				// Who We Are Section animations
 				if (whoWeAreRef.current) {
 					// Smooth parallax effect for image
@@ -218,14 +225,13 @@ export default function WhoWeAre() {
 					)
 				}
 			}, whoWeAreRef)
-			return () => ctx.revert()
 		}
 
-		let cleanup: (() => void) | undefined
-		initGsap().then((c) => (cleanup = c))
+		initGsap()
 
 		return () => {
-			if (cleanup) cleanup()
+			isMounted = false
+			if (ctx) ctx.revert()
 		}
 	}, [])
 

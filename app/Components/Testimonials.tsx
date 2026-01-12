@@ -17,6 +17,7 @@ const TestimonialsSection: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
+  const [arrowSize, setArrowSize] = useState(28);
 
   const testimonials: Testimonial[] = [
     {
@@ -106,8 +107,19 @@ const TestimonialsSection: React.FC = () => {
       }
     };
 
+    // Calculate arrow size on client side only
+    const calculateArrowSize = () => {
+      setArrowSize(Math.max(24, Math.min(30, window.innerWidth / 40)));
+    };
+
+    calculateArrowSize();
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('resize', calculateArrowSize);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('resize', calculateArrowSize);
+    };
   }, [testimonials.length]);
 
   const handleNext = () => {
@@ -135,10 +147,6 @@ const TestimonialsSection: React.FC = () => {
     setIsDragging(false);
     setDragOffset(0);
   };
-
-  const arrowSize = typeof window !== 'undefined' 
-    ? Math.max(24, Math.min(30, window.innerWidth / 40)) 
-    : 28;
 
   return (
     <section 
