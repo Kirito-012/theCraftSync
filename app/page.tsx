@@ -8,20 +8,21 @@ import Footer from "./Components/Footer";
 import ProjectSection from "./Components/Ourworks";
 import Blogs from "./Components/Blogs";
 import Clients from "./Components/Clients";
+import SmoothScroll from "./Components/SmoothScroll";
 
 
 export default function Home() {
   return (
- <>
- <HeroSection />
- <ServicesSection />
-<WhyChooseSection />
-<ProjectSection />
-<TestimonialsSection />
-<Clients />
-<FAQSection />
-<Blogs />
-<Footer />
- </>
+    <SmoothScroll>
+      <HeroSection />
+      <ServicesSection />
+      <WhyChooseSection />
+      <ProjectSection />
+      <TestimonialsSection />
+      <Clients />
+      <FAQSection />
+      <Blogs />
+      <Footer />
+    </SmoothScroll>
   );
 }

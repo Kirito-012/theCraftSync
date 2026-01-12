@@ -1,7 +1,10 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Code, Megaphone, TrendingUp, MapPin, Bot, Zap, Plug, Sparkles } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Service {
   id: number;
@@ -84,6 +87,10 @@ const ServicesSection: React.FC = () => {
   const descriptionRef = useRef<HTMLDivElement>(null);
   const detailsRef = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const servicesListRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
 
   const handleServiceClick = (service: Service): void => {
     if (service.id === activeService.id) return;
@@ -110,8 +117,84 @@ const ServicesSection: React.FC = () => {
     }, 0);
   };
 
+  // Initial scroll-triggered animations
   useEffect(() => {
-    // Animate in new content
+    if (!hasAnimated.current) {
+      // Header animation
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current.children,
+          {
+            opacity: 0,
+            y: 60,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      // Service buttons stagger animation
+      if (servicesListRef.current) {
+        const buttons = servicesListRef.current.querySelectorAll('button');
+        gsap.fromTo(
+          buttons,
+          {
+            opacity: 0,
+            x: -30,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.6,
+            stagger: 0.08,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: servicesListRef.current,
+              start: 'top 75%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      // Content area animation
+      if (contentRef.current) {
+        gsap.fromTo(
+          contentRef.current,
+          {
+            opacity: 0,
+            x: 30,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: contentRef.current,
+              start: 'top 75%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      hasAnimated.current = true;
+    }
+  }, []);
+
+  useEffect(() => {
+    // Animate in new content when service changes
     const tl = gsap.timeline();
     
     tl.fromTo([descriptionRef.current, detailsRef.current], 
@@ -129,7 +212,7 @@ const ServicesSection: React.FC = () => {
     <section className="w-full min-h-screen bg-black text-white py-20 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="mb-16">
+        <div ref={headerRef} className="mb-16">
           <h2 className="text-5xl lg:text-7xl font-black tracking-tight mb-4">
             What We Do
           </h2>
@@ -139,7 +222,7 @@ const ServicesSection: React.FC = () => {
         {/* 3 Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Left Column - Service Names */}
-          <div className="lg:col-span-3 space-y-3">
+          <div ref={servicesListRef} className="lg:col-span-3 space-y-3">
             {services.map((service) => (
               <button
                 key={service.id}
@@ -165,7 +248,7 @@ const ServicesSection: React.FC = () => {
           </div>
 
           {/* Middle Column - Description & Details */}
-          <div className="lg:col-span-5 space-y-8">
+          <div ref={contentRef} className="lg:col-span-5 space-y-8">
             <div ref={descriptionRef}>
               <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-white">
                 {activeService.name}

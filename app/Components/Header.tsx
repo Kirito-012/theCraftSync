@@ -1,189 +1,182 @@
 'use client'
-import {useState, useEffect, useRef} from 'react'
+import {useState, useRef, useEffect} from 'react'
 import Image from 'next/image'
-import {gsap} from 'gsap'
 import Link from 'next/link'
+import gsap from 'gsap'
+import {usePathname} from 'next/navigation'
 
 export default function Navbar() {
-	const [isVisible, setIsVisible] = useState(false)
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const [isVisible, setIsVisible] = useState(true)
+	const [lastScrollY, setLastScrollY] = useState(0)
 	const navRef = useRef<HTMLDivElement>(null)
-	const lastScrollY = useRef(0)
-	const ticking = useRef(false)
-	const isAnimating = useRef(false)
-
-	useEffect(() => {
-		const handleScroll = () => {
-			if (!ticking.current) {
-				window.requestAnimationFrame(() => {
-					const currentScrollY = window.scrollY
-					const isScrollingDown = currentScrollY > lastScrollY.current
-
-					if (
-						isScrollingDown &&
-						currentScrollY > 100 &&
-						!isVisible &&
-						!isAnimating.current
-					) {
-						isAnimating.current = true
-						setIsVisible(true)
-						gsap.fromTo(
-							navRef.current,
-							{y: -100, opacity: 0},
-							{
-								y: 0,
-								opacity: 1,
-								duration: 0.5,
-								ease: 'power3.out',
-								onComplete: () => {
-									isAnimating.current = false
-								},
-							}
-						)
-					} else if (
-						(currentScrollY <= 100 || !isScrollingDown) &&
-						isVisible &&
-						!isAnimating.current
-					) {
-						isAnimating.current = true
-						gsap.to(navRef.current, {
-							y: -100,
-							opacity: 0,
-							duration: 0.4,
-							ease: 'power3.in',
-							onComplete: () => {
-								setIsVisible(false)
-								isAnimating.current = false
-							},
-						})
-					}
-
-					lastScrollY.current = currentScrollY
-					ticking.current = false
-				})
-				ticking.current = true
-			}
-		}
-
-		window.addEventListener('scroll', handleScroll, {passive: true})
-		return () => window.removeEventListener('scroll', handleScroll)
-	}, [isVisible])
+	const menuRef = useRef<HTMLDivElement>(null)
+	const pathname = usePathname()
 
 	const navItems: {name: string; href: string; hasDropdown?: boolean}[] = [
 		{name: 'Home', href: '/'},
 		{name: 'About Us', href: '/about-us'},
 		{name: 'Projects', href: '/projects'},
 		{name: 'Case Study', href: '/case-study'},
+		{name: 'Services', href: '/services'},
 		{name: 'Blog', href: '/blogs'},
 	]
 
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollY = window.scrollY
+
+			if (currentScrollY > lastScrollY && currentScrollY > 100 && !isMenuOpen) {
+				// Scrolling down and past 100px
+				setIsVisible(false)
+			} else if (currentScrollY < lastScrollY || isMenuOpen) {
+				// Scrolling up or menu is open
+				setIsVisible(true)
+			}
+
+			setLastScrollY(currentScrollY)
+		}
+
+		window.addEventListener('scroll', handleScroll, {passive: true})
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll)
+		}
+	}, [lastScrollY, isMenuOpen])
+
+	useEffect(() => {
+		if (isMenuOpen && menuRef.current) {
+			const items = menuRef.current.children
+			gsap.fromTo(
+				items,
+				{y: 50, opacity: 0},
+				{y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power3.out'}
+			)
+		}
+	}, [isMenuOpen])
+
 	return (
-		<>
-			{isVisible && (
-				<nav
-					ref={navRef}
-					className='fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[85%] md:w-[80%] max-w-4xl'>
-					<div className='bg-black backdrop-blur-md rounded-full px-6 md:px-8 py-4 shadow-2xl border border-amber-900/20'>
-						<div className='flex items-center justify-between md:mx-10 gap-20'>
-							{/* Logo */}
-							<Image
-								src='/logo1.png'
-								alt='Logo'
-								width={40}
-								height={40}
-								className='h-10 w-auto flex-shrink-0'
-							/>
+		<nav
+			ref={navRef}
+			className={`fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-[80%] max-w-4xl transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] ${
+				isVisible ? 'translate-y-0' : '-translate-y-[150%]'
+			}`}>
+			<div
+				className={`bg-black/90 px-6 backdrop-blur-xl shadow-2xl border border-white/10 transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] overflow-hidden flex flex-col ${
+					isMenuOpen
+						? 'rounded-4xl pt-6 pb-12 h-[85vh]'
+						: 'rounded-[34px] md:px-8 py-3 h-17'
+				}`}>
+				<div
+					className={`flex items-center justify-between w-full gap-20 transition-all duration-300`}>
+					{/* Logo */}
+					<Link href='/'>
+						<Image
+							src="/logo1.png"
+							alt='Logo'
+							width={40}
+							height={40}
+							className='h-8 w-auto shrink-0'
+						/>
+					</Link>
 
-							{/* Desktop Navigation */}
-							<div className='hidden lg:flex items-center gap-5'>
-								{navItems.map((item, index) => (
-									<a
-										key={index}
-										href={item.href}
-										className='text-zinc-400 hover:text-white transition-colors duration-300 text-sm font-medium flex items-center gap-1 group whitespace-nowrap'>
-										{item.name}
-										{item.hasDropdown && (
-											<svg
-												className='w-4 h-4 group-hover:rotate-180 transition-transform duration-300'
-												fill='none'
-												stroke='currentColor'
-												viewBox='0 0 24 24'>
-												<path
-													strokeLinecap='round'
-													strokeLinejoin='round'
-													strokeWidth={2}
-													d='M19 9l-7 7-7-7'
-												/>
-											</svg>
-										)}
-									</a>
-								))}
-							</div>
+					{/* Desktop Navigation */}
+					<div className='hidden lg:flex items-center gap-5'>
+						{navItems.map((item, index) => (
+							<Link
+								key={index}
+								href={item.href}
+								className={`transition-colors duration-300 text-sm font-medium flex items-center gap-1 group whitespace-nowrap ${
+									pathname === item.href
+										? 'text-white'
+										: 'text-zinc-400 hover:text-white'
+								}`}>
+								{item.name}
+								{item.hasDropdown && (
+									<svg
+										className='w-4 h-4 group-hover:rotate-180 transition-transform duration-300'
+										fill='none'
+										stroke='currentColor'
+										viewBox='0 0 24 24'>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth={2}
+											d='M19 9l-7 7-7-7'
+										/>
+									</svg>
+								)}
+							</Link>
+						))}
+					</div>
 
-							{/* Contact Button - Desktop */}
+					{/* Contact Button - Desktop */}
+					<div>
+						<Link href='/contact'>
 							<button className='hidden lg:flex items-center gap-2 border-2 border-gray-800 text-white px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 hover:bg-white hover:text-black group'>
-								<Link href='/contact'>
-									<span className='w-2 h-2 bg-white rounded-full transition-all duration-300 group-hover:bg-black'></span>
-									Contact Us
-								</Link>
+								Contact Us
 							</button>
+						</Link>
+					</div>
 
-							{/* Mobile Menu Button */}
-							<button
-								onClick={() => setIsMenuOpen(!isMenuOpen)}
-								className='lg:hidden text-white p-2'
-								aria-label='Toggle menu'>
-								<svg
-									className='w-6 h-6'
-									fill='none'
-									stroke='currentColor'
-									viewBox='0 0 24 24'>
-									{isMenuOpen ? (
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M6 18L18 6M6 6l12 12'
-										/>
-									) : (
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M4 6h16M4 12h16M4 18h16'
-										/>
-									)}
-								</svg>
-							</button>
+					{/* Mobile Menu Button */}
+					<button
+						onClick={() => setIsMenuOpen(!isMenuOpen)}
+						className='lg:hidden text-white p-2 relative z-50'
+						aria-label='Toggle menu'>
+						<div className='flex flex-col gap-1.5 w-6'>
+							<span
+								className={`h-0.5 w-full bg-white transition-all duration-300 ${
+									isMenuOpen ? 'rotate-45 translate-y-2' : ''
+								}`}
+							/>
+							<span
+								className={`h-0.5 w-full bg-white transition-all duration-300 ${
+									isMenuOpen ? 'opacity-0' : ''
+								}`}
+							/>
+							<span
+								className={`h-0.5 w-full bg-white transition-all duration-300 ${
+									isMenuOpen ? '-rotate-45 -translate-y-2' : ''
+								}`}
+							/>
+						</div>
+					</button>
+				</div>
+
+				{/* Mobile Menu Content */}
+				{isMenuOpen && (
+					<div
+						ref={menuRef}
+						className='lg:hidden mt-12 flex flex-col justify-between flex-1 h-full w-full'>
+						<div className='flex flex-col gap-6 text-center'>
+							{navItems.map((item, index) => (
+								<Link
+									key={index}
+									href={item.href}
+									className={`text-3xl font-heading font-bold transition-colors ${
+										pathname === item.href
+											? 'text-white'
+											: 'text-zinc-500 hover:text-white'
+									}`}
+									onClick={() => setIsMenuOpen(false)}>
+									{item.name}
+								</Link>
+							))}
 						</div>
 
-						{/* Mobile Menu */}
-						{isMenuOpen && (
-							<div className='lg:hidden mt-4 pt-4 border-t border-amber-900/20'>
-								<div className='flex flex-col gap-3'>
-									{navItems.map((item, index) => (
-										<a
-											key={index}
-											href={item.href}
-											className='text-zinc-400 hover:text-white transition-colors duration-300 text-sm font-medium py-2'
-											onClick={() => setIsMenuOpen(false)}>
-											{item.name}
-										</a>
-									))}
-
-									{/* Contact Button - Mobile */}
-									<button className='flex items-center justify-center gap-2 border border-white text-white px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 hover:bg-white hover:text-black group mt-2'>
-										<Link href='/contact'>
-											<span className='w-2 h-2 bg-white rounded-full transition-all duration-300 group-hover:bg-black'></span>
-											Contact Us
-										</Link>
-									</button>
-								</div>
-							</div>
-						)}
+						{/* Contact Button - Mobile */}
+						<div className='flex flex-col gap-4 w-full'>
+							<Link
+								href='/contact'
+								onClick={() => setIsMenuOpen(false)}
+								className='w-full bg-white text-black py-4 rounded-full font-bold text-center tracking-wider hover:bg-gray-200 transition-colors'>
+								CONTACT US
+							</Link>
+						</div>
 					</div>
-				</nav>
-			)}
-		</>
+				)}
+			</div>
+		</nav>
 	)
 }

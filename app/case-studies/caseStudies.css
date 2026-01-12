@@ -1,0 +1,115 @@
+/* caseStudies.css - White theme with hero section and compact 2‑column layout */
+
+.case-studies {
+  padding: 4rem 2rem;
+  background: #ffffff;
+  color: #111111;
+}
+
+.case-hero {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  text-align: center;
+  color: #111111;
+}
+
+.case-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.4);
+}
+
+.case-hero-title {
+  font-size: 3rem;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.case-hero-subtitle {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  position: relative;
+  z-index: 1;
+  color: #555555;
+}
+
+.case-title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.case-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.case-card:hover {
+  transform: translateY(-8px);
+}
+
+.case-img {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+}
+
+.case-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.case-name {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.case-type {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.case-desc {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.case-link {
+  display: inline-block;
+  font-weight: 500;
+  color: #ff8709;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.case-link:hover {
+  color: #f7bdf8;
+}
