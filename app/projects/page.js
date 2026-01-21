@@ -8,80 +8,91 @@ import './projects.css';
 const projectsData = [
   {
     id: 1,
-    name: 'ParadiseBliss',
-    slug: 'ParadiseBliss',
-    type: 'Wellness & Lifestyle',
-    description: 'Creating a serene digital experience for mindful living and wellness.',
-    bgImage: '/images/projects/paradise-bg.jpg',
-    previewImage: '/images/projects/paradise-img.png',
+    name: 'Paradise\nBliss',
+    slug: 'paradise-bliss',
+    type: 'Travel & Booking Platform',
+    description: 'Comprehensive travel booking with customized vacation packages and spiritual pilgrimage tours across India.',
+    bgImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768692689/kashmir_1_dbjxce.jpg',
+    previewImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768692757/Screenshot_2026-01-18_045806_mndvkw.png',
     animationType: 'fadeSlideUp',
-    layout: 'layout1' // Image left, title right, description top-left
+    layout: 'layout1'
   },
   {
     id: 2,
     name: 'Indiem',
-    slug: 'Indiem',
-    type: 'Creative Portfolio',
-    description: 'A bold and artistic platform showcasing independent creative work.',
-    bgImage: '/images/projects/indiem-bg.jpg',
-    previewImage: '/images/projects/indiem-img.png',
+    slug: 'indiem',
+    type: 'Healthcare AI Automation',
+    description: 'AI-powered healthcare operations platform automating hospital claim documentation and patient records.',
+    bgImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768691736/img_d1jg96.jpg',
+    previewImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768693110/Screenshot_2026-01-18_050807_tha14s.png',
     animationType: 'scaleRotate',
-    layout: 'layout2' // Title center-left, image top-right, description bottom-right
+    layout: 'layout2'
   },
   {
     id: 3,
-    name: 'Moment&Craft',
-    slug: 'MomentCraft',
-    type: 'Artisanal E-commerce',
-    description: 'Handcrafted moments, beautifully curated for authentic experiences.',
-    bgImage: '/images/projects/momentcraft-bg.jpg',
-    previewImage: '/images/projects/momentcraft-preview.jpg',
+    name: 'Moment &\nCRAFT',
+    slug: 'moment-craft',
+    type: 'AI E-commerce Platform',
+    description: 'Enterprise-grade design and commerce platform powered by generative AI for emotionally meaningful products.',
+    bgImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768689267/moments2_eofyzs.jpg',
+    previewImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768686878/moment_dfai8p.jpg',
     animationType: 'blurReveal',
-    layout: 'layout3' // Title bottom-left, image bottom-right, description top-center
+    layout: 'layout3'
   },
   {
     id: 4,
     name: 'Ed Verse',
-    slug: 'EdVerse',
-    type: 'Educational Technology',
-    description: 'Transforming education through interactive and engaging digital learning.',
-    bgImage: '/images/projects/edverse-bg.jpg',
-    previewImage: '/images/projects/edverse-preview.jpg',
+    slug: 'ed-verse',
+    type: 'EdTech Platform',
+    description: 'Scalable digital learning ecosystem unifying live education, recorded content, and consultancy for 30k+ users.',
+    bgImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768696447/ed_xhrmi3.jpg',
+    previewImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768696547/ed_sdn97j.jpg',
     animationType: 'elasticBounce',
-    layout: 'layout4' // Image bottom-left, title right, description top-left
+    layout: 'layout4'
   },
   {
     id: 5,
-    name: 'Daxter',
-    slug: 'Daxter',
-    type: 'Tech Innovation',
-    description: 'Cutting-edge solutions for the future of digital technology.',
-    bgImage: '/images/projects/daxter-bg.jpg',
-    previewImage: '/images/projects/daxter-preview.jpg',
+    name: 'PixelMark',
+    slug: 'pixelmark',
+    type: 'AI Computer Vision',
+    description: 'Intelligent image annotation platform bridging human selection and AI analysis for Computer Vision pipelines.',
+    bgImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768689267/pixelmark_dmumca.jpg',
+    previewImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768691126/pixelphone_uyqocr.jpg',
     animationType: 'glitchEffect',
-    layout: 'layout1' // Image left, title right, description top-left
+    layout: 'layout1'
   },
   {
     id: 6,
-    name: 'Vesa',
-    slug: 'Vesa',
-    type: 'Minimalist Design',
-    description: 'Sophisticated simplicity meets Scandinavian design excellence.',
-    bgImage: '/images/projects/vesa-bg.jpg',
-    previewImage: '/images/projects/vesa-preview.jpg',
+    name: 'Vevsa',
+    slug: 'vevsa',
+    type: 'B2B Marketing Platform',
+    description: 'Enterprise marketing platform for industrial containers with pixel-perfect design optimized for all displays.',
+    bgImage: '/images/projects/vevsa-bg.jpg',
+    previewImage: '/images/projects/vevsa-preview.jpg',
     animationType: 'parallaxSlide',
-    layout: 'layout2' // Title center-left, image top-right, description bottom-right
+    layout: 'layout2'
   },
   {
     id: 7,
     name: 'Osexifi',
-    slug: 'Osexifi',
-    type: 'Digital Innovation',
-    description: 'Pioneering the next generation of digital experiences and solutions.',
-    bgImage: '/images/projects/osexifi-bg.png',
-    previewImage: '/images/projects/osexifi-img.png',
+    slug: 'osexifi',
+    type: 'Wellness E-commerce',
+    description: 'Comprehensive e-commerce ecosystem for wellness products integrated with nonprofit reproductive health mission.',
+    bgImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768696995/Screenshot_2026-01-18_061155_xpijks.png',
+    previewImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768696994/Screenshot_2026-01-11_004711_mnxxc4.png',
     animationType: 'blurReveal',
-    layout: 'layout3' // Title bottom-left, image bottom-right, description top-center
+    layout: 'layout3'
+  },
+  {
+    id: 8,
+    name: 'West\nMountains',
+    slug: 'west-mountains',
+    type: 'Health & Nutrition AI',
+    description: 'Intelligent mobile nutrition platform delivering personalized calorie tracking and AI-driven meal planning.',
+    bgImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768696783/west_cdz3cc.jpg',
+    previewImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768686877/westmountain_gz86bk.jpg',
+    animationType: 'fadeSlideUp',
+    layout: 'layout4'
   }
 ];
 
@@ -95,6 +106,14 @@ export default function ProjectsPage() {
   const titleRef = useRef(null);
   const typeRef = useRef(null);
   const descRef = useRef(null);
+
+  // Preload all background images for smooth transitions
+  useEffect(() => {
+    projectsData.forEach(project => {
+      const img = new Image();
+      img.src = project.bgImage;
+    });
+  }, []);
 
   // Professional GSAP animations with proper timelines
   const animateLayout = (layout) => {
@@ -112,15 +131,16 @@ export default function ProjectsPage() {
     
     const tl = gsap.timeline({
       defaults: {
-        ease: 'power3.out',
-        duration: 0.8
+        ease: 'power2.out',
+        duration: 0.6,
+        force3D: true  // GPU acceleration
       },
       onComplete: () => {
         // Ensure everything is visible after animation (only if refs still exist)
         const currentRefs = [contentRef.current, previewRef.current, titleRef.current, typeRef.current, descRef.current].filter(ref => ref !== null);
         if (currentRefs.length > 0) {
           gsap.set(currentRefs, {
-            clearProps: 'all'
+            clearProps: 'transform,opacity'
           });
         }
       }
@@ -225,34 +245,29 @@ export default function ProjectsPage() {
     setActiveProject(project);
     setIsHovering(true);
     
-    // Animate background change
-    gsap.to(bgRef.current, {
-      opacity: 0,
-      duration: 0.3,
-      onComplete: () => {
-        if (bgRef.current) {
-          bgRef.current.style.backgroundImage = `url(${project.bgImage})`;
-          gsap.to(bgRef.current, { opacity: 1, duration: 0.5 });
-        }
-      }
-    });
+    // Optimized background change - direct transition without nested animations
+    if (bgRef.current) {
+      bgRef.current.style.backgroundImage = `url(${project.bgImage})`;
+      gsap.to(bgRef.current, { 
+        opacity: 1, 
+        duration: 0.4,
+        ease: 'power2.out'
+      });
+    }
   };
 
   const handleMouseLeave = () => {
     setIsHovering(false);
     setActiveProject(null);
     
-    // Animate back to default background
-    gsap.to(bgRef.current, {
-      opacity: 0,
-      duration: 0.3,
-      onComplete: () => {
-        if (bgRef.current) {
-          bgRef.current.style.backgroundImage = `url(/images/projects/default-bg.jpg)`;
-          gsap.to(bgRef.current, { opacity: 1, duration: 0.5 });
-        }
-      }
-    });
+    // Optimized background reset
+    if (bgRef.current) {
+      gsap.to(bgRef.current, { 
+        opacity: 0, 
+        duration: 0.3,
+        ease: 'power2.in'
+      });
+    }
   };
 
   useEffect(() => {
@@ -285,18 +300,20 @@ export default function ProjectsPage() {
           </div>
           
           <div ref={contentRef} className="absolute bottom-32 left-0">
-            <div className="project-image-container bg-white/10 backdrop-blur-md rounded-2xl max-w-md">
+            <div className="project-image-container rounded-2xl w-[500px] h-[400px] overflow-hidden flex items-center justify-center">
               <img 
                 src={activeProject.previewImage} 
                 alt={`${activeProject.name} preview`}
-                className="w-full h-auto rounded-lg"
+                className="max-w-full max-h-full object-contain rounded-lg"
               />
             </div>
           </div>
           
           <div ref={previewRef} className="absolute right-16 top-1/2 -translate-y-1/2">
             <h1 className="project-title font-heading text-8xl font-black tracking-tight leading-none text-white mb-4">
-              {activeProject.name}
+              {activeProject.name.split('\n').map((line, i) => (
+                <div key={i}>{line}</div>
+              ))}
             </h1>
             <p className="project-type font-descriptive text-base text-white/70">
               {activeProject.type}
@@ -316,16 +333,18 @@ export default function ProjectsPage() {
           
           <div ref={contentRef} className="absolute top-1/2 -translate-y-1/2 left-0">
             <h1 className="project-title-large font-heading text-9xl font-black tracking-tight leading-none text-white">
-              {activeProject.name}
+              {activeProject.name.split('\n').map((line, i) => (
+                <div key={i}>{line}</div>
+              ))}
             </h1>
           </div>
           
           <div ref={previewRef} className="absolute top-16 right-16">
-            <div className="project-image-container-large bg-white/10 backdrop-blur-md rounded-2xl max-w-sm">
+            <div className="project-image-container-large rounded-2xl w-[450px] h-[350px] overflow-hidden flex items-center justify-center">
               <img 
                 src={activeProject.previewImage} 
                 alt={`${activeProject.name} preview`}
-                className="w-full h-auto rounded-lg"
+                className="max-w-full max-h-full object-contain rounded-lg"
               />
             </div>
           </div>
@@ -349,7 +368,9 @@ export default function ProjectsPage() {
           
           <div ref={contentRef} className="absolute bottom-32 left-16">
             <h1 className="project-title font-heading text-8xl font-black tracking-tight leading-none text-white mb-4">
-              {activeProject.name}
+              {activeProject.name.split('\n').map((line, i) => (
+                <div key={i}>{line}</div>
+              ))}
             </h1>
             <p className="project-type font-descriptive text-base text-white/70">
               {activeProject.type}
@@ -357,11 +378,11 @@ export default function ProjectsPage() {
           </div>
           
           <div ref={previewRef} className="absolute bottom-32 right-16">
-            <div className="project-image-container bg-white/10 backdrop-blur-md rounded-2xl max-w-md">
+            <div className="project-image-container rounded-2xl w-[500px] h-[400px] overflow-hidden flex items-center justify-center">
               <img 
                 src={activeProject.previewImage} 
                 alt={`${activeProject.name} preview`}
-                className="w-full h-auto rounded-lg"
+                className="max-w-full max-h-full object-contain rounded-lg"
               />
             </div>
           </div>
@@ -378,18 +399,20 @@ export default function ProjectsPage() {
           </div>
           
           <div ref={contentRef} className="absolute bottom-32 left-16">
-            <div className="project-image-container-large bg-white/10 backdrop-blur-md rounded-2xl max-w-sm">
+            <div className="project-image-container-large rounded-2xl w-[450px] h-[350px] overflow-hidden flex items-center justify-center">
               <img 
                 src={activeProject.previewImage} 
                 alt={`${activeProject.name} preview`}
-                className="w-full h-auto rounded-lg"
+                className="max-w-full max-h-full object-contain rounded-lg"
               />
             </div>
           </div>
           
           <div ref={previewRef} className="absolute right-16 bottom-32">
             <h1 className="project-title font-heading text-8xl font-black tracking-tight leading-none text-white mb-4">
-              {activeProject.name}
+              {activeProject.name.split('\n').map((line, i) => (
+                <div key={i}>{line}</div>
+              ))}
             </h1>
             <p className="project-type font-descriptive text-base text-white/70">
               {activeProject.type}
@@ -415,8 +438,7 @@ export default function ProjectsPage() {
           className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500"
           style={{ opacity: isHovering ? 0 : 1 }}
         >
-          <source src="https://www.pexels.com/download/video/25744121/" type="video/mp4" />
-          <source src="/bg.webm" type="video/webm" />
+          <source src="https://res.cloudinary.com/din6jl7de/video/upload/v1768689496/videobg_xie9iq.mp4" type="video/mp4" />
           {/* Fallback to image if video doesn't load */}
         </video>
         
@@ -437,7 +459,7 @@ export default function ProjectsPage() {
         {projectsData.map((project) => (
           <Link
             key={project.id}
-            href={`#${project.slug}`}
+            href={`/case-study/${project.slug}`}
             className={`
               font-heading text-base font-medium px-6 py-3 rounded-full
               bg-white/10 backdrop-blur-md border border-white/20
@@ -451,7 +473,7 @@ export default function ProjectsPage() {
             `}
             onMouseEnter={() => handleProjectHover(project)}
           >
-            {project.name}
+            {project.name.replace('\n', ' ')}
           </Link>
         ))}
       </nav>

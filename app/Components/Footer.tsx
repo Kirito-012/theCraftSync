@@ -61,7 +61,7 @@ export default function Footer() {
           {/* Logo */}
           <div className="flex flex-col gap-4">
             <img 
-              src="/logo1.png" 
+              src="/logo.png" 
               alt="TheCraftsync Logo" 
               className="h-16 w-16"
             />

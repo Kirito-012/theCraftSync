@@ -191,10 +191,10 @@ const HeroSection = () => {
 			{/* RIGHT PANEL (60%) - Premium Light Theme */}
 			<div
 				ref={rightPanelRef}
-				className='w-full lg:w-[60%] h-auto lg:h-full bg-zinc-50 rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 lg:p-12 xl:p-16 flex flex-col relative shadow-2xl overflow-y-auto no-scrollbar opacity-0'>
-				<div className='max-w-xl mx-auto w-full flex flex-col justify-center min-h-full py-8'>
-					<div className='mb-10'>
-						<h2 className='text-4xl font-black text-zinc-900 mb-4 tracking-tighter'>
+				className='w-full lg:w-[60%] h-auto lg:h-full bg-zinc-50 rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col relative shadow-2xl overflow-y-auto no-scrollbar opacity-0'>
+				<div className='max-w-xl mx-auto w-full flex flex-col justify-center min-h-full py-4 lg:py-6'>
+					<div className='mb-6 lg:mb-8'>
+						<h2 className='text-3xl lg:text-4xl font-black text-zinc-900 mb-3 lg:mb-4 tracking-tighter'>
 							Let's Talk<span className='text-emerald-500'>.</span>
 						</h2>
 						<p className='text-zinc-600 text-md font-medium max-w-md'>
@@ -204,8 +204,8 @@ const HeroSection = () => {
 
 					<form
 						ref={formRef}
-						className='space-y-8'>
-						<div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6'>
+						className='space-y-6 lg:space-y-7'>
+						<div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 lg:gap-x-8 gap-y-5 lg:gap-y-6'>
 							<div className='group relative'>
 								<label
 									htmlFor='name'
@@ -236,7 +236,7 @@ const HeroSection = () => {
 							</div>
 						</div>
 
-						<div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6'>
+						<div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 lg:gap-x-8 gap-y-5 lg:gap-y-6'>
 							<div className='group relative'>
 								<label
 									htmlFor='company'
@@ -269,11 +269,11 @@ const HeroSection = () => {
 						</div>
 
 						{/* Services */}
-						<div className='pt-1'>
-							<label className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-4'>
+						<div className='pt-0 lg:pt-1'>
+							<label className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-3 lg:mb-4'>
 								I'm interested in...
 							</label>
-							<div className='flex flex-wrap gap-x-8 gap-y-4'>
+							<div className='flex flex-wrap gap-x-6 lg:gap-x-8 gap-y-3 lg:gap-y-4'>
 								{services.map((service, idx) => (
 									<button
 										key={idx}
@@ -322,7 +322,7 @@ const HeroSection = () => {
 								}}></textarea>
 						</div>
 
-						<div className='pt-4 flex justify-end'>
+						<div className='pt-2 lg:pt-4 flex justify-end'>
 							<button
 								type='submit'
 								className='group flex items-center cursor-pointer justify-center gap-3 bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-4 overflow-hidden transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-[0.98]'>
