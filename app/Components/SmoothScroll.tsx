@@ -7,8 +7,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+let lenisInstance: Lenis | null = null;
+
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    // If Lenis already exists, don't create a new one
+    if (lenisInstance) {
+      return;
+    }
+
     // Initialize Lenis
     const lenis = new Lenis({
       duration: 1.2,
@@ -21,31 +28,39 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       infinite: false,
     });
 
+    lenisInstance = lenis;
+
     // Connect Lenis with GSAP ScrollTrigger
     const onScroll = () => ScrollTrigger.update();
     lenis.on('scroll', onScroll);
 
     const tickCallback = (time: number) => {
-      lenis.raf(time * 1000);
+      if (lenisInstance) {
+        lenisInstance.raf(time * 1000);
+      }
     };
 
     gsap.ticker.add(tickCallback);
     gsap.ticker.lagSmoothing(0);
 
-    // Cleanup - must be in correct order
+    // Cleanup on unmount
     return () => {
-      // Remove ticker callback first
-      gsap.ticker.remove(tickCallback);
-      
-      // Remove scroll listener from Lenis
-      lenis.off('scroll', onScroll);
-      
-      // Destroy Lenis instance
-      lenis.destroy();
-      
-      // Do NOT kill all ScrollTriggers globally here —
-      // individual components manage their own contexts and cleanup.
-      // Removing global kill prevents double-removal race conditions.
+      if (!lenisInstance) return;
+
+      try {
+        // Remove ticker callback first
+        gsap.ticker.remove(tickCallback);
+        
+        // Remove scroll listener from Lenis
+        lenisInstance.off('scroll', onScroll);
+        
+        // Destroy Lenis instance
+        lenisInstance.destroy();
+        lenisInstance = null;
+      } catch (error) {
+        console.error('Error cleaning up Lenis:', error);
+        lenisInstance = null;
+      }
     };
   }, []);
 
