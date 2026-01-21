@@ -1,5 +1,18 @@
 /* Projects Page Responsive Styles */
 
+/* Performance Optimizations */
+.project-title,
+.project-title-large,
+.project-image-container,
+.project-image-container-large,
+.project-description,
+.project-type {
+	will-change: transform, opacity;
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+	-webkit-font-smoothing: antialiased;
+}
+
 /* Responsive sizing for large screens (1920px+) */
 @media (min-width: 1920px) {
 	.project-title {

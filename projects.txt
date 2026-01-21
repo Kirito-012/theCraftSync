@@ -1,0 +1,241 @@
+1)Moment&Craft
+Overview
+Moment & CRAFT is an enterprise-grade design and commerce platform powered by generative AI. We unified design, personalization, and fulfillment into one intelligent system that helps businesses sell emotionally meaningful products while reducing operational costs and boosting customer lifetime value
+CASE STUDY
+AI-Powered Personalization Commerce for Enterprise Print Businesses
+
+What We Built
+       
+Intelligent Design Studio: Drag-and-drop interface with real-time preview and theme governance.
+
+AI Content Engine: OpenAI-powered message generation, tone adaptation, and creative assistance.
+
+Unified Commerce Flow: End-to-end ordering, fulfillment tracking, and customer history.
+
+Multi-Product Platform: Cards, photobooks, and expandable SKU architecture.
+
+Impact after our solution
+3x higher conversion through AI-guided personalization.
+
+35% increase in AOV via premium design upsells.
+
+60% faster design completion with AI content assistance.
+Our Expertise Delivered
+
+Full-stack development (design engine + backend commerce).
+
+AI/ML integration (OpenAI API for personalization intelligence).
+
+Enterprise scalability & brand governance systems.
+
+Conversion-optimized UX for complex personalization flows.
+
+2) Ed Verse
+Overview
+A scalable digital learning ecosystem that unifies live education, recorded content, and consultancy services into one powerful platform. Our single-codebase architecture powers web and mobile apps for 30k+ users, delivering high-performance, real-time learning experiences at scale.
+
+CASE STUDY
+Enterprise-Scale EdTech Platform: Cross-Platform Learning for 30000+ Users
+
+What We Built
+
+Live & On-Demand Learning Engine: Real-time class streaming with stored session library for flexible learning.
+
+Cross-Platform Apps from Single Codebase: Web, Android, and iOS applications built using Vue.js + Ionic framework.
+
+Dynamic Activity Calendar: Google Calendar-style scheduling system for classes, events, and learning milestones.
+
+Consultancy Integration: Expert services booking and delivery within the learning ecosystem.
+
+High-Concurrency Infrastructure: Backend optimized for 300,000+ users with stable performance.
+
+Impact after our solution
+
+3 platforms maintained with one engineering team.
+
+Reduced development costs by eliminating separate native app teams.
+
+High concurrency handling during live class sessions without performance degradation.
+
+Our Expertise Delivered
+Real-time streaming infrastructure (live video delivery with low latency).
+
+Performance engineering (optimized for heavy traffic and peak loads).
+
+Complex scheduling systems (interactive calendar with multi-event management).
+
+3)indiem
+Overview
+an AI-powered healthcare operations platform that automates hospital claim documentation and patient record management for India's healthcare sector. Using a WhatsApp-like chat interface, the system eliminates manual file processing through intelligent document classification and organization—deployable without replacing existing hospital software.
+
+Case Study
+AI-Powered Healthcare Automation: Zero-Touch Claims & Patient Record Management
+
+What We Built
+ 
+Intelligent Document Processing: AI-powered classification and organization of medical claims and patient records.
+
+WhatsApp-Style Chat Interface: Intuitive, adoption-friendly platform requiring zero staff training.
+
+Automated File Management System: Zero manual organization through AI-driven document categorization.
+
+Non-Invasive Integration: Deployment without replacing existing hospital management systems.
+
+Hybrid SaaS Platform: Revenue-share operational model (7-10.5% on claim amounts)
+
+High-Volume Processing Engine: Built to handle hospital-scale document workflows with error reduction.
+
+Impact after our solution
+Hospital operations transformation eliminating manual document processing.
+AI-driven automation reducing claim workflow errors.
+Instant adoption through familiar chat-based interface.
+Zero integration requirement for immediate deployment.
+Performance-based pricing aligning platform success with hospital outcomes
+High-volume processing handling enterprise-scale healthcare documentation
+
+Our Expertise Delivered
+
+Healthcare AI/ML development (medical document classification algorithms).
+Natural Language Processing (claim document parsing and data extraction).
+Conversational UI design (chat-based hospital workflow interface).
+Document automation systems (intelligent file organization and routing).
+Healthcare integration architecture (non-invasive deployment models).
+SaaS business model implementation (revenue-share operational framework).
+
+4)PixelMark
+Overview
+An intelligent image annotation platform that bridges human selection and AI analysis. Users interactively select image regions for pixel-level extraction, feeding precise data into Computer Vision pipelines for object detection, classification, and pattern recognition—optimizing AI accuracy while reducing processing costs.
+Case Study
+Human-Guided AI Vision: Interactive Annotation Platform for Intelligent Image Analysis
+
+What we built
+Interactive Canvas Engine: Konva.js-powered selection tool for drawing, resizing, and manipulating image regions with real-time feedback.
+
+Pixel-Level Data Extraction: Precise capture of selected region data for high-accuracy AI analysis.
+
+Computer Vision Integration: Seamless pipeline connection for object detection, classification, and feature extraction.
+
+API-Driven Architecture: Scalable backend designed for AI/ML service integration and cloud deployment.
+
+Human-in-the-Loop Workflows: Guided annotation system for AI model training and validation.
+Impact after our solution
+75% faster annotation vs. traditional bounding-box tools.
+
+Pixel-perfect accuracy for medical, industrial, and security applications.
+
+Multi-use case deployment: Medical imaging, satellite analysis, quality control, and AI training.
+
+Our Expertise Delivered
+AI/ML API Integration (Computer Vision service connectivity).
+
+Image Processing Algorithms (pixel extraction and data transformation).
+
+Real-time Interactive UI Development (responsive canvas manipulation).
+
+5)Vevsa
+Overview
+A visually rich, enterprise-grade marketing platform showcasing multi-purpose industrial containers—dustbins, storage, and utility solutions. Our pixel-perfect design system spans mobile to ultra-HD displays, with performance-optimized architecture and admin-managed content enabling sustainable, code-free updates.
+CASE STUDY
+Pixel-Perfect B2B Marketing Platform: Industrial Product Showcase at Scale
+
+What we built
+Universal Responsive Design: Pixel-accurate layouts across all devices (360px mobile → 4K displays).
+Dynamic Product Showcase: Interactive galleries with smooth transitions for container product visualization.
+Admin-Driven CMS: Non-technical content management for products, galleries, and marketing copy.
+Code-Based Icon System: Scalable SVG/CSS icons eliminating image dependencies.
+High-Fidelity UI: Complex visual sections with intricate layouts and smooth interactions.
+B2B Marketing Engine: SEO-optimized architecture for industrial product discovery.
+Impact after our solution
+40% faster load times through performance optimization.
+Zero-code content updates via admin panel integration.
+Enterprise B2B presence for industrial product marketing.
+
+Our Expertise Delivered
+Advanced responsive architecture (fluid design system from mobile to 4K).
+Component-based development (modular, reusable UI patterns)
+Performance engineering (optimized rendering for complex visual sections)
+SVG/CSS graphics programming (code-based iconography) Headless CMS integration (admin panel data binding)
+Cross-browser compatibility (consistent experience across platforms)
+
+6)West Mountains
+Overview
+An intelligent mobile nutrition platform that delivers personalized calorie tracking and diet recommendations based on user age, weight, and health goals. The app combines comprehensive food databases, AI-driven meal planning, and progress analytics to help users achieve sustainable health outcomes through data-driven nutrition management
+Case Study
+AI-Driven Nutrition Platform: Personalized Diet Management & Calorie Tracking
+What We built
+
+Intelligent Calorie Tracker: Real-time food logging with comprehensive nutritional database
+Personalized Diet Engine: Age, weight, and goal-based meal recommendations and nutrition plans
+Smart Food Recognition: Quick input system for tracking meals and calculating macros
+Progress Analytics Dashboard: Visual tracking of calories, nutrients, weight trends, and health milestones
+Adaptive Meal Planning: Dynamic diet suggestions that adjust based on user progress and preferences
+Cross-Platform Mobile App: Native iOS and Android applications with offline capabilities
+
+Impact after our solution
+AI-powered recommendations adapting to user progress and preferences. 
+Holistic health management combining diet, activity, and progress analytics.
+Real-time tracking of calories, macros, and nutritional goals.
+Our Expertise Delivered
+Mobile app development (native iOS/Android or cross-platform).
+AI/ML integration (personalized recommendation algorithms).
+Nutrition data architecture (comprehensive food database management).
+Real-time data synchronization (cloud-based user profile and progress tracking).
+Health & fitness UX design (motivation-focused interface patterns).
+Algorithm development (personalized calorie and macro calculations).
+
+7)OSexifi
+Overview
+A comprehensive e-commerce and a digital ecosystem serving Osexifi's wellness product line and 501(c)(3) charitable foundation, integrating premium wellness product sales with nonprofit reproductive health initiatives. The solution combines elegant product presentation, secure payment processing, and educational content—serving both commercial operations and the House of Osexifi Patronage charity's community health mission.
+
+Case Study
+Holistic Wellness Platform: E-Commerce Innovation Meets Health Advocacy
+
+What We Built   
+
+Premium E-Commerce Platform: Sophisticated product catalog with discreet checkout, secure payment integration, and age verification.
+Dual-Brand Architecture: Unified system serving commercial Osexifi products and House of Osexifi Patronage nonprofit.
+Educational Content Hub: Wellness resources, product guides, and reproductive health information.
+Donation Management System: Integrated 501(c)(3) contribution processing and donor engagement tools.
+Product Customization Engine: Interactive selection tools for personalized wellness solutions.
+Privacy-First Infrastructure: Enhanced security, discreet packaging integration, and data protection compliance.
+
+Impact after our solution
+Secure e-commerce with privacy-first checkout experience
+Modern wellness positioning combining technology with health advocacy
+Forbes recognition for founder Dr. Balkees Abderrahman (Under 30 honoree)
+
+Our Expertise Delivered
+Sensitive product e-commerce (age verification, discreet UX, secure transactions)
+Payment gateway integration (PCI compliance, donation processing)
+ Content management systems (educational resources, product information)
+ Privacy & security implementation (HIPAA-aligned data protection)
+ Brand identity development (sophisticated, clinical aesthetic)
+
+ 8)PARADISEBLISS Tours
+ Overview
+ a comprehensive travel booking platform for Paradise Bliss Tours, featuring customized vacation packages, spiritual pilgrimage tours, and destination showcases across India. The solution integrates WhatsApp inquiry modules for instant customer engagement, streamlining the journey from package discovery to booking confirmation.
+
+ CaseStudy
+ Complete Travel Platform: From Discovery to Booking for Leisure & Spiritual Journeys
+
+ What We Built
+
+Dynamic Destination Showcase: Interactive pages highlighting beaches, cities, adventure spots, and sacred pilgrimage sites.
+Package Management System: Customizable tour packages with detailed itineraries, pricing, and inclusions.
+Spiritual Tour Modules: Specialized sections for Char Dham Yatra, Jyotirlinga tours, and religious pilgrimages.
+Package Detail Pages: Rich content pages with galleries, day-wise itineraries, accommodation details, and booking information.
+WhatsApp Inquiry Integration: One-click inquiry module connecting travelers directly to tour consultants.
+Responsive Booking Experience: Mobile-optimized interface for on-the-go trip planning.
+
+Impact after our solution
+Streamlined booking process reducing inquiry-to-confirmation time
+Rich destination content driving organic search traffic
+End-to-end trip planning from discovery to hassle-free booking
+
+Our Expertise Delivered
+Mobile app development (native iOS/Android or cross-platform).
+AI/ML integration (personalized recommendation algorithms).
+Nutrition data architecture (comprehensive food database management).
+Real-time data synchronization (cloud-based user profile and progress tracking).
+Health & fitness UX design (motivation-focused interface patterns).
+Algorithm development (personalized calorie and macro calculations).
