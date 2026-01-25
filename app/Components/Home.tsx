@@ -53,33 +53,30 @@ const HeroSection: React.FC = () => {
     // Text reveal
     if (textRef.current?.children) {
       Array.from(textRef.current.children).forEach((child, index) => {
-        const anim = tl.fromTo(child,
+        tl.fromTo(child,
           { opacity: 0, y: 100 },
           { opacity: 1, y: 0, duration: 1.5, ease: 'power4.out' },
           0.2 + (index * 0.15)
         );
-        animations.push(anim);
       });
     }
 
     // Subtext
     if (subtextRef.current) {
-      const subAnim = tl.fromTo(subtextRef.current,
+      tl.fromTo(subtextRef.current,
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" },
         0.8
       );
-      animations.push(subAnim);
     }
 
     // Button
     if (btnRef.current) {
-      const btnAnim = tl.fromTo(btnRef.current,
+      tl.fromTo(btnRef.current,
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" },
         1.0
       );
-      animations.push(btnAnim);
     }
 
     return () => {
