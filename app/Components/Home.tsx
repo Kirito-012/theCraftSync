@@ -86,27 +86,41 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-white">
-      {/* Left Side - 50% */}
-      <div className="w-1/2 flex items-center justify-center px-12 lg:px-20 relative overflow-hidden">
-        {/* Animated background grid */}
-        <div className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: 'linear-gradient(black 1px, transparent 1px), linear-gradient(90deg, black 1px, transparent 1px)',
-            backgroundSize: '50px 50px'
-          }}
-        />
-        
-        <div className="max-w-2xl relative z-10">
-          <div ref={textRef} className="mb-8">
-            <h1 className="text-7xl lg:text-8xl xl:text-8xl font-black leading-none tracking-tighter">
-              <div className="mb-3 text-black">EXCEPTIONAL</div>
-              <div className="mb-3 text-black">DIGITAL</div>
-              <div className="text-black relative inline-block">
-                EXPERIENCES
-                <div className="absolute -bottom-2 left-0 w-full h-1 bg-black"></div>
-              </div>
-            </h1>
+    <div className="flex flex-col lg:flex-row min-h-[100dvh] w-full bg-white relative overflow-hidden">
+
+      {/* Architectural Grid Background (Global) */}
+      <div className="absolute inset-0 pointer-events-none z-0"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)',
+          backgroundSize: '80px 80px' // Larger "Swiss" grid
+        }}
+      />
+
+      {/* Left Side: Content */}
+      <div className="w-full lg:w-1/2 relative z-10 flex flex-col justify-center px-6 sm:px-12 lg:px-24 pt-32 pb-12 sm:pt-40 sm:pb-20 lg:py-0 border-r border-zinc-100/0 lg:border-zinc-200">
+
+        <div className="max-w-xl w-full">
+          {/* Rotating Badge */}
+          <div ref={badgeRef} className="absolute top-4 right-4 sm:top-10 sm:right-10 lg:top-20 lg:left-24 lg:right-auto w-14 h-14 sm:w-24 sm:h-24 flex items-center justify-center pointer-events-none sm:pointer-events-auto">
+            <svg viewBox="0 0 100 100" className="w-full h-full animate-slow-spin">
+              <path
+                id="curve"
+                d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                fill="transparent"
+              />
+              <text className="text-[14px] uppercase font-bold tracking-[0.15em]" fill="currentColor">
+                <textPath xlinkHref="#curve">
+                  • EST • 2024 • AGENCY • CREATIVE
+                </textPath>
+              </text>
+            </svg>
+            <div className="absolute inset-0 m-auto w-1.5 h-1.5 sm:w-2 sm:h-2 bg-black rounded-full"></div>
+          </div>
+
+          <div className="mb-4 inline-block">
+            <span className="font-descriptive text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase text-zinc-900 border-b border-black pb-1">
+              The Craft Sync
+            </span>
           </div>
 
           <h1 ref={textRef} className="font-heading mb-6 sm:mb-10 text-4xl sm:text-5xl lg:text-5xl xl:text-7xl font-black leading-[0.9] sm:leading-[0.85] tracking-tighter text-black w-full relative z-20">
