@@ -10,6 +10,7 @@ import Blogs from "./Components/Blogs";
 import Clients from "./Components/Clients";
 import SmoothScroll from "./Components/SmoothScroll";
 
+<script src="http://localhost:8097"></script>
 
 export default function Home() {
   return (
@@ -17,7 +18,7 @@ export default function Home() {
       <HeroSection />
       <ServicesSection />
       <WhyChooseSection />
-      <ProjectSection />
+      {/* <ProjectSection /> */}
       <TestimonialsSection />
       <Clients />
       <FAQSection />
