@@ -93,10 +93,10 @@ export default function FAQSection() {
 
     // FAQ items stagger animation
     if (listRef.current) {
-      const listEl = listRef.current;
+      const container = listRef.current;
       if (!ctx) {
         ctx = gsap.context(() => {
-          const items = listEl.querySelectorAll('.faq-item');
+          const items = container.querySelectorAll('.faq-item');
           gsap.fromTo(
             items,
             {
@@ -110,15 +110,15 @@ export default function FAQSection() {
               stagger: 0.1,
               ease: 'power2.out',
               scrollTrigger: {
-                trigger: listEl,
+                trigger: container,
                 start: 'top 75%',
                 toggleActions: 'play none none reverse',
               },
             }
           );
-        }, listRef)
+        }, container)
       } else {
-        const items = listEl.querySelectorAll('.faq-item');
+        const items = container.querySelectorAll('.faq-item');
         gsap.fromTo(
           items,
           {
@@ -132,7 +132,7 @@ export default function FAQSection() {
             stagger: 0.1,
             ease: 'power2.out',
             scrollTrigger: {
-              trigger: listEl,
+              trigger: container,
               start: 'top 75%',
               toggleActions: 'play none none reverse',
             },
