@@ -97,7 +97,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
         className="absolute inset-0 w-full h-full object-cover opacity-40 scale-105"
       >
         <source 
-          src="/bg2.mp4" 
+          src="https://res.cloudinary.com/din6jl7de/video/upload/f_auto,q_auto,vc_auto/v1770281825/15149020_1920_1080_24fps_1_tuhwlw.mp4" 
           type="video/mp4" 
         />
       </video>

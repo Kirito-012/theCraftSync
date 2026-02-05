@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
-import './projects.css';
 
 const projectsData = [
   {
@@ -438,7 +437,7 @@ export default function ProjectsPage() {
           className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500"
           style={{ opacity: isHovering ? 0 : 1 }}
         >
-          <source src="https://res.cloudinary.com/din6jl7de/video/upload/v1768689496/videobg_xie9iq.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/din6jl7de/video/upload/f_auto,q_auto,vc_auto/v1768689496/videobg_xie9iq.mp4" type="video/mp4" />
           {/* Fallback to image if video doesn't load */}
         </video>
         
@@ -448,14 +447,15 @@ export default function ProjectsPage() {
           className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-500"
           style={{ opacity: isHovering ? 1 : 0 }}
         />
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
+        <div className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-black/70 via-black/40 to-black/20" />
       </div>
 
       {/* Floating Navigation Buttons */}
       <nav 
-        className="fixed left-8 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-3"
+        className="sticky left-8  -translate-y-1 z-10 flex flex-col gap-3 h-fit self-center"
         onMouseLeave={handleMouseLeave}
       >
+
         {projectsData.map((project) => (
           <Link
             key={project.id}
@@ -479,7 +479,7 @@ export default function ProjectsPage() {
       </nav>
 
       {/* Main Content Area */}
-      <main className="relative z-5 flex-1 flex items-center justify-center p-16 pl-64">
+      <main className="relative z-5 flex-1 flex items-center justify-center p-16">
         <div className="w-full h-full relative">
           {/* Default Content - Only show when NOT hovering */}
           {!isHovering && (
