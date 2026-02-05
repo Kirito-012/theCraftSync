@@ -127,9 +127,10 @@ export default function FAQSection() {
 
     // FAQ items stagger animation
     if (listRef.current) {
+      const container = listRef.current;
       if (!ctx) {
         ctx = gsap.context(() => {
-          const items = listRef.current.querySelectorAll('.faq-item');
+          const items = container.querySelectorAll('.faq-item');
           gsap.fromTo(
             items,
             {
@@ -143,15 +144,15 @@ export default function FAQSection() {
               stagger: 0.1,
               ease: 'power2.out',
               scrollTrigger: {
-                trigger: listRef.current,
+                trigger: container,
                 start: 'top 75%',
                 toggleActions: 'play none none reverse',
               },
             }
           );
-        }, listRef)
+        }, container)
       } else {
-        const items = listRef.current.querySelectorAll('.faq-item');
+        const items = container.querySelectorAll('.faq-item');
         gsap.fromTo(
           items,
           {
@@ -165,7 +166,7 @@ export default function FAQSection() {
             stagger: 0.1,
             ease: 'power2.out',
             scrollTrigger: {
-              trigger: listRef.current,
+              trigger: container,
               start: 'top 75%',
               toggleActions: 'play none none reverse',
             },
@@ -194,9 +195,9 @@ export default function FAQSection() {
   };
 
   return (
-    <section 
-      style={{ 
-        backgroundColor: '#000000', 
+    <section
+      style={{
+        backgroundColor: '#000000',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
@@ -211,9 +212,9 @@ export default function FAQSection() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div 
-        style={{ 
-          maxWidth: '1200px', 
+      <div
+        style={{
+          maxWidth: '1200px',
           margin: '0 auto',
           width: '100%',
         }}
