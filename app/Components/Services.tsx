@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Code, Megaphone, TrendingUp, MapPin, Bot, Zap, Plug, Sparkles } from 'lucide-react';
@@ -17,6 +18,30 @@ interface Service {
 
 const ServicesSection: React.FC = () => {
   const services: Service[] = [
+      {
+      id: 8,
+      name: 'Generative AI Consulting',
+      shortName: 'AI Consulting',
+      description: 'Strategic guidance on implementing cutting-edge AI solutions for your business.',
+      icon: <Sparkles className="w-full h-full" />,
+      details: ['AI Strategy', 'Implementation', 'Training & Support', 'Future-proofing']
+    },
+        {
+      id: 5,
+      name: 'AI Implementation & Chatbots',
+      shortName: 'AI Chatbots',
+      description: 'Intelligent conversational AI that engages customers 24/7 with human-like interactions.',
+      icon: <Bot className="w-full h-full" />,
+      details: ['Custom Chatbots', 'Natural Language', 'Multi-platform', 'Learning Systems']
+    },
+        {
+      id: 6,
+      name: 'System Automation',
+      shortName: 'AI Automation',
+      description: 'Streamline operations and eliminate repetitive tasks with smart automation solutions.',
+      icon: <Zap className="w-full h-full" />,
+      details: ['Workflow Automation', 'Process Optimization', 'Integration', 'Efficiency Boost']
+    },
     {
       id: 1,
       name: 'Custom Web & App Development',
@@ -49,22 +74,8 @@ const ServicesSection: React.FC = () => {
       icon: <MapPin className="w-full h-full" />,
       details: ['Local SEO', 'Google My Business', 'Keyword Research', 'Technical SEO']
     },
-    {
-      id: 5,
-      name: 'AI Implementation & Chatbots',
-      shortName: 'AI Chatbots',
-      description: 'Intelligent conversational AI that engages customers 24/7 with human-like interactions.',
-      icon: <Bot className="w-full h-full" />,
-      details: ['Custom Chatbots', 'Natural Language', 'Multi-platform', 'Learning Systems']
-    },
-    {
-      id: 6,
-      name: 'System Automation',
-      shortName: 'Automation',
-      description: 'Streamline operations and eliminate repetitive tasks with smart automation solutions.',
-      icon: <Zap className="w-full h-full" />,
-      details: ['Workflow Automation', 'Process Optimization', 'Integration', 'Efficiency Boost']
-    },
+
+
     {
       id: 7,
       name: 'API Integration',
@@ -73,14 +84,7 @@ const ServicesSection: React.FC = () => {
       icon: <Plug className="w-full h-full" />,
       details: ['Custom APIs', 'Third-party Integration', 'Data Sync', 'Secure Connections']
     },
-    {
-      id: 8,
-      name: 'Generative AI Consulting',
-      shortName: 'AI Consulting',
-      description: 'Strategic guidance on implementing cutting-edge AI solutions for your business.',
-      icon: <Sparkles className="w-full h-full" />,
-      details: ['AI Strategy', 'Implementation', 'Training & Support', 'Future-proofing']
-    }
+  
   ];
 
   const [activeService, setActiveService] = useState<Service>(services[0]);
@@ -277,9 +281,12 @@ const ServicesSection: React.FC = () => {
             </div>
 
             <div className="pt-6">
-              <button className="bg-white text-black px-8 py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors duration-300">
+              <Link 
+                href="/services" 
+                className="inline-block bg-white text-black px-8 py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors duration-300"
+              >
                 Learn More
-              </button>
+              </Link>
             </div>
           </div>
 

@@ -57,12 +57,46 @@ const faqs: FAQItem[] = [
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
   const headingRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const extraRef = useRef<HTMLDivElement>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  useEffect(() => {
+    if (!extraRef.current) return;
+
+    if (isExpanded) {
+      gsap.to(extraRef.current, {
+        height: 'auto',
+        duration: 0.8,
+        ease: 'power3.inOut',
+        onUpdate: () => ScrollTrigger.refresh(),
+        onComplete: () => ScrollTrigger.refresh()
+      });
+      
+      const extraItems = extraRef.current.querySelectorAll('.faq-item');
+      gsap.fromTo(extraItems, 
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5, stagger: 0.05, ease: 'power2.out', delay: 0.1 }
+      );
+    } else {
+      gsap.to(extraRef.current, {
+        height: 0,
+        duration: 0.6,
+        ease: 'power3.inOut',
+        onUpdate: () => ScrollTrigger.refresh(),
+        onComplete: () => ScrollTrigger.refresh()
+      });
+    }
+  }, [isExpanded]);
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [openIndex]);
 
   useEffect(() => {
     let ctx: any = null
@@ -201,7 +235,7 @@ export default function FAQSection() {
 
         {/* Accordion List Below */}
         <div ref={listRef} className="faq-list">
-          {faqs.map((faq, index) => (
+          {faqs.slice(0, 4).map((faq, index) => (
             <div 
               key={index}
               className="faq-item"
@@ -211,7 +245,6 @@ export default function FAQSection() {
                 marginBottom: '1.5rem'
               }}
             >
-              {/* Question/Header with + on LEFT */}
               <button
                 onClick={() => toggleFAQ(index)}
                 style={{
@@ -227,7 +260,6 @@ export default function FAQSection() {
                 }}
                 aria-expanded={openIndex === index}
               >
-                {/* Plus/X Icon on LEFT */}
                 <div style={{
                   width: '32px',
                   height: '32px',
@@ -243,19 +275,14 @@ export default function FAQSection() {
                     <Plus size={28} strokeWidth={1.5} color="var(--snow-white)" />
                   )}
                 </div>
-
                 <span style={{
                   fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
                   fontWeight: '400',
                   color: 'var(--snow-white)',
                   lineHeight: '1.4',
                   flex: 1
-                }}>
-                  {faq.question}
-                </span>
+                }}>{faq.question}</span>
               </button>
-
-              {/* Answer/Content with BLACK BACKGROUND */}
               <div 
                 style={{
                   maxHeight: openIndex === index ? '500px' : '0',
@@ -272,13 +299,125 @@ export default function FAQSection() {
                   backgroundColor: '#000000',
                   padding: openIndex === index ? '1rem 0 1rem 3.5rem' : '0',
                   transition: 'padding 0.4s ease'
-                }}>
-                  {faq.answer}
-                </div>
+                }}>{faq.answer}</div>
               </div>
             </div>
           ))}
+
+          {/* Extra items for smooth height expansion */}
+          <div ref={extraRef} style={{ height: 0, overflow: 'hidden' }}>
+            {faqs.slice(4).map((faq, index) => {
+              const actualIndex = index + 4;
+              return (
+                <div 
+                  key={actualIndex}
+                  className="faq-item"
+                  style={{
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                    paddingBottom: '1.5rem',
+                    marginBottom: '1.5rem'
+                  }}
+                >
+                  <button
+                    onClick={() => toggleFAQ(actualIndex)}
+                    style={{
+                      width: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: '0.5rem 0',
+                      textAlign: 'left',
+                      gap: '1.5rem'
+                    }}
+                    aria-expanded={openIndex === actualIndex}
+                  >
+                    <div style={{
+                      width: '32px',
+                      height: '32px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      transition: 'transform 0.3s ease'
+                    }}>
+                      {openIndex === actualIndex ? (
+                        <X size={28} strokeWidth={1.5} color="var(--snow-white)" />
+                      ) : (
+                        <Plus size={28} strokeWidth={1.5} color="var(--snow-white)" />
+                      )}
+                    </div>
+                    <span style={{
+                      fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
+                      fontWeight: '400',
+                      color: 'var(--snow-white)',
+                      lineHeight: '1.4',
+                      flex: 1
+                    }}>{faq.question}</span>
+                  </button>
+                  <div 
+                    style={{
+                      maxHeight: openIndex === actualIndex ? '500px' : '0',
+                      overflow: 'hidden',
+                      transition: 'max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease',
+                      opacity: openIndex === actualIndex ? 1 : 0,
+                      marginTop: openIndex === actualIndex ? '1.5rem' : '0'
+                    }}
+                  >
+                    <div style={{
+                      fontSize: 'clamp(1rem, 2.2vw, 1.25rem)',
+                      lineHeight: '1.6',
+                      color: 'var(--snow-white)',
+                      backgroundColor: '#000000',
+                      padding: openIndex === actualIndex ? '1rem 0 1rem 3.5rem' : '0',
+                      transition: 'padding 0.4s ease'
+                    }}>{faq.answer}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
+
+        {/* View All Button */}
+        {faqs.length > 4 && (
+          <div style={{ marginTop: '4rem', textAlign: 'center' }}>
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              style={{
+                backgroundColor: 'transparent',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                color: 'var(--snow-white)',
+                padding: '1.2rem 3rem',
+                borderRadius: '100px',
+                fontSize: '0.9rem',
+                fontWeight: '500',
+                cursor: 'pointer',
+                transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.2em'
+              }}
+              onMouseEnter={(e) => {
+                const btn = e.currentTarget;
+                btn.style.backgroundColor = 'var(--snow-white)';
+                btn.style.color = '#000000';
+                btn.style.borderColor = 'var(--snow-white)';
+              }}
+              onMouseLeave={(e) => {
+                const btn = e.currentTarget;
+                btn.style.backgroundColor = 'transparent';
+                btn.style.color = 'var(--snow-white)';
+                btn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+              }}
+            >
+              {isExpanded ? 'Show Less' : 'View All questions'}
+            </button>
+          </div>
+        )}
       </div>
 
       <style>{`

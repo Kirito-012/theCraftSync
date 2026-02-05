@@ -3,9 +3,8 @@ import './globals.css'
 import Navbar from './Components/Header'
 import Footer from './Components/Footer'
 import SmoothScroll from './Components/SmoothScroll';
-
-
-
+import { LoadingProvider } from './lib/LoadingContext';
+import AppWrapper from './Components/AppWrapper';
 
 export const metadata: Metadata = {
 	title: 'TheCraftSync',
@@ -20,12 +19,14 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className='antialiased'>
-			<Navbar />
-		
-			          <SmoothScroll>{children}</SmoothScroll>
-			<Footer />
+				<LoadingProvider>
+					<AppWrapper>
+						<Navbar />
+						<SmoothScroll>{children}</SmoothScroll>
+						<Footer />
+					</AppWrapper>
+				</LoadingProvider>
 			</body>
-
 		</html>
 	)
 }

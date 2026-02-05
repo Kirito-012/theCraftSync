@@ -24,7 +24,8 @@ body {
 	font-family: var(--font-descriptive);
 	background-color: var(--snow-white);
 	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	-moz-osx-font-smoothing: grayscale; 
+    
 }
 
 /* Smooth Transitions */

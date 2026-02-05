@@ -75,10 +75,10 @@ export default function Footer() {
 
           {/* Email */}
           <a
-            href="mailto:hello@thecraftsync.com"
-            className="text-3xl md:text-4xl lg:text-7xl font-light hover:text-primary transition-colors duration-300"
+            href="mailto:connect@thecraftsync.com"
+            className="text-[clamp(1rem,8vw,3.5rem)] font-light hover:text-gray-400 transition-colors duration-300 break-all leading-tight"
           >
-            hello@thecraftsync.com
+            connect@thecraftsync.com
           </a>
         </motion.div>
 
@@ -92,7 +92,8 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-3"
           >
-            <div className="space-y-3">
+            <h3 className="text-sm text-gray-500 mb-6 uppercase tracking-widest">Connect</h3>
+            <div className="space-y-4">
               {socialLinks.map((social, index) => (
                 <motion.div
                   key={social.name}
@@ -121,7 +122,8 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="lg:col-span-3"
           >
-            <div className="space-y-3">
+            <h3 className="text-sm text-gray-500 mb-6 uppercase tracking-widest">Explore</h3>
+            <div className="space-y-4">
               {footerLinks.map((link, index) => (
                 <motion.div
                   key={link.name}
@@ -150,8 +152,8 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-3"
           >
-            <h3 className="text-sm text-gray-500 mb-4">Our Services :</h3>
-            <div className="flex flex-wrap gap-2">
+            <h3 className="text-sm text-gray-500 mb-6 uppercase tracking-widest">Our Services</h3>
+            <div className="flex flex-wrap gap-3">
               {services.map((service, index) => (
                 <motion.button
                   key={service}
@@ -159,7 +161,7 @@ export default function Footer() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: 0.2 + index * 0.05 }}
-                  className="px-4 py-2 border border-white/20 rounded-full text-sm text-gray-400 hover:text-white hover:border-white/40 transition-all duration-300"
+                  className="px-4 py-2 border border-white/10 rounded-full text-xs text-gray-400 hover:text-white hover:border-white/40 transition-all duration-300 bg-white/5"
                 >
                   {service}
                 </motion.button>
@@ -175,13 +177,13 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.25 }}
             className="lg:col-span-3"
           >
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-start md:justify-end h-full md:items-start lg:items-center">
               <Link
                 href="/newsletter"
-                className="px-6 py-3 border border-white/20 rounded-full text-sm text-gray-400 hover:text-white hover:border-white/40 transition-all duration-300 flex items-center gap-2"
+                className="w-full md:w-auto px-8 py-4 bg-white/5 border border-white/10 rounded-2xl text-sm text-gray-300 hover:text-white hover:border-white/30 transition-all duration-500 flex items-center justify-center gap-3 group"
               >
                 Sign up to our newsletter
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </motion.div>
@@ -193,17 +195,17 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pt-8 border-t border-white/10"
+          className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pt-10 border-t border-white/10"
         >
           {/* Copyright */}
-          <p className="text-sm text-gray-500">
-            © TheCraftsync 2024 · All rights reserved
+          <p className="text-sm text-zinc-500">
+            © {new Date().getFullYear()} TheCraftsync · Custom Solutions for Custom Visions
           </p>
 
           {/* Status/Badge */}
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 text-sm text-gray-500">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            <div className="flex items-center gap-2.5 text-xs text-zinc-500 bg-zinc-900/50 px-4 py-2 rounded-full border border-white/5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
               All systems operational
             </div>
           </div>

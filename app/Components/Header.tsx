@@ -4,38 +4,40 @@ import Image from 'next/image'
 import logo from '../assets/logo.png'
 import Link from 'next/link'
 import gsap from 'gsap'
-import {usePathname} from 'next/navigation'
+import { useLoading } from '../lib/LoadingContext'
+import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
+	const { isLoading } = useLoading()
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const [isVisible, setIsVisible] = useState(true)
-	const [lastScrollY, setLastScrollY] = useState(0)
 	const navRef = useRef<HTMLDivElement>(null)
 	const menuRef = useRef<HTMLDivElement>(null)
 	const pathname = usePathname()
 
 	const navItems: {name: string; href: string; hasDropdown?: boolean}[] = [
 		{name: 'Home', href: '/'},
-		{name: 'About Us', href: '/about-us'},
 		{name: 'Projects', href: '/projects'},
-		{name: 'Case Study', href: '/case-study'},
-		{name: 'Services', href: '/services'},
+		{name: 'About Us', href: '/about-us'},
 		{name: 'Blog', href: '/blogs'},
 	]
 
 	useEffect(() => {
+		let lastY = window.pageYOffset
 		const handleScroll = () => {
-			const currentScrollY = window.scrollY
+			const currentY = window.pageYOffset
+			// Add a small threshold to avoid jitters
+			if (Math.abs(currentY - lastY) < 5) return
 
-			if (currentScrollY > lastScrollY && currentScrollY > 100 && !isMenuOpen) {
+			if (currentY > lastY && currentY > 100 && !isMenuOpen) {
 				// Scrolling down and past 100px
 				setIsVisible(false)
-			} else if (currentScrollY < lastScrollY || isMenuOpen) {
+			} else if (currentY < lastY || isMenuOpen) {
 				// Scrolling up or menu is open
 				setIsVisible(true)
 			}
 
-			setLastScrollY(currentScrollY)
+			lastY = currentY
 		}
 
 		window.addEventListener('scroll', handleScroll, {passive: true})
@@ -43,7 +45,7 @@ export default function Navbar() {
 		return () => {
 			window.removeEventListener('scroll', handleScroll)
 		}
-	}, [lastScrollY, isMenuOpen])
+	}, [isMenuOpen])
 
 	useEffect(() => {
 		if (isMenuOpen && menuRef.current) {
@@ -60,12 +62,47 @@ export default function Navbar() {
 		}
 	}, [isMenuOpen])
 
+	// Entrance animation
+	useEffect(() => {
+		if (!isLoading) {
+			gsap.fromTo(navRef.current,
+				{ 
+					y: -100, 
+					opacity: 0,
+					xPercent: -50,
+					left: '50%'
+				},
+				{ 
+					y: 0, 
+					opacity: 1, 
+					xPercent: -50,
+					left: '50%',
+					duration: 1.2, 
+					ease: 'power4.out', 
+					delay: 0.5 
+				}
+			);
+		}
+	}, [isLoading]);
+
+	// Scroll-to-hide animation
+	useEffect(() => {
+		if (!isLoading && navRef.current) {
+			gsap.to(navRef.current, {
+				y: isVisible ? 0 : -150,
+				duration: 0.6,
+				ease: 'power3.out',
+				overwrite: 'auto'
+			});
+		}
+	}, [isVisible, isLoading]);
+
 	return (
 		<nav
 			ref={navRef}
-			className={`fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-[80%] max-w-4xl transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] ${
-				isVisible ? 'translate-y-0' : '-translate-y-[150%]'
-			}`}>
+			className="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-[80%] max-w-4xl"
+			style={{ opacity: 0 }} // Initial state before GSAP kicks in
+		>
 			<div
 				className={`bg-black/90 px-6 backdrop-blur-xl shadow-2xl border border-white/10 transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] overflow-hidden flex flex-col ${
 					isMenuOpen

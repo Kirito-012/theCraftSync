@@ -325,7 +325,7 @@ const HeroSection = () => {
 						<div className='pt-2 lg:pt-4 flex justify-end'>
 							<button
 								type='submit'
-								className='group flex items-center cursor-pointer justify-center gap-3 bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-4 overflow-hidden transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-[0.98]'>
+								className='group flex items-center cursor-pointer justify-center gap-3 bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-4 rounded-full overflow-hidden transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-[0.98]'>
 								<div className='relative overflow-hidden'>
 									<span className='block text-xs font-black uppercase tracking-[0.15em] transition-transform duration-300 group-hover:-translate-y-full'>
 										Send Message

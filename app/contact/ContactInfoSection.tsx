@@ -104,10 +104,10 @@ const ContactInfoSection = () => {
 								Get in Touch
 							</span>
 							<a
-								href='mailto:hello@thecraftsync.com'
+								href='mailto:connect@thecraftsync.com'
 								className='group block'>
 								<h3 className='text-4xl md:text-6xl font-black text-white tracking-tighter transition-colors duration-300'>
-									hello@
+									connect@
 									<br />
 									thecraftsync.com
 								</h3>
