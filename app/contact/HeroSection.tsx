@@ -4,9 +4,20 @@ import React, {useState, useEffect, useRef} from 'react'
 import './contact.css'
 import {ArrowRight, Mail, MapPin, Check} from 'lucide-react'
 import gsap from 'gsap'
+import { servicesData } from '../Components/Services'
 
 const HeroSection = () => {
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		company: '',
+		budget: '',
+		message: ''
+	})
 	const [selectedServices, setSelectedServices] = useState<string[]>([])
+	const [isSubmitting, setIsSubmitting] = useState(false)
+	const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+	const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
 	// Refs for Animation
 	const containerRef = useRef<HTMLDivElement>(null)
@@ -20,13 +31,7 @@ const HeroSection = () => {
 	const descRef = useRef<HTMLParagraphElement>(null)
 	const contactItemsRef = useRef<HTMLDivElement>(null)
 
-	const services = [
-		'Web Development',
-		'UI/UX Design',
-		'Mobile Apps',
-		'Branding',
-		'SEO & Marketing',
-	]
+	const services = servicesData.map((service) => service.shortName)
 
 	const toggleService = (service: string) => {
 		setSelectedServices((prev) =>
@@ -34,6 +39,75 @@ const HeroSection = () => {
 				? prev.filter((s) => s !== service)
 				: [...prev, service]
 		)
+	}
+
+	const validateForm = () => {
+		const newErrors: { [key: string]: string } = {}
+		
+		if (!formData.name.trim()) newErrors.name = 'Name is required'
+		else if (formData.name.length < 2) newErrors.name = 'Name must be at least 2 characters'
+		
+		if (!formData.email.trim()) newErrors.email = 'Email is required'
+		else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Invalid email address'
+		
+		if (!formData.message.trim()) newErrors.message = 'Project details are required'
+		else if (formData.message.length < 10) newErrors.message = 'Please provide more details (min 10 chars)'
+
+		setErrors(newErrors)
+		return Object.keys(newErrors).length === 0
+	}
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		const { id, value } = e.target
+		setFormData(prev => ({ ...prev, [id]: value }))
+		// Clear error when user starts typing
+		if (errors[id]) {
+			setErrors(prev => ({ ...prev, [id]: '' }))
+		}
+	}
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault()
+		
+		if (!validateForm()) return
+
+		setIsSubmitting(true)
+		setSubmitStatus('idle')
+
+		try {
+			const response = await fetch('/api/contact', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					...formData,
+					services: selectedServices
+				}),
+			})
+
+			if (response.ok) {
+				setSubmitStatus('success')
+				setFormData({
+					name: '',
+					email: '',
+					company: '',
+					budget: '',
+					message: ''
+				})
+				setSelectedServices([])
+				// Reset message height
+				const messageEl = document.getElementById('message') as HTMLTextAreaElement
+				if (messageEl) messageEl.style.height = 'auto'
+			} else {
+				setSubmitStatus('error')
+			}
+		} catch (error) {
+			console.error('Error submitting form:', error)
+			setSubmitStatus('error')
+		} finally {
+			setIsSubmitting(false)
+		}
 	}
 
 	useEffect(() => {
@@ -109,11 +183,11 @@ const HeroSection = () => {
 	return (
 		<div
 			ref={containerRef}
-			className='w-full flex flex-col lg:flex-row gap-4 sm:gap-6 min-h-screen lg:h-screen bg-grid max-w-[1800px] mx-auto pt-24 pb-4 sm:pb-6 px-4 sm:px-8 overflow-hidden'>
+			className='w-full flex flex-col lg:flex-row gap-4 sm:gap-6 min-h-screen bg-grid max-w-[1800px] mx-auto pt-24 pb-4 sm:pb-6 px-4 sm:px-8 overflow-x-hidden'>
 			{/* LEFT PANEL (35% -> 40% requested previously) */}
 			<div
 				ref={leftPanelRef}
-				className='w-full lg:w-[40%] h-[80vh] lg:h-full bg-black text-white rounded-[24px] sm:rounded-[32px] p-6 pb-20 md:pb-24 sm:p-8 lg:p-10 xl:p-14 flex flex-col justify-between relative overflow-hidden shadow-2xl border border-white/5 opacity-0'>
+				className='w-full lg:w-[40%] min-h-[600px] lg:h-auto bg-black text-white rounded-[24px] sm:rounded-[32px] p-6 pb-20 md:pb-24 sm:p-8 lg:p-10 xl:p-14 flex flex-col justify-between relative overflow-hidden shadow-2xl border border-white/5 opacity-0'>
 				{/* Background Aesthetics - Increased Opacity */}
 				<div className='glow-blob w-[500px] h-[500px] bg-white/20 top-[-200px] left-[-200px] animate-float blur-[120px] rounded-full absolute pointer-events-none'></div>
 				{/* <div
@@ -165,7 +239,7 @@ const HeroSection = () => {
 									Email us
 								</p>
 								<p className='font-medium text-lg text-white relative inline-block'>
-									hello@thecraftsync.com
+									connect@thecraftsync.com
 									<span className='absolute left-0 bottom-0 w-full h-px bg-zinc-700 group-hover:bg-white transition-colors duration-300'></span>
 								</p>
 							</div>
@@ -191,7 +265,7 @@ const HeroSection = () => {
 			{/* RIGHT PANEL (60%) - Premium Light Theme */}
 			<div
 				ref={rightPanelRef}
-				className='w-full lg:w-[60%] h-auto lg:h-full bg-zinc-50 rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col relative shadow-2xl overflow-y-auto no-scrollbar opacity-0'>
+				className='w-full lg:w-[60%] h-auto bg-zinc-50 rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col relative shadow-2xl opacity-0'>
 				<div className='max-w-xl mx-auto w-full flex flex-col justify-center min-h-full py-4 lg:py-6'>
 					<div className='mb-6 lg:mb-8'>
 						<h2 className='text-3xl lg:text-4xl font-black text-zinc-900 mb-3 lg:mb-4 tracking-tighter'>
@@ -204,6 +278,7 @@ const HeroSection = () => {
 
 					<form
 						ref={formRef}
+						onSubmit={handleSubmit}
 						className='space-y-6 lg:space-y-7'>
 						<div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 lg:gap-x-8 gap-y-5 lg:gap-y-6'>
 							<div className='group relative'>
@@ -215,10 +290,12 @@ const HeroSection = () => {
 								<input
 									type='text'
 									id='name'
-									required
-									className='w-full bg-transparent border-b-2 border-zinc-200 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none focus:border-zinc-900 transition-colors duration-300'
+									value={formData.name}
+									onChange={handleChange}
+									className={`w-full bg-transparent border-b-2 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none transition-colors duration-300 ${errors.name ? 'border-red-500' : 'border-zinc-200 focus:border-zinc-900'}`}
 									placeholder='John Doe'
 								/>
+								{errors.name && <p className="text-red-500 text-xs mt-1 font-medium">{errors.name}</p>}
 							</div>
 							<div className='group relative'>
 								<label
@@ -229,10 +306,12 @@ const HeroSection = () => {
 								<input
 									type='email'
 									id='email'
-									required
-									className='w-full bg-transparent border-b-2 border-zinc-200 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none focus:border-zinc-900 transition-colors duration-300'
+									value={formData.email}
+									onChange={handleChange}
+									className={`w-full bg-transparent border-b-2 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none transition-colors duration-300 ${errors.email ? 'border-red-500' : 'border-zinc-200 focus:border-zinc-900'}`}
 									placeholder='john@example.com'
 								/>
+								{errors.email && <p className="text-red-500 text-xs mt-1 font-medium">{errors.email}</p>}
 							</div>
 						</div>
 
@@ -249,6 +328,8 @@ const HeroSection = () => {
 								<input
 									type='text'
 									id='company'
+									value={formData.company}
+									onChange={handleChange}
 									className='w-full bg-transparent border-b-2 border-zinc-200 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none focus:border-zinc-900 transition-colors duration-300'
 									placeholder='Acme Inc.'
 								/>
@@ -262,6 +343,8 @@ const HeroSection = () => {
 								<input
 									type='text'
 									id='budget'
+									value={formData.budget}
+									onChange={handleChange}
 									className='w-full bg-transparent border-b-2 border-zinc-200 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none focus:border-zinc-900 transition-colors duration-300'
 									placeholder='₹30k - ₹70k'
 								/>
@@ -313,28 +396,48 @@ const HeroSection = () => {
 							<textarea
 								id='message'
 								rows={1}
-								className='w-full bg-transparent border-b-2 border-zinc-200 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none focus:border-zinc-900 transition-colors duration-300 resize-none min-h-[50px]'
+								value={formData.message}
+								onChange={handleChange}
+								className={`w-full bg-transparent border-b-2 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none transition-colors duration-300 resize-none min-h-[50px] ${errors.message ? 'border-red-500' : 'border-zinc-200 focus:border-zinc-900'}`}
 								placeholder='Tell us about your project goals...'
 								onInput={(e) => {
 									e.currentTarget.style.height = 'auto'
 									e.currentTarget.style.height =
 										Math.max(50, e.currentTarget.scrollHeight) + 'px'
 								}}></textarea>
+								{errors.message && <p className="text-red-500 text-xs mt-1 font-medium">{errors.message}</p>}
 						</div>
 
-						<div className='pt-2 lg:pt-4 flex justify-end'>
+						<div className='pt-2 lg:pt-4 flex justify-end gap-4 items-center'>
+							{submitStatus === 'success' && (
+								<p className='text-emerald-600 font-bold text-sm animate-pulse'>
+									Message sent successfully!
+								</p>
+							)}
+							{submitStatus === 'error' && (
+								<p className='text-red-500 font-bold text-sm'>
+									Something went wrong. Please try again.
+								</p>
+							)}
 							<button
 								type='submit'
-								className='group flex items-center cursor-pointer justify-center gap-3 bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-4 rounded-full overflow-hidden transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-[0.98]'>
-								<div className='relative overflow-hidden'>
-									<span className='block text-xs font-black uppercase tracking-[0.15em] transition-transform duration-300 group-hover:-translate-y-full'>
-										Send Message
-									</span>
-									<span className='absolute inset-0 flex items-center justify-center text-xs font-black uppercase tracking-[0.15em] transition-transform duration-300 translate-y-full group-hover:translate-y-0'>
-										Send Message
-									</span>
-								</div>
-								<ArrowRight className='w-4 h-4 group-hover:translate-x-1 transition-transform duration-300' />
+								disabled={isSubmitting}
+								className='group flex items-center cursor-pointer justify-center gap-3 bg-zinc-900 hover:bg-zinc-800 disabled:bg-zinc-700 text-white px-8 py-4 rounded-full overflow-hidden transition-all duration-300 shadow-xl hover:shadow-2xl active:scale-[0.98]'>
+								{isSubmitting ? (
+									<div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+								) : (
+									<>
+										<div className='relative overflow-hidden'>
+											<span className='block text-xs font-black uppercase tracking-[0.15em] transition-transform duration-300 group-hover:-translate-y-full'>
+												Send Message
+											</span>
+											<span className='absolute inset-0 flex items-center justify-center text-xs font-black uppercase tracking-[0.15em] transition-transform duration-300 translate-y-full group-hover:translate-y-0'>
+												Send Message
+											</span>
+										</div>
+										<ArrowRight className='w-4 h-4 group-hover:translate-x-1 transition-transform duration-300' />
+									</>
+								)}
 							</button>
 						</div>
 					</form>

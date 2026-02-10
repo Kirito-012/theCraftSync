@@ -108,45 +108,47 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
       />
 
       {/* Content Container */}
-      <div className="relative z-20 container mx-auto pt-20 px-6 lg:px-20 text-center md:text-left flex flex-col items-center md:items-start max-w-7xl">
-        <h1 
-          ref={headingRef}
-          className="text-5xl md:text-7xl lg:text-[7.5rem] xl:text-[9rem] font-light text-white leading-[0.9] tracking-tight mb-8"
-        >
-          <div className="overflow-hidden pb-4 -mb-4">
-            <span className="inline-block">Building</span>
-          </div>
-          <div className="overflow-hidden pb-4 -mb-4">
-            <span className="inline-block font-bold">Experiences</span>
-          </div>
-          <div className="overflow-hidden pb-4 mt-1 -mb-4">
-            <span className="inline-block">to Perform</span>
-          </div>
-        </h1>
+      <div className="relative z-20 w-full h-full flex items-center justify-center md:justify-start px-6 md:px-16 lg:px-24">
+        <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-4xl pt-20">
+          <h1 
+            ref={headingRef}
+            className="text-5xl md:text-7xl lg:text-[7.5rem] xl:text-[9rem] font-light text-white leading-[0.9] tracking-tight mb-8"
+          >
+            <div className="overflow-hidden">
+              <span className="inline-block">Building</span>
+            </div>
+            <div className="overflow-hidden">
+              <span className="inline-block font-bold">Experiences</span>
+            </div>
+            <div className="overflow-hidden mt-1">
+              <span className="inline-block">to Perform</span>
+            </div>
+          </h1>
 
-        <p 
-          ref={paraRef}
-          className="text-base md:text-lg lg:text-xl text-white/60 max-w-lg lg:max-w-xl mb-10 leading-relaxed font-normal"
-        >
-          Strategic design meeting technical precision. We build digital products that resonate and scale.
-        </p>
+          <p 
+            ref={paraRef}
+            className="text-base md:text-lg lg:text-xl text-white/60 max-w-lg lg:max-w-xl mb-10 leading-relaxed font-normal"
+          >
+            Strategic design meeting technical precision. We build digital products that resonate and scale.
+          </p>
 
-        <div 
-          ref={buttonsRef}
-          className="flex flex-col sm:flex-row gap-4 items-center"
-        >
-          {/* View Works Button */}
-          <button className="group relative px-8 py-3.5 bg-white text-black font-semibold rounded-full overflow-hidden transition-all duration-300 hover:bg-transparent hover:text-white border border-white text-sm lg:text-base cursor-pointer">
-            <span className="relative z-10 flex items-center gap-2">
-              View Works
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </span>
-          </button>
+          <div 
+            ref={buttonsRef}
+            className="flex flex-col sm:flex-row gap-4 items-center"
+          >
+            {/* View Works Button */}
+            <button className="group relative px-8 py-3.5 bg-white text-black font-semibold rounded-full overflow-hidden transition-all duration-300 hover:bg-transparent hover:text-white border border-white text-sm lg:text-base cursor-pointer">
+              <span className="relative z-10 flex items-center gap-2">
+                View Works
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+            </button>
 
-          {/* Contact Us Button */}
-          <button className="px-8 py-3.5 border border-white/30 text-white font-semibold rounded-full transition-all duration-300 hover:bg-white hover:text-black text-sm lg:text-base cursor-pointer">
-            Contact Us
-          </button>
+            {/* Contact Us Button */}
+            <button className="px-8 py-3.5 border border-white/30 text-white font-semibold rounded-full transition-all duration-300 hover:bg-white hover:text-black text-sm lg:text-base cursor-pointer">
+              Contact Us
+            </button>
+          </div>
         </div>
       </div>
 

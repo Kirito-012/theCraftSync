@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
+import MobileProjects from '../Components/MobileProjects';
 
 const projectsData = [
   {
@@ -84,8 +85,8 @@ const projectsData = [
   },
   {
     id: 8,
-    name: 'West\nMountains',
-    slug: 'west-mountains',
+    name: 'WM',
+    slug: 'wm',
     type: 'Health & Nutrition AI',
     description: 'Intelligent mobile nutrition platform delivering personalized calorie tracking and AI-driven meal planning.',
     bgImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768696783/west_cdz3cc.jpg',
@@ -425,79 +426,87 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden flex">
-      {/* Dynamic Background */}
-      <div className="fixed top-0 left-0 w-full h-full z-0">
-        {/* Video Background - Shows when not hovering */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500"
-          style={{ opacity: isHovering ? 0 : 1 }}
-        >
-          <source src="https://res.cloudinary.com/din6jl7de/video/upload/f_auto,q_auto,vc_auto/v1768689496/videobg_xie9iq.mp4" type="video/mp4" />
-          {/* Fallback to image if video doesn't load */}
-        </video>
-        
-        {/* Image Background - Shows when hovering over projects */}
-        <div 
-          ref={bgRef}
-          className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-500"
-          style={{ opacity: isHovering ? 1 : 0 }}
-        />
-        <div className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-black/70 via-black/40 to-black/20" />
+    <>
+      {/* Mobile Layout (Visible on sm and below) */}
+      <div className="block lg:hidden">
+        <MobileProjects />
       </div>
 
-      {/* Floating Navigation Buttons */}
-      <nav 
-        className="sticky left-8  -translate-y-1 z-10 flex flex-col gap-3 h-fit self-center"
-        onMouseLeave={handleMouseLeave}
-      >
-
-        {projectsData.map((project) => (
-          <Link
-            key={project.id}
-            href={`/case-study/${project.slug}`}
-            className={`
-              font-heading text-base font-medium px-6 py-3 rounded-full
-              bg-white/10 backdrop-blur-md border border-white/20
-              transition-all duration-300 relative overflow-hidden
-              hover:bg-white/20 hover:scale-105 hover:shadow-lg hover:shadow-white/10
-              ${activeProject?.id === project.id 
-                ? 'bg-white/20 scale-105 shadow-lg shadow-white/10' 
-                : 'text-white/80'
-              }
-              text-white
-            `}
-            onMouseEnter={() => handleProjectHover(project)}
+      {/* Desktop Layout (Hidden on mobile) */}
+      <div className="hidden lg:flex relative min-h-screen w-full overflow-hidden">
+        {/* Dynamic Background */}
+        <div className="fixed top-0 left-0 w-full h-full z-0">
+          {/* Video Background - Shows when not hovering */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500"
+            style={{ opacity: isHovering ? 0 : 1 }}
           >
-            {project.name.replace('\n', ' ')}
-          </Link>
-        ))}
-      </nav>
-
-      {/* Main Content Area */}
-      <main className="relative z-5 flex-1 flex items-center justify-center p-16">
-        <div className="w-full h-full relative">
-          {/* Default Content - Only show when NOT hovering */}
-          {!isHovering && (
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white opacity-80">
-              <h1 className="font-heading text-8xl font-black mb-4 tracking-tight leading-none">
-                Our Work
-              </h1>
-              <p className="font-descriptive text-xl opacity-70">
-                Hover over a project to explore our creative journey
-              </p>
-            </div>
-          )}
+            <source src="https://res.cloudinary.com/din6jl7de/video/upload/f_auto,q_auto,vc_auto/v1768689496/videobg_xie9iq.mp4" type="video/mp4" />
+            {/* Fallback to image if video doesn't load */}
+          </video>
           
-          {/* Project Content - Only show when hovering */}
-          {isHovering && activeProject && renderProjectLayout()}
+          {/* Image Background - Shows when hovering over projects */}
+          <div 
+            ref={bgRef}
+            className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-500"
+            style={{ opacity: isHovering ? 1 : 0 }}
+          />
+          <div className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-black/70 via-black/40 to-black/20" />
         </div>
-      </main>
-    </div>
+
+        {/* Floating Navigation Buttons */}
+        <nav 
+          className="sticky left-8  -translate-y-1 z-10 flex flex-col gap-3 h-fit self-center"
+          onMouseLeave={handleMouseLeave}
+        >
+
+          {projectsData.map((project) => (
+            <Link
+              key={project.id}
+              href={`/case-study/${project.slug}`}
+              className={`
+                font-heading text-base font-medium px-6 py-3 rounded-full
+                bg-white/10 backdrop-blur-md border border-white/20
+                transition-all duration-300 relative overflow-hidden
+                hover:bg-white/20 hover:scale-105 hover:shadow-lg hover:shadow-white/10
+                ${activeProject?.id === project.id 
+                  ? 'bg-white/20 scale-105 shadow-lg shadow-white/10' 
+                  : 'text-white/80'
+                }
+                text-white
+              `}
+              onMouseEnter={() => handleProjectHover(project)}
+            >
+              {project.name.replace('\n', ' ')}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Main Content Area */}
+        <main className="relative z-5 flex-1 flex items-center justify-center p-16">
+          <div className="w-full h-full relative">
+            {/* Default Content - Only show when NOT hovering */}
+            {!isHovering && (
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white opacity-80">
+                <h1 className="font-heading text-8xl font-black mb-4 tracking-tight leading-none">
+                  Our Work
+                </h1>
+                <p className="font-descriptive text-xl opacity-70">
+                  Hover over a project to explore our creative journey
+                </p>
+              </div>
+            )}
+            
+            {/* Project Content - Only show when hovering */}
+            {isHovering && activeProject && renderProjectLayout()}
+          </div>
+        </main>
+      </div>
+    </>
   );
 }
 

@@ -167,8 +167,8 @@ export const projectsData: Project[] = [
   },
   {
     id: 6,
-    slug: "west-mountains",
-    title: "West Mountains",
+    slug: "wm",
+    title: "WM",
     shortDescription: "Intelligent mobile nutrition platform delivering personalized calorie tracking and diet recommendations. AI-driven meal planning with progress analytics.",
     tags: ["Health", "Mobile", "AI Analytics"],
     image: "https://res.cloudinary.com/din6jl7de/image/upload/v1768686877/westmountain_gz86bk.jpg",

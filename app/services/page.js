@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link';
 import Footer from '../Components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -398,19 +399,24 @@ const ServicesPage = () => {
           {/* Service categories grid */}
           <div ref={serviceCategoriesRef} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 max-w-4xl mx-auto px-2">
             {serviceCategories.map((category) => (
-              <div
+              <Link
                 key={category.id}
-                onClick={() => handleCategoryClick(category.id)}
-                className={`hero-subtitle px-3 py-2.5 sm:px-4 sm:py-3 border transition-all duration-300 cursor-pointer group ${
+                href="/contact"
+                className={`hero-subtitle relative block overflow-hidden px-3 py-4 sm:px-4 sm:py-5 border transition-all duration-300 cursor-pointer group ${
                   selectedService === category.id 
                     ? 'bg-black text-white border-black' 
                     : 'border-black/20 hover:bg-black hover:text-white'
                 }`}
               >
-                <span className="text-[0.65rem] sm:text-xs font-semibold uppercase tracking-wider">
-                  {category.name}
-                </span>
-              </div>
+                <div className="relative h-5 sm:h-6 flex items-center justify-center">
+                  <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-full opacity-100 group-hover:opacity-0 text-[0.65rem] sm:text-xs font-semibold uppercase tracking-wider">
+                    {category.name}
+                  </span>
+                  <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 text-[0.65rem] sm:text-xs font-bold uppercase tracking-wider">
+                    Connect Now →
+                  </span>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -457,15 +463,24 @@ const ServicesPage = () => {
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                       {service.subServices.map((subService, idx) => (
-                        <div
+                        <Link
                           key={idx}
-                          className="sub-service-item flex items-start gap-2 sm:gap-3 group/item"
+                          href="/contact"
+                          className="sub-service-item relative block overflow-hidden group/item py-2"
                         >
-                          <div className="w-1.5 h-1.5 bg-black rounded-full mt-1.5 sm:mt-2 group-hover/item:scale-150 transition-all duration-300"></div>
-                          <span className="text-sm sm:text-base text-gray-800 font-medium group-hover/item:text-black transition-colors duration-300">
-                            {subService}
-                          </span>
-                        </div>
+                          <div className="flex items-center gap-2 sm:gap-3 transition-transform duration-300 group-hover/item:-translate-y-full">
+                            <div className="w-1.5 h-1.5 bg-black rounded-full text-black"></div>
+                            <span className="text-sm sm:text-base text-gray-800 font-medium">
+                              {subService}
+                            </span>
+                          </div>
+                          
+                          <div className="absolute inset-0 flex items-center gap-2 sm:gap-3 transition-transform duration-300 translate-y-full group-hover/item:translate-y-0">
+                            <span className="text-sm sm:text-base text-black font-bold">
+                              Connect Now →
+                            </span>
+                          </div>
+                        </Link>
                       ))}
                     </div>
                   </div>

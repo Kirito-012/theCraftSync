@@ -7,7 +7,7 @@ import { Code, Megaphone, TrendingUp, MapPin, Bot, Zap, Plug, Sparkles } from 'l
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Service {
+export interface Service {
   id: number;
   name: string;
   shortName: string;
@@ -16,78 +16,80 @@ interface Service {
   details: string[];
 }
 
-const ServicesSection: React.FC = () => {
-  const services: Service[] = [
+export const servicesData: Service[] = [
+     {
+    id: 1,
+    name: 'Custom Web & App Development',
+    shortName: 'AI Development',
+    description: 'Crafting bespoke digital solutions tailored to your unique business needs.',
+    icon: <Code className="w-full h-full" />,
+    details: ['React & Next.js', 'Mobile Apps', 'Custom Solutions', 'Scalable Architecture']
+  },
+    {
+    id: 8,
+    name: 'Generative AI Consulting',
+    shortName: 'Consulting',
+    description: 'Strategic guidance on implementing cutting-edge AI solutions for your business.',
+    icon: <Sparkles className="w-full h-full" />,
+    details: ['AI Strategy', 'Implementation', 'Training & Support', 'Future-proofing']
+  },
+       {
+    id: 6,
+    name: 'System Automation',
+    shortName: 'Automation',
+    description: 'Streamline operations and eliminate repetitive tasks with smart automation solutions.',
+    icon: <Zap className="w-full h-full" />,
+    details: ['Workflow Automation', 'Process Optimization', 'Integration', 'Efficiency Boost']
+  },
       {
-      id: 8,
-      name: 'Generative AI Consulting',
-      shortName: 'AI Consulting',
-      description: 'Strategic guidance on implementing cutting-edge AI solutions for your business.',
-      icon: <Sparkles className="w-full h-full" />,
-      details: ['AI Strategy', 'Implementation', 'Training & Support', 'Future-proofing']
-    },
-        {
-      id: 5,
-      name: 'AI Implementation & Chatbots',
-      shortName: 'AI Chatbots',
-      description: 'Intelligent conversational AI that engages customers 24/7 with human-like interactions.',
-      icon: <Bot className="w-full h-full" />,
-      details: ['Custom Chatbots', 'Natural Language', 'Multi-platform', 'Learning Systems']
-    },
-        {
-      id: 6,
-      name: 'System Automation',
-      shortName: 'AI Automation',
-      description: 'Streamline operations and eliminate repetitive tasks with smart automation solutions.',
-      icon: <Zap className="w-full h-full" />,
-      details: ['Workflow Automation', 'Process Optimization', 'Integration', 'Efficiency Boost']
-    },
-    {
-      id: 1,
-      name: 'Custom Web & App Development',
-      shortName: 'Development',
-      description: 'Crafting bespoke digital solutions tailored to your unique business needs.',
-      icon: <Code className="w-full h-full" />,
-      details: ['React & Next.js', 'Mobile Apps', 'Custom Solutions', 'Scalable Architecture']
-    },
-    {
-      id: 2,
-      name: 'Social Media Management',
-      shortName: 'Social Media',
-      description: 'Building your brand presence across all major social platforms with engaging content.',
-      icon: <Megaphone className="w-full h-full" />,
-      details: ['Content Strategy', 'Community Growth', 'Brand Voice', 'Analytics & Insights']
-    },
-    {
-      id: 3,
-      name: 'Performance Marketing',
-      shortName: 'Marketing',
-      description: 'Data-driven campaigns that deliver measurable results and maximize your ROI.',
-      icon: <TrendingUp className="w-full h-full" />,
-      details: ['Paid Advertising', 'Conversion Optimization', 'Analytics', 'A/B Testing']
-    },
-    {
-      id: 4,
-      name: 'GMB & SEO',
-      shortName: 'SEO',
-      description: 'Dominate local search results and improve your online visibility organically.',
-      icon: <MapPin className="w-full h-full" />,
-      details: ['Local SEO', 'Google My Business', 'Keyword Research', 'Technical SEO']
-    },
+    id: 5,
+    name: 'AI Implementation & Chatbots',
+    shortName: 'Chatbots',
+    description: 'Intelligent conversational AI that engages customers 24/7 with human-like interactions.',
+    icon: <Bot className="w-full h-full" />,
+    details: ['Custom Chatbots', 'Natural Language', 'Multi-platform', 'Learning Systems']
+  },
+ 
+
+  {
+    id: 2,
+    name: 'Social Media Management',
+    shortName: 'Social Media',
+    description: 'Building your brand presence across all major social platforms with engaging content.',
+    icon: <Megaphone className="w-full h-full" />,
+    details: ['Content Strategy', 'Community Growth', 'Brand Voice', 'Analytics & Insights']
+  },
+  {
+    id: 3,
+    name: 'Performance Marketing',
+    shortName: 'Marketing',
+    description: 'Data-driven campaigns that deliver measurable results and maximize your ROI.',
+    icon: <TrendingUp className="w-full h-full" />,
+    details: ['Paid Advertising', 'Conversion Optimization', 'Analytics', 'A/B Testing']
+  },
+  {
+    id: 4,
+    name: 'GMB & SEO',
+    shortName: 'SEO',
+    description: 'Dominate local search results and improve your online visibility organically.',
+    icon: <MapPin className="w-full h-full" />,
+    details: ['Local SEO', 'Google My Business', 'Keyword Research', 'Technical SEO']
+  },
 
 
-    {
-      id: 7,
-      name: 'API Integration',
-      shortName: 'APIs',
-      description: 'Seamlessly connect your systems and third-party services for unified operations.',
-      icon: <Plug className="w-full h-full" />,
-      details: ['Custom APIs', 'Third-party Integration', 'Data Sync', 'Secure Connections']
-    },
-  
-  ];
+  {
+    id: 7,
+    name: 'API Integration',
+    shortName: 'APIs',
+    description: 'Seamlessly connect your systems and third-party services for unified operations.',
+    icon: <Plug className="w-full h-full" />,
+    details: ['Custom APIs', 'Third-party Integration', 'Data Sync', 'Secure Connections']
+  },
 
-  const [activeService, setActiveService] = useState<Service>(services[0]);
+];
+
+const ServicesSection: React.FC = () => {
+  const [activeService, setActiveService] = useState<Service>(servicesData[0]);
   const descriptionRef = useRef<HTMLDivElement>(null);
   const detailsRef = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
@@ -227,7 +229,7 @@ const ServicesSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Left Column - Service Names */}
           <div ref={servicesListRef} className="lg:col-span-3 space-y-3">
-            {services.map((service) => (
+            {servicesData.map((service) => (
               <button
                 key={service.id}
                 onClick={() => handleServiceClick(service)}

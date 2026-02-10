@@ -4,6 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, MessageCircle } from 'lucide-react';
 import gsap from 'gsap';
+import 'react-phone-number-input/style.css';
+import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 
 interface Message {
   id: string;
@@ -45,8 +47,8 @@ const ChatBot = () => {
     
     const interval = setInterval(() => {
       setIsWaving(true);
-      setTimeout(() => setIsWaving(false), 4000); // Wave for 4 seconds
-    }, 5000); // Every 5 seconds
+      setTimeout(() => setIsWaving(false), 5000); // Wave for 4 seconds
+    },10000); // Every 10 seconds
 
     return () => clearInterval(interval);
   }, [isOpen]);
@@ -84,26 +86,61 @@ const ChatBot = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputText.trim()) return;
+    
+    // For phone step, we validate differently because the input is controlled by PhoneInput
+    if (step === 'phone') {
+        if (!formData.phone || !isValidPhoneNumber(formData.phone)) {
+            // Optional: You could add a temporary bot message here if invalid
+            // For now, we just don't submit
+            const errorMsg: Message = {
+                id: Date.now().toString(),
+                sender: 'bot',
+                text: "Please enter a valid phone number."
+            };
+            setMessages(prev => [...prev, errorMsg]);
+            return;
+        }
+        
+        // Show the user's phone number as a message
+        addUserMessage(formData.phone);
+    } else {
+        if (!inputText.trim()) return;
+        
+        // Email Validation
+        if (step === 'email') {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(inputText.trim())) {
+                const errorMsg: Message = {
+                    id: Date.now().toString(),
+                    sender: 'bot',
+                    text: "Please enter a valid email address (e.g., name@example.com)."
+                };
+                setMessages(prev => [...prev, errorMsg]);
+                return;
+            }
+        }
 
-    const userInput = inputText.trim();
-    addUserMessage(userInput);
-    setInputText('');
+        const userInput = inputText.trim();
+        addUserMessage(userInput);
+        setInputText('');
+    }
+
     setIsTyping(true);
 
     // Process flow based on current step
     setTimeout(async () => {
       if (step === 'doubt') {
-        setFormData(prev => ({ ...prev, doubt: userInput }));
+        setFormData(prev => ({ ...prev, doubt: inputText.trim() }));
         addBotMessage("Got it! Can you please share your email address so we can get back to you?");
         setStep('email');
       } else if (step === 'email') {
-        setFormData(prev => ({ ...prev, email: userInput }));
+        setFormData(prev => ({ ...prev, email: inputText.trim() }));
         addBotMessage("Thanks! Lastly, what's your phone number?");
         setStep('phone');
       } else if (step === 'phone') {
-        const finalData = { ...formData, phone: userInput };
-        setFormData(finalData);
+        // Phone data is already in formData.phone due to the onChange handler of PhoneInput
+        const finalData = { ...formData }; // phone is already updated
+        
         addBotMessage("Perfect! processing your request...");
         
         // Send data to API
@@ -115,7 +152,7 @@ const ChatBot = () => {
             });
             
             if (response.ok) {
-                addBotMessage("Thank you! We've received your details and will contact you shortly at " + userInput + ".");
+                addBotMessage("Thank you! We've received your details and will contact you shortly.");
             } else {
                 addBotMessage("Oops, something went wrong. Please try again later or email us directly.");
             }
@@ -201,22 +238,37 @@ const ChatBot = () => {
 
             {/* Input Area */}
             <form onSubmit={handleSubmit} className="p-3 bg-white border-t border-gray-100 flex gap-2">
-              <input
-                type="text"
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
-                placeholder={
-                    step === 'doubt' ? "Type your question..." : 
-                    step === 'email' ? "Type your email..." :
-                    step === 'phone' ? "Type your phone number..." :
-                    step === 'complete' ? "Conversation ended" : "Type a message..."
-                }
-                disabled={step === 'complete' || isTyping}
-                className="flex-1 bg-gray-100 text-black text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-black/20 border-transparent placeholder:text-gray-400 disabled:opacity-50"
-              />
+              {step === 'phone' ? (
+                <PhoneInput
+                    defaultCountry="IN"
+                    placeholder="Enter phone number"
+                    value={formData.phone}
+                    onChange={(value) => setFormData(prev => ({ ...prev, phone: value || '' }))}
+                    disabled={isTyping || step === 'complete'}
+                    className="flex-1 phone-input-container"
+                />
+              ) : (
+                <input
+                    type="text"
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    placeholder={
+                        step === 'doubt' ? "Type your question..." : 
+                        step === 'email' ? "Type your email..." :
+                        step === 'complete' ? "Conversation ended" : "Type a message..."
+                    }
+                    disabled={step === 'complete' || isTyping}
+                    className="flex-1 bg-gray-100 text-black text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:ring-1 focus:ring-black/20 border-transparent placeholder:text-gray-400 disabled:opacity-50"
+                />
+              )}
+              
               <button
                 type="submit"
-                disabled={!inputText.trim() || step === 'complete' || isTyping}
+                disabled={
+                    (step === 'phone' ? !formData.phone : !inputText.trim()) || 
+                    step === 'complete' || 
+                    isTyping
+                }
                 className="bg-black hover:bg-gray-800 text-white p-2.5 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 <Send size={18} />
@@ -282,6 +334,31 @@ const ChatBot = () => {
         .animate-wave-hand {
             animation: wave 2s infinite;
             transform-origin: 70% 70%;
+        }
+        
+        /* Custom styles for PhoneInput */
+        .phone-input-container {
+            display: flex;
+            align-items: center;
+        }
+        .phone-input-container .PhoneInputCountry {
+            margin-right: 8px;
+        }
+        .phone-input-container .PhoneInputInput {
+            flex: 1;
+            background-color: #f3f4f6;
+            border-radius: 0.75rem;
+            padding: 0.625rem 1rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            border: 1px solid transparent;
+            outline: none;
+            color: black;
+        }
+        .phone-input-container .PhoneInputInput:focus {
+            --tw-ring-color: rgba(0, 0, 0, 0.2);
+            box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+            border-color: rgba(0, 0, 0, 0.1);
         }
       `}</style>
     </div>
