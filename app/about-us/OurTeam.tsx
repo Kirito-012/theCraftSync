@@ -87,8 +87,8 @@ export default function OurTeam() {
 				}
 
 				// Optimized team cards animation
-				const teamCards = gsap.utils.toArray('.team-card')
-				teamCards.forEach((card: any, index: number) => {
+				const teamCards = gsap.utils.toArray('.team-card') as Element[]
+				teamCards.forEach((card, index) => {
 					gsap.fromTo(
 						card,
 						{y: 80, opacity: 0, scale: 0.95},
@@ -213,7 +213,7 @@ export default function OurTeam() {
 					ref={teamDescRef}
 					className='md:max-w-md space-y-4 opacity-0'>
 					<p className='text-gray-800 font-descriptive leading-relaxed text-lg'>
-						We're more than just experts—we're collaborators, problem-solvers,
+						We&apos;re more than just experts—we&apos;re collaborators, problem-solvers,
 						and creators. Meet the people who make big things happen behind the
 						scenes.
 					</p>

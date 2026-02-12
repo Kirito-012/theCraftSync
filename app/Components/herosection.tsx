@@ -1,8 +1,8 @@
 'use client';
-
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface HeroSectionProps {
   startAnimation?: boolean;
@@ -112,7 +112,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
         <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-4xl pt-20">
           <h1 
             ref={headingRef}
-            className="text-5xl md:text-7xl lg:text-[7.5rem] xl:text-[9rem] font-light text-white leading-[0.9] tracking-tight mb-8"
+            className="text-5xl md:text-7xl lg:text-[7.5rem] xl:text-[9rem] font-light text-white leading-[1.1] tracking-tight mb-8"
           >
             <div className="overflow-hidden">
               <span className="inline-block">Building</span>
@@ -136,18 +136,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
             ref={buttonsRef}
             className="flex flex-col sm:flex-row gap-4 items-center"
           >
+
+
             {/* View Works Button */}
-            <button className="group relative px-8 py-3.5 bg-white text-black font-semibold rounded-full overflow-hidden transition-all duration-300 hover:bg-transparent hover:text-white border border-white text-sm lg:text-base cursor-pointer">
+            <Link href="/projects" className="group relative px-8 py-3.5 bg-white text-black font-semibold rounded-full overflow-hidden transition-all duration-300 hover:bg-transparent hover:text-white border border-white text-sm lg:text-base cursor-pointer inline-block">
               <span className="relative z-10 flex items-center gap-2">
                 View Works
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </span>
-            </button>
+            </Link>
 
             {/* Contact Us Button */}
-            <button className="px-8 py-3.5 border border-white/30 text-white font-semibold rounded-full transition-all duration-300 hover:bg-white hover:text-black text-sm lg:text-base cursor-pointer">
+            <Link href="/contact" className="px-8 py-3.5 border border-white/30 text-white font-semibold rounded-full transition-all duration-300 hover:bg-white hover:text-black text-sm lg:text-base cursor-pointer inline-block">
               Contact Us
-            </button>
+            </Link>
           </div>
         </div>
       </div>

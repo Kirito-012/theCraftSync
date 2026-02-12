@@ -360,7 +360,7 @@ export default function ProjectDetailPage() {
             className="text-xl md:text-2xl text-neutral-600 mb-12"
             style={{ fontFamily: 'var(--font-descriptive)' }}
           >
-            Let's create your next digital masterpiece together
+            Let&apos;s create your next digital masterpiece together
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

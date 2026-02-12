@@ -158,7 +158,7 @@ const NewTestimonial: React.FC = () => {
                     style={{ height: 0, opacity: 0 }}
                   >
                     <p className="text-zinc-300 text-lg md:text-xl leading-relaxed pt-8 border-t border-zinc-800 mt-8 font-light italic">
-                      "{t.quote}"
+                      &quot;{t.quote}&quot;
                     </p>
                     <div className="mt-8 flex items-center gap-4">
                       <div className={`w-12 h-px ${t.color.replace('border-', 'bg-')}`}></div>

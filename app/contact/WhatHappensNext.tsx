@@ -47,7 +47,7 @@ const WhatHappensNext = () => {
 	const lineRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
-		let ctx: any
+		let ctx: gsap.Context | undefined
 
 		const initGsap = async () => {
 			const {ScrollTrigger} = await import('gsap/ScrollTrigger')

@@ -22,7 +22,7 @@ export default function ProjectsShowcase() {
         { opacity: 1, duration: 1.4, ease: "power3.out" }
       );
 
-      projectRefs.current.forEach((card, i) => {
+      projectRefs.current.forEach((card) => {
         if (!card) return;
 
         gsap.fromTo(

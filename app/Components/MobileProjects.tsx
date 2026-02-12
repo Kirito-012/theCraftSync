@@ -1,9 +1,18 @@
 
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 
-const projects = [
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  slug: string;
+}
+
+const projects: Project[] = [
   {
     id: 1,
     title: 'Paradise Bliss',
@@ -74,10 +83,11 @@ const MobileProjects = () => {
         {projects.map((project) => (
           <Link href={`/case-study/${project.slug}`} key={project.id} className="block group">
             <div className="relative aspect-video w-full overflow-hidden rounded-2xl mb-4 bg-zinc-900 border border-zinc-800">
-              <img
+              <Image
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute top-4 right-4 w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center">
                 <ArrowUpRight className="w-5 h-5 text-white" />

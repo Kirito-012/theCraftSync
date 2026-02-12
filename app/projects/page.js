@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import MobileProjects from '../Components/MobileProjects';
 
@@ -110,7 +111,7 @@ export default function ProjectsPage() {
   // Preload all background images for smooth transitions
   useEffect(() => {
     projectsData.forEach(project => {
-      const img = new Image();
+      const img = new window.Image();
       img.src = project.bgImage;
     });
   }, []);
@@ -275,7 +276,7 @@ export default function ProjectsPage() {
       // Trigger animation based on layout
       animateLayout(activeProject.layout);
     }
-  }, [activeProject?.id]);
+  }, [activeProject, isHovering]);
 
   // Set default background on mount
   useEffect(() => {
@@ -300,11 +301,12 @@ export default function ProjectsPage() {
           </div>
           
           <div ref={contentRef} className="absolute bottom-32 left-0">
-            <div className="project-image-container rounded-2xl w-[500px] h-[400px] overflow-hidden flex items-center justify-center">
-              <img 
+            <div className="project-image-container relative rounded-2xl w-[500px] h-[400px] overflow-hidden flex items-center justify-center">
+              <Image 
                 src={activeProject.previewImage} 
                 alt={`${activeProject.name} preview`}
-                className="max-w-full max-h-full object-contain rounded-lg"
+                fill
+                className="object-contain rounded-lg"
               />
             </div>
           </div>
@@ -340,11 +342,12 @@ export default function ProjectsPage() {
           </div>
           
           <div ref={previewRef} className="absolute top-16 right-16">
-            <div className="project-image-container-large rounded-2xl w-[450px] h-[350px] overflow-hidden flex items-center justify-center">
-              <img 
+            <div className="project-image-container-large relative rounded-2xl w-[450px] h-[350px] overflow-hidden flex items-center justify-center">
+              <Image 
                 src={activeProject.previewImage} 
                 alt={`${activeProject.name} preview`}
-                className="max-w-full max-h-full object-contain rounded-lg"
+                fill
+                className="object-contain rounded-lg"
               />
             </div>
           </div>
@@ -378,11 +381,12 @@ export default function ProjectsPage() {
           </div>
           
           <div ref={previewRef} className="absolute bottom-32 right-16">
-            <div className="project-image-container rounded-2xl w-[500px] h-[400px] overflow-hidden flex items-center justify-center">
-              <img 
+            <div className="project-image-container relative rounded-2xl w-[500px] h-[400px] overflow-hidden flex items-center justify-center">
+              <Image 
                 src={activeProject.previewImage} 
                 alt={`${activeProject.name} preview`}
-                className="max-w-full max-h-full object-contain rounded-lg"
+                fill
+                className="object-contain rounded-lg"
               />
             </div>
           </div>
@@ -399,11 +403,12 @@ export default function ProjectsPage() {
           </div>
           
           <div ref={contentRef} className="absolute bottom-32 left-16">
-            <div className="project-image-container-large rounded-2xl w-[450px] h-[350px] overflow-hidden flex items-center justify-center">
-              <img 
+            <div className="project-image-container-large relative rounded-2xl w-[450px] h-[350px] overflow-hidden flex items-center justify-center">
+              <Image 
                 src={activeProject.previewImage} 
                 alt={`${activeProject.name} preview`}
-                className="max-w-full max-h-full object-contain rounded-lg"
+                fill
+                className="object-contain rounded-lg"
               />
             </div>
           </div>

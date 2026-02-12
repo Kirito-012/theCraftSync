@@ -547,7 +547,7 @@ const ServicesPage = () => {
                     Strategy & Planning
                   </h3>
                   <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
-                    Our team crafts a detailed roadmap, defining milestones, timelines, and deliverables. You'll have complete visibility into the project scope and execution plan.
+                    Our team crafts a detailed roadmap, defining milestones, timelines, and deliverables. You&apos;ll have complete visibility into the project scope and execution plan.
                   </p>
                 </div>
               </div>
@@ -585,7 +585,7 @@ const ServicesPage = () => {
                     Launch & Support
                   </h3>
                   <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
-                    After rigorous testing, we deploy your solution and provide ongoing support. Our partnership doesn't end at launch—we're here for the long term.
+                    After rigorous testing, we deploy your solution and provide ongoing support. Our partnership doesn&apos;t end at launch—we&apos;re here for the long term.
                   </p>
                 </div>
               </div>

@@ -23,7 +23,7 @@ const TestimonialsSection: React.FC = () => {
     {
       company: 'Nexus',
       logo: 'NX',
-      quote: 'TheCraftsync didn\'t just execute a brief — they built alongside us. From structure to storytelling, every decision felt like it was made with our long-term growth in mind.',
+      quote: 'TheCraftsync didn&apos;t just execute a brief — they built alongside us. From structure to storytelling, every decision felt like it was made with our long-term growth in mind.',
       name: 'Sarah Mitchell',
       position: 'CEO at Nexus Ventures',
       color: '#f5e6d3'
@@ -55,7 +55,7 @@ const TestimonialsSection: React.FC = () => {
     {
       company: 'Foundry',
       logo: 'FD',
-      quote: 'We weren\'t looking for something flashy; we wanted something solid. TheCraftsync helped us build a digital foundation that actually supports where the business is going.',
+      quote: 'We weren&apos;t looking for something flashy; we wanted something solid. TheCraftsync helped us build a digital foundation that actually supports where the business is going.',
       name: 'Rachel Green',
       position: 'VP of Operations at Foundry',
       color: '#fce7f3'
@@ -63,7 +63,7 @@ const TestimonialsSection: React.FC = () => {
     {
       company: 'Meridian',
       logo: 'MD',
-      quote: 'They didn\'t just \'deliver a website.\' They helped us clarify our positioning, streamline communication, and create something that finally reflects who we are as a brand.',
+      quote: 'They didn&apos;t just &apos;deliver a website.&apos; They helped us clarify our positioning, streamline communication, and create something that finally reflects who we are as a brand.',
       name: 'James Wilson',
       position: 'Marketing Director at Meridian',
       color: '#e0e7ff'
@@ -85,6 +85,10 @@ const TestimonialsSection: React.FC = () => {
       color: '#fed7aa'
     }
   ];
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
 
   // Auto-play functionality
   useEffect(() => {
@@ -122,9 +126,7 @@ const TestimonialsSection: React.FC = () => {
     };
   }, [testimonials.length]);
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
+
 
   const handleDragStart = (clientX: number) => {
     setIsDragging(true);
@@ -264,7 +266,7 @@ const TestimonialsSection: React.FC = () => {
                         flex: 1,
                         fontWeight: '400'
                       }}>
-                        "{testimonial.quote}"
+                        &quot;{testimonial.quote}&quot;
                       </p>
 
                       {/* Bottom Section */}

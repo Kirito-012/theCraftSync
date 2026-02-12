@@ -99,7 +99,7 @@ export default function FAQSection() {
   }, [openIndex]);
 
   useEffect(() => {
-    let ctx: any = null
+    let ctx: gsap.Context | undefined;
 
     // Heading animation
     if (headingRef.current) {
@@ -230,7 +230,7 @@ export default function FAQSection() {
             lineHeight: '0.95',
             letterSpacing: '-0.02em'
           }}>
-            FAQ's
+            FAQ&apos;s
           </h2>
         </div>
 

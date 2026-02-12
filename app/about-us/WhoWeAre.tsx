@@ -382,7 +382,7 @@ export default function WhoWeAre() {
 										<span className='absolute -bottom-1 sm:-bottom-2 left-0 w-12 sm:w-16 md:w-20 h-0.75 bg-black transition-all duration-500 group-hover/title:w-full'></span>
 										{/* Decorative quotes */}
 										<span className='hidden sm:block absolute -left-6 sm:-left-8 -top-1 sm:-top-2 text-4xl sm:text-5xl md:text-6xl text-black/10 font-serif'>
-											"
+											&quot;
 										</span>
 									</span>
 								</h2>
@@ -394,9 +394,9 @@ export default function WhoWeAre() {
 										deliver measurable results through data-driven creativity.
 									</p>
 									<p className='who-we-are-paragraph text-gray-600 font-descriptive leading-[1.7] sm:leading-[1.8] md:leading-[1.9] text-[13px] sm:text-[14px] md:text-[15px] will-change-transform font-light'>
-										We listen, create, and sync your vision with your audience's
+										We listen, create, and sync your vision with your audience&apos;s
 										needs. From social media to comprehensive digital
-										strategies, we're partners in your growth.
+										strategies, we&apos;re partners in your growth.
 									</p>
 								</div>
 

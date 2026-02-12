@@ -244,7 +244,7 @@ const ChatBot = () => {
                     placeholder="Enter phone number"
                     value={formData.phone}
                     onChange={(value) => setFormData(prev => ({ ...prev, phone: value || '' }))}
-                    disabled={isTyping || step === 'complete'}
+                    disabled={isTyping}
                     className="flex-1 phone-input-container"
                 />
               ) : (

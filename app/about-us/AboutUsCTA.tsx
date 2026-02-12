@@ -146,7 +146,7 @@ export default function AboutUsCTA() {
 				<div className='flex items-center justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-10 md:mb-12 lg:mb-16'>
 					<div className='cta-line h-px w-12 sm:w-16 md:w-20 lg:w-24 bg-linear-to-r from-transparent via-white/40 to-transparent origin-center'></div>
 					<span className='text-white/60 uppercase text-[7px] sm:text-[8px] md:text-[9px] font-descriptive tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] font-medium whitespace-nowrap'>
-						Let's Work Together
+						Let&apos;s Work Together
 					</span>
 					<div className='cta-line h-px w-12 sm:w-16 md:w-20 lg:w-24 bg-linear-to-r from-transparent via-white/40 to-transparent origin-center'></div>
 				</div>

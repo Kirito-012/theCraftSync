@@ -210,7 +210,7 @@ const HeroSection = () => {
 							ref={titleRef}
 							className='text-2xl sm:text-3xl lg:text-4xl xl:text-6xl leading-[1.1] mb-4 sm:mb-6 opacity-0'>
 							<span className='font-light text-zinc-300 block mb-1 sm:mb-2 text-2xl md:text-4xl xl:text-5xl'>
-								Let's build
+								Let&apos;s build
 							</span>
 							<span className='font-bold text-4xl md:text-5xl lg:text-6xl tracking-tighter text-transparent bg-clip-text bg-linear-to-b from-white to-zinc-500 block uppercase'>
 								Exceptional
@@ -269,10 +269,10 @@ const HeroSection = () => {
 				<div className='max-w-xl mx-auto w-full flex flex-col justify-center min-h-full py-4 lg:py-6'>
 					<div className='mb-6 lg:mb-8'>
 						<h2 className='text-3xl lg:text-4xl font-black text-zinc-900 mb-3 lg:mb-4 tracking-tighter'>
-							Let's Talk<span className='text-emerald-500'>.</span>
+							Let&apos;s Talk<span className='text-emerald-500'>.</span>
 						</h2>
 						<p className='text-zinc-600 text-md font-medium max-w-md'>
-							Fill out the form below and we'll get back to you within 24 hours.
+							Fill out the form below and we&apos;ll get back to you within 24 hours.
 						</p>
 					</div>
 
@@ -354,7 +354,7 @@ const HeroSection = () => {
 						{/* Services */}
 						<div className='pt-0 lg:pt-1'>
 							<label className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-3 lg:mb-4'>
-								I'm interested in...
+								I&apos;m interested in...
 							</label>
 							<div className='flex flex-wrap gap-x-6 lg:gap-x-8 gap-y-3 lg:gap-y-4'>
 								{services.map((service, idx) => (

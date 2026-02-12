@@ -128,7 +128,7 @@ export default function WhyChooseSection() {
             Why Choose<br />The Craftsync?
           </h2>
           <p className="main-description text-zinc-600 text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed">
-            We don't just build technology — we engineer solutions that work in the real world. At The Craftsync, every project starts with understanding your business, not forcing a tool. Our approach combines strong engineering, strategic thinking, and execution discipline to deliver systems that scale, perform, and last.
+            We don&apos;t just build technology — we engineer solutions that work in the real world. At The Craftsync, every project starts with understanding your business, not forcing a tool. Our approach combines strong engineering, strategic thinking, and execution discipline to deliver systems that scale, perform, and last.
           </p>
         </div>
       </div>
