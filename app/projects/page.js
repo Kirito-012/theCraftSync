@@ -68,8 +68,8 @@ const projectsData = [
     slug: 'vevsa',
     type: 'B2B Marketing Platform',
     description: 'Enterprise marketing platform for industrial containers with pixel-perfect design optimized for all displays.',
-    bgImage: '/images/projects/vevsa-bg.jpg',
-    previewImage: '/images/projects/vevsa-preview.jpg',
+    bgImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1771059375/img_qnbtu2.jpg',
+    previewImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1771059401/Screenshot_2026-02-14_141726_arqata.png',
     animationType: 'parallaxSlide',
     layout: 'layout2'
   },

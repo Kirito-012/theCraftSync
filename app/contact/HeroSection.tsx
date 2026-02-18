@@ -2,7 +2,7 @@
 
 import React, {useState, useEffect, useRef} from 'react'
 import './contact.css'
-import {ArrowRight, Mail, MapPin, Check} from 'lucide-react'
+import {ArrowRight, Mail, MapPin, Check, Plus} from 'lucide-react'
 import gsap from 'gsap'
 import { servicesData } from '../Components/Services'
 
@@ -18,6 +18,7 @@ const HeroSection = () => {
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 	const [errors, setErrors] = useState<{ [key: string]: string }>({})
+	const [showAllServices, setShowAllServices] = useState(false)
 
 	// Refs for Animation
 	const containerRef = useRef<HTMLDivElement>(null)
@@ -183,11 +184,11 @@ const HeroSection = () => {
 	return (
 		<div
 			ref={containerRef}
-			className='w-full flex flex-col lg:flex-row gap-4 sm:gap-6 min-h-screen bg-grid max-w-[1800px] mx-auto pt-24 pb-4 sm:pb-6 px-4 sm:px-8 overflow-x-hidden'>
-			{/* LEFT PANEL (35% -> 40% requested previously) */}
+			className='w-full flex flex-col lg:flex-row gap-3 sm:gap-4 min-h-[calc(100vh-2rem)] bg-grid max-w-[1800px] mx-auto pt-16 pb-2 px-3 sm:px-6 overflow-x-hidden'>
+			{/* LEFT PANEL (40%) */}
 			<div
 				ref={leftPanelRef}
-				className='w-full lg:w-[40%] min-h-[600px] lg:h-auto bg-black text-white rounded-[24px] sm:rounded-[32px] p-6 pb-20 md:pb-24 sm:p-8 lg:p-10 xl:p-14 flex flex-col justify-between relative overflow-hidden shadow-2xl border border-white/5 opacity-0'>
+				className='w-full lg:w-[40%] bg-black text-white rounded-[20px] p-6 lg:p-8 flex flex-col justify-between relative overflow-hidden shadow-2xl border border-white/5 opacity-0'>
 				{/* Background Aesthetics - Increased Opacity */}
 				<div className='glow-blob w-[500px] h-[500px] bg-white/20 top-[-200px] left-[-200px] animate-float blur-[120px] rounded-full absolute pointer-events-none'></div>
 				{/* <div
@@ -199,7 +200,7 @@ const HeroSection = () => {
 					<div>
 						<div
 							ref={badgeRef}
-							className='inline-flex items-center gap-2 px-4 py-2 mb-8 border border-white/10 rounded-full bg-white/5 backdrop-blur-md opacity-0'>
+							className='inline-flex items-center gap-2 px-3 py-1.5 mb-4 border border-white/10 rounded-full bg-white/5 backdrop-blur-md opacity-0'>
 							<span className='w-2 h-2 rounded-full bg-emerald-500 animate-pulse'></span>
 							<span className='text-[10px] font-bold tracking-widest uppercase text-zinc-400'>
 								Available for new projects
@@ -208,14 +209,14 @@ const HeroSection = () => {
 
 						<h1
 							ref={titleRef}
-							className='text-2xl sm:text-3xl lg:text-4xl xl:text-6xl leading-[1.1] mb-4 sm:mb-6 opacity-0'>
-							<span className='font-light text-zinc-300 block mb-1 sm:mb-2 text-2xl md:text-4xl xl:text-5xl'>
+							className='text-2xl lg:text-3xl xl:text-4xl leading-tight mb-3 opacity-0'>
+							<span className='font-light text-zinc-300 block mb-1 text-xl lg:text-3xl'>
 								Let&apos;s build
 							</span>
-							<span className='font-bold text-4xl md:text-5xl lg:text-6xl tracking-tighter text-transparent bg-clip-text bg-linear-to-b from-white to-zinc-500 block uppercase'>
+							<span className='font-bold text-3xl lg:text-5xl tracking-tighter text-transparent bg-clip-text bg-linear-to-b from-white to-zinc-500 block uppercase'>
 								Exceptional
 							</span>
-							<span className='font-heading italic font-light text-zinc-500 text-2xl md:text-3xl lg:text-4xl block mt-1'>
+							<span className='font-heading italic font-light text-zinc-500 text-xl lg:text-3xl block mt-1'>
 								digital products.
 							</span>
 						</h1>
@@ -229,7 +230,7 @@ const HeroSection = () => {
 
 					<div
 						ref={contactItemsRef}
-						className='space-y-8'>
+						className='space-y-4'>
 						<div className='flex items-center gap-5 text-gray-300 group cursor-pointer transition-all hover:translate-x-2 duration-300 opacity-0'>
 							<div className='w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-all border border-white/5'>
 								<Mail className='w-5 h-5 text-zinc-400 group-hover:text-white transition-colors' />
@@ -262,16 +263,16 @@ const HeroSection = () => {
 				</div>
 			</div>
 
-			{/* RIGHT PANEL (60%) - Premium Light Theme */}
+			{/* RIGHT PANEL (60%) */}
 			<div
 				ref={rightPanelRef}
-				className='w-full lg:w-[60%] h-auto bg-zinc-50 rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col relative shadow-2xl opacity-0'>
-				<div className='max-w-xl mx-auto w-full flex flex-col justify-center min-h-full py-4 lg:py-6'>
-					<div className='mb-6 lg:mb-8'>
-						<h2 className='text-3xl lg:text-4xl font-black text-zinc-900 mb-3 lg:mb-4 tracking-tighter'>
+				className='w-full lg:w-[60%] bg-zinc-50 rounded-[20px] p-6 lg:p-10 flex flex-col relative shadow-2xl opacity-0'>
+				<div className='max-w-xl mx-auto w-full flex flex-col justify-center min-h-full py-2'>
+					<div className='mb-6'>
+						<h2 className='text-3xl font-black text-zinc-900 mb-2 tracking-tighter'>
 							Let&apos;s Talk<span className='text-emerald-500'>.</span>
 						</h2>
-						<p className='text-zinc-600 text-md font-medium max-w-md'>
+						<p className='text-zinc-600 text-sm font-medium max-w-md'>
 							Fill out the form below and we&apos;ll get back to you within 24 hours.
 						</p>
 					</div>
@@ -279,12 +280,12 @@ const HeroSection = () => {
 					<form
 						ref={formRef}
 						onSubmit={handleSubmit}
-						className='space-y-6 lg:space-y-7'>
-						<div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 lg:gap-x-8 gap-y-5 lg:gap-y-6'>
+						className='space-y-5'>
+						<div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5'>
 							<div className='group relative'>
 								<label
 									htmlFor='name'
-									className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-2'>
+									className='block text-xs font-bold text-zinc-900 uppercase tracking-widest mb-2'>
 									Your Name
 								</label>
 								<input
@@ -300,7 +301,7 @@ const HeroSection = () => {
 							<div className='group relative'>
 								<label
 									htmlFor='email'
-									className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-2'>
+									className='block text-xs font-bold text-zinc-900 uppercase tracking-widest mb-2'>
 									Email Address
 								</label>
 								<input
@@ -315,11 +316,11 @@ const HeroSection = () => {
 							</div>
 						</div>
 
-						<div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 lg:gap-x-8 gap-y-5 lg:gap-y-6'>
+						<div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5'>
 							<div className='group relative'>
 								<label
 									htmlFor='company'
-									className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-2'>
+									className='block text-xs font-bold text-zinc-900 uppercase tracking-widest mb-2'>
 									Company{' '}
 									<span className='text-zinc-400 font-medium normal-case tracking-normal ml-1'>
 										(Optional)
@@ -337,7 +338,7 @@ const HeroSection = () => {
 							<div className='group relative'>
 								<label
 									htmlFor='budget'
-									className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-2'>
+									className='block text-xs font-bold text-zinc-900 uppercase tracking-widest mb-2'>
 									Budget Range
 								</label>
 								<input
@@ -353,11 +354,11 @@ const HeroSection = () => {
 
 						{/* Services */}
 						<div className='pt-0 lg:pt-1'>
-							<label className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-3 lg:mb-4'>
+							<label className='block text-xs font-bold text-zinc-900 uppercase tracking-widest mb-3'>
 								I&apos;m interested in...
 							</label>
-							<div className='flex flex-wrap gap-x-6 lg:gap-x-8 gap-y-3 lg:gap-y-4'>
-								{services.map((service, idx) => (
+							<div className='flex flex-wrap gap-x-4 gap-y-2'>
+								{(showAllServices ? services : services.slice(0, 3)).map((service, idx) => (
 									<button
 										key={idx}
 										type='button'
@@ -383,6 +384,23 @@ const HeroSection = () => {
 										</span>
 									</button>
 								))}
+								
+								{services.length > 3 && (
+									<button
+										type='button'
+										onClick={() => setShowAllServices(!showAllServices)}
+										className='group flex items-center gap-2 cursor-pointer py-1'
+									>
+										<div className='w-5 h-5 flex items-center justify-center rounded-full bg-zinc-100 group-hover:bg-zinc-200 transition-colors'>
+											<Plus 
+												className={`w-3 h-3 text-zinc-600 transition-transform duration-300 ${showAllServices ? 'rotate-45' : ''}`} 
+											/>
+										</div>
+										<span className='text-[10px] font-bold uppercase tracking-widest text-zinc-500 group-hover:text-zinc-900 transition-colors'>
+											{showAllServices ? 'Less' : 'More...'}
+										</span>
+									</button>
+								)}
 							</div>
 						</div>
 
@@ -390,7 +408,7 @@ const HeroSection = () => {
 						<div className='group relative'>
 							<label
 								htmlFor='message'
-								className='block text-[10px] font-bold text-zinc-900 uppercase tracking-widest mb-2'>
+								className='block text-xs font-bold text-zinc-900 uppercase tracking-widest mb-2'>
 								Project Details
 							</label>
 							<textarea
@@ -398,25 +416,25 @@ const HeroSection = () => {
 								rows={1}
 								value={formData.message}
 								onChange={handleChange}
-								className={`w-full bg-transparent border-b-2 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none transition-colors duration-300 resize-none min-h-[50px] ${errors.message ? 'border-red-500' : 'border-zinc-200 focus:border-zinc-900'}`}
+								className={`w-full bg-transparent border-b-2 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none transition-colors duration-300 resize-none min-h-[60px] ${errors.message ? 'border-red-500' : 'border-zinc-200 focus:border-zinc-900'}`}
 								placeholder='Tell us about your project goals...'
 								onInput={(e) => {
 									e.currentTarget.style.height = 'auto'
 									e.currentTarget.style.height =
-										Math.max(50, e.currentTarget.scrollHeight) + 'px'
+										Math.max(60, e.currentTarget.scrollHeight) + 'px'
 								}}></textarea>
 								{errors.message && <p className="text-red-500 text-xs mt-1 font-medium">{errors.message}</p>}
 						</div>
 
-						<div className='pt-2 lg:pt-4 flex justify-end gap-4 items-center'>
+						<div className='pt-4 flex justify-end gap-4 items-center'>
 							{submitStatus === 'success' && (
 								<p className='text-emerald-600 font-bold text-sm animate-pulse'>
-									Message sent successfully!
+									Message sent!
 								</p>
 							)}
 							{submitStatus === 'error' && (
 								<p className='text-red-500 font-bold text-sm'>
-									Something went wrong. Please try again.
+									Error. Try again.
 								</p>
 							)}
 							<button

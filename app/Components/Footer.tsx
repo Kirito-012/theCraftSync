@@ -1,22 +1,40 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Linkedin, Instagram, Facebook, Send, ArrowRight, ExternalLink } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Linkedin, Instagram, Facebook, Send, ArrowRight, ExternalLink, X } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [subscriptionStatus, setSubscriptionStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      setIsSubscribed(true);
-      setTimeout(() => {
-        setEmail('');
-        setIsSubscribed(false);
-      }, 3000);
+    setSubscriptionStatus('submitting');
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: newsletterEmail }),
+      });
+
+      if (response.ok) {
+        setSubscriptionStatus('success');
+        setTimeout(() => {
+          setIsDialogOpen(false);
+          setNewsletterEmail('');
+          setSubscriptionStatus('idle');
+        }, 2000);
+      } else {
+        setSubscriptionStatus('error');
+      }
+    } catch (error) {
+      setSubscriptionStatus('error');
     }
   };
 
@@ -178,13 +196,13 @@ export default function Footer() {
             className="lg:col-span-3"
           >
             <div className="flex items-center justify-start md:justify-end h-full md:items-start lg:items-center">
-              <Link
-                href="/newsletter"
+              <button
+                onClick={() => setIsDialogOpen(true)}
                 className="w-full md:w-auto px-8 py-4 bg-white/5 border border-white/10 rounded-2xl text-sm text-gray-300 hover:text-white hover:border-white/30 transition-all duration-500 flex items-center justify-center gap-3 group"
               >
                 Sign up to our newsletter
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </button>
             </div>
           </motion.div>
         </div>
@@ -211,6 +229,89 @@ export default function Footer() {
           </div>
         </motion.div>
       </div>
+
+      {/* Newsletter Dialog */}
+      <AnimatePresence>
+        {isDialogOpen && (
+          <>
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsDialogOpen(false)}
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+            />
+            <motion.div
+              key="modal"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-6 bg-zinc-900 border border-white/10 rounded-2xl shadow-2xl z-50"
+            >
+              <button
+                onClick={() => setIsDialogOpen(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="mb-6">
+                <h3 className="text-xl font-bold text-white mb-2">Subscribe to our newsletter</h3>
+                <p className="text-gray-400 text-sm">
+                  Get the latest updates, articles, and resources sent straight to your inbox.
+                </p>
+              </div>
+
+              <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+                <div>
+                  <input
+                    type="email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    required
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition-colors"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <button
+                    type="submit"
+                    disabled={subscriptionStatus === 'submitting' || subscriptionStatus === 'success'}
+                    className="w-full px-6 py-3 bg-white text-black font-medium rounded-xl hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  >
+                    {subscriptionStatus === 'submitting' ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                        Subscribing...
+                      </>
+                    ) : subscriptionStatus === 'success' ? (
+                      'Subscribed!'
+                    ) : (
+                      <>
+                        Subscribe
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+
+                  {subscriptionStatus === 'error' && (
+                    <p className="text-red-400 text-xs text-center">
+                      Something went wrong. Please try again.
+                    </p>
+                  )}
+                  {subscriptionStatus === 'success' && (
+                    <p className="text-emerald-400 text-xs text-center">
+                      Successfully subscribed! Check your inbox soon.
+                    </p>
+                  )}
+                </div>
+              </form>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Bottom accent line */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />

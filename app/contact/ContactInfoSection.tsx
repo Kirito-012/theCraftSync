@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {
 	Mail,
 	MapPin,
@@ -11,6 +11,7 @@ import {
 	Calendar,
 } from 'lucide-react'
 import gsap from 'gsap'
+import ScheduleModal from '../Components/ScheduleModal'
 
 const ContactInfoSection = () => {
 	const containerRef = useRef<HTMLDivElement>(null)
@@ -20,6 +21,7 @@ const ContactInfoSection = () => {
 	const inquiryBlockRef = useRef<HTMLDivElement>(null)
 	const socialsRef = useRef<HTMLDivElement>(null)
 	const rightCardRef = useRef<HTMLDivElement>(null)
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	useEffect(() => {
 		let ctx: gsap.Context | undefined
@@ -197,7 +199,9 @@ const ContactInfoSection = () => {
 								</div>
 							</div>
 
-							<button className='w-full group/btn relative overflow-hidden rounded-2xl bg-white p-4 transition-all duration-300 hover:shadow-xl hover:shadow-zinc-500/10 active:scale-[0.98]'>
+							<button
+								onClick={() => setIsModalOpen(true)}
+								className='w-full group/btn cursor-pointer relative overflow-hidden rounded-2xl bg-white p-4 transition-all duration-300 hover:shadow-xl hover:shadow-zinc-500/10 active:scale-[0.98]'>
 								<div className='relative z-10 flex items-center justify-center gap-2 h-5 overflow-hidden'>
 									<div className='flex flex-col items-center gap-3 transition-transform duration-300 group-hover/btn:-translate-y-[calc(100%+12px)]'>
 										<div className='flex items-center gap-2'>
@@ -224,6 +228,7 @@ const ContactInfoSection = () => {
 					</div>
 				</div>
 			</div>
+			<ScheduleModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 		</section>
 	)
 }
