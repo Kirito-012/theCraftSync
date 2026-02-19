@@ -90,6 +90,7 @@ export default function Navbar() {
 		if (!isLoading && navRef.current) {
 			gsap.to(navRef.current, {
 				y: isVisible ? 0 : -150,
+				xPercent: -50,
 				duration: 0.6,
 				ease: 'power3.out',
 				overwrite: 'auto'
