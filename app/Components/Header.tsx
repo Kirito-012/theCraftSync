@@ -65,44 +65,51 @@ export default function Navbar() {
 	// Entrance animation
 	useEffect(() => {
 		if (!isLoading) {
-			gsap.fromTo(navRef.current,
-				{ 
-					y: -100, 
-					opacity: 0,
-					xPercent: -50,
-					left: '50%'
-				},
-				{ 
-					y: 0, 
-					opacity: 1, 
-					xPercent: -50,
-					left: '50%',
-					duration: 1.2, 
-					ease: 'power4.out', 
-					delay: 0.5 
-				}
-			);
+			const ctx = gsap.context(() => {
+				gsap.set(navRef.current, { xPercent: -50, left: '50%' }); // Ensure initial state
+				gsap.fromTo(navRef.current,
+					{ 
+						y: -100, 
+						opacity: 0,
+					},
+					{ 
+						y: 0, 
+						opacity: 1, 
+						duration: 1.2, 
+						ease: 'power4.out', 
+						delay: 0.5,
+						onComplete: () => {
+							// Optional: Signal that entrance is done if needed
+						}
+					}
+				);
+			}, navRef);
+			return () => ctx.revert();
 		}
 	}, [isLoading]);
 
 	// Scroll-to-hide animation
 	useEffect(() => {
 		if (!isLoading && navRef.current) {
-			gsap.to(navRef.current, {
-				y: isVisible ? 0 : -150,
-				xPercent: -50,
-				duration: 0.6,
-				ease: 'power3.out',
-				overwrite: 'auto'
-			});
+			const ctx = gsap.context(() => {
+				gsap.to(navRef.current, {
+					y: isVisible ? 0 : -150,
+					xPercent: -50, // Always enforce centering
+					left: '50%',
+					duration: 0.6,
+					ease: 'power3.out',
+					overwrite: 'auto'
+				});
+			}, navRef);
+			return () => ctx.revert();
 		}
 	}, [isVisible, isLoading]);
 
 	return (
 		<nav
 			ref={navRef}
-			className="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-[80%] max-w-4xl"
-			style={{ opacity: 0 }} // Initial state before GSAP kicks in
+			className="fixed top-3 left-1/2 z-50 w-[95%] md:w-[80%] max-w-4xl"
+			style={{ opacity: 0, transform: 'translate(-50%, -100px)' }} // Initial state to prevent FOUC
 		>
 			<div
 				className={`bg-black/90 px-6 backdrop-blur-xl shadow-2xl border border-white/10 transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] overflow-hidden flex flex-col ${

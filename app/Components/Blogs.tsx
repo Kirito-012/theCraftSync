@@ -94,17 +94,17 @@ const Blogs: React.FC = () => {
     <section className="w-full bg-white py-20 px-6 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div ref={headerRef} className="flex justify-between items-center mb-16">
+        <div ref={headerRef} className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-0 mb-12 md:mb-16">
           <h2 
             className="text-5xl md:text-6xl lg:text-7xl font-light text-black"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             Latest articles
           </h2>
-          <button className="px-8 py-3 border-2 border-black text-black rounded-full hover:bg-black hover:text-white transition-all duration-300 flex items-center gap-2 group">
+          <button className="px-6 py-2.5 md:px-8 md:py-3 text-sm md:text-base border-2 border-black text-black rounded-full hover:bg-black hover:text-white transition-all duration-300 flex items-center gap-2 group">
             View our blog
             <svg 
-              className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
+              className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"

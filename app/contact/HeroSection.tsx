@@ -4,7 +4,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import './contact.css'
 import {ArrowRight, Mail, MapPin, Check, Plus} from 'lucide-react'
 import gsap from 'gsap'
-import { servicesData } from '../Components/Services'
+import { servicesData } from '../Components/servicesData'
 
 const HeroSection = () => {
 	const [formData, setFormData] = useState({
@@ -185,18 +185,15 @@ const HeroSection = () => {
 		<div
 			ref={containerRef}
 			className='w-full flex flex-col lg:flex-row gap-3 sm:gap-4 min-h-[calc(100vh-2rem)] bg-grid max-w-[1800px] mx-auto pt-16 pb-2 px-3 sm:px-6 overflow-x-hidden'>
-			{/* LEFT PANEL (40%) */}
+			{/* LEFT PANEL (40%) - INFO */}
 			<div
 				ref={leftPanelRef}
-				className='w-full lg:w-[40%] bg-black text-white rounded-[20px] p-6 lg:p-8 flex flex-col justify-between relative overflow-hidden shadow-2xl border border-white/5 opacity-0'>
+				className='w-full lg:w-[40%] bg-black text-white rounded-[20px] p-5 sm:p-6 lg:p-8 flex flex-col justify-between relative overflow-hidden shadow-2xl border border-white/5 opacity-0'>
 				{/* Background Aesthetics - Increased Opacity */}
 				<div className='glow-blob w-[500px] h-[500px] bg-white/20 top-[-200px] left-[-200px] animate-float blur-[120px] rounded-full absolute pointer-events-none'></div>
-				{/* <div
-					className='glow-blob w-[400px] h-[400px] bg-blue-900/30 bottom-[-100px] right-[-100px] animate-pulse-glow blur-[100px] rounded-full absolute pointer-events-none'
-					style={{animationDelay: '2s'}}></div> */}
 
 				{/* Content */}
-				<div className='relative z-10 flex flex-col h-full justify-between'>
+				<div className='relative z-10 flex flex-col h-full justify-between gap-12 lg:gap-0'>
 					<div>
 						<div
 							ref={badgeRef}
@@ -263,10 +260,10 @@ const HeroSection = () => {
 				</div>
 			</div>
 
-			{/* RIGHT PANEL (60%) */}
+			{/* RIGHT PANEL (60%) - FORM */}
 			<div
 				ref={rightPanelRef}
-				className='w-full lg:w-[60%] bg-zinc-50 rounded-[20px] p-6 lg:p-10 flex flex-col relative shadow-2xl opacity-0'>
+				className='w-full lg:w-[60%] bg-zinc-50 rounded-[20px] p-5 sm:p-6 lg:p-10 flex flex-col relative shadow-2xl opacity-0'>
 				<div className='max-w-xl mx-auto w-full flex flex-col justify-center min-h-full py-2'>
 					<div className='mb-6'>
 						<h2 className='text-3xl font-black text-zinc-900 mb-2 tracking-tighter'>
@@ -280,8 +277,8 @@ const HeroSection = () => {
 					<form
 						ref={formRef}
 						onSubmit={handleSubmit}
-						className='space-y-5'>
-						<div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5'>
+						className='space-y-4 lg:space-y-5'>
+						<div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 lg:gap-y-5'>
 							<div className='group relative'>
 								<label
 									htmlFor='name'

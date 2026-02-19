@@ -98,7 +98,7 @@ const ContactInfoSection = () => {
 			<div className='absolute top-0 left-0 w-full h-px bg-zinc-900'></div>
 
 			<div className='max-w-[1600px] mx-auto'>
-				<div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start'>
+				<div className='flex flex-col-reverse lg:grid lg:grid-cols-2 gap-12 lg:gap-24 items-start'>
 					{/* LEFT COLUMN: Contact Details */}
 					<div className='flex flex-col gap-16'>
 						<div ref={emailBlockRef}>
