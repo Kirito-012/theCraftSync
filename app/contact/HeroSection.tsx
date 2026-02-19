@@ -236,7 +236,7 @@ const HeroSection = () => {
 								<p className='text-[10px] text-zinc-500 font-bold uppercase tracking-widest mb-1'>
 									Email us
 								</p>
-								<p className='font-medium text-lg text-white relative inline-block'>
+								<p className='font-medium text-md md:text-lg text-white relative inline-block'>
 									connect@thecraftsync.com
 									<span className='absolute left-0 bottom-0 w-full h-px bg-zinc-700 group-hover:bg-white transition-colors duration-300'></span>
 								</p>
@@ -250,7 +250,7 @@ const HeroSection = () => {
 								<p className='text-[10px] text-zinc-500 font-bold uppercase tracking-widest mb-1'>
 									Visit us
 								</p>
-								<p className='font-medium text-lg text-white relative inline-block'>
+								<p className='font-medium text-md md:text-lg text-white relative inline-block'>
 									Haridwar, Uttarakhand
 									<span className='absolute left-0 bottom-0 w-full h-px bg-zinc-700 group-hover:bg-white transition-colors duration-300'></span>
 								</p>
@@ -263,7 +263,7 @@ const HeroSection = () => {
 			{/* RIGHT PANEL (60%) - FORM */}
 			<div
 				ref={rightPanelRef}
-				className='w-full lg:w-[60%] bg-zinc-50 rounded-[20px] p-5 sm:p-6 lg:p-10 flex flex-col relative shadow-2xl opacity-0'>
+				className='w-full lg:w-[60%] bg-zinc-50 rounded-[20px] p-8 sm:p-6 lg:p-10 flex flex-col relative shadow-2xl opacity-0'>
 				<div className='max-w-xl mx-auto w-full flex flex-col justify-center min-h-full py-2'>
 					<div className='mb-6'>
 						<h2 className='text-3xl font-black text-zinc-900 mb-2 tracking-tighter'>
