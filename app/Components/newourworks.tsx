@@ -44,37 +44,60 @@ const NewOurWorks: React.FC = () => {
   const rowsRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      rowsRef.current.forEach((row) => {
-        if (!row) return;
+    let ctx : gsap.Context;
+    
+    // Tiny timeout to ensure DOM is fully ready
+    const timer = setTimeout(() => {
+      ctx = gsap.context(() => {
+        rowsRef.current.forEach((row) => {
+          if (!row) return;
 
-        const title = row.querySelector('.project-title');
-        const number = row.querySelector('.project-number');
-        const imgContainer = row.querySelector('.image-container');
-        const arrow = row.querySelector('.arrow-container');
+          const category = row.querySelector('.project-category');
+          const title = row.querySelector('.project-title');
+          const desc = row.querySelector('.project-desc');
+          const number = row.querySelector('.project-number');
+          const imgContainer = row.querySelector('.image-container');
+          const arrow = row.querySelector('.arrow-container');
+          
+          // Unified list of all elements to animate - Reordered for better visual hierarchy (Title/Image first)
+          const elements = [title, imgContainer, category, desc, number, arrow].filter(Boolean);
 
-        // Initial states to prevent flicker and ensure visibility if GSAP fails
-        gsap.set([title, number, imgContainer, arrow], { opacity: 0, y: 30 });
-        if (number) gsap.set(number, { x: -20, y: 0 });
-        if (arrow) gsap.set(arrow, { x: -30, y: 0 });
+          // Initial States: All start from same position
+          gsap.set(elements, { 
+            opacity: 0, 
+            y: 50,
+            willChange: 'transform, opacity' 
+          });
+          
+          // Force specific overrides to ensure uniformity
+          if (number) gsap.set(number, { x: 0, y: 50 });
+          if (arrow) gsap.set(arrow, { x: 0, y: 50 });
 
-        gsap.to([title, number, imgContainer, arrow], {
-          opacity: 1,
-          y: 0,
-          x: 0,
-          duration: 1.2,
-          stagger: 0.1,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: row,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          }
+          // Single Batch Animation: Everyone moves together with same timing/easing
+          gsap.to(elements, {
+            opacity: 1,
+            y: 0,
+            x: 0,
+            duration: 1,
+            stagger: 0.05,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: row,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+            onComplete: () => {
+               gsap.set(elements, { clearProps: 'willChange,transform' }); 
+            }
+          });
         });
-      });
-    }, containerRef);
+      }, containerRef);
+    }, 100);
 
-    return () => ctx.revert();
+    return () => {
+      clearTimeout(timer);
+      if(ctx) ctx.revert();
+    };
   }, []);
 
   return (
@@ -112,23 +135,23 @@ const NewOurWorks: React.FC = () => {
               className="group py-12 md:py-20 flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 border-b border-black/5 last:border-0 relative"
             >
               {/* Index Number */}
-              <div className="project-number absolute top-12 left-0 hidden xl:block text-zinc-200 text-6xl font-black italic tracking-tighter transition-opacity duration-300 pointer-events-none">
+              <div className="project-number opacity-0 absolute top-12 left-0 hidden xl:block text-zinc-200 text-6xl font-black italic tracking-tighter transition-opacity duration-300 pointer-events-none">
                 0{index + 1}
               </div>
 
               {/* Left Side: Project Info */}
               <div className="w-full lg:w-[30%] space-y-4 relative z-20">
-                <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-400 block mb-2">{project.category}</span>
-                <h3 className="project-title text-3xl md:text-4xl lg:text-5xl font-light text-zinc-900 tracking-tight transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:pl-4">
+                <span className="project-category opacity-0 text-[10px] uppercase tracking-[0.3em] text-zinc-400 block mb-2">{project.category}</span>
+                <h3 className="project-title opacity-0 text-3xl md:text-4xl lg:text-5xl font-light text-zinc-900 tracking-tight transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:pl-4">
                   {project.title}
                 </h3>
-                <p className="text-zinc-500 font-light leading-relaxed max-w-sm text-sm md:text-base pr-8">
+                <p className="project-desc opacity-0 text-zinc-500 font-light leading-relaxed max-w-sm text-sm md:text-base pr-8">
                   {project.description}
                 </p>
               </div>
 
               {/* Middle: Project Image */}
-              <div className="image-container w-full lg:w-[50%] aspect-video bg-zinc-50 overflow-hidden relative rounded-sm shadow-[0_20px_40px_-20px_rgba(0,0,0,0.1)] transition-all duration-700 group-hover:shadow-[0_40px_80px_-30px_rgba(0,0,0,0.2)]">
+              <div className="image-container opacity-0 w-full lg:w-[50%] aspect-video bg-zinc-50 overflow-hidden relative rounded-sm shadow-[0_20px_40px_-20px_rgba(0,0,0,0.1)] transition-all duration-700 group-hover:shadow-[0_40px_80px_-30px_rgba(0,0,0,0.2)]">
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent z-10 transition-colors duration-700" />
                 <img 
                   src={project.image} 
@@ -139,7 +162,7 @@ const NewOurWorks: React.FC = () => {
               </div>
 
               {/* Right Side: Stylized Arrow Icon */}
-              <div className="arrow-container hidden lg:flex w-[10%] justify-end relative">
+              <div className="arrow-container opacity-0 hidden lg:flex w-[10%] justify-end relative">
                 <div className="transform transition-all duration-700 group-hover:translate-x-4 group-hover:-translate-y-4">
                   <svg 
                     width="60" 
