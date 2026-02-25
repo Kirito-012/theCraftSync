@@ -1,11 +1,8 @@
-import type {Metadata} from 'next'
+import type { Metadata } from 'next'
 import './globals.css'
-import Navbar from './Components/Header'
-import Footer from './Components/Footer'
 import SmoothScroll from './Components/SmoothScroll';
 import { LoadingProvider } from './lib/LoadingContext';
 import AppWrapper from './Components/AppWrapper';
-import ChatBot from './Components/ChatBot';
 
 export const metadata: Metadata = {
 	title: 'TheCraftSync',
@@ -22,10 +19,7 @@ export default function RootLayout({
 			<body className='antialiased'>
 				<LoadingProvider>
 					<AppWrapper>
-						<Navbar />
 						<SmoothScroll>{children}</SmoothScroll>
-						<ChatBot />
-						<Footer />
 					</AppWrapper>
 				</LoadingProvider>
 			</body>

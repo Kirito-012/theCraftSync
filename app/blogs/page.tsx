@@ -1,15 +1,19 @@
 'use client'
 
-import React, {useState, useEffect, useRef} from 'react'
-import {Search, ChevronDown} from 'lucide-react'
+import React, { useState, useEffect, useRef } from 'react'
+import { Search, ChevronDown } from 'lucide-react'
 import gsap from 'gsap'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
 import AboutUsCTA from '../about-us/AboutUsCTA'
 
 export default function BlogPage() {
-	const [selectedCategory, setSelectedCategory] = useState('ALL')
+	const [selectedCategory, setSelectedCategory] = useState({ id: 'ALL', name: 'ALL' })
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+	const [categories, setCategories] = useState([{ id: 'ALL', name: 'ALL' }])
+	const [blogPosts, setBlogPosts] = useState([])
+	const [isLoading, setIsLoading] = useState(true)
+	const [searchQuery, setSearchQuery] = useState('')
 
 	const headerRef = useRef<HTMLHeadingElement>(null)
 	const searchRef = useRef<HTMLDivElement>(null)
@@ -17,6 +21,45 @@ export default function BlogPage() {
 	const gridRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				setIsLoading(true)
+				const [catRes, blogRes] = await Promise.all([
+					fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/categories`).then(res => res.json()),
+					fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs`).then(res => res.json())
+				])
+
+				if (catRes.success) {
+					// Add 'ALL' to the beginning of fetched categories
+					setCategories([{ id: 'ALL', name: 'ALL' }, ...catRes.data.map((c: any) => ({ id: c._id, name: c.name }))])
+				}
+
+				if (blogRes.success) {
+					setBlogPosts(blogRes.data)
+				}
+			} catch (error) {
+				console.error('Error fetching blogs and categories:', error)
+			} finally {
+				setIsLoading(false)
+			}
+		}
+
+		fetchData()
+	}, [])
+
+	// Filter blogs based on search and category
+	const filteredBlogs = blogPosts.filter((post: any) => {
+		const matchesSearch =
+			post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+			post.metaDescription.toLowerCase().includes(searchQuery.toLowerCase())
+
+		const matchesCategory = selectedCategory.id === 'ALL' || (post.category && post.category._id === selectedCategory.id)
+
+		return matchesSearch && matchesCategory
+	})
+
+	useEffect(() => {
+		if (isLoading) return; // Don't animate while loading
 		gsap.registerPlugin(ScrollTrigger)
 		const tl = gsap.timeline()
 
@@ -25,7 +68,7 @@ export default function BlogPage() {
 			const headerChildren = headerRef.current.children
 			tl.fromTo(
 				headerChildren,
-				{y: 100, opacity: 0},
+				{ y: 100, opacity: 0 },
 				{
 					y: 0,
 					opacity: 1,
@@ -40,7 +83,7 @@ export default function BlogPage() {
 		if (searchRef.current) {
 			tl.fromTo(
 				searchRef.current,
-				{y: 30, opacity: 0},
+				{ y: 30, opacity: 0 },
 				{
 					y: 0,
 					opacity: 1,
@@ -55,7 +98,7 @@ export default function BlogPage() {
 		if (categoriesRef.current) {
 			tl.fromTo(
 				categoriesRef.current,
-				{y: 30, opacity: 0},
+				{ y: 30, opacity: 0 },
 				{
 					y: 0,
 					opacity: 1,
@@ -66,42 +109,37 @@ export default function BlogPage() {
 			)
 		}
 
-		// Blog Grid Stagger with ScrollTrigger
-		if (gridRef.current) {
-			const cards = gridRef.current.children
-			gsap.fromTo(
-				cards,
-				{y: 100, opacity: 0},
-				{
-					y: 0,
-					opacity: 1,
-					stagger: 0.1,
-					duration: 1,
-					ease: 'power3.out',
-					scrollTrigger: {
-						trigger: gridRef.current,
-						start: 'top 85%',
-						toggleActions: 'play none none reverse',
-					},
-				}
-			)
-		}
-	}, [])
+	}, [isLoading])
 
-	const categories = [
-		'ALL',
-		'AI & TECH',
-		'DIGITAL STRATEGY',
-		'WEB DESIGN',
-		'BRAND GROWTH',
-		'CLIENT SUCCESS',
-		'GROWTH TACTICS',
-	]
+	useEffect(() => {
+		if (isLoading || !gridRef.current) return;
+		gsap.registerPlugin(ScrollTrigger)
 
-	const handleCategoryClick = (category: string) => {
+		const cards = gridRef.current.children
+		gsap.fromTo(
+			cards,
+			{ y: 100, opacity: 0 },
+			{
+				y: 0,
+				opacity: 1,
+				stagger: 0.1,
+				duration: 0.8,
+				ease: 'power3.out',
+				scrollTrigger: {
+					trigger: gridRef.current,
+					start: 'top 85%',
+					toggleActions: 'play none none reverse',
+				},
+			}
+		)
+	}, [isLoading, filteredBlogs])
+
+	const handleCategoryClick = (category: { id: string, name: string }) => {
 		setSelectedCategory(category)
 		setIsDropdownOpen(false)
 	}
+
+
 
 	return (
 		<main className='min-h-screen bg-black w-full'>
@@ -133,6 +171,8 @@ export default function BlogPage() {
 									</div>
 									<input
 										type='text'
+										value={searchQuery}
+										onChange={(e) => setSearchQuery(e.target.value)}
 										placeholder='Search articles...'
 										className='flex-1 bg-transparent border-none outline-none text-sm font-descriptive text-white placeholder:text-neutral-500 h-10 w-full'
 									/>
@@ -146,12 +186,11 @@ export default function BlogPage() {
 									<button
 										onClick={() => setIsDropdownOpen(!isDropdownOpen)}
 										className='hidden sm:flex items-center gap-2 bg-[#1c1c1c] rounded-full border border-[#333] px-4 h-[54px] hover:border-[#444] transition-colors cursor-pointer select-none text-xs font-bold text-zinc-400 hover:text-white font-descriptive tracking-wide'>
-										{selectedCategory}
+										{selectedCategory.name}
 										<ChevronDown
 											size={14}
-											className={`transition-transform duration-300 ${
-												isDropdownOpen ? 'rotate-180' : ''
-											}`}
+											className={`transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''
+												}`}
 										/>
 									</button>
 
@@ -160,14 +199,13 @@ export default function BlogPage() {
 										<div className='absolute top-full mt-2 right-0 w-48 bg-[#1c1c1c] border border-[#333] rounded-xl shadow-xl overflow-hidden py-1 z-30 animate-in fade-in zoom-in-95 duration-200'>
 											{categories.map((category) => (
 												<button
-													key={category}
+													key={category.id}
 													onClick={() => handleCategoryClick(category)}
-													className={`w-full text-left px-4 py-3 text-xs font-bold font-descriptive hover:bg-[#2a2a2a] transition-colors ${
-														selectedCategory === category
-															? 'text-white bg-[#2a2a2a]'
-															: 'text-zinc-400'
-													}`}>
-													{category}
+													className={`w-full text-left px-4 py-3 text-xs font-bold font-descriptive hover:bg-[#2a2a2a] transition-colors ${selectedCategory.id === category.id
+														? 'text-white bg-[#2a2a2a]'
+														: 'text-zinc-400'
+														}`}>
+													{category.name}
 												</button>
 											))}
 										</div>
@@ -192,13 +230,12 @@ export default function BlogPage() {
 										onClick={() => setSelectedCategory(category)}
 										className={`
 											px-4 py-2 rounded-full text-[10px] font-bold tracking-widest font-descriptive transition-all duration-300
-											${
-												selectedCategory === category
-													? 'bg-white text-black hover:bg-gray-200'
-													: 'bg-[#1c1c1c] border border-[#333] text-zinc-400 hover:border-[#555] hover:text-white'
+											${selectedCategory.id === category.id
+												? 'bg-white text-black hover:bg-gray-200'
+												: 'bg-[#1c1c1c] border border-[#333] text-zinc-400 hover:border-[#555] hover:text-white'
 											}
 										`}>
-										{category}
+										{category.name}
 									</button>
 								))}
 							</div>
@@ -218,110 +255,62 @@ export default function BlogPage() {
 				<div
 					ref={gridRef}
 					className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-					{BLOG_POSTS.map((post) => (
-						<Link
-							key={post.id}
-							href={`/blogs/${post.id}`}
-							className='block h-full opacity-0'>
-							<article className='group flex flex-col h-full bg-white rounded-[32px_8px_32px_8px] overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-white/10'>
-								{/* Image Container */}
-								<div className='relative w-full h-64 overflow-hidden bg-gray-200 shrink-0'>
-									<img
-										src={post.image}
-										alt={post.title}
-										className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110'
-									/>
-								</div>
-
-								{/* Card Body */}
-								<div className='p-8 flex-1 flex flex-col'>
-									{/* Category */}
-									<div className='mb-4'>
-										<span className='text-[10px] font-bold tracking-widest text-[#888888] uppercase'>
-											{post.category}
-										</span>
+					{isLoading ? (
+						<div className='col-span-full py-20 flex justify-center'>
+							<div className='animate-spin rounded-full h-12 w-12 border-b-2 border-white'></div>
+						</div>
+					) : filteredBlogs.length === 0 ? (
+						<div className='col-span-full py-20 text-center text-zinc-500'>
+							No blogs found matching your criteria.
+						</div>
+					) : (
+						filteredBlogs.map((post: any) => (
+							<Link
+								key={post._id}
+								href={`/blogs/${post.slug || post._id}`}
+								className='block h-full opacity-0'>
+								<article className='group flex flex-col h-full bg-white rounded-[32px_8px_32px_8px] overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-white/10'>
+									{/* Image Container */}
+									<div className='relative w-full h-64 overflow-hidden bg-gray-200 shrink-0'>
+										<img
+											src={post.image || 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800&h=600'}
+											alt={post.title}
+											className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110'
+										/>
 									</div>
 
-									{/* Headline */}
-									<h2 className='font-heading text-2xl font-bold leading-[1.1] text-black mb-4 line-clamp-3 group-hover:text-amber-700 transition-colors'>
-										{post.title}
-									</h2>
+									{/* Card Body */}
+									<div className='p-8 flex-1 flex flex-col'>
+										{/* Category */}
+										<div className='mb-4'>
+											<span className='text-[10px] font-bold tracking-widest text-[#888888] uppercase'>
+												{post.category?.name || 'Uncategorized'}
+											</span>
+										</div>
 
-									{/* Description */}
-									<p className='font-descriptive text-zinc-400 text-sm leading-relaxed line-clamp-3 mb-6 flex-1'>
-										{post.description}
-									</p>
+										{/* Headline */}
+										<h2 className='font-heading text-2xl font-bold leading-[1.1] text-black mb-4 line-clamp-3 group-hover:text-amber-700 transition-colors'>
+											{post.title}
+										</h2>
 
-									{/* Read More Link */}
-									<div className='flex items-center gap-2 text-black text-xs font-bold tracking-wide uppercase transition-all duration-300 group-hover:opacity-70'>
-										Read Article
-										<div className='w-8 h-px bg-black/20' />
+										{/* Description */}
+										<p className='font-descriptive text-zinc-400 text-sm leading-relaxed line-clamp-3 mb-6 flex-1'>
+											{post.metaDescription}
+										</p>
+
+										{/* Read More Link */}
+										<div className='flex items-center gap-2 text-black text-xs font-bold tracking-wide uppercase transition-all duration-300 group-hover:opacity-70'>
+											Read Article
+											<div className='w-8 h-px bg-black/20' />
+										</div>
 									</div>
-								</div>
-							</article>
-						</Link>
-					))}
+								</article>
+							</Link>
+						))
+					)}
 				</div>
 			</div>
 			<AboutUsCTA />
 		</main>
 	)
 }
-
-// Mock Data
-const BLOG_POSTS = [
-	{
-		id: 1,
-		title: 'The Future of Digital agency: AI-Driven Design Systems',
-		category: 'AI & Tech',
-		description:
-			'Explore how artificial intelligence is reshaping the landscape of modern web design, allowing for dynamic, personalized user experiences at scale.',
-		image:
-			'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800&h=600',
-	},
-	{
-		id: 2,
-		title: 'Building Brand Loyalty in a Saturation Market',
-		category: 'Brand Growth',
-		description:
-			'In an era of endless choices, discover the psychological triggers that turn casual browsers into devoted brand advocates.',
-		image:
-			'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=800&h=600',
-	},
-	{
-		id: 3,
-		title: 'Minimalism is Not Just About Less',
-		category: 'Web Design',
-		description:
-			"Unpacking the 'less is more' philosophy. Why spacing, typography, and intent matter more than decoration in premium design.",
-		image:
-			'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&q=80&w=800&h=600',
-	},
-	{
-		id: 4,
-		title: 'Scaling Client Success: A Framework',
-		category: 'Client Success',
-		description:
-			'A step-by-step guide to onboarding, managing, and retaining high-ticket clients without burning out your creative team.',
-		image:
-			'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800&h=600',
-	},
-	{
-		id: 5,
-		title: 'The Psychology of Color in UI/UX',
-		category: 'Digital Strategy',
-		description:
-			'How color palettes influence user decision-making and brand perception. Choosing the right tones for your digital identity.',
-		image:
-			'https://images.unsplash.com/photo-1558478551-1a378f63328e?auto=format&fit=crop&q=80&w=800&h=600',
-	},
-	{
-		id: 6,
-		title: 'Optimizing for Speed: Next.js Best Practices',
-		category: 'Development',
-		description:
-			'Technical deep dive into server-side rendering, image optimization, and code splitting for lightning-fast web applications.',
-		image:
-			'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=800&h=600',
-	},
-]
