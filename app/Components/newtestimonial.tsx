@@ -7,34 +7,34 @@ import { Quote } from 'lucide-react';
 const testimonials = [
   {
     id: '01',
-    name: 'Sarah Mitchell',
-    role: 'CEO at Nexus Ventures',
-    company: 'Nexus',
-    quote: "TheCraftsync didn't just execute a brief — they built alongside us. From structure to storytelling, every decision felt like it was made with our growth in mind.",
+    name: 'Balkees Abderrehman',
+    role: 'Forbes Under 30',
+    company: 'Business Owner',
+    quote: "The team did a fantastic job bringing my vision to life. They built a seamless, user-friendly web app with excellent UI/UX design.",
     color: 'border-emerald-500/20'
   },
   {
     id: '02',
-    name: 'Michael Chen',
-    role: 'Head of Product',
-    company: 'Catalyst',
-    quote: "Working with TheCraftsync felt less like hiring an agency and more like adding an extension to our internal team. They asked the right questions and built with intent.",
+    name: 'FPO Connect',
+    role: 'CTO',
+    company: 'Tech Consultant',
+    quote: "Innovative solutions with excellent technical expertise. Great communication and timely delivery every time.",
     color: 'border-blue-500/20'
   },
   {
     id: '03',
-    name: 'Emily Rodriguez',
-    role: 'Founder',
-    company: 'Horizon Labs',
-    quote: "They think like builders, not service providers. Strategy, design, and execution were all aligned — which is rare. They cared about the outcome as much as we did.",
+    name: 'Paradise Bliss Tours',
+    role: 'Operations Manager',
+    company: 'Travel Agency',
+    quote: "Amazing support from day one! Quality work at reasonable pricing. They exceeded our expectations completely.",
     color: 'border-purple-500/20'
   },
   {
     id: '04',
-    name: 'David Park',
-    role: 'CTO',
-    company: 'Apex Systems',
-    quote: "What stood out was ownership. TheCraftsync treated our brand as if it were their own — refining details, anticipating problems, and constantly thinking two steps ahead.",
+    name: 'Meucart',
+    role: 'Founder',
+    company: 'Business Owner',
+    quote: "Outstanding digital marketing services with excellent ROI. The team feels like true business partners.",
     color: 'border-amber-500/20'
   }
 ];

@@ -163,6 +163,21 @@ const ServicesPage = () => {
         "Market Analysis",
         "Leadership Advisory"
       ]
+    },
+    {
+      id: 11,
+      title: "Business Analytics & Data Intelligence",
+      description: "Harnessing the power of data to reveal insights, predict trends, and drive strategic business growth through advanced analytics.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+      gradient: "from-blue-700/20 to-teal-600/20",
+      subServices: [
+        "Power BI Implementation",
+        "Custom Dashboards & Visualization",
+        "Predictive Data Modeling",
+        "Business Intelligence Strategy",
+        "Data Warehouse Solutions",
+        "Automated Reporting Systems"
+      ]
     }
   ];
 
@@ -176,7 +191,8 @@ const ServicesPage = () => {
     { id: 7, name: 'Performance & SEO' },
     { id: 8, name: 'Tech Consulting' },
     { id: 9, name: 'Social Media' },
-    { id: 10, name: 'Business Strategy' }
+    { id: 10, name: 'Business Strategy' },
+    { id: 11, name: 'Business Analytics' }
   ];
 
   const caseStudies = [
@@ -369,7 +385,7 @@ const ServicesPage = () => {
           {/* Large number display */}
           <div className="hero-title mb-6 sm:mb-8">
             <div className="text-[8rem] sm:text-[12rem] lg:text-[16rem] font-black leading-none tracking-tighter text-black opacity-10 select-none">
-              10+
+              11+
             </div>
             <div className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-black -mt-10 sm:-mt-16 lg:-mt-24">
               Services
@@ -432,7 +448,7 @@ const ServicesPage = () => {
                 <div className="w-full lg:w-1/2 group">
                   <div className="relative h-[300px] sm:h-[400px] lg:h-[550px] overflow-hidden rounded-xl shadow-2xl">
                     {/* Gradient overlay */}
-                    <div className={`image-overlay absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-30 mix-blend-multiply z-10 transition-opacity duration-700 group-hover:opacity-15`}></div>
+                    <div className={`image-overlay absolute inset-0 bg-linear-to-br ${service.gradient} opacity-30 mix-blend-multiply z-10 transition-opacity duration-700 group-hover:opacity-15`}></div>
                     
                     {/* Image */}
                     <img
@@ -518,7 +534,7 @@ const ServicesPage = () => {
             {/* Step 1 */}
             <div className="group relative">
               <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <span className="text-2xl sm:text-3xl font-black">1</span>
                   </div>
@@ -537,7 +553,7 @@ const ServicesPage = () => {
             {/* Step 2 */}
             <div className="group relative">
               <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <span className="text-2xl sm:text-3xl font-black">2</span>
                   </div>
@@ -556,7 +572,7 @@ const ServicesPage = () => {
             {/* Step 3 */}
             <div className="group relative">
               <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <span className="text-2xl sm:text-3xl font-black">3</span>
                   </div>
@@ -575,7 +591,7 @@ const ServicesPage = () => {
             {/* Step 4 */}
             <div className="group relative">
               <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <span className="text-2xl sm:text-3xl font-black">4</span>
                   </div>

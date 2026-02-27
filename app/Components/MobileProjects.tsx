@@ -52,7 +52,7 @@ const projects: Project[] = [
     id: 6,
     title: 'Vevsa',
     category: 'B2B Marketing',
-    image: '/images/projects/vevsa-preview.jpg',
+    image: 'https://res.cloudinary.com/din6jl7de/image/upload/v1771059401/Screenshot_2026-02-14_141726_arqata.png',
     slug: 'vevsa'
   },
   {

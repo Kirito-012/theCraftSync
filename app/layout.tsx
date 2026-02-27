@@ -6,11 +6,17 @@ import AppWrapper from './Components/AppWrapper';
 
 export const metadata: Metadata = {
 	metadataBase: new URL('https://www.thecraftsync.com'),
-	title: 'TheCraftSync',
-	description: 'Digital Agency for all your crafting needs.Make your ideas come to life with our expert crafting services.',
+	title: {
+		default: 'TheCraftSync | Custom Software, AI & Digital Product Development',
+		template: '%s | TheCraftSync',
+	},
+	description: 'TheCraftSync is a premier digital agency specializing in custom software development, AI solutions, operational automation, and scalable enterprise platforms. We build digital experiences that matter.',
+	keywords: ['custom software development', 'AI solutions', 'digital agency', 'enterprise software', 'machine learning', 'app development', 'startup MVP', 'tech consulting', 'TheCraftSync'],
+	authors: [{ name: 'TheCraftSync' }],
+	creator: 'TheCraftSync',
 	openGraph: {
-		title: 'TheCraftSync | Digital Agency',
-		description: 'Digital Agency for all your crafting needs. Make your ideas come to life with our expert crafting services.',
+		title: 'TheCraftSync | Custom Software, AI & Digital Product Development',
+		description: 'TheCraftSync is a premier digital agency specializing in custom software development, AI solutions, operational automation, and scalable enterprise platforms.',
 		url: 'https://www.thecraftsync.com',
 		siteName: 'TheCraftSync',
 		images: [
@@ -26,8 +32,8 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'TheCraftSync | Digital Agency',
-		description: 'Digital Agency for all your crafting needs. Make your ideas come to life with our expert crafting services.',
+		title: 'TheCraftSync | Custom Software, AI & Digital Product Development',
+		description: 'TheCraftSync is a premier digital agency specializing in custom software development, AI solutions, operational automation, and scalable enterprise platforms.',
 		images: ['/og-image.jpg'],
 	},
 }

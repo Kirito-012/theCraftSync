@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Code, Megaphone, TrendingUp, MapPin, Bot, Zap, Plug, Sparkles } from 'lucide-react';
+import { Code, Megaphone, TrendingUp, MapPin, Bot, Plug, Sparkles, BarChart3, Monitor } from 'lucide-react';
 
 export interface Service {
   id: number;
@@ -12,15 +12,23 @@ export interface Service {
 }
 
 export const servicesData: Service[] = [
-     {
+  {
     id: 1,
-    name: 'Custom Web & App Development',
+    name: 'AI Development & Automation',
     shortName: 'AI Development',
-    description: 'Crafting bespoke digital solutions tailored to your unique business needs.',
-    icon: <Code className="w-full h-full" />,
+    description: 'End-to-end AI solutions — from custom chatbots and intelligent automation to generative AI integration for your business.',
+    icon: <Bot className="w-full h-full" />,
+    details: ['Custom Chatbots', 'Workflow Automation', 'Natural Language Processing', 'AI-Powered Solutions']
+  },
+  {
+    id: 10,
+    name: 'Web & Mobile Development',
+    shortName: 'Development',
+    description: 'Crafting bespoke web and mobile applications tailored to your unique business needs with scalable architecture.',
+    icon: <Monitor className="w-full h-full" />,
     details: ['React & Next.js', 'Mobile Apps', 'Custom Solutions', 'Scalable Architecture']
   },
-    {
+  {
     id: 8,
     name: 'Generative AI Consulting',
     shortName: 'Consulting',
@@ -28,24 +36,6 @@ export const servicesData: Service[] = [
     icon: <Sparkles className="w-full h-full" />,
     details: ['AI Strategy', 'Implementation', 'Training & Support', 'Future-proofing']
   },
-       {
-    id: 6,
-    name: 'System Automation',
-    shortName: 'Automation',
-    description: 'Streamline operations and eliminate repetitive tasks with smart automation solutions.',
-    icon: <Zap className="w-full h-full" />,
-    details: ['Workflow Automation', 'Process Optimization', 'Integration', 'Efficiency Boost']
-  },
-      {
-    id: 5,
-    name: 'AI Implementation & Chatbots',
-    shortName: 'Chatbots',
-    description: 'Intelligent conversational AI that engages customers 24/7 with human-like interactions.',
-    icon: <Bot className="w-full h-full" />,
-    details: ['Custom Chatbots', 'Natural Language', 'Multi-platform', 'Learning Systems']
-  },
- 
-
   {
     id: 2,
     name: 'Social Media Management',
@@ -68,10 +58,8 @@ export const servicesData: Service[] = [
     shortName: 'SEO',
     description: 'Dominate local search results and improve your online visibility organically.',
     icon: <MapPin className="w-full h-full" />,
-    details: ['Local SEO', 'Google My Business', 'Keyword Research', 'Technical SEO']
+    details: ['Local SEO', 'Google My Business', 'Keyword Research', 'Answer Engine Optimization(AEO)']
   },
-
-
   {
     id: 7,
     name: 'API Integration',
@@ -80,5 +68,12 @@ export const servicesData: Service[] = [
     icon: <Plug className="w-full h-full" />,
     details: ['Custom APIs', 'Third-party Integration', 'Data Sync', 'Secure Connections']
   },
-
+  {
+    id: 9,
+    name: 'Business Analytics',
+    shortName: 'Business Analytics',
+    description: 'Transforming raw data into actionable insights with professional visualization and reporting.',
+    icon: <BarChart3 className="w-full h-full" />,
+    details: ['Power BI', 'Data Visualization', 'Performance Tracking', 'Strategic Reporting']
+  },
 ];

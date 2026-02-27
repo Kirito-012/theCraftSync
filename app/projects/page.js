@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { gsap } from 'gsap';
@@ -101,7 +101,6 @@ export default function ProjectsPage() {
   const [activeProject, setActiveProject] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
   
-  const bgRef = useRef(null);
   const contentRef = useRef(null);
   const previewRef = useRef(null);
   const titleRef = useRef(null);
@@ -116,174 +115,75 @@ export default function ProjectsPage() {
     });
   }, []);
 
-  // Professional GSAP animations with proper timelines
   const animateLayout = (layout) => {
-    // Kill any existing animations
     const refs = [contentRef.current, previewRef.current, titleRef.current, typeRef.current, descRef.current];
-    gsap.killTweensOf(refs);
-    
-    // Reset all elements to visible state immediately (only if they exist)
     const validRefs = refs.filter(ref => ref !== null);
-    if (validRefs.length > 0) {
-      gsap.set(validRefs, {
-        clearProps: 'all'
-      });
-    }
     
+    if (validRefs.length === 0) return;
+
+    // Set initial hidden state
+    gsap.set(validRefs, { opacity: 0, visibility: 'visible' });
+
     const tl = gsap.timeline({
       defaults: {
-        ease: 'power2.out',
+        ease: 'power3.out',
         duration: 0.6,
-        force3D: true  // GPU acceleration
       },
-      onComplete: () => {
-        // Ensure everything is visible after animation (only if refs still exist)
-        const currentRefs = [contentRef.current, previewRef.current, titleRef.current, typeRef.current, descRef.current].filter(ref => ref !== null);
-        if (currentRefs.length > 0) {
-          gsap.set(currentRefs, {
-            clearProps: 'transform,opacity'
-          });
-        }
-      }
     });
 
     switch(layout) {
       case 'layout1':
-        // Fade in from bottom (ParadiseBliss style)
-        tl.from(typeRef.current, {
-          opacity: 0,
-          y: 30,
-          duration: 0.6
-        })
-        .from(contentRef.current, {
-          clipPath: 'inset(100% 0% 0% 0%)',
-          duration: 1,
-          ease: 'power2.out'
-        }, '-=0.3')
-        .from(previewRef.current, {
-          opacity: 0,
-          scale: 0.98,
-          duration: 0.8
-        }, '-=0.7');
+        tl.fromTo(typeRef.current, { opacity: 0, x: -30 }, { opacity: 1, x: 0 })
+          .fromTo(previewRef.current, { opacity: 0, y: 50 }, { opacity: 1, y: 0 }, '-=0.4')
+          .fromTo(contentRef.current, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1 }, '-=0.4');
         break;
 
       case 'layout2':
-        // Fade in from left
-        tl.from(typeRef.current, {
-          opacity: 0,
-          x: -30,
-          duration: 0.6
-        })
-        .from(contentRef.current, {
-          opacity: 0,
-          x: -50,
-          duration: 0.8
-        }, '-=0.3')
-        .from(previewRef.current, {
-          clipPath: 'inset(0% 0% 0% 100%)',
-          duration: 1,
-          ease: 'power2.out'
-        }, '-=0.5')
-        .from(descRef.current, {
-          opacity: 0,
-          y: 30,
-          duration: 0.7
-        }, '-=0.6');
+        tl.fromTo(previewRef.current, { opacity: 0, x: 50 }, { opacity: 1, x: 0 })
+          .fromTo(typeRef.current, { opacity: 0, y: -30 }, { opacity: 1, y: 0 }, '-=0.4')
+          .fromTo(contentRef.current, { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1 }, '-=0.5');
         break;
 
       case 'layout3':
-        // Fade in from top and bottom - reveal image from bottom to top
-        tl.from(typeRef.current, {
-          opacity: 0,
-          y: -30,
-          duration: 0.6
-        })
-        .from(contentRef.current, {
-          opacity: 0,
-          y: 50,
-          duration: 0.8
-        }, '-=0.3')
-        .from(previewRef.current, {
-          clipPath: 'inset(100% 0% 0% 0%)',
-          duration: 1,
-          ease: 'power2.out'
-        }, '-=0.6');
+        tl.fromTo(typeRef.current, { opacity: 0, y: -30 }, { opacity: 1, y: 0 })
+          .fromTo(previewRef.current, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.4')
+          .fromTo(contentRef.current, { opacity: 0, y: 50 }, { opacity: 1, y: 0 }, '-=0.5');
         break;
 
       case 'layout4':
-        // Fade in from right - reveal image from right to left
-        tl.from(typeRef.current, {
-          opacity: 0,
-          x: 30,
-          duration: 0.6
-        })
-        .from(contentRef.current, {
-          clipPath: 'inset(100% 0% 0% 0%)',
-          duration: 1,
-          ease: 'power2.out'
-        }, '-=0.3')
-        .from(previewRef.current, {
-          opacity: 0,
-          x: -50,
-          duration: 0.9
-        }, '-=0.5');
+        tl.fromTo(contentRef.current, { opacity: 0, y: 100 }, { opacity: 1, y: 0, duration: 0.8 })
+          .fromTo(typeRef.current, { opacity: 0, x: -50 }, { opacity: 1, x: 0 }, '-=0.5')
+          .fromTo(previewRef.current, { opacity: 0, x: 50 }, { opacity: 1, x: 0 }, '-=0.5');
         break;
 
       default:
-        // Default fade in
-        tl.from([typeRef.current, contentRef.current, previewRef.current], {
-          opacity: 0,
-          y: 30,
-          stagger: 0.15,
-          duration: 0.8
-        });
+        tl.fromTo(validRefs, { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.1 });
     }
-
-    return tl;
   };
 
   const handleProjectHover = (project) => {
+    if (activeProject?.id === project.id) return;
     setActiveProject(project);
     setIsHovering(true);
-    
-    // Optimized background change - direct transition without nested animations
-    if (bgRef.current) {
-      bgRef.current.style.backgroundImage = `url(${project.bgImage})`;
-      gsap.to(bgRef.current, { 
-        opacity: 1, 
-        duration: 0.4,
-        ease: 'power2.out'
-      });
-    }
   };
 
   const handleMouseLeave = () => {
     setIsHovering(false);
     setActiveProject(null);
-    
-    // Optimized background reset
-    if (bgRef.current) {
-      gsap.to(bgRef.current, { 
-        opacity: 0, 
-        duration: 0.3,
-        ease: 'power2.in'
-      });
-    }
   };
 
-  useEffect(() => {
-    if (isHovering && activeProject && contentRef.current && previewRef.current) {
-      // Trigger animation based on layout
-      animateLayout(activeProject.layout);
+  useLayoutEffect(() => {
+    if (isHovering && activeProject) {
+      const ctx = gsap.context(() => {
+        animateLayout(activeProject.layout);
+      });
+      return () => ctx.revert();
     }
   }, [activeProject, isHovering]);
 
-  // Set default background on mount
+  // Set default state on mount if needed
   useEffect(() => {
-    if (bgRef.current) {
-      // Set default image background (will be hidden when video is shown)
-      bgRef.current.style.backgroundImage = `url(/images/projects/default-bg.jpg)`;
-    }
+    // Analytics or other side effects can go here
   }, []);
 
   // Render different layouts based on project
@@ -291,27 +191,26 @@ export default function ProjectsPage() {
     if (!activeProject) return null;
 
     const layouts = {
-      // Layout 1: Image left, title right, description top-left (Upwork style)
       layout1: (
-        <div className="relative w-full h-full">
-          <div ref={typeRef} className="absolute top-16 left-0 max-w-md">
-            <p className="project-description font-descriptive text-sm leading-relaxed text-white/90 mb-8">
+        <div className="w-full h-full relative">
+          <div ref={typeRef} className="absolute top-16 right-[500px] max-w-md pr-12 text-right">
+            <p className="project-description font-descriptive text-sm leading-relaxed text-white/90">
               {activeProject.description}
             </p>
           </div>
           
-          <div ref={contentRef} className="absolute bottom-32 left-0">
+          <div ref={contentRef} className="absolute bottom-16 right-0">
             <div className="project-image-container relative rounded-2xl w-[500px] h-[400px] overflow-hidden flex items-center justify-center">
               <Image 
                 src={activeProject.previewImage} 
                 alt={`${activeProject.name} preview`}
                 fill
-                className="object-contain rounded-lg"
+                className="object-contain p-4"
               />
             </div>
           </div>
           
-          <div ref={previewRef} className="absolute right-16 top-1/2 -translate-y-1/2">
+          <div ref={previewRef} className="absolute top-1/2 -translate-y-1/2 right-[520px] text-right">
             <h1 className="project-title font-heading text-8xl font-black tracking-tight leading-none text-white mb-4">
               {activeProject.name.split('\n').map((line, i) => (
                 <div key={i}>{line}</div>
@@ -324,16 +223,15 @@ export default function ProjectsPage() {
         </div>
       ),
 
-      // Layout 2: Title center-left, image top-right, description bottom-right (Uber style)
       layout2: (
-        <div className="relative w-full h-full">
-          <div ref={typeRef} className="absolute top-16 left-0">
+        <div className="w-full h-full relative">
+          <div ref={typeRef} className="absolute top-16 right-0 text-right">
             <p className="project-description font-descriptive text-sm text-white/90">
               {activeProject.type}
             </p>
           </div>
           
-          <div ref={contentRef} className="absolute top-1/2 -translate-y-1/2 left-0">
+          <div ref={contentRef} className="absolute top-1/2 -translate-y-1/2 right-[450px] pr-12 text-right">
             <h1 className="project-title-large font-heading text-9xl font-black tracking-tight leading-none text-white">
               {activeProject.name.split('\n').map((line, i) => (
                 <div key={i}>{line}</div>
@@ -341,18 +239,18 @@ export default function ProjectsPage() {
             </h1>
           </div>
           
-          <div ref={previewRef} className="absolute top-16 right-16">
+          <div ref={previewRef} className="absolute top-1/2 -translate-y-1/2 right-0">
             <div className="project-image-container-large relative rounded-2xl w-[450px] h-[350px] overflow-hidden flex items-center justify-center">
               <Image 
                 src={activeProject.previewImage} 
                 alt={`${activeProject.name} preview`}
                 fill
-                className="object-contain rounded-lg"
+                className="object-contain p-2"
               />
             </div>
           </div>
           
-          <div ref={descRef} className="absolute bottom-16 right-16 max-w-md">
+          <div ref={descRef} className="absolute bottom-16 right-0 max-w-md text-right">
             <p className="project-description font-descriptive text-sm leading-relaxed text-white/90">
               {activeProject.description}
             </p>
@@ -360,16 +258,15 @@ export default function ProjectsPage() {
         </div>
       ),
 
-      // Layout 3: Title bottom-left, image bottom-right, description top-center (The Atlantic style)
       layout3: (
-        <div className="relative w-full h-full">
-          <div ref={typeRef} className="absolute top-16 left-1/2 -translate-x-1/2 max-w-md text-center">
+        <div className="w-full h-full relative">
+          <div ref={typeRef} className="absolute top-16 right-0 max-w-md text-right">
             <p className="project-description font-descriptive text-sm leading-relaxed text-white/90">
               {activeProject.description}
             </p>
           </div>
           
-          <div ref={contentRef} className="absolute bottom-32 left-16">
+          <div ref={contentRef} className="absolute bottom-16 right-[520px] text-right">
             <h1 className="project-title font-heading text-8xl font-black tracking-tight leading-none text-white mb-4">
               {activeProject.name.split('\n').map((line, i) => (
                 <div key={i}>{line}</div>
@@ -380,40 +277,39 @@ export default function ProjectsPage() {
             </p>
           </div>
           
-          <div ref={previewRef} className="absolute bottom-32 right-16">
+          <div ref={previewRef} className="absolute bottom-16 right-0">
             <div className="project-image-container relative rounded-2xl w-[500px] h-[400px] overflow-hidden flex items-center justify-center">
               <Image 
                 src={activeProject.previewImage} 
                 alt={`${activeProject.name} preview`}
                 fill
-                className="object-contain rounded-lg"
+                className="object-contain p-4"
               />
             </div>
           </div>
         </div>
       ),
 
-      // Layout 4: Image bottom-left, title right, description top-left (Ro style)
       layout4: (
-        <div className="relative w-full h-full">
-          <div ref={typeRef} className="absolute top-16 left-16 max-w-md">
+        <div className="w-full h-full relative">
+          <div ref={typeRef} className="absolute top-16 right-0 max-w-md text-right">
             <p className="project-description font-descriptive text-sm leading-relaxed text-white/90">
               {activeProject.description}
             </p>
           </div>
           
-          <div ref={contentRef} className="absolute bottom-32 left-16">
+          <div ref={contentRef} className="absolute bottom-16 right-[450px] pr-12 text-right">
             <div className="project-image-container-large relative rounded-2xl w-[450px] h-[350px] overflow-hidden flex items-center justify-center">
               <Image 
                 src={activeProject.previewImage} 
                 alt={`${activeProject.name} preview`}
                 fill
-                className="object-contain rounded-lg"
+                className="object-contain p-4"
               />
             </div>
           </div>
           
-          <div ref={previewRef} className="absolute right-16 bottom-32">
+          <div ref={previewRef} className="absolute right-0 bottom-16 text-right">
             <h1 className="project-title font-heading text-8xl font-black tracking-tight leading-none text-white mb-4">
               {activeProject.name.split('\n').map((line, i) => (
                 <div key={i}>{line}</div>
@@ -440,63 +336,77 @@ export default function ProjectsPage() {
       {/* Desktop Layout (Hidden on mobile) */}
       <div className="hidden lg:flex relative min-h-screen w-full overflow-hidden">
         {/* Dynamic Background */}
-        <div className="fixed top-0 left-0 w-full h-full z-0">
+        <div className="fixed top-0 left-0 w-full h-full z-0 overflow-hidden bg-black">
           {/* Video Background - Shows when not hovering */}
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500"
-            style={{ opacity: isHovering ? 0 : 1 }}
+            className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out"
+            style={{ 
+              opacity: isHovering ? 0.3 : 1,
+              filter: isHovering ? 'blur(10px) grayscale(50%)' : 'none',
+              transition: 'opacity 0.8s ease-in-out, filter 0.8s ease-in-out'
+            }}
           >
             <source src="https://res.cloudinary.com/din6jl7de/video/upload/f_auto,q_auto,vc_auto/v1768689496/videobg_xie9iq.mp4" type="video/mp4" />
-            {/* Fallback to image if video doesn't load */}
           </video>
           
-          {/* Image Background - Shows when hovering over projects */}
-          <div 
-            ref={bgRef}
-            className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-500"
-            style={{ opacity: isHovering ? 1 : 0 }}
-          />
-          <div className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-black/70 via-black/40 to-black/20" />
+          {/* Multi-div Background Stack for Butter-Smooth Cross-fading */}
+          {projectsData.map((project) => (
+            <div 
+              key={project.id}
+              className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat will-change-[opacity,transform]"
+              style={{ 
+                backgroundImage: `url(${project.bgImage})`,
+                opacity: activeProject?.id === project.id ? 1 : 0,
+                transform: activeProject?.id === project.id ? 'scale(1)' : 'scale(1.05)',
+                transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                zIndex: activeProject?.id === project.id ? 5 : 1
+              }}
+            />
+          ))}
+          
+          {/* Consistent Overlay */}
+          <div className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-black/80 via-black/40 to-black/20 z-10" />
         </div>
 
-        {/* Floating Navigation Buttons */}
         <nav 
-          className="sticky left-8  -translate-y-1 z-10 flex flex-col gap-3 h-fit self-center"
+          className="sticky left-0 top-0 h-screen w-[400px] z-30 flex flex-col items-start justify-center pl-12 gap-4 pointer-events-none"
           onMouseLeave={handleMouseLeave}
         >
+          <div className="pointer-events-auto flex flex-col gap-4">
 
           {projectsData.map((project) => (
             <Link
               key={project.id}
               href={`/case-study/${project.slug}`}
               className={`
-                font-heading text-base font-medium px-6 py-3 rounded-full
-                bg-white/10 backdrop-blur-md border border-white/20
-                transition-all duration-300 relative overflow-hidden
-                hover:bg-white/20 hover:scale-105 hover:shadow-lg hover:shadow-white/10
+                font-heading text-sm font-bold px-8 py-4 rounded-full w-64
+                bg-white/5 backdrop-blur-sm border border-white/10
+                transition-all duration-400 relative overflow-hidden
+                hover:bg-white/10 hover:border-white/30
                 ${activeProject?.id === project.id 
-                  ? 'bg-white/20 scale-105 shadow-lg shadow-white/10' 
-                  : 'text-white/80'
+                  ? 'bg-white/20 border-white/50 shadow-[0_0_20px_rgba(255,255,255,0.1)]' 
+                  : 'text-white/60'
                 }
-                text-white
+                text-white group
               `}
               onMouseEnter={() => handleProjectHover(project)}
             >
               {project.name.replace('\n', ' ')}
             </Link>
           ))}
+          </div>
         </nav>
 
         {/* Main Content Area */}
-        <main className="relative z-5 flex-1 flex items-center justify-center p-16">
-          <div className="w-full h-full relative">
+        <main className="relative z-5 flex-1 flex flex-col items-center justify-center pl-[400px] pr-20 py-20 min-h-screen">
+          <div className="w-full max-w-7xl relative flex items-center justify-center min-h-[70vh]">
             {/* Default Content - Only show when NOT hovering */}
             {!isHovering && (
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white opacity-80">
+              <div className="text-center text-white opacity-80">
                 <h1 className="font-heading text-8xl font-black mb-4 tracking-tight leading-none">
                   Our Work
                 </h1>
@@ -507,7 +417,11 @@ export default function ProjectsPage() {
             )}
             
             {/* Project Content - Only show when hovering */}
-            {isHovering && activeProject && renderProjectLayout()}
+            {isHovering && activeProject && (
+              <div key={activeProject.id} className="w-full h-full flex items-center justify-center">
+                {renderProjectLayout()}
+              </div>
+            )}
           </div>
         </main>
       </div>

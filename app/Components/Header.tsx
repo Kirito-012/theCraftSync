@@ -66,7 +66,6 @@ export default function Navbar() {
 	useEffect(() => {
 		if (!isLoading) {
 			const ctx = gsap.context(() => {
-				gsap.set(navRef.current, { xPercent: -50, left: '50%' }); // Ensure initial state
 				gsap.fromTo(navRef.current,
 					{ 
 						y: -100, 
@@ -94,8 +93,6 @@ export default function Navbar() {
 			const ctx = gsap.context(() => {
 				gsap.to(navRef.current, {
 					y: isVisible ? 0 : -150,
-					xPercent: -50, // Always enforce centering
-					left: '50%',
 					duration: 0.6,
 					ease: 'power3.out',
 					overwrite: 'auto'
@@ -108,8 +105,8 @@ export default function Navbar() {
 	return (
 		<nav
 			ref={navRef}
-			className="fixed top-3 left-1/2 z-50 w-[95%] md:w-[80%] max-w-4xl"
-			style={{ opacity: 0, transform: 'translate(-50%, -100px)' }} // Initial state to prevent FOUC
+			className="fixed top-3 left-0 right-0 mx-auto z-9999 w-[95%] md:w-[80%] max-w-4xl"
+			style={{ opacity: 0, transform: 'translateY(-100px)' }} // Initial state to prevent FOUC
 		>
 			<div
 				className={`bg-black/90 px-6 backdrop-blur-xl shadow-2xl border border-white/10 transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] overflow-hidden flex flex-col ${

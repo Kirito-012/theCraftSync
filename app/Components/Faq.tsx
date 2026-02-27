@@ -118,7 +118,7 @@ export default function FAQSection() {
             scrollTrigger: {
               trigger: headingRef.current,
               start: 'top 80%',
-              toggleActions: 'play none none reverse',
+              once: true,
             },
           }
         );
@@ -146,7 +146,7 @@ export default function FAQSection() {
               scrollTrigger: {
                 trigger: container,
                 start: 'top 75%',
-                toggleActions: 'play none none reverse',
+                once: true,
               },
             }
           );
@@ -168,7 +168,7 @@ export default function FAQSection() {
             scrollTrigger: {
               trigger: container,
               start: 'top 75%',
-              toggleActions: 'play none none reverse',
+              once: true,
             },
           }
         );
@@ -198,13 +198,13 @@ export default function FAQSection() {
     <section
       style={{
         backgroundColor: '#000000',
-        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
-        padding: '5rem 5%',
+        padding: '4rem 5%',
         fontFamily: "'Montreal', sans-serif",
         boxSizing: 'border-box'
       }}
+      className="py-16 md:py-24"
     >
       {/* JSON-LD Schema */}
       <script

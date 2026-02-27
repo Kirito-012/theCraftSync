@@ -58,7 +58,7 @@ const Clients = () => {
           scrollTrigger: {
             trigger: titleRef.current,
             start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            once: true,
           },
         }
       );
@@ -84,7 +84,7 @@ const Clients = () => {
           scrollTrigger: {
             trigger: gridRef.current,
             start: 'top 75%',
-            toggleActions: 'play none none reverse',
+            once: true,
           },
         }
       );
@@ -92,7 +92,7 @@ const Clients = () => {
   }, []);
 
   return (
-    <section className="bg-black text-white py-20 px-5 min-h-screen flex items-center justify-center md:py-20 sm:py-10">
+    <section className="bg-black text-white py-16 md:py-24 px-5 flex items-center justify-center">
       <div className="max-w-7xl w-full mx-auto">
         {/* Title */}
         <h2 ref={titleRef} className="text-center mb-20 font-light leading-tight md:mb-16 sm:mb-10">
@@ -109,11 +109,7 @@ const Clients = () => {
           {logos.map((logo, index) => (
             <div
               key={index}
-              className={`logo-item flex items-center justify-center transition-all duration-300 ease-in-out ${
-                index === 2 
-                  ? 'w-1/2 md:w-1/4 max-w-[120px] md:max-w-[150px] lg:max-w-[180px] h-16 md:h-20 lg:h-24 p-3 md:p-4' 
-                  : 'w-1/2 md:w-1/4 max-w-[200px] md:max-w-[280px] lg:max-w-[350px] h-24 md:h-32 lg:h-40 p-4 md:p-6'
-              }`}
+              className="logo-item flex items-center justify-center transition-all duration-300 ease-in-out w-1/2 md:w-1/4 max-w-[200px] md:max-w-[280px] lg:max-w-[350px] h-24 md:h-32 lg:h-40 p-4 md:p-6"
             >
               <Image
                 src={logo.src}
