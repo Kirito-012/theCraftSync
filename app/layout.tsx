@@ -14,6 +14,11 @@ export const metadata: Metadata = {
 	keywords: ['custom software development', 'AI solutions', 'digital agency', 'enterprise software', 'machine learning', 'app development', 'startup MVP', 'tech consulting', 'TheCraftSync'],
 	authors: [{ name: 'TheCraftSync' }],
 	creator: 'TheCraftSync',
+	icons: {
+    icon: '/tcslogo.png',
+    shortcut: '/tcslogo.png',
+    apple: '/tcslogo.png',
+  },
 	openGraph: {
 		title: 'TheCraftSync | Custom Software, AI & Digital Product Development',
 		description: 'TheCraftSync is a premier digital agency specializing in custom software development, AI solutions, operational automation, and scalable enterprise platforms.',
@@ -48,6 +53,7 @@ export default function RootLayout({
 			<body className='antialiased'>
 				<LoadingProvider>
 					<AppWrapper>
+	           
 						<SmoothScroll>{children}</SmoothScroll>
 					</AppWrapper>
 				</LoadingProvider>
