@@ -109,11 +109,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
       />
 
       {/* Content Container */}
-      <div className="relative z-20 w-full min-h-screen flex items-center justify-center md:justify-start px-6 md:px-16 lg:px-24">
+      <div className="relative z-20 w-full min-h-screen flex items-center justify-center md:justify-start mt-4 px-6 md:px-16 lg:px-24">
         <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-4xl py-20 md:py-0">
           <h1 
             ref={headingRef}
-            className="text-5xl md:text-7xl lg:text-[7.5rem] xl:text-[7.6rem] font-light text-white leading-[1.1] tracking-tight mb-8"
+            className="text-5xl md:text-7xl lg:text-[7.5rem] xl:text-[7.6rem] font-light text-white leading-[1.1] tracking-tight mb-6"
           >
             <div className="overflow-hidden">
               <span className="inline-block">Building</span>
