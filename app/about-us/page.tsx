@@ -5,6 +5,7 @@ import WhoWeAre from './WhoWeAre'
 import OurTeam from './OurTeam'
 import HowWeWork from './HowWeWork'
 import AboutUsCTA from './AboutUsCTA'
+import AtAGlance from './AtAGlance'
 
 export const metadata: Metadata = {
 	title: 'About Us | TheCraftSync - Custom Software & AI Development',
@@ -48,8 +49,8 @@ export default function AboutPage() {
 			/>
 			<HeroSection />
 			<WhoWeAre />
+      <AtAGlance />
 			{/* <HowWeWork /> */}
-			<OurTeam />
 			<AboutUsCTA />
 		</div>
 	)

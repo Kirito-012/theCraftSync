@@ -57,11 +57,12 @@ export default function RootLayout({
 		"name": "TheCraftSync",
 		"url": "https://www.thecraftsync.com",
 		"logo": "https://www.thecraftsync.com/tcslogo.png",
+		"foundingDate": "2022",
 		"sameAs": [
-			"https://www.linkedin.com/company/thecraftsync",
-			"https://twitter.com/thecraftsync"
+			"https://www.linkedin.com/company/the-craftsync/",
+			"https://www.instagram.com/thecraftsync?igsh=MTE3c2ozdzJyMmpqYQ=="
 		],
-		"description": "TheCraftSync is a premier digital agency specializing in custom software development, AI solutions, and scalable enterprise platforms."
+		"description": "TheCraftSync is a premier technology studio specializing in custom software development, AI automation, and enterprise digital solutions."
 	};
 
 	const websiteSchema = {

@@ -77,7 +77,7 @@ export const projectsData: Project[] = [
     shortDescription: "AI-powered healthcare operations platform automating hospital claim documentation and patient records. WhatsApp-like chat eliminates manual file processing.",
     tags: ["Healthcare", "AI", "Automation"],
     image: "https://res.cloudinary.com/din6jl7de/image/upload/v1768691736/img_d1jg96.jpg",
-    year: "2024",
+    year: "2025",
     overview: "An AI-powered healthcare operations platform that automates hospital claim documentation and patient record management for India's healthcare sector. Using a WhatsApp-like chat interface, the system eliminates manual file processing through intelligent document classification and organization—deployable without replacing existing hospital software.",
     caseStudyTitle: "AI-Powered Healthcare Automation: Zero-Touch Claims & Patient Record Management",
     whatWeBuilt: [

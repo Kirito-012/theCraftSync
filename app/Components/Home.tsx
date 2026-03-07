@@ -110,7 +110,7 @@ const HeroSection: React.FC = () => {
               />
               <text className="text-[14px] uppercase font-bold tracking-[0.15em]" fill="currentColor">
                 <textPath xlinkHref="#curve">
-                  • EST • 2024 • AGENCY • CREATIVE
+                  • EST • 2022 • AGENCY • CREATIVE
                 </textPath>
               </text>
             </svg>

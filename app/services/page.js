@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
+import Image from 'next/image';
 import Footer from '../Components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -442,7 +443,7 @@ const ServicesPage = () => {
       <section className="services-grid-section py-12 sm:py-20 px-4 sm:px-6 lg:px-20 bg-white">
         <div className="max-w-7xl mx-auto space-y-24 sm:space-y-40">
           {displayedServices.map((service, index) => (
-            <div key={service.id} className="service-card relative">
+            <div key={service.id} id={`service-${service.id}`} className="service-card relative scroll-mt-32">
               <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 sm:gap-12 items-center relative z-10`}>
                 {/* Image Section */}
                 <div className="w-full lg:w-1/2 group">
@@ -451,10 +452,11 @@ const ServicesPage = () => {
                     <div className={`image-overlay absolute inset-0 bg-linear-to-br ${service.gradient} opacity-30 mix-blend-multiply z-10 transition-opacity duration-700 group-hover:opacity-15`}></div>
                     
                     {/* Image */}
-                    <img
+                    <Image
                       src={service.image}
                       alt={service.title}
-                      className="service-image w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                      fill
+                      className="service-image object-cover transition-all duration-700 group-hover:scale-105"
                     />
                     
                     {/* Border */}
@@ -657,10 +659,11 @@ const ServicesPage = () => {
               >
                 {/* Image Section */}
                 <div className="relative h-48 sm:h-64 overflow-hidden">
-                  <img
+                  <Image
                     src={study.image}
                     alt={study.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                 </div>
 

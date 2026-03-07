@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Linkedin, Instagram, Facebook, Send, ArrowRight, ExternalLink, X } from 'lucide-react';
+import { Linkedin, Instagram, ArrowRight, ExternalLink, X } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -39,11 +40,11 @@ export default function Footer() {
   };
 
   const services = [
-    'Custom Software Development',
-    'AI & Machine Learning Solutions',
-    'Enterprise Platforms',
-    'Business Intelligence & Analytics',
-    'Technology Consulting'
+    { name: 'Custom Software Development', href: '/services#service-2' },
+    { name: 'AI & Machine Learning Solutions', href: '/services#service-1' },
+    { name: 'Enterprise Platforms', href: '/services#service-2' },
+    { name: 'Business Intelligence & Analytics', href: '/services#service-11' },
+    { name: 'Technology Consulting', href: '/services#service-8' }
   ];
 
   const footerLinks = [
@@ -54,10 +55,8 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { name: 'LinkedIn', icon: Linkedin, href: '#' },
-    { name: 'Facebook', icon: Facebook, href: '#' },
-    { name: 'Instagram', icon: Instagram, href: '#' },
-    { name: 'Bluesky', icon: Send, href: '#' }
+    { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/company/the-craftsync/' },
+    { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/thecraftsync?igsh=MTE3c2ozdzJyMmpqYQ==' },
   ];
 
   return (
@@ -78,9 +77,11 @@ export default function Footer() {
         >
           {/* Logo */}
           <div className="flex flex-col gap-4">
-            <img 
+            <Image 
               src="/logo.png" 
               alt="TheCraftsync Logo" 
+              width={64}
+              height={64}
               className="h-16 w-16"
             />
             <div>
@@ -173,16 +174,20 @@ export default function Footer() {
             <h3 className="text-sm text-gray-500 mb-6 uppercase tracking-widest">Our Services</h3>
             <div className="flex flex-wrap gap-3">
               {services.map((service, index) => (
-                <motion.button
-                  key={service}
+                <motion.div
+                  key={service.name}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: 0.2 + index * 0.05 }}
-                  className="px-4 py-2 border border-white/10 rounded-full text-xs text-gray-400 hover:text-white hover:border-white/40 transition-all duration-300 bg-white/5"
                 >
-                  {service}
-                </motion.button>
+                  <Link
+                    href={service.href}
+                    className="inline-block px-4 py-2 border border-white/10 rounded-full text-xs text-gray-400 hover:text-white hover:border-white/40 transition-all duration-300 bg-white/5"
+                  >
+                    {service.name}
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -198,7 +203,7 @@ export default function Footer() {
             <div className="flex items-center justify-start md:justify-end h-full md:items-start lg:items-center">
               <button
                 onClick={() => setIsDialogOpen(true)}
-                className="w-full md:w-auto px-8 py-4 bg-white/5 border border-white/10 rounded-2xl text-sm text-gray-300 hover:text-white hover:border-white/30 transition-all duration-500 flex items-center justify-center gap-3 group"
+                className="w-full md:w-auto px-8 py-4 cursor-pointer bg-white/5 border border-white/10 rounded-2xl text-sm text-gray-300 hover:text-white hover:border-white/30 transition-all duration-500 flex items-center justify-center gap-3 group"
               >
                 Sign up to our newsletter
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -279,7 +284,7 @@ export default function Footer() {
                   <button
                     type="submit"
                     disabled={subscriptionStatus === 'submitting' || subscriptionStatus === 'success'}
-                    className="w-full px-6 py-3 bg-white text-black font-medium rounded-xl hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full px-6 py-3 cursor-pointer bg-white text-black font-medium rounded-xl hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {subscriptionStatus === 'submitting' ? (
                       <>

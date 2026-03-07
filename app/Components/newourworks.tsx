@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MoveRight } from 'lucide-react';
@@ -153,11 +154,12 @@ const NewOurWorks: React.FC = () => {
               {/* Middle: Project Image */}
               <div className="image-container opacity-0 w-full lg:w-[50%] aspect-video bg-zinc-50 overflow-hidden relative rounded-sm shadow-[0_20px_40px_-20px_rgba(0,0,0,0.1)] transition-all duration-700 group-hover:shadow-[0_40px_80px_-30px_rgba(0,0,0,0.2)]">
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent z-10 transition-colors duration-700" />
-                <img 
+                <Image 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)]"
-                  loading="lazy"
+                  fill
+                  className="object-cover scale-100 group-hover:scale-110 transition-transform duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
 

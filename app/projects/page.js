@@ -211,11 +211,11 @@ export default function ProjectsPage() {
           </div>
           
           <div ref={previewRef} className="absolute top-1/2 -translate-y-1/2 right-[520px] text-right">
-            <h1 className="project-title font-heading text-8xl font-black tracking-tight leading-none text-white mb-4">
+            <h2 className="project-title font-heading text-8xl font-black tracking-tight leading-none text-white mb-4">
               {activeProject.name.split('\n').map((line, i) => (
                 <div key={i}>{line}</div>
               ))}
-            </h1>
+            </h2>
             <p className="project-type font-descriptive text-base text-white/70">
               {activeProject.type}
             </p>
@@ -232,11 +232,11 @@ export default function ProjectsPage() {
           </div>
           
           <div ref={contentRef} className="absolute top-1/2 -translate-y-1/2 right-[450px] pr-12 text-right">
-            <h1 className="project-title-large font-heading text-9xl font-black tracking-tight leading-none text-white">
+            <h2 className="project-title-large font-heading text-9xl font-black tracking-tight leading-none text-white">
               {activeProject.name.split('\n').map((line, i) => (
                 <div key={i}>{line}</div>
               ))}
-            </h1>
+            </h2>
           </div>
           
           <div ref={previewRef} className="absolute top-1/2 -translate-y-1/2 right-0">
@@ -267,11 +267,11 @@ export default function ProjectsPage() {
           </div>
           
           <div ref={contentRef} className="absolute bottom-16 right-[520px] text-right">
-            <h1 className="project-title font-heading text-8xl font-black tracking-tight leading-none text-white mb-4">
+            <h2 className="project-title font-heading text-8xl font-black tracking-tight leading-none text-white mb-4">
               {activeProject.name.split('\n').map((line, i) => (
                 <div key={i}>{line}</div>
               ))}
-            </h1>
+            </h2>
             <p className="project-type font-descriptive text-base text-white/70">
               {activeProject.type}
             </p>
@@ -310,11 +310,11 @@ export default function ProjectsPage() {
           </div>
           
           <div ref={previewRef} className="absolute right-0 bottom-16 text-right">
-            <h1 className="project-title font-heading text-8xl font-black tracking-tight leading-none text-white mb-4">
+            <h2 className="project-title font-heading text-8xl font-black tracking-tight leading-none text-white mb-4">
               {activeProject.name.split('\n').map((line, i) => (
                 <div key={i}>{line}</div>
               ))}
-            </h1>
+            </h2>
             <p className="project-type font-descriptive text-base text-white/70">
               {activeProject.type}
             </p>
