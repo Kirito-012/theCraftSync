@@ -82,6 +82,7 @@ export default function HowWeWork() {
 
 	return (
 		<section
+			id='how-we-work'
 			ref={containerRef}
 			className='relative w-full h-screen overflow-hidden bg-linear-to-br from-[#0a0a0a] via-[#000000] to-[#1a1a1a]'>
 			{/* Section Title - Fixed at top with glassmorphism */}

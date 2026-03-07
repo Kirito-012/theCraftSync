@@ -3,7 +3,7 @@ import './aboutus.css'
 import HeroSection from './HeroSection'
 import WhoWeAre from './WhoWeAre'
 import OurTeam from './OurTeam'
-import HowWeWork from './HowWeWork'
+// import HowWeWork from './HowWeWork'
 import AboutUsCTA from './AboutUsCTA'
 import AtAGlance from './AtAGlance'
 
@@ -49,7 +49,8 @@ export default function AboutPage() {
 			/>
 			<HeroSection />
 			<WhoWeAre />
-      <AtAGlance />
+			<AtAGlance />
+			<OurTeam />
 			{/* <HowWeWork /> */}
 			<AboutUsCTA />
 		</div>

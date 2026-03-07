@@ -49,9 +49,9 @@ export default function Footer() {
 
   const footerLinks = [
     { name: 'Contact', href: '/contact' },
-    { name: 'FAQs', href: '/faqs' },
+    { name: 'FAQs', href: '/#faq' },
     { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'How We Work', href: '/how-we-work' }
+    { name: 'How We Work', href: '/about-us' }
   ];
 
   const socialLinks = [
@@ -222,7 +222,7 @@ export default function Footer() {
         >
           {/* Copyright */}
           <p className="text-sm text-zinc-500">
-            © {new Date().getFullYear()} TheCraftsync · Custom Solutions for Custom Visions
+            © 2022 TheCraftsync · Custom Solutions for Custom Visions
           </p>
 
           {/* Status/Badge */}

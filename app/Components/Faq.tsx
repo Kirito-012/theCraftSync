@@ -196,6 +196,7 @@ export default function FAQSection() {
 
   return (
     <section
+      id="faq"
       style={{
         backgroundColor: '#000000',
         display: 'flex',
