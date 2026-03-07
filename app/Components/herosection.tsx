@@ -85,7 +85,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
   return (
     <section 
       ref={containerRef}
-      className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black"
+      className="relative h-full w-full overflow-hidden flex items-center justify-center bg-black"
     >
       {/* Background Video */}
       <video

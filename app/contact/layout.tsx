@@ -15,6 +15,9 @@ export const metadata: Metadata = {
 		title: 'Contact TheCraftSync | Let\'s Build Your Digital Solution',
 		description: 'Get in touch with TheCraftSync for custom software development, AI solutions, or enterprise system integrations. We are ready to help your business scale.',
 	},
+	alternates: {
+		canonical: 'https://www.thecraftsync.com/contact',
+	},
 }
 
 export default function ContactLayout({

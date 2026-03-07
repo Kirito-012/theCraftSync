@@ -41,6 +41,9 @@ export const metadata: Metadata = {
 		description: 'TheCraftSync is a premier digital agency specializing in custom software development, AI solutions, operational automation, and scalable enterprise platforms.',
 		images: ['/og-image.jpg'],
 	},
+	alternates: {
+		canonical: 'https://www.thecraftsync.com',
+	},
 }
 
 export default function RootLayout({
@@ -48,12 +51,44 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	const organizationSchema = {
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "TheCraftSync",
+		"url": "https://www.thecraftsync.com",
+		"logo": "https://www.thecraftsync.com/tcslogo.png",
+		"sameAs": [
+			"https://www.linkedin.com/company/thecraftsync",
+			"https://twitter.com/thecraftsync"
+		],
+		"description": "TheCraftSync is a premier digital agency specializing in custom software development, AI solutions, and scalable enterprise platforms."
+	};
+
+	const websiteSchema = {
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"name": "TheCraftSync",
+		"url": "https://www.thecraftsync.com",
+		"potentialAction": {
+			"@type": "SearchAction",
+			"target": "https://www.thecraftsync.com/search?q={search_term_string}",
+			"query-input": "required name=search_term_string"
+		}
+	};
+
 	return (
 		<html lang='en'>
 			<body className='antialiased'>
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+				/>
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+				/>
 				<LoadingProvider>
 					<AppWrapper>
-	           
 						<SmoothScroll>{children}</SmoothScroll>
 					</AppWrapper>
 				</LoadingProvider>

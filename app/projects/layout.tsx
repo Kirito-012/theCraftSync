@@ -15,6 +15,9 @@ export const metadata: Metadata = {
 		title: 'Projects & Portfolio | TheCraftSync',
 		description: 'Explore the portfolio and case studies of TheCraftSync. Discover how we have built scalable AI and custom software solutions for startups and enterprises.',
 	},
+	alternates: {
+		canonical: 'https://www.thecraftsync.com/projects',
+	},
 }
 
 export default function ProjectsLayout({
