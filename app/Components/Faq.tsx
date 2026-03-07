@@ -74,7 +74,6 @@ export default function FAQSection() {
         height: 'auto',
         duration: 0.8,
         ease: 'power3.inOut',
-        onUpdate: () => ScrollTrigger.refresh(),
         onComplete: () => ScrollTrigger.refresh()
       });
       
@@ -88,7 +87,6 @@ export default function FAQSection() {
         height: 0,
         duration: 0.6,
         ease: 'power3.inOut',
-        onUpdate: () => ScrollTrigger.refresh(),
         onComplete: () => ScrollTrigger.refresh()
       });
     }

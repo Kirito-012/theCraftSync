@@ -25,20 +25,33 @@ export default function AboutUsCTA() {
 		return () => clearInterval(interval)
 	}, [])
 
+	const buttonRectRef = useRef<DOMRect | null>(null)
+
 	// Mouse tracking only for button hover effect
 	useEffect(() => {
-		const handleMouseMove = (e: MouseEvent) => {
-			if (!isHovering || !buttonRef.current) return
+		const updateRect = () => {
+			if (buttonRef.current) {
+				buttonRectRef.current = buttonRef.current.getBoundingClientRect()
+			}
+		}
 
-			const rect = buttonRef.current.getBoundingClientRect()
+		const handleMouseMove = (e: MouseEvent) => {
+			if (!isHovering || !buttonRectRef.current) return
+
+			const rect = buttonRectRef.current
 			const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2
 			const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2
 			setButtonMousePos({x, y})
 		}
 
 		if (isHovering) {
+			updateRect()
 			window.addEventListener('mousemove', handleMouseMove, {passive: true})
-			return () => window.removeEventListener('mousemove', handleMouseMove)
+			window.addEventListener('resize', updateRect, {passive: true})
+			return () => {
+				window.removeEventListener('mousemove', handleMouseMove)
+				window.removeEventListener('resize', updateRect)
+			}
 		}
 	}, [isHovering])
 

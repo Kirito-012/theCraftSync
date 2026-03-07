@@ -118,10 +118,13 @@ export default function OurTeam() {
 		}
 	}, [])
 
-	// Debounced scroll check for better performance
+	// Cached dimensions to avoid forced reflows
+	const dimensionsRef = useRef({ scrollWidth: 0, clientWidth: 0 })
+
 	const checkScrollPosition = () => {
 		if (carouselRef.current) {
-			const {scrollLeft, scrollWidth, clientWidth} = carouselRef.current
+			const { scrollLeft } = carouselRef.current
+			const { scrollWidth, clientWidth } = dimensionsRef.current
 			setCanScrollLeft(scrollLeft > 0)
 			setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10)
 		}
@@ -161,6 +164,19 @@ export default function OurTeam() {
 	useEffect(() => {
 		const carousel = carouselRef.current
 		if (carousel) {
+			// Initialize and update dimensions using ResizeObserver
+			// This avoids layout thrashing by reading geometric properties only when they change
+			const resizeObserver = new ResizeObserver(entries => {
+				for (const entry of entries) {
+					dimensionsRef.current = {
+						scrollWidth: carousel.scrollWidth,
+						clientWidth: carousel.clientWidth
+					}
+					checkScrollPosition()
+				}
+			})
+
+			resizeObserver.observe(carousel)
 			checkScrollPosition()
 
 			// Use passive event listeners for better scroll performance
@@ -169,11 +185,10 @@ export default function OurTeam() {
 			}
 
 			carousel.addEventListener('scroll', scrollHandler, {passive: true})
-			window.addEventListener('resize', checkScrollPosition, {passive: true})
 
 			return () => {
+				resizeObserver.disconnect()
 				carousel.removeEventListener('scroll', scrollHandler)
-				window.removeEventListener('resize', checkScrollPosition)
 			}
 		}
 	}, [])

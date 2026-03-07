@@ -11,6 +11,14 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(url, 301)
   }
 
+  // Handle legacy HTML/HTM extensions
+  const pathname = request.nextUrl.pathname
+  if (pathname.endsWith('.htm') || pathname.endsWith('.html')) {
+    const cleanPath = pathname.replace(/\/index\.html?$/, '/').replace(/\.html?$/, '')
+    url.pathname = cleanPath
+    return NextResponse.redirect(url, 301)
+  }
+
   return NextResponse.next()
 }
 

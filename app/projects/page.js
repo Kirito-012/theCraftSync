@@ -343,6 +343,7 @@ export default function ProjectsPage() {
             loop
             muted
             playsInline
+            poster="https://res.cloudinary.com/din6jl7de/video/upload/v1768689496/videobg_xie9iq.jpg"
             className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out"
             style={{ 
               opacity: isHovering ? 0.3 : 1,
@@ -425,6 +426,24 @@ export default function ProjectsPage() {
           </div>
         </main>
       </div>
+
+      {/* Video Schema for SEO/GSC */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": "TheCraftSync Projects - Our Work",
+            "description": "Explore our creative journey and the platforms we've built. Solutions that solve real problems.",
+            "thumbnailUrl": "https://res.cloudinary.com/din6jl7de/video/upload/v1768689496/videobg_xie9iq.jpg",
+            "uploadDate": "2024-03-01T08:00:00+08:00",
+            "duration": "PT0M30S",
+            "contentUrl": "https://res.cloudinary.com/din6jl7de/video/upload/f_auto,q_auto,vc_auto/v1768689496/videobg_xie9iq.mp4",
+            "embedUrl": "https://www.thecraftsync.com/projects"
+          })
+        }}
+      />
     </>
   );
 }

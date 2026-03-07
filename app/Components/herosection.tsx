@@ -85,7 +85,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
   return (
     <section 
       ref={containerRef}
-      className="relative h-full w-full overflow-hidden flex items-center justify-center bg-black"
+      className="relative min-h-screen w-full overflow-hidden flex items-center justify-center bg-black"
     >
       {/* Background Video */}
       <video
@@ -94,6 +94,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
         loop
         muted
         playsInline
+        poster="https://res.cloudinary.com/din6jl7de/video/upload/v1770281825/15149020_1920_1080_24fps_1_tuhwlw.jpg"
         className="absolute inset-0 w-full h-full object-cover opacity-40 scale-105"
       >
         <source 
@@ -108,11 +109,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
       />
 
       {/* Content Container */}
-      <div className="relative z-20 w-full h-full flex items-center justify-center md:justify-start px-6 md:px-16 lg:px-24">
-        <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-4xl pt-20">
+      <div className="relative z-20 w-full min-h-screen flex items-center justify-center md:justify-start px-6 md:px-16 lg:px-24">
+        <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-4xl py-20 md:py-0">
           <h1 
             ref={headingRef}
-            className="text-5xl md:text-7xl lg:text-[7.5rem] xl:text-[9rem] font-light text-white leading-[1.1] tracking-tight mb-8"
+            className="text-5xl md:text-7xl lg:text-[7.5rem] xl:text-[7.6rem] font-light text-white leading-[1.1] tracking-tight mb-8"
           >
             <div className="overflow-hidden">
               <span className="inline-block">Building</span>
@@ -154,6 +155,28 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
         </div>
       </div>
 
+      {/* Video Schema for SEO/GSC */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": "TheCraftSync - Building Experiences to Perform",
+            "description": "Strategic design meeting technical precision. We build digital products that resonate and scale.",
+            "thumbnailUrl": "https://res.cloudinary.com/din6jl7de/video/upload/v1770281825/15149020_1920_1080_24fps_1_tuhwlw.jpg",
+            "uploadDate": "2024-03-01T08:00:00+08:00",
+            "duration": "PT0M24S",
+            "contentUrl": "https://res.cloudinary.com/din6jl7de/video/upload/f_auto,q_auto,vc_auto/v1770281825/15149020_1920_1080_24fps_1_tuhwlw.mp4",
+            "embedUrl": "https://www.thecraftsync.com",
+            "interactionStatistic": {
+              "@type": "InteractionCounter",
+              "interactionType": { "@type": "WatchAction" },
+              "userInteractionCount": 1234
+            }
+          })
+        }}
+      />
     </section>
   );
 };
