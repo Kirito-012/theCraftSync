@@ -6,12 +6,14 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Project } from '@/app/lib/projectsData';
+import { motion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ProjectPageClient({ project }: { project: Project }) {
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const descRef = useRef<HTMLParagraphElement>(null);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
@@ -24,6 +26,14 @@ export default function ProjectPageClient({ project }: { project: Project }) {
           titleRef.current,
           { opacity: 0, y: 50 },
           { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }
+        );
+      }
+
+      if (descRef.current) {
+        gsap.fromTo(
+          descRef.current,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 1.2, delay: 0.3, ease: 'power3.out' }
         );
       }
 
@@ -138,7 +148,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
           </h1>
           
           <p ref={descRef} className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
-            {project.description}
+            {project.shortDescription}
           </p>
         </div>
 
