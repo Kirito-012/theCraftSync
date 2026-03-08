@@ -16,7 +16,7 @@ const projectsData = [
     bgImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768692689/kashmir_1_dbjxce.jpg',
     previewImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768692757/Screenshot_2026-01-18_045806_mndvkw.png',
     animationType: 'fadeSlideUp',
-    layout: 'layout1'
+    layout: 'layout4'
   },
   {
     id: 2,
@@ -38,7 +38,7 @@ const projectsData = [
     bgImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768689267/moments2_eofyzs.jpg',
     previewImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768686878/moment_dfai8p.jpg',
     animationType: 'blurReveal',
-    layout: 'layout3'
+    layout: 'layout4'
   },
   {
     id: 4,
@@ -60,7 +60,7 @@ const projectsData = [
     bgImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768689267/pixelmark_dmumca.jpg',
     previewImage: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768691126/pixelphone_uyqocr.jpg',
     animationType: 'glitchEffect',
-    layout: 'layout1'
+    layout: 'layout4'
   },
   {
     id: 6,
