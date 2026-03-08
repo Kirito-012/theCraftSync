@@ -307,8 +307,8 @@ export default function OurTeam() {
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10'></div>
 						<div className='absolute top-4 right-4 w-16 h-1 bg-teal-500 transform translate-x-20 group-hover:translate-x-0 transition-transform duration-300 z-20'></div>
 						<Image
-							src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_800,c_limit/v1767512117/photo-1573496359142-b8d87734a5a2_rnybpd.avif'
-							alt='Nicola'
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/v1772992384/manik_ueooni.jpg'
+							alt='Manik'
 							width={400}
 							height={533}
 							loading='lazy'
@@ -317,16 +317,16 @@ export default function OurTeam() {
 						/>
 						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
 							<p className='text-white text-sm leading-relaxed'>
-								Digital Designer specializing in modern web experiences
+								Architect of vision and strategy, Manik leads theCraftSync with an unwavering commitment to bridging the gap between imaginative design and technical excellence.
 							</p>
 						</div>
 					</div>
 					<div className='flex flex-col gap-1 px-2'>
 						<h3 className='text-black text-3xl font-bold font-heading group-hover:text-teal-600 transition-colors duration-300'>
-							Nicola
+							Manik
 						</h3>
 						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
-							Digital Designer
+							CEO
 						</span>
 						<div className='w-12 h-0.5 bg-teal-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300'></div>
 					</div>
@@ -345,8 +345,8 @@ export default function OurTeam() {
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute top-4 left-4 w-16 h-1 bg-purple-500 transform -translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
 						<Image
-							src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_800,c_limit/v1767512117/photo-1507003211169-0a1dd7228f2d_gqjylf.avif'
-							alt='Julian'
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/v1772991410/arpit_hgopmj.png'
+							alt='Arpit'
 							width={400}
 							height={533}
 							loading='lazy'
@@ -355,16 +355,16 @@ export default function OurTeam() {
 						/>
 						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
 							<p className='text-white text-sm leading-relaxed'>
-								Creative designer with a passion for visual storytelling
+								A precision-driven engineer and problem-solver, Arpit excels in architecting robust digital systems that translate complex business needs into seamless, high-performance software solutions.
 							</p>
 						</div>
 					</div>
 					<div className='flex flex-col gap-1 px-2'>
 						<h3 className='text-black text-3xl font-bold font-heading group-hover:text-purple-600 transition-colors duration-300'>
-							Julian
+							Arpit
 						</h3>
 						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
-							Designer
+							Software Engineer
 						</span>
 						<div className='w-12 h-0.5 bg-purple-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
 					</div>
@@ -383,8 +383,8 @@ export default function OurTeam() {
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute bottom-4 right-4 w-1 h-16 bg-orange-500 transform translate-y-20 group-hover:translate-y-0 transition-transform duration-500 z-20'></div>
 						<Image
-							src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_800,c_limit/v1767512117/photo-1500648767791-00dcc994a43e_xeq0v4.avif'
-							alt='Jonny'
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/v1772991413/lakshay_m6dnnh.png'
+							alt='Lakshay'
 							width={400}
 							height={533}
 							loading='lazy'
@@ -399,7 +399,7 @@ export default function OurTeam() {
 					</div>
 					<div className='flex flex-col gap-1 px-2'>
 						<h3 className='text-black text-3xl font-bold font-heading group-hover:text-orange-600 transition-colors duration-300'>
-							Jonny
+							Lakshay
 						</h3>
 						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
 							Managing Director
@@ -421,8 +421,8 @@ export default function OurTeam() {
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute bottom-4 left-4 w-1 h-16 bg-blue-500 transform translate-y-20 group-hover:translate-y-0 transition-transform duration-500 z-20'></div>
 						<Image
-							src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_800,c_limit/v1767512116/photo-1438761681033-6461ffad8d80_r1njiv.avif'
-							alt='Maja'
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/v1772993245/aryan_uzsoco.png'
+							alt='Aryan'
 							width={400}
 							height={533}
 							loading='lazy'
@@ -431,16 +431,16 @@ export default function OurTeam() {
 						/>
 						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
 							<p className='text-white text-sm leading-relaxed'>
-								Orchestrating seamless project delivery and team coordination
+								Mastering the full stack with precision, Aryan bridges the gap between complex logic and elegant interfaces, ensuring every digital experience is both powerful and intuitive.
 							</p>
 						</div>
 					</div>
 					<div className='flex flex-col gap-1 px-2'>
 						<h3 className='text-black text-3xl font-bold font-heading group-hover:text-blue-600 transition-colors duration-300'>
-							Maja
+							Aryan
 						</h3>
 						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
-							Head of Projects
+							Full Stack Developer
 						</span>
 						<div className='w-12 h-0.5 bg-blue-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
 					</div>
@@ -459,8 +459,8 @@ export default function OurTeam() {
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute top-4 right-4 w-16 h-1 bg-pink-500 transform translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
 						<Image
-							src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_800,c_limit/v1767512116/photo-1544005313-94ddf0286df2_owbzep.avif'
-							alt='Em'
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/v1772991409/akshat_fswdhq.jpg'
+							alt='Akshat'
 							width={400}
 							height={533}
 							loading='lazy'
@@ -469,58 +469,22 @@ export default function OurTeam() {
 						/>
 						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
 							<p className='text-white text-sm leading-relaxed'>
-								Ensuring excellence in every project milestone
+								Driven by technical curiosity, Akshat crafts high-performance digital solutions with a focus on scalability and clean architecture, transforming innovative ideas into reality.
 							</p>
 						</div>
 					</div>
 					<div className='flex flex-col gap-1 px-2'>
 						<h3 className='text-black text-3xl font-bold font-heading group-hover:text-pink-600 transition-colors duration-300'>
-							Em
+							Akshat
 						</h3>
 						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
-							Project Manager
+							Full Stack Developer
 						</span>
 						<div className='w-12 h-0.5 bg-pink-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
 					</div>
 				</div>
 
-				{/* Team Member 6 - Piper */}
-				<div
-					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-8 opacity-0'
-					style={{contain: 'layout style paint'}}>
-					<div
-						className='relative w-full aspect-3/4 overflow-hidden rounded-br-[5rem] rounded-tl-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-indigo-500/30'
-						style={{
-							backfaceVisibility: 'hidden',
-							transform: 'translate3d(0, 0, 0)',
-						}}>
-						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
-						<div className='absolute top-4 left-4 w-16 h-1 bg-indigo-500 transform -translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
-						<Image
-							src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_800,c_limit/v1767512116/photo-1534528741775-53994a69daeb_tp2ir7.avif'
-							alt='Piper'
-							width={400}
-							height={533}
-							loading='lazy'
-							quality={85}
-							className='w-full h-full object-cover transition-transform duration-400 group-hover:scale-105 grayscale group-hover:grayscale-0'
-						/>
-						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
-							<p className='text-white text-sm leading-relaxed'>
-								Driving creative vision and brand innovation
-							</p>
-						</div>
-					</div>
-					<div className='flex flex-col gap-1 px-2'>
-						<h3 className='text-black text-3xl font-bold font-heading group-hover:text-indigo-600 transition-colors duration-300'>
-							Piper
-						</h3>
-						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
-							Creative Director
-						</span>
-						<div className='w-12 h-0.5 bg-indigo-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
-					</div>
-				</div>
+			
 			</div>
 		</section>
 	)
