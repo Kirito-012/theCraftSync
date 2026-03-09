@@ -1,5 +1,6 @@
 import connectDB from '@/app/config/database';
 import Blog from '@/app/models/Blog';
+import Category from '@/app/models/Category';
 
 import { NextResponse } from 'next/server';
 import { uploadToS3 } from '@/app/utils/s3Helper';
