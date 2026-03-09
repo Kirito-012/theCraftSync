@@ -15,8 +15,11 @@ export const metadata: Metadata = {
 	authors: [{ name: 'TheCraftSync' }],
 	creator: 'TheCraftSync',
 	icons: {
-    icon: '/tcslogo.png',
-    shortcut: '/tcslogo.png',
+    icon: [
+      { url: '/tcslogo.png' },
+      { url: '/favicon.ico' },
+    ],
+    shortcut: '/favicon.ico',
     apple: '/tcslogo.png',
   },
 	openGraph: {
