@@ -213,7 +213,7 @@ export default function BlogPage() {
 								</div>
 
 								{/* Search Button */}
-								<button className='bg-white text-black px-8 h-[54px] rounded-full text-xs font-bold tracking-wider font-descriptive hover:bg-gray-200 transition-colors shadow-lg shadow-white/5'>
+								<button className='bg-white text-black cursor-pointer px-8 h-[54px] rounded-full text-xs font-bold tracking-wider font-descriptive hover:bg-gray-200 transition-colors shadow-lg shadow-white/5'>
 									SEARCH
 								</button>
 							</div>
