@@ -187,7 +187,7 @@ export default function WhoWeAre() {
 									gsap.to(
 										{value: 0},
 										{
-											value: 50,
+											value: 15,
 											duration: 2,
 											ease: 'power2.out',
 											onUpdate: function () {

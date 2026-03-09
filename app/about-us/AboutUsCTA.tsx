@@ -296,7 +296,7 @@ export default function AboutUsCTA() {
 						<div className='w-1.5 h-1.5 md:w-2 md:h-2 bg-white/40 rounded-full animate-pulse'></div>
 					</div>
 					<span className='text-white/40 text-[10px] sm:text-xs font-descriptive tracking-wider uppercase text-center'>
-						Trusted by 50+ Brands
+						Trusted by 15+ Brands
 					</span>
 					<div className='hidden sm:flex items-center gap-2 md:gap-3'>
 						<div className='w-1.5 h-1.5 md:w-2 md:h-2 bg-white/40 rounded-full animate-pulse'></div>

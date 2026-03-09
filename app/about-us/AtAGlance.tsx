@@ -3,7 +3,7 @@
 export default function AtAGlance() {
   const stats = [
     { label: "Core Expertise", value: "Enterprise Software, Generative AI, Cloud Infrastructure, and Business Intelligence." },
-    { label: "Project Impact", value: "Delivered 50+ successful deployments with an average 3x conversion boost for AI projects." },
+    { label: "Project Impact", value: "Delivered 15+ successful deployments with an average 3x conversion boost for AI projects." },
     { label: "Global Reach", value: "Headquartered in Haridwar, India, serving enterprises across USA, Europe, and Asia." },
     { label: "Established", value: "Founded in 2022 to deliver world-class digital experiences and scalable systems." }
   ];

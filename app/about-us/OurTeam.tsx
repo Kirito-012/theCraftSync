@@ -245,7 +245,7 @@ export default function OurTeam() {
 				<button
 					onClick={() => scrollCarousel('left')}
 					disabled={!canScrollLeft}
-					className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-14 h-14 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group border-2 border-gray-100 ${
+					className={`absolute left-0 top-1/2 cursor-pointer -translate-y-1/2 z-10 w-14 h-14 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group border-2 border-gray-100 ${
 						canScrollLeft
 							? 'opacity-100 hover:scale-110 hover:border-teal-500'
 							: 'opacity-30 cursor-not-allowed'
@@ -265,7 +265,7 @@ export default function OurTeam() {
 				<button
 					onClick={() => scrollCarousel('right')}
 					disabled={!canScrollRight}
-					className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-14 h-14 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group border-2 border-gray-100 ${
+					className={`absolute cursor-pointer right-0 top-1/2 -translate-y-1/2 z-10 w-14 h-14 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group border-2 border-gray-100 ${
 						canScrollRight
 							? 'opacity-100 hover:scale-110 hover:border-teal-500'
 							: 'opacity-30 cursor-not-allowed'
