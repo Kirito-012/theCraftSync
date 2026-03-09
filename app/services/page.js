@@ -195,28 +195,30 @@ const ServicesPage = () => {
     { id: 10, name: 'Business Strategy' },
     { id: 11, name: 'Business Analytics' }
   ];
-
   const caseStudies = [
     {
       id: 1,
-      category: 'AI, AUTOMATION',
-      title: 'AI-Powered Customer Service Platform for Enterprise',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
-      roundedCorner: 'rounded-tl-[80px]'
+      category: 'E-COMMERCE, CHARITY',
+      title: 'Osexifi',
+      image: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768691520/Screenshot_2026-01-11_003726_d3qczy.png',
+      roundedCorner: 'rounded-tl-[80px]',
+      link: '/case-study/osexifi'
     },
     {
       id: 2,
-      category: 'E-COMMERCE, CLOUD',
-      title: 'Scalable E-Commerce Platform Handling 1M+ Daily Transactions',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
-      roundedCorner: 'rounded-tr-[80px]'
+      category: 'AI, COMPUTER VISION',
+      title: 'PixelMark',
+      image: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768691126/pixelphone_uyqocr.jpg',
+      roundedCorner: 'rounded-tr-[80px]',
+      link: '/case-study/pixelmark'
     },
     {
       id: 3,
-      category: 'MOBILE, INNOVATION',
-      title: 'Cross-Platform Mobile App with Real-Time Sync',
-      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80',
-      roundedCorner: 'rounded-tl-[80px]'
+      category: 'AI E-COMMERCE',
+      title: 'Moment & CRAFT',
+      image: 'https://res.cloudinary.com/din6jl7de/image/upload/v1768686878/moment_dfai8p.jpg',
+      roundedCorner: 'rounded-tl-[80px]',
+      link: '/case-study/moment-craft'
     }
   ];
 
@@ -484,19 +486,21 @@ const ServicesPage = () => {
                         <Link
                           key={idx}
                           href="/contact"
-                          className="sub-service-item relative block overflow-hidden group/item py-2"
+                          className="sub-service-item block group/item py-2"
                         >
-                          <div className="flex items-center gap-2 sm:gap-3 transition-transform duration-300 group-hover/item:-translate-y-full">
-                            <div className="w-1.5 h-1.5 bg-black rounded-full text-black"></div>
-                            <span className="text-sm sm:text-base text-gray-800 font-medium">
-                              {subService}
-                            </span>
-                          </div>
-                          
-                          <div className="absolute inset-0 flex items-center gap-2 sm:gap-3 transition-transform duration-300 translate-y-full group-hover/item:translate-y-0">
-                            <span className="text-sm sm:text-base text-black font-bold">
-                              Connect Now →
-                            </span>
+                          <div className="relative overflow-hidden">
+                            <div className="flex items-center gap-2 sm:gap-3 transition-transform duration-300 group-hover/item:-translate-y-full">
+                              <div className="w-1.5 h-1.5 bg-black rounded-full text-black shrink-0"></div>
+                              <span className="text-sm sm:text-base text-gray-800 font-medium">
+                                {subService}
+                              </span>
+                            </div>
+                            
+                            <div className="absolute inset-0 flex items-center gap-2 sm:gap-3 transition-transform duration-300 translate-y-full group-hover/item:translate-y-0">
+                              <span className="text-sm sm:text-base text-black font-bold">
+                                Connect Now →
+                              </span>
+                            </div>
                           </div>
                         </Link>
                       ))}
@@ -612,9 +616,9 @@ const ServicesPage = () => {
 
           {/* CTA */}
           <div className="text-center mt-16 sm:mt-20">
-            <button className="px-8 sm:px-10 py-4 bg-black text-white font-bold text-sm uppercase tracking-wider hover:bg-gray-900 transition-all duration-300">
+            <Link href="/contact" className="inline-block px-8 sm:px-10 py-4 bg-black text-white font-bold text-sm uppercase tracking-wider hover:bg-gray-900 transition-all duration-300 cursor-pointer">
               Start Your Project
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -637,8 +641,8 @@ const ServicesPage = () => {
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white" style={{ fontFamily: 'var(--font-heading)' }}>
               Explore Our Work
             </h2>
-            <button className="px-6 sm:px-8 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 group">
-              View Case Studies
+            <Link href="/projects" className="px-6 sm:px-8 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2 group cursor-pointer">
+              View Projects
               <svg 
                 className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
                 fill="none" 
@@ -647,15 +651,16 @@ const ServicesPage = () => {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </button>
+            </Link>
           </div>
 
           {/* Case Study Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {caseStudies.map((study) => (
-              <div
+              <Link
                 key={study.id}
-                className={`case-study-card bg-white ${study.roundedCorner} overflow-hidden group cursor-pointer transition-all duration-500 hover:scale-[1.02]`}
+                href={study.link || '/projects'}
+                className={`case-study-card block bg-white ${study.roundedCorner} overflow-hidden group cursor-pointer transition-all duration-500 hover:scale-[1.02]`}
               >
                 {/* Image Section */}
                 <div className="relative h-48 sm:h-64 overflow-hidden">
@@ -682,7 +687,7 @@ const ServicesPage = () => {
                     {study.title}
                   </h3>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

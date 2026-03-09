@@ -198,7 +198,7 @@ const ChatBot = () => {
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-400 cursor-pointer hover:text-gray-600 transition-colors"
               >
                 <X size={18} />
               </button>

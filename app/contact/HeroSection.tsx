@@ -291,7 +291,7 @@ const HeroSection = () => {
 									value={formData.name}
 									onChange={handleChange}
 									className={`w-full bg-transparent border-b-2 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none transition-colors duration-300 ${errors.name ? 'border-red-500' : 'border-zinc-200 focus:border-zinc-900'}`}
-									placeholder='John Doe'
+									placeholder='Alex'
 								/>
 								{errors.name && <p className="text-red-500 text-xs mt-1 font-medium">{errors.name}</p>}
 							</div>
@@ -307,7 +307,7 @@ const HeroSection = () => {
 									value={formData.email}
 									onChange={handleChange}
 									className={`w-full bg-transparent border-b-2 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none transition-colors duration-300 ${errors.email ? 'border-red-500' : 'border-zinc-200 focus:border-zinc-900'}`}
-									placeholder='john@example.com'
+									placeholder='alex@example.com'
 								/>
 								{errors.email && <p className="text-red-500 text-xs mt-1 font-medium">{errors.email}</p>}
 							</div>

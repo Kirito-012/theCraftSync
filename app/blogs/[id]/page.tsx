@@ -50,6 +50,10 @@ export default function BlogPost() {
 	useEffect(() => {
 		if (isLoading || !post) return;
 
+		// Force scroll to top once the full content is actually rendered.
+		// Next.js auto-scroll happens during the tiny loading state, keeping users down sometimes.
+		window.scrollTo(0, 0);
+
 		const tl = gsap.timeline()
 
 		tl.fromTo(
@@ -110,10 +114,27 @@ export default function BlogPost() {
 			</div>
 
 			{/* Content Section */}
-			<div className='max-w-3xl mx-auto px-6 py-20 md:py-32'>
+			<div className='max-w-4xl mx-auto px-6 py-20 md:py-32'>
 				<div
 					ref={contentRef}
-					className='opacity-0 font-descriptive text-base md:text-lg leading-8 text-zinc-700 space-y-8 [&>h3]:text-2xl md:[&>h3]:text-3xl [&>h3]:font-heading [&>h3]:font-bold [&>h3]:text-black [&>h3]:mt-12 [&>h3]:mb-4'
+					className={`opacity-0 font-descriptive text-base md:text-lg leading-relaxed text-zinc-700 
+						[&>p]:mb-6 [&>p]:leading-loose
+						[&>h1]:text-3xl md:[&>h1]:text-4xl [&>h1]:font-heading [&>h1]:font-bold [&>h1]:text-black [&>h1]:mt-12 [&>h1]:mb-6
+						[&>h2]:text-2xl md:[&>h2]:text-3xl [&>h2]:font-heading [&>h2]:font-bold [&>h2]:text-black [&>h2]:mt-10 [&>h2]:mb-5
+						[&>h3]:text-xl md:[&>h3]:text-2xl [&>h3]:font-heading [&>h3]:font-bold [&>h3]:text-black [&>h3]:mt-8 [&>h3]:mb-4
+						[&>h4]:text-lg md:[&>h4]:text-xl [&>h4]:font-heading [&>h4]:font-bold [&>h4]:text-black [&>h4]:mt-6 [&>h4]:mb-3
+						[&_a]:text-blue-600 [&_a]:underline [&_a]:decoration-blue-200 [&_a]:underline-offset-4 hover:[&_a]:text-blue-800 hover:[&_a]:decoration-blue-600 [&_a]:transition-colors
+						[&_blockquote]:border-l-4 [&_blockquote]:border-black [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-zinc-600 [&_blockquote]:my-8 [&_blockquote]:py-2
+						[&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ul]:mb-6 [&_ul_li::marker]:text-zinc-400
+						[&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_ol]:mb-6
+						[&_code]:bg-zinc-100 [&_code]:px-2 [&_code]:py-1 [&_code]:rounded-md [&_code]:text-[0.875em] [&_code]:font-mono [&_code]:text-rose-600
+						[&_pre]:bg-zinc-900 [&_pre]:text-zinc-100 [&_pre]:p-6 [&_pre]:rounded-xl [&_pre]:shadow-lg [&_pre]:overflow-x-auto [&_pre_code]:bg-transparent [&_pre_code]:text-inherit [&_pre_code]:p-0 [&_pre_code]:text-[0.9em] [&_pre]:my-8
+						[&_img]:w-full [&_img]:h-auto [&_img]:rounded-2xl [&_img]:max-w-full [&_img]:shadow-md [&_img]:my-8
+						[&_iframe]:w-full [&_iframe]:max-w-full [&_iframe]:rounded-xl [&_iframe]:my-8
+						[&_video]:w-full [&_video]:max-w-full [&_video]:rounded-xl [&_video]:my-8
+						[&_hr]:border-t [&_hr]:border-zinc-200 [&_hr]:my-12
+						[&_table]:w-full [&_table]:border-collapse [&_table]:my-8 [&_th]:border-b-2 [&_th]:border-zinc-200 [&_th]:p-4 [&_th]:text-left [&_th]:font-bold [&_th]:text-black [&_td]:border-b [&_td]:border-zinc-100 [&_td]:p-4
+						wrap-break-word [&_p]:wrap-break-word [&_a]:break-all`}
 					dangerouslySetInnerHTML={{ __html: post.content }}
 				/>
 			</div>

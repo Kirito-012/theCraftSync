@@ -26,7 +26,7 @@ export const servicesData: Service[] = [
     shortName: 'Development',
     description: 'Crafting bespoke web and mobile applications tailored to your unique business needs with scalable architecture.',
     icon: <Monitor className="w-full h-full" />,
-    details: ['React & Next.js', 'Mobile Apps', 'Custom Solutions', 'Scalable Architecture']
+    details: ['Web Apps', 'Mobile Apps', 'Cross platform Web Apps', 'Scalable Architecture','Consultation']
   },
   {
     id: 8,

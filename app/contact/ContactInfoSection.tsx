@@ -158,9 +158,9 @@ const ContactInfoSection = () => {
 							ref={socialsRef}
 							className='flex gap-4'>
 							{[
-								{icon: Linkedin, href: '#'},
-								{icon: Twitter, href: '#'},
-								{icon: Instagram, href: '#'},
+								{icon: Linkedin, href: 'https://www.linkedin.com/company/thecraftsync/'},
+							
+								{icon: Instagram, href: 'https://www.instagram.com/thecraftsync/'},
 							].map((social, idx) => (
 								<a
 									key={idx}

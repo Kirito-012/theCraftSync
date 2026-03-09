@@ -155,7 +155,7 @@ const ServicesSection: React.FC = () => {
               <button
                 key={service.id}
                 onClick={() => handleServiceClick(service)}
-                className={`w-full text-left px-6 py-4 rounded-lg transition-all duration-300 group ${
+                className={`w-full text-left px-6 py-4 cursor-pointer rounded-lg transition-all duration-300 group ${
                   activeService.id === service.id
                     ? 'bg-white text-black'
                     : 'bg-zinc-900 text-white hover:bg-zinc-800'

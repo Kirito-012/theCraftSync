@@ -307,7 +307,7 @@ export default function OurTeam() {
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10'></div>
 						<div className='absolute top-4 right-4 w-16 h-1 bg-teal-500 transform translate-x-20 group-hover:translate-x-0 transition-transform duration-300 z-20'></div>
 						<Image
-							src='https://res.cloudinary.com/dhlvq35cc/image/upload/v1772992384/manik_ueooni.jpg'
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/f_auto,q_auto,w_800,c_limit/v1772992384/manik_ueooni.jpg'
 							alt='Manik'
 							width={400}
 							height={533}
@@ -332,43 +332,7 @@ export default function OurTeam() {
 					</div>
 				</div>
 
-				{/* Team Member 2 - Julian */}
-				<div
-					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-12 opacity-0'
-					style={{contain: 'layout style paint'}}>
-					<div
-						className='relative w-full aspect-3/4 overflow-hidden rounded-tr-[5rem] rounded-bl-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-purple-500/30'
-						style={{
-							backfaceVisibility: 'hidden',
-							transform: 'translate3d(0, 0, 0)',
-						}}>
-						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
-						<div className='absolute top-4 left-4 w-16 h-1 bg-purple-500 transform -translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
-						<Image
-							src='https://res.cloudinary.com/dhlvq35cc/image/upload/v1772991410/arpit_hgopmj.png'
-							alt='Arpit'
-							width={400}
-							height={533}
-							loading='lazy'
-							quality={85}
-							className='w-full h-full object-cover transition-transform duration-400 group-hover:scale-105 grayscale group-hover:grayscale-0'
-						/>
-						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
-							<p className='text-white text-sm leading-relaxed'>
-								A precision-driven engineer and problem-solver, Arpit excels in architecting robust digital systems that translate complex business needs into seamless, high-performance software solutions.
-							</p>
-						</div>
-					</div>
-					<div className='flex flex-col gap-1 px-2'>
-						<h3 className='text-black text-3xl font-bold font-heading group-hover:text-purple-600 transition-colors duration-300'>
-							Arpit
-						</h3>
-						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
-							Software Engineer
-						</span>
-						<div className='w-12 h-0.5 bg-purple-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
-					</div>
-				</div>
+
 
 				{/* Team Member 3 - Jonny */}
 				<div
@@ -383,7 +347,7 @@ export default function OurTeam() {
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute bottom-4 right-4 w-1 h-16 bg-orange-500 transform translate-y-20 group-hover:translate-y-0 transition-transform duration-500 z-20'></div>
 						<Image
-							src='https://res.cloudinary.com/dhlvq35cc/image/upload/v1772991413/lakshay_m6dnnh.png'
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/f_auto,q_auto,w_800,c_limit/v1772991413/lakshay_m6dnnh.png'
 							alt='Lakshay'
 							width={400}
 							height={533}
@@ -407,8 +371,119 @@ export default function OurTeam() {
 						<div className='w-12 h-0.5 bg-orange-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
 					</div>
 				</div>
+				{/* Team Member 2 - Julian */}
+				<div
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-12 opacity-0'
+					style={{contain: 'layout style paint'}}>
+					<div
+						className='relative w-full aspect-3/4 overflow-hidden rounded-tr-[5rem] rounded-bl-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-purple-500/30'
+						style={{
+							backfaceVisibility: 'hidden',
+							transform: 'translate3d(0, 0, 0)',
+						}}>
+						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
+						<div className='absolute top-4 left-4 w-16 h-1 bg-purple-500 transform -translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
+						<Image
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/f_auto,q_auto,w_800,c_limit/v1773078771/kartikeya_rvhugz.jpg'
+							alt='Kartikeya'
+							width={400}
+							height={533}
+							loading='lazy'
+							quality={85}
+							className='w-full h-full object-cover transition-transform duration-400 group-hover:scale-105 grayscale group-hover:grayscale-0'
+						/>
+						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
+							<p className='text-white text-sm leading-relaxed'>
+								A precision-driven engineer and problem-solver, Arpit excels in architecting robust digital systems that translate complex business needs into seamless, high-performance software solutions.
+							</p>
+						</div>
+					</div>
+					<div className='flex flex-col gap-1 px-2'>
+						<h3 className='text-black text-3xl font-bold font-heading group-hover:text-purple-600 transition-colors duration-300'>
+							Kartikeya
+						</h3>
+						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
+							 Solution Architect
+						</span>
+						<div className='w-12 h-0.5 bg-purple-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
+					</div>
+				</div>
 
-				{/* Team Member 4 - Maja */}
+								{/* Team Member 8 - Rachit Sharma */}
+				<div
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 opacity-0'
+					style={{contain: 'layout style paint'}}>
+					<div
+						className='relative w-full aspect-3/4 overflow-hidden rounded-br-[5rem] rounded-tl-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-emerald-500/30'
+						style={{
+							backfaceVisibility: 'hidden',
+							transform: 'translate3d(0, 0, 0)',
+						}}>
+						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
+						<div className='absolute bottom-4 right-4 w-16 h-1 bg-emerald-500 transform translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
+						<Image
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/f_auto,q_auto,w_800,c_limit/v1773078771/rachit_hwuw3m.jpg'
+							alt='Rachit'
+							width={400}
+							height={533}
+							loading='lazy'
+							quality={85}
+							className='w-full h-full object-cover transition-transform duration-400 group-hover:scale-105 grayscale group-hover:grayscale-0'
+						/>
+						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
+							<p className='text-white text-sm leading-relaxed'>
+								Orchestrating complex technology stacks, Rachit steers coding standards and architectural decisions to deliver highly resilient and scalable engineering ecosystems.
+							</p>
+						</div>
+					</div>
+					<div className='flex flex-col gap-1 px-2'>
+						<h3 className='text-black text-3xl font-bold font-heading group-hover:text-emerald-600 transition-colors duration-300'>
+							Rachit
+						</h3>
+						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
+							Tech Lead
+						</span>
+						<div className='w-12 h-0.5 bg-emerald-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
+					</div>
+				</div>
+								{/* Team Member 7 - Avish */}
+				<div
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-16 opacity-0'
+					style={{contain: 'layout style paint'}}>
+					<div
+						className='relative w-full aspect-3/4 overflow-hidden rounded-bl-[5rem] rounded-tr-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-red-500/30'
+						style={{
+							backfaceVisibility: 'hidden',
+							transform: 'translate3d(0, 0, 0)',
+						}}>
+						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
+						<div className='absolute top-4 right-4 w-1 h-16 bg-red-500 transform translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
+						<Image
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/f_auto,q_auto,w_800,c_limit/v1773078771/avish_nwrwl5.jpg'
+							alt='Avish'
+							width={400}
+							height={533}
+							loading='lazy'
+							quality={85}
+							className='w-full h-full object-cover transition-transform duration-400 group-hover:scale-105 grayscale group-hover:grayscale-0'
+						/>
+						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
+							<p className='text-white text-sm leading-relaxed'>
+								Our digital guardian, Avish implements cutting-edge security architectures protecting system integrity from evolving cyber threats while ensuring robust compliance.
+							</p>
+						</div>
+					</div>
+					<div className='flex flex-col gap-1 px-2'>
+						<h3 className='text-black text-3xl font-bold font-heading group-hover:text-red-600 transition-colors duration-300'>
+							Avish
+						</h3>
+						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
+							Cyber Security
+						</span>
+						<div className='w-12 h-0.5 bg-red-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
+					</div>
+				</div>
+				{/* Team Member 4 - Aryan */}
 				<div
 					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-16 opacity-0'
 					style={{contain: 'layout style paint'}}>
@@ -421,7 +496,7 @@ export default function OurTeam() {
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute bottom-4 left-4 w-1 h-16 bg-blue-500 transform translate-y-20 group-hover:translate-y-0 transition-transform duration-500 z-20'></div>
 						<Image
-							src='https://res.cloudinary.com/dhlvq35cc/image/upload/v1772993245/aryan_uzsoco.png'
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/f_auto,q_auto,w_800,c_limit/v1772993245/aryan_uzsoco.png'
 							alt='Aryan'
 							width={400}
 							height={533}
@@ -431,7 +506,7 @@ export default function OurTeam() {
 						/>
 						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
 							<p className='text-white text-sm leading-relaxed'>
-								Mastering the full stack with precision, Aryan bridges the gap between complex logic and elegant interfaces, ensuring every digital experience is both powerful and intuitive.
+								A versatile software engineer, Aryan builds scalable infrastructures and elegant solutions, mastering both frontend and backend technologies to translate ideas into high-performance applications.
 							</p>
 						</div>
 					</div>
@@ -440,7 +515,7 @@ export default function OurTeam() {
 							Aryan
 						</h3>
 						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
-							Full Stack Developer
+							Software Engineer
 						</span>
 						<div className='w-12 h-0.5 bg-blue-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
 					</div>
@@ -459,7 +534,7 @@ export default function OurTeam() {
 						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
 						<div className='absolute top-4 right-4 w-16 h-1 bg-pink-500 transform translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
 						<Image
-							src='https://res.cloudinary.com/dhlvq35cc/image/upload/v1772991409/akshat_fswdhq.jpg'
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/f_auto,q_auto,w_800,c_limit/v1772991409/akshat_fswdhq.jpg'
 							alt='Akshat'
 							width={400}
 							height={533}
@@ -469,7 +544,7 @@ export default function OurTeam() {
 						/>
 						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
 							<p className='text-white text-sm leading-relaxed'>
-								Driven by technical curiosity, Akshat crafts high-performance digital solutions with a focus on scalability and clean architecture, transforming innovative ideas into reality.
+								Driven by technical curiosity, Akshat architects robust software systems with a relentless focus on clean code, testability, and building future-proof features that scale.
 							</p>
 						</div>
 					</div>
@@ -478,13 +553,54 @@ export default function OurTeam() {
 							Akshat
 						</h3>
 						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
-							Full Stack Developer
+							Software Engineer
 						</span>
 						<div className='w-12 h-0.5 bg-pink-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
 					</div>
 				</div>
 
-			
+				{/* Team Member 6 - Himanshu Rawat */}
+				<div
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-12 opacity-0'
+					style={{contain: 'layout style paint'}}>
+					<div
+						className='relative w-full aspect-3/4 overflow-hidden rounded-t-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-yellow-500/30'
+						style={{
+							backfaceVisibility: 'hidden',
+							transform: 'translate3d(0, 0, 0)',
+						}}>
+						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
+						<div className='absolute bottom-4 left-4 w-16 h-1 bg-yellow-500 transform translate-y-20 group-hover:translate-y-0 transition-transform duration-500 z-20'></div>
+						<Image
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/f_auto,q_auto,w_800,c_limit/v1773078771/himanshu_m2nyf9.jpg'
+							alt='Himanshu'
+							width={400}
+							height={533}
+							loading='lazy'
+							quality={85}
+							className='w-full h-full object-cover transition-transform duration-400 group-hover:scale-105 grayscale group-hover:grayscale-0'
+						/>
+						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
+							<p className='text-white text-sm leading-relaxed'>
+								With a keen eye for aesthetics and seamless interactions, Himanshu designs intuitive user experiences that captivate audiences and elevate digital products.
+							</p>
+						</div>
+					</div>
+					<div className='flex flex-col gap-1 px-2'>
+						<h3 className='text-black text-3xl font-bold font-heading group-hover:text-yellow-600 transition-colors duration-300'>
+							Himanshu
+						</h3>
+						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
+							UI/UX
+						</span>
+						<div className='w-12 h-0.5 bg-yellow-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
+					</div>
+				</div>
+
+
+
+
+
 			</div>
 		</section>
 	)

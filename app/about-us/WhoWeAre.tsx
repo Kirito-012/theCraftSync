@@ -296,7 +296,7 @@ export default function WhoWeAre() {
 										ref={whoWeAreImageRef}
 										className='absolute inset-0 w-full h-full will-change-transform'>
 										<Image
-											src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_1200,c_limit/v1767509856/aboutus_n75dvh.jpg'
+											src='https://res.cloudinary.com/dhlvq35cc/image/upload/f_auto,q_auto,w_1200,c_limit/v1773079125/pexels-pixabay-265087_zukk85.jpg'
 											alt='TheCraftSync team collaboration'
 											fill
 											sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"

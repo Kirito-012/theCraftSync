@@ -222,7 +222,7 @@ export default function Footer() {
         >
           {/* Copyright */}
           <p className="text-sm text-zinc-500">
-            © 2022 TheCraftsync · Custom Solutions for Custom Visions
+            © 2026 TheCraftsync · Custom Solutions for Custom Visions
           </p>
 
           {/* Status/Badge */}
