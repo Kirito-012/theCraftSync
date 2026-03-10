@@ -7,13 +7,39 @@ import AppWrapper from './Components/AppWrapper';
 export const metadata: Metadata = {
 	metadataBase: new URL('https://www.thecraftsync.com'),
 	title: {
-		default: 'TheCraftSync | Custom Software, AI & Digital Product Development',
+		default: 'TheCraftSync | Premier Custom Software & AI Development Agency',
 		template: '%s | TheCraftSync',
 	},
-	description: 'TheCraftSync is a premier digital agency specializing in custom software development, AI solutions, operational automation, and scalable enterprise platforms. We build digital experiences that matter.',
-	keywords: ['custom software development', 'AI solutions', 'digital agency', 'enterprise software', 'machine learning', 'app development', 'startup MVP', 'tech consulting', 'TheCraftSync'],
-	authors: [{ name: 'TheCraftSync' }],
+	description: 'TheCraftSync is a top-tier digital product agency. We specialize in custom software development, AI solutions, web applications, and scalable enterprise platforms designed to drive business growth and operational efficiency.',
+	keywords: [
+		'custom software development', 
+		'AI software development company', 
+		'enterprise software solutions', 
+		'web application development', 
+		'digital transformation agency', 
+		'startup MVP development', 
+		'tech consulting', 
+		'TheCraftSync'
+	],
+	authors: [{ name: 'TheCraftSync', url: 'https://www.thecraftsync.com' }],
 	creator: 'TheCraftSync',
+	publisher: 'TheCraftSync',
+	formatDetection: {
+		email: false,
+		address: false,
+		telephone: false,
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			'max-video-preview': -1,
+			'max-image-preview': 'large',
+			'max-snippet': -1,
+		},
+	},
 	icons: {
     icon: [
       { url: '/tcslogo.png' },
@@ -23,25 +49,25 @@ export const metadata: Metadata = {
     apple: '/tcslogo.png',
   },
 	openGraph: {
-		title: 'TheCraftSync | Custom Software, AI & Digital Product Development',
-		description: 'TheCraftSync is a premier digital agency specializing in custom software development, AI solutions, operational automation, and scalable enterprise platforms.',
+		title: 'TheCraftSync | Premier Custom Software & AI Development Agency',
+		description: 'TheCraftSync is a top-tier digital product agency. We specialize in custom software development, AI solutions, web applications, and scalable enterprise platforms.',
 		url: 'https://www.thecraftsync.com',
 		siteName: 'TheCraftSync',
+		locale: 'en_US',
+		type: 'website',
 		images: [
 			{
 				url: '/og-image.jpg',
 				width: 1200,
 				height: 630,
-				alt: 'TheCraftSync Open Graph Image',
+				alt: 'TheCraftSync - Custom Software & AI Development',
 			},
 		],
-		locale: 'en_US',
-		type: 'website',
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'TheCraftSync | Custom Software, AI & Digital Product Development',
-		description: 'TheCraftSync is a premier digital agency specializing in custom software development, AI solutions, operational automation, and scalable enterprise platforms.',
+		title: 'TheCraftSync | Custom Software & AI Development Agency',
+		description: 'TheCraftSync is a top-tier digital product agency. We specialize in custom software development and AI solutions to drive business growth.',
 		images: ['/og-image.jpg'],
 	},
 	alternates: {
