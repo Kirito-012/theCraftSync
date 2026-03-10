@@ -38,57 +38,61 @@ const Clients = () => {
   ];
 
   useEffect(() => {
-    // Title animation
-    if (titleRef.current) {
-      const spans = titleRef.current.querySelectorAll('span');
-      gsap.fromTo(
-        spans,
-        {
-          opacity: 0,
-          y: 100,
-          scale: 0.8,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1,
-          stagger: 0.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: 'top 80%',
-            once: true,
+    const ctx = gsap.context(() => {
+      // Title animation
+      if (titleRef.current) {
+        const spans = titleRef.current.querySelectorAll('span');
+        gsap.fromTo(
+          spans,
+          {
+            opacity: 0,
+            y: 50,
+            scale: 0.9,
           },
-        }
-      );
-    }
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: titleRef.current,
+              start: 'top 85%',
+              once: true,
+            },
+          }
+        );
+      }
 
-    // Logo grid stagger animation
-    if (gridRef.current) {
-      const logoItems = gridRef.current.querySelectorAll('.logo-item');
-      gsap.fromTo(
-        logoItems,
-        {
-          opacity: 0,
-          y: 50,
-          scale: 0.8,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: 'top 75%',
-            once: true,
+      // Logo grid stagger animation
+      if (gridRef.current) {
+        const logoItems = gridRef.current.querySelectorAll('.logo-item');
+        gsap.fromTo(
+          logoItems,
+          {
+            opacity: 0,
+            y: 30,
+            scale: 0.9,
           },
-        }
-      );
-    }
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.4,
+            stagger: 0.05,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: 'top 85%',
+              once: true,
+            },
+          }
+        );
+      }
+    });
+
+    return () => ctx.revert();
   }, []);
 
   return (

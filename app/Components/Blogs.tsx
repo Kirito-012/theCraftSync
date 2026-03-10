@@ -29,49 +29,55 @@ const Blogs: React.FC = () => {
 
   useEffect(() => {
     // Only animate if there are items to animate
+    let ctx: gsap.Context;
     if (blogPosts.length > 0) {
-      // Header animation
-      if (headerRef.current) {
-        gsap.fromTo(
-          headerRef.current.children,
-          { opacity: 0, y: 60 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            stagger: 0.2,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: headerRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
-      }
+      ctx = gsap.context(() => {
+        // Header animation
+        if (headerRef.current) {
+          gsap.fromTo(
+            headerRef.current.children,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: headerRef.current,
+                start: 'top 85%',
+                once: true,
+              },
+            }
+          );
+        }
 
-      // Blog cards stagger animation
-      if (cardsRef.current) {
-        const cards = cardsRef.current.querySelectorAll('.blog-card');
-        gsap.fromTo(
-          cards,
-          { opacity: 0, y: 80, scale: 0.9 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: cardsRef.current,
-              start: 'top 75%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
-      }
+        // Blog cards stagger animation
+        if (cardsRef.current) {
+          const cards = cardsRef.current.querySelectorAll('.blog-card');
+          gsap.fromTo(
+            cards,
+            { opacity: 0, y: 40, scale: 0.95 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.5,
+              stagger: 0.1,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: cardsRef.current,
+                start: 'top 85%',
+                once: true,
+              },
+            }
+          );
+        }
+      });
     }
+    return () => {
+      if (ctx) ctx.revert();
+    };
   }, [blogPosts]);
 
   return (

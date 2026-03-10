@@ -66,26 +66,26 @@ const NewOurWorks: React.FC = () => {
           // Initial States: All start from same position
           gsap.set(elements, { 
             opacity: 0, 
-            y: 50,
+            y: 30,
             willChange: 'transform, opacity' 
           });
           
           // Force specific overrides to ensure uniformity
-          if (number) gsap.set(number, { x: 0, y: 50 });
-          if (arrow) gsap.set(arrow, { x: 0, y: 50 });
+          if (number) gsap.set(number, { x: 0, y: 30 });
+          if (arrow) gsap.set(arrow, { x: 0, y: 30 });
 
           // Single Batch Animation: Everyone moves together with same timing/easing
           gsap.to(elements, {
             opacity: 1,
             y: 0,
             x: 0,
-            duration: 1,
+            duration: 0.6,
             stagger: 0.05,
-            ease: "expo.out",
+            ease: "power2.out",
             scrollTrigger: {
               trigger: row,
-              start: "top 80%",
-              toggleActions: "play none none reverse",
+              start: "top 85%",
+              once: true,
             },
             onComplete: () => {
                gsap.set(elements, { clearProps: 'willChange,transform' }); 

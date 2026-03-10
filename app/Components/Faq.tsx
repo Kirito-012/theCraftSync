@@ -97,85 +97,56 @@ export default function FAQSection() {
   }, [openIndex]);
 
   useEffect(() => {
-    let ctx: gsap.Context | undefined;
-
-    // Heading animation
-    if (headingRef.current) {
-      ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
+      // Heading animation
+      if (headingRef.current) {
         gsap.fromTo(
           headingRef.current,
           {
             opacity: 0,
-            y: 80,
+            y: 40,
           },
           {
             opacity: 1,
             y: 0,
-            duration: 1.2,
+            duration: 0.6,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: headingRef.current,
-              start: 'top 80%',
-              once: true,
-            },
-          }
-        );
-      }, headingRef)
-    }
-
-    // FAQ items stagger animation
-    if (listRef.current) {
-      const container = listRef.current;
-      if (!ctx) {
-        ctx = gsap.context(() => {
-          const items = container.querySelectorAll('.faq-item');
-          gsap.fromTo(
-            items,
-            {
-              opacity: 0,
-              x: -50,
-            },
-            {
-              opacity: 1,
-              x: 0,
-              duration: 0.8,
-              stagger: 0.1,
-              ease: 'power2.out',
-              scrollTrigger: {
-                trigger: container,
-                start: 'top 75%',
-                once: true,
-              },
-            }
-          );
-        }, container)
-      } else {
-        const items = container.querySelectorAll('.faq-item');
-        gsap.fromTo(
-          items,
-          {
-            opacity: 0,
-            x: -50,
-          },
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: container,
-              start: 'top 75%',
+              start: 'top 85%',
               once: true,
             },
           }
         );
       }
-    }
 
-    return () => {
-      if (ctx) ctx.revert()
-    }
+      // FAQ items stagger animation
+      if (listRef.current) {
+        const container = listRef.current;
+        const items = container.querySelectorAll('.faq-item');
+        gsap.fromTo(
+          items,
+          {
+            opacity: 0,
+            x: -20,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.5,
+            stagger: 0.05,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: container,
+              start: 'top 85%',
+              once: true,
+            },
+          }
+        );
+      }
+    });
+
+    return () => ctx.revert();
   }, []);
 
   // Generate JSON-LD structured data for SEO
