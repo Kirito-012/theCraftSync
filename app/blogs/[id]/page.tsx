@@ -88,7 +88,7 @@ export default function BlogPost() {
 			</div>
 
 			{/* Hero Section */}
-			<div className='relative w-full h-[60vh] md:h-[80vh] overflow-hidden'>
+			<div className='relative w-full h-screen overflow-hidden'>
 				<div className='absolute inset-0 bg-black/20 z-10' />
 				<img
 					ref={heroRef}
@@ -96,9 +96,9 @@ export default function BlogPost() {
 					alt={post.title}
 					className='w-full h-full object-cover opacity-0'
 				/>
-				<div className='absolute bottom-0 left-0 w-full p-8 md:p-16 z-20 bg-linear-to-t from-black/90 via-black/50 to-transparent'>
-					<div className='max-w-[1400px] mx-auto'>
-						<div className='mb-6 flex gap-4 items-center'>
+				<div className='absolute inset-0 w-full p-8 md:p-16 z-20 bg-linear-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-center md:justify-end'>
+					<div className='max-w-[1400px] mx-auto w-full'>
+						<div className='mb-6 flex gap-4 items-center justify-center md:justify-start'>
 							<span className='bg-white text-black px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase'>
 								{post.category?.name || 'Uncategorized'}
 							</span>
@@ -106,7 +106,7 @@ export default function BlogPost() {
 								{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
 							</span>
 						</div>
-						<h1 className='font-heading text-4xl md:text-6xl lg:text-8xl font-bold leading-[0.9] tracking-tighter max-w-5xl text-white'>
+						<h1 className='font-heading text-4xl md:text-6xl lg:text-8xl font-bold leading-[0.9] tracking-tighter max-w-5xl text-white text-center md:text-left'>
 							{post.title}
 						</h1>
 					</div>
