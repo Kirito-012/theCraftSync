@@ -559,7 +559,6 @@ export default function OurTeam() {
 					</div>
 				</div>
 
-				{/* Team Member 6 - Himanshu Rawat */}
 				<div
 					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-12 opacity-0'
 					style={{contain: 'layout style paint'}}>
@@ -594,6 +593,44 @@ export default function OurTeam() {
 							UI/UX
 						</span>
 						<div className='w-12 h-0.5 bg-yellow-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
+					</div>
+				</div>
+
+				{/* Team Member 7 - Manvi */}
+				<div
+					className='team-card min-w-70 md:min-w-85 group flex flex-col gap-5 mt-12 opacity-0'
+					style={{contain: 'layout style paint'}}>
+					<div
+						className='relative w-full aspect-3/4 overflow-hidden rounded-tl-[5rem] rounded-br-[5rem] shadow-lg group-hover:shadow-2xl transition-shadow duration-500 border-4 border-transparent group-hover:border-indigo-500/30'
+						style={{
+							backfaceVisibility: 'hidden',
+							transform: 'translate3d(0, 0, 0)',
+						}}>
+						<div className='absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10'></div>
+						<div className='absolute top-4 left-4 w-16 h-1 bg-indigo-500 transform -translate-x-20 group-hover:translate-x-0 transition-transform duration-500 z-20'></div>
+						<Image
+							src='https://res.cloudinary.com/dhlvq35cc/image/upload/f_auto,q_auto,w_800,c_limit/v1773492130/manvi_z0naga.jpg'
+							alt='Manvi'
+							width={400}
+							height={533}
+							loading='lazy'
+							quality={85}
+							className='w-full h-full object-cover transition-transform duration-400 group-hover:scale-105 grayscale group-hover:grayscale-0'
+						/>
+						<div className='absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
+							<p className='text-white text-sm leading-relaxed'>
+								Manvi infuses every project with vibrant digital artistry and dynamic motion design. Her keen eye for detail and passion for visual storytelling bring brands to life, captivating audiences through stunning animations and creative visuals.
+							</p>
+						</div>
+					</div>
+					<div className='flex flex-col gap-1 px-2'>
+						<h3 className='text-black text-3xl font-bold font-heading group-hover:text-indigo-600 transition-colors duration-300'>
+							Manvi
+						</h3>
+						<span className='text-gray-600 font-descriptive uppercase text-xs tracking-[0.2em]'>
+							Digital & Motion Designer
+						</span>
+						<div className='w-12 h-0.5 bg-indigo-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500'></div>
 					</div>
 				</div>
 
