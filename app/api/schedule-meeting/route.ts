@@ -66,8 +66,7 @@ export async function POST(req: NextRequest) {
         timeZone: 'Asia/Kolkata',
       },
       attendees: [
-        { email: email },
-        { email: 'manikbansal@thecraftsync.com' } // Owner's email
+        { email: 'thecraftsync@gmail.com' } // Only your email so it appears on your calendar
       ],
       conferenceData: {
         createRequest: {
@@ -84,79 +83,99 @@ export async function POST(req: NextRequest) {
     });
 
     const googleMeetLink = calendarResponse.data.hangoutLink || 'No link generated';
+    console.log('✅ Generated Meet Link:', googleMeetLink);
 
     // 3. Send Confirmation Email to User via Resend
+    console.log('📬 Attempting to send user confirmation email to:', email);
     await resend.emails.send({
-      from: 'TheCraftSync <onboarding@resend.dev>',
+      from: 'TheCraftSync <manikbansal@thecraftsync.com>',
       to: [email],
-      subject: 'Meeting Confirmation: Intro Call with TheCraftSync',
+      subject: 'Meeting Confirmed: Your Intro Call with TheCraftSync',
       html: `
         <!DOCTYPE html>
         <html>
         <head>
+          <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Meeting Confirmation | TheCraftSync</title>
         </head>
-        <body style="background-color: #f4f4f5; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
-          <div style="max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-            <!-- Header -->
-            <div style="background-color: #000000; padding: 40px 30px; text-align: center;">
-              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 300; letter-spacing: 2px;">THECRAFTSYNC</h1>
-              <p style="color: #888888; font-size: 12px; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px;">Meeting Confirmation</p>
-            </div>
+        <body style="margin: 0; padding: 0; background-color: #030303; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;">
+            <tr>
+              <td align="center" style="padding: 40px 0 60px 0;">
+                <table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color: #09090b; border: 1px solid #18181b; border-radius: 24px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+                  
+                  <!-- Premium Header -->
+                  <tr>
+                    <td align="center" style="padding: 60px 40px 40px 40px; background: linear-gradient(180deg, #18181b 0%, #09090b 100%);">
+                      <div style="background-color: #ffffff; width: 48px; h-48px; border-radius: 12px; display: inline-block; padding: 12px; margin-bottom: 24px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                      </div>
+                      <h1 style="color: #ffffff; margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase;">TheCraftSync</h1>
+                      <p style="color: #a1a1aa; font-size: 16px; margin-top: 12px; font-weight: 400;">Your consultation is confirmed</p>
+                    </td>
+                  </tr>
 
-            <!-- Content -->
-            <div style="padding: 40px 30px;">
-              <h2 style="color: #111111; font-size: 20px; font-weight: 600; margin-top: 0; margin-bottom: 20px;">Hi ${name},</h2>
-              <p style="color: #555555; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
-                Your 15-minute intro call with TheCraftSync has been successfully scheduled. We're looking forward to discussing how we can help upgrade your digital presence.
-              </p>
-              
-              <!-- Meeting Details Card -->
-              <div style="background-color: #f9f9fa; border: 1px solid #eeeeee; border-radius: 8px; padding: 25px; margin-bottom: 30px;">
-                <table style="width: 100%; border-spacing: 0;">
+                  <!-- Hero Content -->
                   <tr>
-                    <td style="padding-bottom: 15px; border-bottom: 1px solid #eaeaea; width: 30%;">
-                      <p style="color: #888888; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 5px 0;">DATE</p>
-                    </td>
-                    <td style="padding-bottom: 15px; border-bottom: 1px solid #eaeaea;">
-                      <p style="color: #111111; font-size: 16px; font-weight: 500; margin: 0;">${startDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                    <td style="padding: 0 48px 40px 48px;">
+                      <div style="height: 1px; background: linear-gradient(90deg, transparent, #27272a, transparent); margin-bottom: 40px;"></div>
+                      
+                      <h2 style="color: #ffffff; font-size: 28px; font-weight: 700; margin: 0 0 20px 0; letter-spacing: -0.5px;">Hi ${name},</h2>
+                      <p style="color: #d4d4d8; font-size: 16px; line-height: 1.7; margin: 0 0 32px 0;">
+                        We're excited to meet you! Your 15-minute introductory consultation has been successfully scheduled. We've prepared everything to help you explore the potential of your digital vision.
+                      </p>
+
+                      <!-- Detail Card -->
+                      <div style="background-color: #111113; border: 1px solid #1d1d21; border-radius: 20px; padding: 32px; margin-bottom: 32px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                          <tr>
+                            <td style="padding-bottom: 24px; border-bottom: 1px solid #1d1d21;">
+                              <p style="color: #71717a; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 8px 0;">Date & Time</p>
+                              <p style="color: #ffffff; font-size: 18px; font-weight: 600; margin: 0;">${startDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                              <p style="color: #10b981; font-size: 15px; font-weight: 500; margin: 4px 0 0 0;">${time} (India Standard Time)</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding-top: 24px;">
+                              <p style="color: #71717a; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 12px 0;">Access Invitation</p>
+                              <a href="${googleMeetLink}" style="display: inline-block; background-color: #ffffff; color: #000000; text-decoration: none; padding: 14px 28px; border-radius: 12px; font-size: 15px; font-weight: 700; transition: all 0.3s ease;">
+                                Join Google Meet
+                              </a>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+
+                      <!-- Tip Section -->
+                      <div style="background-color: #ffffff08; border-radius: 16px; padding: 20px; border: 1px dashed #27272a;">
+                        <p style="color: #a1a1aa; font-size: 14px; line-height: 1.5; margin: 0;">
+                          <span style="color: #ffffff; font-weight: 600;">Pro Tip:</span> Join from a desktop browser for the best experience. We recommend arriving 2 minutes early to test your audio/video.
+                        </p>
+                      </div>
                     </td>
                   </tr>
+
+                  <!-- Sophisticated Footer -->
                   <tr>
-                    <td style="padding-top: 15px; padding-bottom: 15px; border-bottom: 1px solid #eaeaea;">
-                      <p style="color: #888888; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 5px 0;">TIME</p>
-                    </td>
-                    <td style="padding-top: 15px; padding-bottom: 15px; border-bottom: 1px solid #eaeaea;">
-                      <p style="color: #111111; font-size: 16px; font-weight: 500; margin: 0;">${time} (IST)</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding-top: 15px; vertical-align: middle;">
-                      <p style="color: #888888; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 5px 0;">LINK</p>
-                    </td>
-                    <td style="padding-top: 15px; vertical-align: middle;">
-                      <a href="${googleMeetLink}" style="display: inline-block; background-color: #10b981; color: #ffffff; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 500;">Join Google Meet</a>
+                    <td style="padding: 0 48px 48px 48px;">
+                      <div style="height: 1px; background: #18181b; margin-bottom: 32px;"></div>
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td>
+                            <p style="color: #52525b; font-size: 13px; margin: 0;">Sent by <span style="color: #a1a1aa;">TheCraftSync</span></p>
+                          </td>
+                          <td align="right">
+                            <a href="https://thecraftsync.com" style="color: #52525b; font-size: 13px; text-decoration: none;">thecraftsync.com</a>
+                          </td>
+                        </tr>
+                      </table>
                     </td>
                   </tr>
                 </table>
-              </div>
-
-              <div style="background-color: #fff8f1; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 4px; margin-bottom: 30px;">
-                <p style="color: #92400e; font-size: 14px; margin: 0; line-height: 1.5;">
-                  <strong>Quick Tip:</strong> Use a computer for the best experience. A calendar invitation has also been sent to <strong>${email}</strong>.
-                </p>
-              </div>
-
-              <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eaeaea;">
-                <p style="color: #888888; font-size: 14px; margin: 0;">Best regards,<br><span style="color: #111111; font-weight: 500;">TheCraftSync Team</span></p>
-              </div>
-            </div>
-            
-            <!-- Footer -->
-            <div style="background-color: #f9f9fa; padding: 20px; text-align: center; border-top: 1px solid #eaeaea;">
-              <p style="color: #aaaaaa; font-size: 11px; margin: 0;">&copy; ${new Date().getFullYear()} TheCraftSync. All rights reserved.</p>
-            </div>
-          </div>
+              </td>
+            </tr>
+          </table>
         </body>
         </html>
       `,
@@ -164,78 +183,62 @@ export async function POST(req: NextRequest) {
 
     // 4. Send Notification to Owner
     await resend.emails.send({
-      from: 'TheCraftSync <onboarding@resend.dev>',
+      from: 'TheCraftSync <manikbansal@thecraftsync.com>',
       to: ['manikbansal@thecraftsync.com'],
-      subject: `New Meeting Scheduled: ${name}`,
+      subject: `Booking Alert: Intro Call with ${name}`,
       html: `
         <!DOCTYPE html>
         <html>
         <head>
+          <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </head>
-        <body style="background-color: #f4f4f5; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
-          <div style="max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-            <!-- Header -->
-            <div style="background-color: #10b981; padding: 40px 30px; text-align: center;">
-              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600; letter-spacing: 1px;">NEW BOOKING</h1>
-              <p style="color: #ecfdf5; font-size: 12px; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px;">Incoming Lead</p>
-            </div>
+        <body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Inter', -apple-system, sans-serif;">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td align="center" style="padding: 40px 0;">
+                <table border="0" cellpadding="0" cellspacing="0" width="500" style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden;">
+                  <tr>
+                    <td style="background-color: #000000; padding: 32px; text-align: center;">
+                      <h1 style="color: #ffffff; font-size: 14px; text-transform: uppercase; letter-spacing: 3px; margin: 0;">New Engagement</h1>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 40px 32px;">
+                      <h2 style="color: #0f172a; font-size: 20px; font-weight: 700; margin: 0 0 24px 0;">${name} just booked a call</h2>
+                      
+                      <div style="background-color: #f1f5f9; border-radius: 12px; padding: 24px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                          <tr>
+                            <td style="padding-bottom: 12px; color: #64748b; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Partner Details</td>
+                          </tr>
+                          <tr>
+                            <td style="color: #0f172a; font-size: 16px; font-weight: 500; padding-bottom: 16px;">
+                              ${name}<br>
+                              <a href="mailto:${email}" style="color: #3b82f6; text-decoration: none;">${email}</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding-bottom: 8px; color: #64748b; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Scheduled For</td>
+                          </tr>
+                          <tr>
+                            <td style="color: #0f172a; font-size: 16px; font-weight: 500;">
+                               ${startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} @ ${time} IST
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
 
-            <!-- Content -->
-            <div style="padding: 40px 30px;">
-              <h2 style="color: #111111; font-size: 20px; font-weight: 600; margin-top: 0; margin-bottom: 20px;">${name} scheduled a call</h2>
-              
-              <!-- Client Details -->
-              <div style="background-color: #f9f9fa; border: 1px solid #eeeeee; border-radius: 8px; padding: 25px; margin-bottom: 30px;">
-                <table style="width: 100%; border-spacing: 0;">
-                  <tr>
-                    <td style="padding-bottom: 15px; border-bottom: 1px solid #eaeaea; width: 30%;">
-                      <p style="color: #888888; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 5px 0;">NAME</p>
-                    </td>
-                    <td style="padding-bottom: 15px; border-bottom: 1px solid #eaeaea;">
-                      <p style="color: #111111; font-size: 16px; font-weight: 500; margin: 0;">${name}</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding-top: 15px; padding-bottom: 15px; border-bottom: 1px solid #eaeaea;">
-                      <p style="color: #888888; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 5px 0;">EMAIL</p>
-                    </td>
-                    <td style="padding-top: 15px; padding-bottom: 15px; border-bottom: 1px solid #eaeaea;">
-                      <p style="color: #111111; font-size: 16px; font-weight: 500; margin: 0;"><a href="mailto:${email}" style="color: #111111; text-decoration: none; border-bottom: 1px solid #ddd;">${email}</a></p>
-                    </td>
-                  </tr>
-                   <tr>
-                    <td style="padding-top: 15px; padding-bottom: 15px; border-bottom: 1px solid #eaeaea;">
-                      <p style="color: #888888; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 5px 0;">DATE</p>
-                    </td>
-                    <td style="padding-top: 15px; padding-bottom: 15px; border-bottom: 1px solid #eaeaea;">
-                      <p style="color: #111111; font-size: 16px; font-weight: 500; margin: 0;">${startDate.toLocaleDateString()}</p>
-                    </td>
-                  </tr>
-                   <tr>
-                    <td style="padding-top: 15px; padding-bottom: 15px; border-bottom: 1px solid #eaeaea;">
-                      <p style="color: #888888; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 5px 0;">TIME</p>
-                    </td>
-                    <td style="padding-top: 15px; padding-bottom: 15px; border-bottom: 1px solid #eaeaea;">
-                      <p style="color: #111111; font-size: 16px; font-weight: 500; margin: 0;">${time}</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding-top: 15px;">
-                      <p style="color: #888888; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 5px 0;">ACTION</p>
-                    </td>
-                    <td style="padding-top: 15px;">
-                      <a href="${googleMeetLink}" style="color: #10b981; font-size: 16px; font-weight: 500; text-decoration: none;">View Meeting &rarr;</a>
+                      <div style="margin-top: 32px; text-align: center;">
+                        <a href="${googleMeetLink}" style="display: inline-block; background-color: #000000; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 10px; font-size: 14px; font-weight: 600;">View In Calendar</a>
+                      </div>
                     </td>
                   </tr>
                 </table>
-              </div>
-
-              <div style="margin-top: 40px; text-align: center;">
-                 <a href="https://calendar.google.com" style="display: inline-block; background-color: #000000; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-size: 14px; font-weight: 500;">Open Google Calendar</a>
-              </div>
-            </div>
-          </div>
+                <p style="color: #94a3b8; font-size: 12px; margin-top: 24px;">&copy; ${new Date().getFullYear()} TheCraftSync Internal Automation</p>
+              </td>
+            </tr>
+          </table>
         </body>
         </html>
       `,
@@ -244,7 +247,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, link: googleMeetLink });
 
   } catch (error: any) {
-    console.error('Schedule Error:', error);
+    console.error('Schedule Error:', error.response?.data || error.message || error);
     return NextResponse.json(
       { error: error.message || 'Failed to schedule meeting' },
       { status: 500 }
