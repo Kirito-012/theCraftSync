@@ -14,10 +14,18 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
 
   const isAdminRoute = pathname?.startsWith('/admin');
 
+  // Use a 'mounted' state to avoid hydration mismatch and ensure SEO-friendly initial HTML
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isVisible = !mounted || !isLoading;
+
   return (
     <>
       {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
-      <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
+      <div className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
         {!isAdminRoute && <Navbar />}
         {children}
         {!isAdminRoute && <ChatBot />}
