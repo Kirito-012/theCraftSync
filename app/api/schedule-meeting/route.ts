@@ -5,10 +5,12 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const redirectUri = process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3000/api/auth/callback/google';
+
 const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_ID,
   process.env.GOOGLE_CLIENT_SECRET,
-  process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3000/api/auth/callback/google'
+  redirectUri
 );
 
 // Helper to set credentials
@@ -247,9 +249,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, link: googleMeetLink });
 
   } catch (error: any) {
-    console.error('Schedule Error:', error.response?.data || error.message || error);
+    if (error.message?.includes('invalid_grant')) {
+      console.error('CRITICAL OAUTH ERROR: invalid_grant');
+      console.error('This means the refresh token is invalid or the redirect URI is mismatched.');
+      console.error('Configured Redirect URI:', redirectUri);
+    }
+    console.error('Schedule Error Details:', error.response?.data || error.message || error);
     return NextResponse.json(
-      { error: error.message || 'Failed to schedule meeting' },
+      { error: 'Authentication failed. Please verify server environment variables.' },
       { status: 500 }
     );
   }
