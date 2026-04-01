@@ -51,7 +51,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose }) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          date: selectedDate,
+          date: selectedDate ? format(selectedDate, 'yyyy-MM-dd') : null,
           time: selectedTime,
           ...formData
         })

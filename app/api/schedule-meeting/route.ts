@@ -41,16 +41,24 @@ export async function POST(req: NextRequest) {
 
     const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
 
-    // Parse date and time to ISO string
-    // Assuming date is ISO string from frontend, and time is like "10:00 AM"
-    const startDate = new Date(date);
+    // Parse date ("YYYY-MM-DD") and time ("10:00 AM")
+    const [year, month, day] = date.split('-');
     const [timeStr, period] = time.split(' ');
     let [hours, minutes] = timeStr.split(':').map(Number);
 
     if (period === 'PM' && hours !== 12) hours += 12;
     if (period === 'AM' && hours === 12) hours = 0;
 
-    startDate.setHours(hours, minutes, 0, 0);
+    const hoursFormat = hours.toString().padStart(2, '0');
+    const minutesFormat = minutes.toString().padStart(2, '0');
+
+    // Create an exact Date object representing this time in IST (+05:30)
+    const isoString = `${year}-${month}-${day}T${hoursFormat}:${minutesFormat}:00+05:30`;
+    const startDate = new Date(isoString);
+
+    if (isNaN(startDate.getTime())) {
+       return NextResponse.json({ error: 'Invalid date/time format' }, { status: 400 });
+    }
 
     const endDate = new Date(startDate);
     endDate.setMinutes(endDate.getMinutes() + 15); // 15 min duration as per UI
@@ -134,7 +142,7 @@ export async function POST(req: NextRequest) {
                           <tr>
                             <td style="padding-bottom: 24px; border-bottom: 1px solid #1d1d21;">
                               <p style="color: #71717a; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 8px 0;">Date & Time</p>
-                              <p style="color: #ffffff; font-size: 18px; font-weight: 600; margin: 0;">${startDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                              <p style="color: #ffffff; font-size: 18px; font-weight: 600; margin: 0;">${startDate.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</p>
                               <p style="color: #10b981; font-size: 15px; font-weight: 500; margin: 4px 0 0 0;">${time} (India Standard Time)</p>
                             </td>
                           </tr>
@@ -225,7 +233,7 @@ export async function POST(req: NextRequest) {
                           </tr>
                           <tr>
                             <td style="color: #0f172a; font-size: 16px; font-weight: 500;">
-                               ${startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} @ ${time} IST
+                               ${startDate.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', month: 'short', day: 'numeric', year: 'numeric' })} @ ${time} IST
                             </td>
                           </tr>
                         </table>
