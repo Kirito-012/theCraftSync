@@ -237,7 +237,7 @@ export default function BlogListContent({ blogs: initialBlogs, categoriesData }:
 						filteredBlogs.map((post: any) => (
 							<Link
 								key={post._id}
-								href={`/blogs/${post.slug || post._id}`}
+								href={`/blogs/${post.slug || post._id || '#'}`}
 								className='block h-full opacity-0'>
 								<article className='group flex flex-col h-full bg-white rounded-[32px_8px_32px_8px] overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-white/10'>
 									{/* Image Container */}

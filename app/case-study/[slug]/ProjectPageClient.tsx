@@ -6,7 +6,7 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Project } from '@/app/lib/projectsData';
-import { motion } from 'framer-motion';
+import { motion as m } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -128,14 +128,14 @@ export default function ProjectPageClient({ project }: { project: Project }) {
             </div>
           </div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             className="mb-8 inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm"
           >
             <span className="text-sm font-medium tracking-wide text-gray-300">Case Study</span>
-          </motion.div>
+          </m.div>
           
           <h1 
             ref={titleRef}
@@ -410,7 +410,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
               Start a Project
             </Link>
             <Link
-              href="/case-study"
+              href="/projects"
               className="inline-flex items-center justify-center px-8 py-4 border-2 border-black text-black rounded-full font-semibold hover:bg-black hover:text-white transition-all"
               style={{ fontFamily: 'var(--font-descriptive)' }}
             >

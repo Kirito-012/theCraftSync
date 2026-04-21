@@ -108,7 +108,7 @@ export default function BlogContent({ post, recentPosts }: BlogContentProps) {
 						{recentPosts.map((relatedPost) => (
 							<Link
 								key={relatedPost._id}
-								href={`/blogs/${relatedPost.slug || relatedPost._id}`}
+								href={`/blogs/${relatedPost.slug || relatedPost._id || '#'}`}
 								className='block h-full'>
 								<article className='group flex flex-col h-full bg-white rounded-[32px_8px_32px_8px] overflow-hidden border border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5'>
 									{/* Image Container */}

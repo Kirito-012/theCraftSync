@@ -43,10 +43,10 @@ export default async function ProjectDetailPage({ params }: Props) {
             Project Not Found
           </h1>
           <Link 
-            href="/case-study"
+            href="/projects"
             className="inline-block px-6 py-3 bg-black text-white rounded-full hover:bg-black/80 transition-colors"
           >
-            Back to Case Studies
+            Back to Projects
           </Link>
         </div>
       </div>
