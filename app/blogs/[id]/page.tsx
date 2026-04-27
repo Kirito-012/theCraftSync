@@ -1,7 +1,7 @@
 import React from 'react'
 import connectDB from '../../config/database'
 import Blog from '../../models/Blog'
-import Category from '../../models/Category'
+import '../../models/Category'
 import BlogContent from './BlogContent'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
