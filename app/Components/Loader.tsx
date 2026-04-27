@@ -121,7 +121,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete }) => {
       </div>
 
       {/* Cinematic Grain Overlay - Reduced opacity for performance */}
-      <div className="absolute inset-0 z-10 pointer-events-none opacity-[0.02] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div className="absolute inset-0 z-10 pointer-events-none opacity-[0.02] mix-blend-overlay " />
 
       <div className="relative z-20 flex flex-col items-center justify-center">
         {/* Name Reveal */}
