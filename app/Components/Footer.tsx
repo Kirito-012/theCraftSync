@@ -95,7 +95,7 @@ export default function Footer() {
           {/* Email */}
           <a
             href="mailto:connect@thecraftsync.com"
-            className="text-[clamp(1rem,8vw,3.5rem)] font-light hover:text-gray-400 transition-colors duration-300 break-all leading-tight"
+            className="text-[clamp(1rem,5.5vw,3.5rem)] sm:text-[clamp(1rem,8vw,3.5rem)] font-light hover:text-gray-400 transition-colors duration-300 break-all leading-tight"
           >
             connect@thecraftsync.com
           </a>

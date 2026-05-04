@@ -100,10 +100,10 @@ const Clients = () => {
       <div className="max-w-7xl w-full mx-auto">
         {/* Title */}
         <h2 ref={titleRef} className="text-center mb-20 font-light leading-tight md:mb-16 sm:mb-10">
-          <span className="block text-5xl md:text-7xl lg:text-8xl tracking-widest mb-2 sm:text-4xl">
+          <span className="block text-4xl md:text-7xl lg:text-8xl tracking-[0.15em] sm:tracking-widest mb-2">
             OUR
           </span>
-          <span className="block text-6xl md:text-8xl lg:text-9xl font-bold tracking-wider sm:text-5xl">
+          <span className="block text-5xl md:text-8xl lg:text-9xl font-bold tracking-normal sm:tracking-wider">
             PARTNERS
           </span>
         </h2>

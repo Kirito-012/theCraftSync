@@ -109,13 +109,13 @@ export default function Navbar() {
 			style={{ opacity: 0, transform: 'translateY(-100px)' }} // Initial state to prevent FOUC
 		>
 			<div
-				className={`bg-black/90 px-6 backdrop-blur-xl shadow-2xl border border-white/10 transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] overflow-hidden flex flex-col ${
+				className={`bg-black/90 px-4 sm:px-6 backdrop-blur-xl shadow-2xl border border-white/10 transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] overflow-hidden flex flex-col ${
 					isMenuOpen
 						? 'rounded-4xl pt-6 pb-12 h-[85vh]'
 						: 'rounded-[34px] md:px-8 py-3 h-17'
 				}`}>
 				<div
-					className={`flex items-center justify-between w-full gap-20 transition-all duration-300`}>
+					className={`flex items-center justify-between w-full gap-4 sm:gap-20 transition-all duration-300`}>
 					{/* Logo */}
 					<Link href='/'>
 						<Image
@@ -123,7 +123,7 @@ export default function Navbar() {
 							alt='Logo'
 							width={40}
 							height={40}
-							className='h-8 w-auto shrink-0'
+							className='h-6 sm:h-8 w-auto shrink-0'
 						/>
 					</Link>
 

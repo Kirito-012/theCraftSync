@@ -113,7 +113,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
         <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-4xl py-20 md:py-0">
           <h1 
             ref={headingRef}
-            className="text-5xl md:text-7xl lg:text-[7.5rem] xl:text-[7.6rem] font-light text-white leading-[1.1] tracking-tight mb-6"
+            className="text-4xl md:text-7xl lg:text-[7.5rem] xl:text-[7.6rem] font-light text-white leading-[1.1] tracking-tight mb-6"
           >
             <div className="overflow-hidden">
               <span className="inline-block">Building</span>
@@ -128,7 +128,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
 
           <p 
             ref={paraRef}
-            className="text-base md:text-lg lg:text-xl text-white/60 max-w-lg lg:max-w-xl mb-10 leading-relaxed font-normal"
+            className="text-sm md:text-lg lg:text-xl text-white/60 max-w-lg lg:max-w-xl mb-10 leading-relaxed font-normal"
           >
             Strategic design meeting technical precision. We build digital products that resonate and scale.
           </p>
