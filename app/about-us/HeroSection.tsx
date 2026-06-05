@@ -2,6 +2,7 @@
 
 import {useEffect, useRef} from 'react'
 import gsap from 'gsap'
+import aboutusBg from '../assets/aboutus.jpg'
 
 export default function HeroSection() {
 	const heroRef = useRef<HTMLDivElement>(null)
@@ -72,15 +73,15 @@ export default function HeroSection() {
 					ref={bgRef}
 					className='absolute top-[-10%] left-0 w-full h-[120%] bg-cover bg-center bg-no-repeat will-change-transform'
 					style={{
-						backgroundImage:
-							"url('https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_1920,c_limit/v1767509751/photo-1660496247667-3fb697c396af_yvgb2m.avif')",
+						backgroundImage: `url(${aboutusBg.src})`,
+						backgroundSize: 'cover',
 						backgroundPosition: 'center center',
 						transform: 'translate3d(0, 0, 0)',
 						backfaceVisibility: 'hidden',
 					}}
 				/>
-				<div className='absolute inset-0 bg-black/40 mix-blend-multiply'></div>
-				<div className='absolute inset-0 bg-linear-to-t from-navy-dark/60 via-transparent to-transparent'></div>
+				<div className='absolute inset-0 bg-black/50'></div>
+				<div className='absolute inset-0 bg-linear-to-t from-navy-dark/70 via-black/20 to-transparent'></div>
 			</div>
 
 			{/* Content */}

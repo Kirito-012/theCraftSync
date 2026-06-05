@@ -316,7 +316,7 @@ export default function WhoWeAre() {
 								<div className='relative group/img overflow-hidden h-20 sm:h-24 md:h-28 lg:h-32 border border-black/10 hover:border-black/20 transition-all duration-500 snap-center'>
 									<div className='absolute inset-0 bg-black/0 group-hover/img:bg-black/5 transition-all duration-500 z-10'></div>
 									<Image
-										src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_400,c_limit/v1767510655/photo-1522071820081-009f0129c71c_xqyihe.avif'
+										src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&q=80'
 										alt='Team brainstorming'
 										width={400}
 										height={300}
@@ -328,7 +328,7 @@ export default function WhoWeAre() {
 								<div className='relative group/img overflow-hidden h-20 sm:h-24 md:h-28 lg:h-32 border border-black/10 hover:border-black/20 transition-all duration-500 snap-center'>
 									<div className='absolute inset-0 bg-black/0 group-hover/img:bg-black/5 transition-all duration-500 z-10'></div>
 									<Image
-										src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_400,c_limit/v1767510656/photo-1531482615713-2afd69097998_xifvbc.avif'
+										src='https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&q=80'
 										alt='Creative workspace'
 										width={400}
 										height={300}
@@ -340,7 +340,7 @@ export default function WhoWeAre() {
 								<div className='relative group/img overflow-hidden h-20 sm:h-24 md:h-28 lg:h-32 border border-black/10 hover:border-black/20 transition-all duration-500 snap-center'>
 									<div className='absolute inset-0 bg-black/0 group-hover/img:bg-black/5 transition-all duration-500 z-10'></div>
 									<Image
-										src='https://res.cloudinary.com/duor8d5e3/image/upload/f_auto,q_auto,w_400,c_limit/v1767510655/photo-1552664730-d307ca884978_itez96.avif'
+										src='https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80'
 										alt='Team meeting'
 										width={400}
 										height={300}
