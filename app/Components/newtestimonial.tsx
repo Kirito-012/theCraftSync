@@ -89,7 +89,7 @@ const NewTestimonial: React.FC = () => {
 
   return (
     <section className="bg-black py-24 md:py-32 px-6 lg:px-20 overflow-hidden" ref={containerRef}>
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-350 mx-auto">
         {/* Header */}
         <div className="flex flex-col mb-20 space-y-4">
           <span className="text-zinc-500 text-xs uppercase tracking-[0.4em] font-medium">Professional Testimonials</span>
@@ -99,7 +99,7 @@ const NewTestimonial: React.FC = () => {
         </div>
 
         {/* Testimonial Cards Container */}
-        <div className="flex flex-col lg:flex-row gap-6 h-auto lg:h-[500px]">
+        <div className="flex flex-col lg:flex-row gap-6 h-auto lg:h-125">
           {testimonials.map((t, index) => {
             const isActive = activeIndex === index;
             
@@ -118,7 +118,7 @@ const NewTestimonial: React.FC = () => {
               >
                 {/* Progress Bar (Only for active) */}
                 {isActive && (
-                  <div className="absolute top-0 left-0 w-full h-[3px] bg-zinc-800">
+                  <div className="absolute top-0 left-0 w-full h-0.75 bg-zinc-800">
                     <div 
                       className="h-full bg-white transition-all duration-75 linear" 
                       style={{ width: `${progress}%` }}
