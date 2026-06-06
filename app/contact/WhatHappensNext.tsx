@@ -163,10 +163,10 @@ const WhatHappensNext = () => {
 
 				<div className='steps-container relative'>
 					{/* Animated Progress Line */}
-					<div className='absolute left-[20px] top-0 bottom-0 w-px bg-zinc-800' />
+					<div className='absolute left-5 top-0 bottom-0 w-px bg-zinc-800' />
 					<div 
 						ref={lineRef}
-						className='absolute left-[20px] top-0 bottom-0 w-px bg-white origin-top shadow-[0_0_15px_rgba(255,255,255,0.3)] z-1' 
+						className='absolute left-5 top-0 bottom-0 w-px bg-white origin-top shadow-[0_0_15px_rgba(255,255,255,0.3)] z-1' 
 					/>
 
 					<div className='flex flex-col space-y-32'>
@@ -192,9 +192,9 @@ const WhatHappensNext = () => {
 
 								{/* Content Card */}
 								<div className='step-content w-full ml-12 md:ml-24 pt-4 md:pt-8'>
-									<div className='max-w-xl p-8 rounded-[2rem] bg-zinc-900/20 border border-white/5 backdrop-blur-sm transition-all duration-500 hover:bg-zinc-900/40 hover:border-white/10 group-hover:-translate-y-2 relative overflow-hidden'>
+									<div className='max-w-xl p-8 rounded-4xl bg-zinc-900/20 border border-white/5 backdrop-blur-sm transition-all duration-500 hover:bg-zinc-900/40 hover:border-white/10 group-hover:-translate-y-2 relative overflow-hidden'>
 										{/* Border Accent */}
-										<div className={`absolute top-0 left-0 w-full h-[2px] ${step.lineColor} opacity-50 group-hover:opacity-100 transition-opacity`} />
+										<div className={`absolute top-0 left-0 w-full h-0.5 ${step.lineColor} opacity-50 group-hover:opacity-100 transition-opacity`} />
 										
 										<div className='flex items-center gap-4 mb-6'>
 											<div className='p-3 rounded-2xl bg-white/5 text-white group-hover:scale-110 transition-transform'>
@@ -214,10 +214,7 @@ const WhatHappensNext = () => {
 											{step.description}
 										</p>
 
-										<div className='mt-8 flex items-center gap-2 group/btn cursor-pointer'>
-											<span className='text-xs font-bold uppercase tracking-widest text-zinc-400 group-hover/btn:text-white transition-colors'>Learn the details</span>
-											<ArrowRight className='w-4 h-4 text-zinc-400 group-hover/btn:text-white group-hover/btn:translate-x-1 transition-all' />
-										</div>
+								
 									</div>
 								</div>
 							</div>

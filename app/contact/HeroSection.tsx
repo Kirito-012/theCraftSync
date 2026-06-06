@@ -184,13 +184,13 @@ const HeroSection = () => {
 	return (
 		<div
 			ref={containerRef}
-			className='w-full flex flex-col lg:flex-row gap-3 sm:gap-4 min-h-[calc(100vh-2rem)] bg-grid max-w-[1800px] mx-auto pt-16 pb-2 px-3 sm:px-6 overflow-x-hidden'>
+			className='w-full flex flex-col lg:flex-row gap-3 sm:gap-4 min-h-[calc(100vh-2rem)] bg-grid max-w-450 mx-auto pt-16 pb-2 px-3 sm:px-6 overflow-x-hidden'>
 			{/* LEFT PANEL (40%) - INFO */}
 			<div
 				ref={leftPanelRef}
 				className='w-full lg:w-[40%] bg-black text-white rounded-[20px] p-5 sm:p-6 lg:p-8 flex flex-col justify-between relative overflow-hidden shadow-2xl border border-white/5 opacity-0'>
 				{/* Background Aesthetics - Increased Opacity */}
-				<div className='glow-blob w-[500px] h-[500px] bg-white/20 top-[-200px] left-[-200px] animate-float blur-[120px] rounded-full absolute pointer-events-none'></div>
+				<div className='glow-blob w-125 h-125 bg-white/20 -top-50 -left-50 animate-float blur-[120px] rounded-full absolute pointer-events-none'></div>
 
 				{/* Content */}
 				<div className='relative z-10 flex flex-col h-full justify-between gap-12 lg:gap-0'>
@@ -247,13 +247,29 @@ const HeroSection = () => {
 								<MapPin className='w-5 h-5 text-zinc-400 group-hover:text-white transition-colors' />
 							</div>
 							<div>
-								<p className='text-[10px] text-zinc-500 font-bold uppercase tracking-widest mb-1'>
-									Visit us
+								<p className='font-medium text-md md:text-lg text-white relative inline-block'>
+									Coimbatore, Tamil Nadu
+									<span className='absolute left-0 bottom-0 w-full h-px bg-zinc-700 group-hover:bg-white transition-colors duration-300'></span>
 								</p>
+								<p className='text-sm text-zinc-400 mt-1'>Rishabh Mutha</p>
+								<a href='tel:+919265052939' className='text-sm text-zinc-300 hover:text-white transition-colors inline-block'>
+									+91 92650 52939
+								</a>
+							</div>
+						</div>
+						<div className='flex items-center gap-5 text-gray-300 group cursor-pointer transition-all hover:translate-x-2 duration-300 opacity-0'>
+							<div className='w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-all border border-white/5'>
+								<MapPin className='w-5 h-5 text-zinc-400 group-hover:text-white transition-colors' />
+							</div>
+							<div>
 								<p className='font-medium text-md md:text-lg text-white relative inline-block'>
 									Haridwar, Uttarakhand
 									<span className='absolute left-0 bottom-0 w-full h-px bg-zinc-700 group-hover:bg-white transition-colors duration-300'></span>
 								</p>
+								<p className='text-sm text-zinc-400 mt-1'>Manik Bansal</p>
+								<a href='tel:+918433023265' className='text-sm text-zinc-300 hover:text-white transition-colors inline-block'>
+									+91 84330 23265
+								</a>
 							</div>
 						</div>
 					</div>
@@ -413,7 +429,7 @@ const HeroSection = () => {
 								rows={1}
 								value={formData.message}
 								onChange={handleChange}
-								className={`w-full bg-transparent border-b-2 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none transition-colors duration-300 resize-none min-h-[60px] ${errors.message ? 'border-red-500' : 'border-zinc-200 focus:border-zinc-900'}`}
+								className={`w-full bg-transparent border-b-2 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none transition-colors duration-300 resize-none min-h-15 ${errors.message ? 'border-red-500' : 'border-zinc-200 focus:border-zinc-900'}`}
 								placeholder='Tell us about your project goals...'
 								onInput={(e) => {
 									e.currentTarget.style.height = 'auto'

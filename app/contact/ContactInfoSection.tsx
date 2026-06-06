@@ -97,7 +97,7 @@ const ContactInfoSection = () => {
 			{/* Divider Line */}
 			<div className='absolute top-0 left-0 w-full h-px bg-zinc-900'></div>
 
-			<div className='max-w-[1600px] mx-auto'>
+			<div className='max-w-400 mx-auto'>
 				<div className='flex flex-col-reverse lg:grid lg:grid-cols-2 gap-12 lg:gap-24 items-start'>
 					{/* LEFT COLUMN: Contact Details */}
 					<div className='flex flex-col gap-16'>
@@ -118,6 +118,28 @@ const ContactInfoSection = () => {
 						</div>
 
 						<div className='space-y-8'>
+							<div className='flex items-start gap-4'>
+								<div className='w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center bg-zinc-900/50 shrink-0 text-zinc-400'>
+									<MapPin className='w-4 h-4' />
+								</div>
+								<div>
+									<p className='text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1'>
+										Coimbatore Office
+									</p>
+									<p className='text-xl text-white font-medium'>
+										Coimbatore, Tamil Nadu
+									</p>
+									<p className='text-zinc-500 font-light mt-1'>
+										Rishabh Mutha
+									</p>
+									<a
+										href='tel:+919265052939'
+										className='text-zinc-400 font-light mt-1 inline-block hover:text-white transition-colors'>
+										+91 92650 52939
+									</a>
+								</div>
+							</div>
+
 							<div
 								ref={locationBlockRef}
 								className='flex items-start gap-4'>
@@ -131,6 +153,14 @@ const ContactInfoSection = () => {
 									<p className='text-xl text-white font-medium'>
 										Haridwar, Uttarakhand
 									</p>
+									<p className='text-zinc-500 font-light mt-1'>
+										Manik Bansal
+									</p>
+									<a
+										href='tel:+918433023265'
+										className='text-zinc-400 font-light mt-1 inline-block hover:text-white transition-colors'>
+										+91 84330 23265
+									</a>
 									<p className='text-zinc-500 font-light mt-1'>
 										Available for remote partnerships worldwide.
 									</p>
@@ -178,7 +208,7 @@ const ContactInfoSection = () => {
 						className='relative group'>
 						<div className='absolute inset-0 bg-linear-to-br from-emerald-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-[80px] rounded-full pointer-events-none'></div>
 
-						<div className='relative bg-zinc-950 border border-zinc-800 rounded-[32px] p-8 md:p-12 overflow-hidden hover:border-zinc-700 transition-colors duration-500'>
+						<div className='relative bg-zinc-950 border border-zinc-800 rounded-4xl p-8 md:p-12 overflow-hidden hover:border-zinc-700 transition-colors duration-500'>
 							<div className='flex justify-between items-start mb-12'>
 								<div>
 									<div className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6'>
