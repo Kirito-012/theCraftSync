@@ -360,7 +360,7 @@ const HeroSection = () => {
 									value={formData.budget}
 									onChange={handleChange}
 									className='w-full bg-transparent border-b-2 border-zinc-200 py-2 text-lg font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none focus:border-zinc-900 transition-colors duration-300'
-									placeholder='₹30k - ₹70k'
+									placeholder='$30k - $70k'
 								/>
 							</div>
 						</div>

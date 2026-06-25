@@ -228,8 +228,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose }) => {
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">Meeting Scheduled!</h3>
                   <p className="text-zinc-400 mb-6">
-                    We've sent a confirmation email to {formData.email}.<br />
-                    The event has been added to the calendar.
+                    We've sent a confirmation email to {formData.email}.
                   </p>
                   <button
                     onClick={resetModal}

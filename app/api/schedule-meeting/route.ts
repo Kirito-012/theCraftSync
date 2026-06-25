@@ -76,7 +76,8 @@ export async function POST(req: NextRequest) {
         timeZone: 'Asia/Kolkata',
       },
       attendees: [
-        { email: 'thecraftsync@gmail.com' } // Only your email so it appears on your calendar
+        { email: 'thecraftsync@gmail.com' }, // Owner
+        { email: email } // Client
       ],
       conferenceData: {
         createRequest: {
@@ -90,6 +91,7 @@ export async function POST(req: NextRequest) {
       calendarId: 'primary',
       requestBody: event,
       conferenceDataVersion: 1,
+      sendUpdates: 'all',
     });
 
     const googleMeetLink = calendarResponse.data.hangoutLink || 'No link generated';
@@ -240,7 +242,7 @@ export async function POST(req: NextRequest) {
                       </div>
 
                       <div style="margin-top: 32px; text-align: center;">
-                        <a href="${googleMeetLink}" style="display: inline-block; background-color: #000000; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 10px; font-size: 14px; font-weight: 600;">View In Calendar</a>
+                        <a href="${googleMeetLink}" style="display: inline-block; background-color: #000000; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 10px; font-size: 14px; font-weight: 600;">Join Meeting</a>
                       </div>
                     </td>
                   </tr>
