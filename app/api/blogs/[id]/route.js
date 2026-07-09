@@ -3,7 +3,11 @@ import mongoose from 'mongoose';
 import Blog from '@/app/models/Blog';
 import Category from '@/app/models/Category';
 import { NextResponse } from 'next/server';
-import { uploadToS3 } from '@/app/utils/s3Helper';
+import {
+    uploadToCloudinary,
+    deleteFromCloudinary,
+    publicIdFromUrl,
+} from '@/app/utils/cloudinaryHelper';
 
 export async function GET(req, { params }) {
     await connectDB();
@@ -65,10 +69,18 @@ export async function PUT(req, { params }) {
 
         // Update image if new one is provided
         let imageUrl = blog.image;
+        let imagePublicId = blog.imagePublicId;
         if (image && image !== blog.image && image.startsWith('data:image')) {
             // Only upload if it looks like a base64 string, otherwise assume it's already a URL
-            const uploadResult = await uploadToS3(image, 'blogs');
+            const uploadResult = await uploadToCloudinary(image, 'blogs');
             imageUrl = uploadResult.url;
+
+            // Clean up the previous image on Cloudinary (best-effort)
+            const oldPublicId = blog.imagePublicId || publicIdFromUrl(blog.image);
+            if (oldPublicId) {
+                await deleteFromCloudinary(oldPublicId);
+            }
+            imagePublicId = uploadResult.publicId;
         }
 
         // Update fields
@@ -78,6 +90,7 @@ export async function PUT(req, { params }) {
                 ? metaDescription.trim()
                 : blog.metaDescription;
         blog.image = imageUrl;
+        blog.imagePublicId = imagePublicId;
         blog.title = title !== undefined ? title.trim() : blog.title;
         blog.content = content !== undefined ? content.trim() : blog.content;
         blog.author = author !== undefined ? author.trim() : blog.author;
@@ -111,6 +124,12 @@ export async function DELETE(req, { params }) {
                 { success: false, message: 'Blog not found' },
                 { status: 404 }
             );
+        }
+
+        // Remove the associated image from Cloudinary (best-effort)
+        const publicId = blog.imagePublicId || publicIdFromUrl(blog.image);
+        if (publicId) {
+            await deleteFromCloudinary(publicId);
         }
 
         await Blog.findByIdAndDelete(id);

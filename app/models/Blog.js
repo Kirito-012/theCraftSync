@@ -16,6 +16,10 @@ const blogSchema = new mongoose.Schema(
 			type: String,
 			required: [true, 'Image is required'],
 		},
+		imagePublicId: {
+			type: String,
+			default: '',
+		},
 		title: {
 			type: String,
 			required: [true, 'Title is required'],

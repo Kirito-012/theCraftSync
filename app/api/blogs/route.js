@@ -3,7 +3,7 @@ import Blog from '@/app/models/Blog';
 import Category from '@/app/models/Category';
 
 import { NextResponse } from 'next/server';
-import { uploadToS3 } from '@/app/utils/s3Helper';
+import { uploadToCloudinary } from '@/app/utils/cloudinaryHelper';
 
 export async function POST(req) {
     await connectDB();
@@ -39,8 +39,8 @@ export async function POST(req) {
 
 
 
-        // Upload image to S3
-        const uploadResult = await uploadToS3(image, 'blogs');
+        // Upload image to Cloudinary
+        const uploadResult = await uploadToCloudinary(image, 'blogs');
         const imageUrl = uploadResult.url;
 
         // Create blog
@@ -48,6 +48,7 @@ export async function POST(req) {
             metaTitle: metaTitle.trim(),
             metaDescription: metaDescription.trim(),
             image: imageUrl,
+            imagePublicId: uploadResult.publicId,
             title: title.trim(),
             content: content.trim(),
             author: author.trim(),

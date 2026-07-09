@@ -1,5 +1,9 @@
 const Blog = require('../models/Blog')
-const {uploadToS3} = require('../utils/s3Helper')
+const {
+	uploadToCloudinary,
+	deleteFromCloudinary,
+	publicIdFromUrl,
+} = require('../utils/cloudinaryHelper')
 
 // Add new blog
 exports.addBlog = async (ctx) => {
@@ -46,8 +50,8 @@ exports.addBlog = async (ctx) => {
 			return
 		}
 
-		// Upload image to S3
-		const uploadResult = await uploadToS3(image, 'blogs')
+		// Upload image to Cloudinary
+		const uploadResult = await uploadToCloudinary(image, 'blogs')
 		const imageUrl = uploadResult.url
 
 		// Create blog
@@ -55,6 +59,7 @@ exports.addBlog = async (ctx) => {
 			metaTitle: metaTitle.trim(),
 			metaDescription: metaDescription.trim(),
 			image: imageUrl,
+			imagePublicId: uploadResult.publicId,
 			title: title.trim(),
 			content: content.trim(),
 			category: category,
@@ -170,9 +175,17 @@ exports.updateBlog = async (ctx) => {
 
 		// Update image if new one is provided
 		let imageUrl = blog.image
+		let imagePublicId = blog.imagePublicId
 		if (image && image !== blog.image) {
-			const uploadResult = await uploadToS3(image, 'blogs')
+			const uploadResult = await uploadToCloudinary(image, 'blogs')
 			imageUrl = uploadResult.url
+
+			// Clean up the previous image on Cloudinary (best-effort)
+			const oldPublicId = blog.imagePublicId || publicIdFromUrl(blog.image)
+			if (oldPublicId) {
+				await deleteFromCloudinary(oldPublicId)
+			}
+			imagePublicId = uploadResult.publicId
 		}
 
 		// Update fields
@@ -182,6 +195,7 @@ exports.updateBlog = async (ctx) => {
 				? metaDescription.trim()
 				: blog.metaDescription
 		blog.image = imageUrl
+		blog.imagePublicId = imagePublicId
 		blog.title = title !== undefined ? title.trim() : blog.title
 		blog.content = content !== undefined ? content.trim() : blog.content
 		blog.category = category !== undefined ? category : blog.category
@@ -218,6 +232,12 @@ exports.deleteBlog = async (ctx) => {
 				message: 'Blog not found',
 			}
 			return
+		}
+
+		// Remove the associated image from Cloudinary (best-effort)
+		const publicId = blog.imagePublicId || publicIdFromUrl(blog.image)
+		if (publicId) {
+			await deleteFromCloudinary(publicId)
 		}
 
 		await Blog.findByIdAndDelete(ctx.params.id)
