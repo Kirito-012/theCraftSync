@@ -16,7 +16,7 @@ export default async function BlogPage() {
   // Fetch blogs with category population
   const blogsData = await Blog.find({})
     .populate('category')
-    .sort({ createdAt: -1 })
+    .sort({ date: -1 })
     .lean();
 
   // Fetch active categories

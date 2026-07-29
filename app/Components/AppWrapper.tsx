@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import Navbar from './Header';
 import Footer from './Footer';
 import ChatBot from './ChatBot';
+import CustomCursor from './CustomCursor';
 
 export default function AppWrapper({ children }: { children: React.ReactNode }) {
   const { isLoading, setIsLoading } = useLoading();
@@ -26,6 +27,7 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
     <>
       {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
       <div className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        {!isAdminRoute && <CustomCursor />}
         {!isAdminRoute && <Navbar />}
         {children}
         {!isAdminRoute && <ChatBot />}

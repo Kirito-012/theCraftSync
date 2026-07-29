@@ -132,6 +132,7 @@ const NewOurWorks: React.FC = () => {
             <Link 
               key={index}
               href={project.link}
+              data-cursor-text="VIEW"
               ref={(el) => { if (el) rowsRef.current[index] = el; }}
               className="group py-12 md:py-20 flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 border-b border-black/5 last:border-0 relative"
             >

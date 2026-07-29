@@ -105,7 +105,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ startAnimation = true }) => {
 
       <div 
         ref={overlayRef}
-        className="absolute inset-0 z-10 bg-linear-to-b from-black/80 via-black/20 to-black"
+        data-cursor-text="PLAY"
+        className="absolute inset-0 z-10 bg-linear-to-b from-black/80 via-black/20 to-black pointer-events-auto"
       />
 
       {/* Content Container */}

@@ -16,8 +16,23 @@ export default function BlogListContent({ blogs: initialBlogs, categoriesData }:
 	const [selectedCategory, setSelectedCategory] = useState({ id: 'ALL', name: 'ALL' })
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 	const [categories] = useState([{ id: 'ALL', name: 'ALL' }, ...categoriesData.map((c: any) => ({ id: c._id, name: c.name }))])
-	const [blogPosts] = useState(initialBlogs)
+	const [blogPosts, setBlogPosts] = useState(initialBlogs)
 	const [searchQuery, setSearchQuery] = useState('')
+
+	useEffect(() => {
+		const fetchBlogs = async () => {
+			try {
+				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs`)
+				const json = await res.json()
+				if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+					setBlogPosts(json.data)
+				}
+			} catch (error) {
+				console.error('Error fetching blogs:', error)
+			}
+		}
+		fetchBlogs()
+	}, [])
 
 	const headerRef = useRef<HTMLHeadingElement>(null)
 	const searchRef = useRef<HTMLDivElement>(null)
