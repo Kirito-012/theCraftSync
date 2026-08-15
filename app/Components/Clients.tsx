@@ -23,18 +23,18 @@ const Clients = () => {
   const gridRef = useRef<HTMLDivElement>(null);
 
   const logos = [
-    { src: logo1, alt: 'Client 1' },
-    { src: logo2, alt: 'Client 2' },
-    { src: logo3, alt: 'Client 3' },
-    { src: logo4, alt: 'Client 4' },
-    { src: logo5, alt: 'Client 5' },
-    { src: logo6, alt: 'Client 6' },
-    { src: logo7, alt: 'Client 7' },
-    { src: logo8, alt: 'Client 8' },
-    { src: logo9, alt: 'Client 9' },
-    { src: logo10, alt: 'Client 10' },
-    { src: logo11, alt: 'Client 11' },
-    { src: logo12, alt: 'Client 12' },
+    { src: logo1, alt: 'Beards & Shears', href: 'https://beardsnshears.in/' },
+    { src: logo2, alt: 'Indiem', href: 'https://www.indiem.tech/' },
+    { src: logo3, alt: 'InkCho Designs', href: 'https://www.inkchodesigns.com/' },
+    { src: logo4, alt: 'Client 4', href: undefined },
+    { src: logo5, alt: 'Paradise Bliss Tours', href: 'https://www.paradiseblisstours.com/' },
+    { src: logo6, alt: 'Kalpraag', href: 'https://kalpraag.com/' },
+    { src: logo7, alt: 'Meukart', href: 'http://meukart.in/' },
+    { src: logo8, alt: 'Client 8', href: undefined },
+    { src: logo9, alt: 'FPO Connect', href: 'https://fpoconnect.org/' },
+    { src: logo10, alt: 'Paradise Uttarakhand', href: 'https://www.paradiseuttarakhand.com/' },
+    { src: logo11, alt: 'Barista', href: 'https://www.barista.co.in/' },
+    { src: logo12, alt: 'Ancient Health', href: 'https://ancienthealth.in/' },
   ];
 
   useEffect(() => {
@@ -110,21 +110,38 @@ const Clients = () => {
         
         {/* Logos Grid */}
         <div ref={gridRef} className="flex flex-wrap items-center justify-center gap-y-1 md:gap-y-0 sm:gap-y-2">
-          {logos.map((logo, index) => (
-            <div
-              key={index}
-              className="logo-item flex items-center justify-center transition-all duration-300 ease-in-out w-1/2 md:w-1/4 max-w-[200px] md:max-w-[280px] lg:max-w-[350px] h-24 md:h-32 lg:h-40 p-4 md:p-6"
-            >
+          {logos.map((logo, index) => {
+            const img = (
               <Image
                 src={logo.src}
                 alt={logo.alt}
                 width={300}
                 height={150}
                 className="w-full object-contain h-full brightness-0 invert"
-               
               />
-            </div>
-          ))}
+            );
+
+            return (
+              <div
+                key={index}
+                className="logo-item flex items-center justify-center transition-all duration-300 ease-in-out w-1/2 md:w-1/4 max-w-[200px] md:max-w-[280px] lg:max-w-[350px] h-24 md:h-32 lg:h-40 p-4 md:p-6"
+              >
+                {logo.href ? (
+                  <a
+                    href={logo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={logo.alt}
+                    className="w-full h-full flex items-center justify-center opacity-100 hover:opacity-70 transition-opacity duration-300"
+                  >
+                    {img}
+                  </a>
+                ) : (
+                  img
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

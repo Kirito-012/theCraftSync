@@ -5,7 +5,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import Image from 'next/image';
-import Footer from '../Components/Footer';
 
 const ServicesClient = ({ servicesData, serviceCategories, caseStudies }) => {
   const heroRef = useRef(null);
@@ -67,18 +66,21 @@ const ServicesClient = ({ servicesData, serviceCategories, caseStudies }) => {
         }
       );
 
-      const image = card.querySelector('.service-image');
+      const image = card.querySelector('.service-image-parallax');
       if (image) {
-        gsap.to(image, {
-          y: -60,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.5
+        gsap.fromTo(image,
+          { y: 15 },
+          {
+            y: -15,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.5
+            }
           }
-        });
+        );
       }
 
       const subServices = card.querySelectorAll('.sub-service-item');
@@ -132,7 +134,7 @@ const ServicesClient = ({ servicesData, serviceCategories, caseStudies }) => {
         
         <div className="max-w-5xl mx-auto text-center relative z-10 py-20">
           <div className="hero-title mb-6 sm:mb-8">
-            <div className="text-[8rem] sm:text-[12rem] lg:text-[16rem] font-black leading-none tracking-tighter text-black opacity-10 select-none">11+</div>
+            <div className="text-[8rem] sm:text-[12rem] lg:text-[16rem] font-black leading-none tracking-tighter text-black opacity-10 select-none">12+</div>
             <div className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-black -mt-10 sm:-mt-16 lg:-mt-24">Services</div>
           </div>
           <div className="mb-8 sm:mb-12">
@@ -166,15 +168,19 @@ const ServicesClient = ({ servicesData, serviceCategories, caseStudies }) => {
           {displayedServices.map((service, index) => (
             <div key={service.id} id={`service-${service.id}`} className="service-card relative scroll-mt-32">
               <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 sm:gap-12 items-center relative z-10`}>
-                <div className="w-full lg:w-1/2 group">
+                <Link href={service.slug ? `/services/${service.slug}` : '/contact'} className="w-full lg:w-1/2 group block">
                   <div className="relative h-[300px] sm:h-[400px] lg:h-[550px] overflow-hidden rounded-xl shadow-2xl">
                     <div className={`image-overlay absolute inset-0 bg-linear-to-br ${service.gradient} opacity-30 mix-blend-multiply z-10 transition-opacity duration-700 group-hover:opacity-15`}></div>
-                    <Image src={service.image} alt={service.title} fill className="service-image object-cover transition-all duration-700 group-hover:scale-105" />
+                    <div className="service-image-parallax absolute inset-0 scale-[1.2]">
+                      <Image src={service.image} alt={service.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    </div>
                     <div className="absolute inset-0 rounded-xl border border-black/5"></div>
                   </div>
-                </div>
+                </Link>
                 <div className="w-full lg:w-1/2">
-                  <h2 className="service-title text-3xl sm:text-4xl lg:text-6xl font-black text-black mb-4 sm:mb-6 leading-tight tracking-tighter">{service.title}</h2>
+                  <Link href={service.slug ? `/services/${service.slug}` : '/contact'} className="group/title inline-block">
+                    <h2 className="service-title text-3xl sm:text-4xl lg:text-6xl font-black text-black mb-4 sm:mb-6 leading-tight tracking-tighter group-hover/title:opacity-70 transition-opacity">{service.title}</h2>
+                  </Link>
                   <p className="text-base sm:text-lg lg:text-xl text-gray-700 mb-6 sm:mb-10 leading-relaxed font-light">{service.description}</p>
                   <div className="space-y-4">
                     <h3 className="text-xs font-bold text-black uppercase tracking-widest mb-4 sm:mb-6 opacity-50">What We Offer</h3>
@@ -194,6 +200,14 @@ const ServicesClient = ({ servicesData, serviceCategories, caseStudies }) => {
                       ))}
                     </div>
                   </div>
+                  {service.slug && (
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="mt-8 sm:mt-10 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-black border-b-2 border-black pb-1 hover:gap-3 transition-all duration-300"
+                    >
+                      Explore Full Service Details →
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -296,8 +310,6 @@ const ServicesClient = ({ servicesData, serviceCategories, caseStudies }) => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 };

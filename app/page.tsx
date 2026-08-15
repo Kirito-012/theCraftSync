@@ -4,6 +4,7 @@ import ServicesSection from "./Components/Services";
 import FAQSection from "./Components/Faq";
 import TestimonialsSection from "./Components/newtestimonial";
 import ProjectSection from "./Components/newourworks";
+import ToolsSection from "./Components/ToolsSection";
 import Blogs from "./Components/Blogs";
 import Clients from "./Components/Clients";
 import SmoothScroll from "./Components/SmoothScroll";
@@ -15,6 +16,7 @@ export default function Home() {
         <HeroSection />
         <ServicesSection />
         <ProjectSection />
+        <ToolsSection />
         <TestimonialsSection />
         <Clients />
         <FAQSection />

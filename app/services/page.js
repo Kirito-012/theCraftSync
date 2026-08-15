@@ -1,13 +1,14 @@
 import ServicesClient from './ServicesClient';
 
 export const metadata = {
-  title: 'Our Services | TheCraftSync - AI, Enterprise & Cloud Solutions',
+  title: 'Our Services - AI, Enterprise & Cloud Solutions',
   description: 'Comprehensive technology solutions from TheCraftSync. We specialize in AI & Machine Learning, Enterprise Development, Cloud Infrastructure, and Digital Transformation.',
 };
 
 const servicesData = [
   {
     id: 1,
+    slug: "ai-machine-learning-solutions",
     title: "AI & Machine Learning Solutions",
     description: "Production-ready AI systems built to automate workflows, enable intelligent decision-making, and integrate seamlessly into existing platforms.",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
@@ -22,6 +23,7 @@ const servicesData = [
   },
   {
     id: 2,
+    slug: "enterprise-software-development",
     title: "Enterprise Software Development",
     description: "Scalable, secure enterprise software engineered to support complex business logic, high user loads, and long-term growth.",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
@@ -36,7 +38,24 @@ const servicesData = [
     ]
   },
   {
+    id: 12,
+    slug: "geospatial-infrastructure-intelligence",
+    title: "Geospatial & Infrastructure Intelligence",
+    description: "Satellite and geospatial monitoring software that optimizes infrastructure routes, tracks vegetation risk, and flags construction issues from above.",
+    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80",
+    gradient: "from-teal-500/20 to-sky-600/20",
+    subServices: [
+      "Route Planning & Corridor Optimization",
+      "Satellite & Aerial Change Detection",
+      "Vegetation & Risk Monitoring",
+      "Construction Progress Monitoring",
+      "Climate & Environmental Risk Modeling",
+      "GIS & Enterprise System Integration"
+    ]
+  },
+  {
     id: 3,
+    slug: "cloud-infrastructure-devops",
     title: "Cloud Infrastructure & DevOps",
     description: "Scalable cloud infrastructure and DevOps workflows that improve deployment speed, system stability, and operational efficiency.",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
@@ -53,6 +72,7 @@ const servicesData = [
   },
   {
     id: 4,
+    slug: "cross-platform-mobile-app-development",
     title: "Cross-Platform Mobile Applications",
     description: "High-performance mobile apps for iOS, Android, and web — built from a single scalable codebase.",
     image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
@@ -68,6 +88,7 @@ const servicesData = [
   },
   {
     id: 5,
+    slug: "ecommerce-digital-commerce-platforms",
     title: "E-Commerce & Digital Commerce Platforms",
     description: "Custom digital commerce platforms designed for performance, personalization, and conversion at scale.",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
@@ -83,6 +104,7 @@ const servicesData = [
   },
   {
     id: 6,
+    slug: "microsoft-power-platform-solutions",
     title: "Microsoft Power Platform Solutions",
     description: "Rapid, structured solutions using Power Apps, Power Automate, and Power BI to streamline internal workflows.",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
@@ -98,6 +120,7 @@ const servicesData = [
   },
   {
     id: 7,
+    slug: "performance-engineering-seo-optimization",
     title: "Performance Engineering & SEO Optimization",
     description: "Performance-first development and technical SEO to ensure fast, scalable, and search-ready platforms.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
@@ -113,6 +136,7 @@ const servicesData = [
   },
   {
     id: 8,
+    slug: "technology-consulting",
     title: "Technology Consulting",
     description: "Strategic technology and architecture consulting backed by real engineering execution.",
     image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80",
@@ -128,6 +152,7 @@ const servicesData = [
   },
   {
     id: 9,
+    slug: "social-media-management",
     title: "Social Media Management",
     description: "Purpose-driven social media strategy focused on brand positioning and long-term visibility.",
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80",
@@ -144,6 +169,7 @@ const servicesData = [
   },
   {
     id: 10,
+    slug: "business-consulting",
     title: "Business Consulting",
     description: "Strategic business consulting focused on clarity, systems, and sustainable growth — backed by execution-ready thinking.",
     image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80",
@@ -159,6 +185,7 @@ const servicesData = [
   },
   {
     id: 11,
+    slug: "business-analytics-data-intelligence",
     title: "Business Analytics & Data Intelligence",
     description: "Harnessing the power of data to reveal insights, predict trends, and drive strategic business growth through advanced analytics.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
@@ -177,6 +204,7 @@ const servicesData = [
 const serviceCategories = [
   { id: 1, name: 'AI & Machine Learning' },
   { id: 2, name: 'Enterprise Software' },
+  { id: 12, name: 'Geo Intelligence' },
   { id: 3, name: 'Cloud & DevOps' },
   { id: 4, name: 'Mobile Apps' },
   { id: 5, name: 'E-Commerce' },

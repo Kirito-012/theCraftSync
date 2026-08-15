@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,6 +11,16 @@ gsap.registerPlugin(ScrollTrigger);
 let lenisInstance: Lenis | null = null;
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
+  // Lenis keeps its own scroll offset independent of the browser's native
+  // scroll restoration, so client-side route changes (e.g. clicking into a
+  // service page from /services) left the new page visually scrolled to
+  // wherever the previous page was, instead of opening at the top.
+  useEffect(() => {
+    lenisInstance?.scrollTo(0, { immediate: true });
+  }, [pathname]);
+
   useEffect(() => {
     // If Lenis already exists, don't create a new one
     if (lenisInstance) {

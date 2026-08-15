@@ -2,6 +2,8 @@ import { MetadataRoute } from 'next'
 import connectDB from './config/database'
 import Blog from './models/Blog'
 import { projectsData } from './lib/projectsData'
+import { servicesData } from './lib/servicesData'
+import { toolsData } from './lib/toolsData'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.thecraftsync.com'
@@ -14,6 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/contact',
     '/blogs',
     '/services',
+    '/tools',
     '/privacy-policy',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
@@ -28,6 +31,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
+  }))
+
+  // 2b. Service Detail Routes (from library)
+  const serviceRoutes: MetadataRoute.Sitemap = servicesData.map((service) => ({
+    url: `${baseUrl}/services/${service.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }))
+
+  // 2c. Tool Detail Routes (from library)
+  const toolRoutes: MetadataRoute.Sitemap = toolsData.map((tool) => ({
+    url: `${baseUrl}/tools/${tool.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
   }))
 
   // 3. Blog Routes (from database)
@@ -45,5 +64,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Sitemap: Error fetching blogs', error)
   }
 
-  return [...staticRoutes, ...caseStudyRoutes, ...blogRoutes]
+  return [...staticRoutes, ...caseStudyRoutes, ...serviceRoutes, ...toolRoutes, ...blogRoutes]
 }

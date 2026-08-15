@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Code, Megaphone, TrendingUp, MapPin, Bot, Plug, Sparkles, BarChart3, Monitor } from 'lucide-react';
+import { Code, Megaphone, TrendingUp, MapPin, Bot, Plug, Sparkles, BarChart3, Monitor, Satellite } from 'lucide-react';
 
 export interface Service {
   id: number;
@@ -27,6 +27,14 @@ export const servicesData: Service[] = [
     description: 'Crafting bespoke web and mobile applications tailored to your unique business needs with scalable architecture.',
     icon: <Monitor className="w-full h-full" />,
     details: ['Web Apps', 'Mobile Apps', 'Cross platform Web Apps', 'Scalable Architecture','Consultation']
+  },
+  {
+    id: 12,
+    name: 'Geospatial & Infrastructure Intelligence',
+    shortName: 'Geo Intelligence',
+    description: 'Satellite and geospatial monitoring software that optimizes infrastructure routes, tracks vegetation risk, and flags construction issues from above.',
+    icon: <Satellite className="w-full h-full" />,
+    details: ['Route Optimization', 'Vegetation Monitoring', 'Change Detection', 'GIS Integration']
   },
   {
     id: 8,

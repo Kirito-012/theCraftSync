@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-	title: 'Our Services | TheCraftSync - Custom Software, AI & Performance Engineering',
+	title: 'Our Services - Custom Software, AI & Performance Engineering',
 	description: 'Explore the wide range of services offered by TheCraftSync, including AI & Machine Learning, Enterprise Software Development, Cloud Infrastructure, and Technical SEO Optimization.',
 	openGraph: {
 		title: 'Professional Services | TheCraftSync',

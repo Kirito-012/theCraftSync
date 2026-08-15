@@ -98,8 +98,49 @@ const NewTestimonial: React.FC = () => {
           </h2>
         </div>
 
-        {/* Testimonial Cards Container */}
-        <div className="flex flex-col lg:flex-row gap-6 h-auto lg:h-125">
+        {/* Mobile: infinite auto-scrolling marquee */}
+        <div className="lg:hidden -mx-6 overflow-hidden">
+          <div className="flex w-max gap-6 px-6 animate-marquee">
+            {[...testimonials, ...testimonials].map((t, index) => (
+              <div
+                key={`${t.id}-${index}`}
+                className="relative w-[82vw] max-w-sm shrink-0 rounded-4xl overflow-hidden border border-zinc-800 bg-zinc-900/40 p-8 flex flex-col justify-between"
+              >
+                <div className="absolute top-8 right-8 pointer-events-none">
+                  <span className="text-6xl font-black italic tracking-tighter text-zinc-800 opacity-20">
+                    {t.id}
+                  </span>
+                </div>
+
+                <div className="relative z-10 w-12 h-12 rounded-2xl flex items-center justify-center bg-zinc-800 text-white">
+                  <Quote className="w-6 h-6" />
+                </div>
+
+                <div className="relative z-10 mt-10">
+                  <h3 className="text-xl font-bold tracking-tight text-white">
+                    {t.name}
+                  </h3>
+                  <p className="text-zinc-500 text-[10px] uppercase tracking-widest font-bold mb-6">
+                    {t.role}
+                  </p>
+
+                  <p className="text-zinc-300 text-base leading-relaxed pt-6 border-t border-zinc-800 font-light italic">
+                    &quot;{t.quote}&quot;
+                  </p>
+                  <div className="mt-6 flex items-center gap-4">
+                    <div className={`w-12 h-px ${t.color.replace('border-', 'bg-')}`}></div>
+                    <span className="text-zinc-400 font-bold text-sm tracking-widest uppercase">
+                      {t.company}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: click-to-expand cards */}
+        <div className="hidden lg:flex gap-6 h-125">
           {testimonials.map((t, index) => {
             const isActive = activeIndex === index;
             
@@ -173,8 +214,8 @@ const NewTestimonial: React.FC = () => {
           })}
         </div>
 
-        {/* Global Dots */}
-        <div className="mt-16 flex justify-center items-center gap-3">
+        {/* Global Dots (desktop accordion progress only) */}
+        <div className="hidden lg:flex mt-16 justify-center items-center gap-3">
           {testimonials.map((_, i) => (
             <div 
               key={i} 

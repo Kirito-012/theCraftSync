@@ -40,6 +40,8 @@ export default function CustomCursor() {
     let isVisible = false;
     let currentState: 'default' | 'hover' | 'badge' = 'default';
     let currentBadgeText = '';
+    let lastIsLight: boolean | null = null;
+    let lastColorCheck = 0;
 
     const showCursor = () => {
       if (!isVisible) {
@@ -53,6 +55,26 @@ export default function CustomCursor() {
       gsap.to([dot, ring], { opacity: 0, duration: 0.15, overwrite: 'auto' });
     };
 
+    // Keeps the cursor's contrast color in sync with whatever is directly under it,
+    // independent of mouseover firing — this is the reliable source of truth.
+    const syncContrastColor = (isLight: boolean) => {
+      if (currentState === 'badge' || isLight === lastIsLight) return;
+      lastIsLight = isLight;
+      const cursorColor = isLight ? '#000000' : '#ffffff';
+      gsap.to(dot, { backgroundColor: cursorColor, duration: 0.15, overwrite: 'auto' });
+      gsap.to(ring, {
+        borderColor: cursorColor,
+        backgroundColor:
+          currentState === 'hover'
+            ? isLight
+              ? 'rgba(0, 0, 0, 0.08)'
+              : 'rgba(255, 255, 255, 0.2)'
+            : 'transparent',
+        duration: 0.15,
+        overwrite: 'auto',
+      });
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
       showCursor();
 
@@ -61,6 +83,13 @@ export default function CustomCursor() {
       yDotTo(e.clientY);
       xRingTo(e.clientX);
       yRingTo(e.clientY);
+
+      const now = performance.now();
+      if (now - lastColorCheck > 80) {
+        lastColorCheck = now;
+        const elem = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
+        if (elem) syncContrastColor(isLightContext(elem));
+      }
 
       // Playful Kinetic Velocity Deformation (Liquid Jelly Stretch)
       if (currentState === 'default') {
@@ -100,6 +129,25 @@ export default function CustomCursor() {
       lastPos.current = { x: e.clientX, y: e.clientY };
     };
 
+    // Tailwind v4 emits background-color as oklab()/oklch()/lab() strings (not rgb()),
+    // so a regex over the raw string silently produces garbage numbers. Route every
+    // color through a 1x1 canvas — the browser normalizes any valid CSS color to
+    // plain sRGB bytes there, regardless of the color function used to author it.
+    const colorProbeCanvas = document.createElement('canvas');
+    colorProbeCanvas.width = 1;
+    colorProbeCanvas.height = 1;
+    const colorProbeCtx = colorProbeCanvas.getContext('2d', { willReadFrequently: true });
+
+    const toRgba = (cssColor: string): [number, number, number, number] | null => {
+      if (!colorProbeCtx) return null;
+      colorProbeCtx.clearRect(0, 0, 1, 1);
+      colorProbeCtx.fillStyle = '#000';
+      colorProbeCtx.fillStyle = cssColor;
+      colorProbeCtx.fillRect(0, 0, 1, 1);
+      const [r, g, b, a] = colorProbeCtx.getImageData(0, 0, 1, 1).data;
+      return [r, g, b, a / 255];
+    };
+
     // Background brightness detector
     const isLightContext = (target: HTMLElement): boolean => {
       let curr: HTMLElement | null = target;
@@ -116,6 +164,8 @@ export default function CustomCursor() {
         }
         if (
           classList.contains('bg-black') ||
+          classList.contains('bg-neutral-950') ||
+          classList.contains('bg-neutral-900') ||
           classList.contains('bg-zinc-950') ||
           classList.contains('bg-zinc-900') ||
           classList.contains('bg-zinc-800')
@@ -127,13 +177,12 @@ export default function CustomCursor() {
         const bg = style.backgroundColor;
 
         if (bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)') {
-          const parts = bg.match(/\d+/g);
-          if (parts && parts.length >= 3) {
-            const alpha = parts.length >= 4 ? parseFloat(parts[3]) : 1;
-            if (alpha > 0.05) {
-              const r = parseInt(parts[0], 10);
-              const g = parseInt(parts[1], 10);
-              const b = parseInt(parts[2], 10);
+          const rgba = toRgba(bg);
+          if (rgba) {
+            const [r, g, b, alpha] = rgba;
+            // A faint tint (e.g. bg-white/5 overlay cards) isn't a decisive
+            // background on its own — keep walking up to the real container.
+            if (alpha > 0.35) {
               const brightness = (r * 299 + g * 587 + b * 114) / 1000;
               return brightness > 150;
             }
@@ -150,9 +199,10 @@ export default function CustomCursor() {
       currentState = mode;
       currentBadgeText = badgeText;
 
+      const isLight = targetElem ? isLightContext(targetElem) : false;
+
       if (mode === 'badge') {
         text.innerText = badgeText;
-        const isLight = targetElem ? isLightContext(targetElem) : false;
 
         const badgeBg = isLight ? '#000000' : '#ffffff';
         const badgeTextColor = isLight ? '#ffffff' : '#000000';
@@ -189,18 +239,26 @@ export default function CustomCursor() {
           { opacity: 1, scale: 1, rotation: 0, duration: 0.25, ease: 'back.out(2)', overwrite: 'auto' }
         );
       } else if (mode === 'hover') {
-        // Playful expand with spring bounce
-        gsap.to(dot, { scale: 1.6, opacity: 1, duration: 0.15, ease: 'power2.out', overwrite: 'auto' });
+        // Playful expand with spring bounce — explicit contrast color, no reliance on blend modes
+        const cursorColor = isLight ? '#000000' : '#ffffff';
+        gsap.to(dot, {
+          scale: 1.6,
+          opacity: 1,
+          backgroundColor: cursorColor,
+          duration: 0.15,
+          ease: 'power2.out',
+          overwrite: 'auto',
+        });
         gsap.to(ring, {
           width: 54,
           height: 54,
           rotation: 0,
           scaleX: 1,
           scaleY: 1,
-          backgroundColor: 'rgba(255, 255, 255, 0.2)',
-          borderColor: '#ffffff',
+          backgroundColor: isLight ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.2)',
+          borderColor: cursorColor,
           borderWidth: '2px',
-          mixBlendMode: 'difference',
+          mixBlendMode: 'normal',
           boxShadow: 'none',
           duration: 0.25,
           ease: 'back.out(2.5)',
@@ -208,8 +266,16 @@ export default function CustomCursor() {
         });
         gsap.to(text, { opacity: 0, scale: 0.5, duration: 0.08, overwrite: 'auto' });
       } else {
-        // Default State - Spring back to clean liquid ring
-        gsap.to(dot, { scale: 1, opacity: 1, duration: 0.15, ease: 'power2.out', overwrite: 'auto' });
+        // Default State - Spring back to clean liquid ring — explicit contrast color, no reliance on blend modes
+        const cursorColor = isLight ? '#000000' : '#ffffff';
+        gsap.to(dot, {
+          scale: 1,
+          opacity: 1,
+          backgroundColor: cursorColor,
+          duration: 0.15,
+          ease: 'power2.out',
+          overwrite: 'auto',
+        });
         gsap.to(ring, {
           width: 36,
           height: 36,
@@ -217,9 +283,9 @@ export default function CustomCursor() {
           scaleX: 1,
           scaleY: 1,
           backgroundColor: 'transparent',
-          borderColor: '#ffffff',
+          borderColor: cursorColor,
           borderWidth: '2px',
-          mixBlendMode: 'difference',
+          mixBlendMode: 'normal',
           boxShadow: 'none',
           duration: 0.25,
           ease: 'elastic.out(1.2, 0.4)',
@@ -246,7 +312,7 @@ export default function CustomCursor() {
         return;
       }
 
-      setCursorMode('default');
+      setCursorMode('default', '', target);
     };
 
     // Playful Elastic Bounce on Click
@@ -262,6 +328,12 @@ export default function CustomCursor() {
         overwrite: 'auto',
       });
     };
+
+    // Establish an explicit baseline immediately — don't wait on the mix-blend-mode
+    // trick (unreliable across layered/blurred/filtered sections) for initial contrast.
+    gsap.set([dot, ring], { mixBlendMode: 'normal' });
+    gsap.set(dot, { backgroundColor: '#000000' });
+    gsap.set(ring, { borderColor: '#000000', backgroundColor: 'transparent' });
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mouseover', handleMouseOver, { passive: true });
@@ -286,13 +358,13 @@ export default function CustomCursor() {
       {/* Precision Center Dot */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-2.5 h-2.5 -ml-[5px] -mt-[5px] rounded-full bg-white mix-blend-difference pointer-events-none z-[999999] opacity-0 will-change-transform"
+        className="fixed top-0 left-0 w-2.5 h-2.5 -ml-[5px] -mt-[5px] rounded-full bg-black pointer-events-none z-[999999] opacity-0 will-change-transform"
       />
 
       {/* Playful Trailing Ring / Kinetic Liquid Badge Container */}
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 w-9 h-9 -ml-[18px] -mt-[18px] border-2 border-white rounded-full mix-blend-difference pointer-events-none z-[999998] flex items-center justify-center opacity-0 will-change-transform origin-center"
+        className="fixed top-0 left-0 w-9 h-9 -ml-[18px] -mt-[18px] border-2 border-black rounded-full pointer-events-none z-[999998] flex items-center justify-center opacity-0 will-change-transform origin-center"
       >
         <span
           ref={textRef}

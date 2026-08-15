@@ -1,7 +1,7 @@
 import ProjectsClient from './ProjectsClient';
 
 export const metadata = {
-  title: 'Our Projects | TheCraftSync - Custom Software & AI Portfolio',
+  title: 'Our Projects - Custom Software & AI Portfolio',
   description: 'Explore the portfolio of TheCraftSync. We build digital products that resonate and scale, from AI platforms to enterprise healthcare automation.',
 };
 

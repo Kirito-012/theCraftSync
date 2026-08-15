@@ -78,3 +78,27 @@ export const publicIdFromUrl = (url) => {
         return null;
     }
 };
+
+/**
+ * Ensures an image URL is served through Cloudinary.
+ * If the input URL is an S3 or external URL, it converts/wraps it with Cloudinary's fetch URL.
+ * @param {string} url - Image URL
+ * @returns {string} Cloudinary URL or original URL
+ */
+export const getCloudinaryUrl = (url) => {
+    if (!url || typeof url !== 'string') return url;
+
+    // If already a Cloudinary URL, return as is
+    if (url.includes('res.cloudinary.com') || url.includes('cloudinary.com')) {
+        return url;
+    }
+
+    // If it's an AWS S3 URL or Amazon Web Services URL
+    if (url.includes('s3.amazonaws.com') || url.includes('amazonaws.com') || url.includes('.s3.')) {
+        const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_CLOUD_NAME || 'dhlvq35cc';
+        return `https://res.cloudinary.com/${cloudName}/image/fetch/f_auto,q_auto/${url}`;
+    }
+
+    return url;
+};
+

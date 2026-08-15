@@ -14,28 +14,28 @@ const projects = [
     title: "Paradise Bliss",
     category: "Travel & Booking Platform",
     description: "Comprehensive travel booking with customized vacation packages and spiritual pilgrimage tours across India.",
-    image: "https://res.cloudinary.com/din6jl7de/image/upload/v1768692757/Screenshot_2026-01-18_045806_mndvkw.png",
+    image: "https://res.cloudinary.com/dhlvq35cc/image/upload/v1786822001/paradise_uqxug8.png",
     link: "/case-study/paradise-bliss"
   },
   {
     title: "Indiem",
     category: "Healthcare AI Automation",
     description: "AI-powered healthcare operations platform automating hospital claim documentation and patient records.",
-    image: "https://res.cloudinary.com/din6jl7de/image/upload/v1768693110/Screenshot_2026-01-18_050807_tha14s.png",
+    image: "https://res.cloudinary.com/dhlvq35cc/image/upload/v1786822001/indiem_kfn5sv.png",
     link: "/case-study/indiem"
   },
   {
     title: "Moment & CRAFT",
     category: "AI E-commerce Platform",
     description: "Enterprise-grade design and commerce platform powered by generative AI for emotionally meaningful products.",
-    image: "https://res.cloudinary.com/din6jl7de/image/upload/v1768686878/moment_dfai8p.jpg",
+    image: "https://res.cloudinary.com/dhlvq35cc/image/upload/v1786822001/m_c_iv0y3a.png",
     link: "/case-study/moment-craft"
   },
   {
     title: "Osexifi",
     category: "Wellness E-commerce",
     description: "Comprehensive e-commerce ecosystem for wellness products integrated with nonprofit reproductive health mission.",
-    image: "https://res.cloudinary.com/din6jl7de/image/upload/v1768696994/Screenshot_2026-01-11_004711_mnxxc4.png",
+    image: "https://res.cloudinary.com/dhlvq35cc/image/upload/v1786822001/osexifi_x5higm.png",
     link: "/case-study/osexifi"
   }
 ];

@@ -89,12 +89,12 @@ const Loader: React.FC<LoaderProps> = ({ onComplete }) => {
              if (loaderRef.current) loaderRef.current.style.pointerEvents = 'none';
           },
           onComplete: () => {
-             document.body.style.overflow = 'auto';
+             document.body.style.overflow = '';
              onComplete();
           }
         }, "-=0.2");
       } else {
-         document.body.style.overflow = 'auto';
+         document.body.style.overflow = '';
          onComplete();
       }
 
@@ -103,7 +103,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete }) => {
 
     return () => {
       ctx.revert();
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
     };
   }, [onComplete]);
 

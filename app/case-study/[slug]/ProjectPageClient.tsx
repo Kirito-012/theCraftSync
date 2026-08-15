@@ -59,21 +59,6 @@ export default function ProjectPageClient({ project }: { project: Project }) {
               }
             }
           );
-
-          // Parallax on scroll
-          const innerImg = img.querySelector('img');
-          if (innerImg) {
-            gsap.to(innerImg, {
-              y: -30,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: img,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 1.5,
-              }
-            });
-          }
         });
 
         // Animate content

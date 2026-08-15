@@ -40,11 +40,11 @@ export default function Footer() {
   };
 
   const services = [
-    { name: 'Custom Software Development', href: '/services#service-2' },
-    { name: 'AI & Machine Learning Solutions', href: '/services#service-1' },
-    { name: 'Enterprise Platforms', href: '/services#service-2' },
-    { name: 'Business Intelligence & Analytics', href: '/services#service-11' },
-    { name: 'Technology Consulting', href: '/services#service-8' }
+    { name: 'Enterprise Software Development', href: '/services/enterprise-software-development' },
+    { name: 'AI & Machine Learning Solutions', href: '/services/ai-machine-learning-solutions' },
+    { name: 'Cloud Infrastructure & DevOps', href: '/services/cloud-infrastructure-devops' },
+    { name: 'Business Analytics & Data Intelligence', href: '/services/business-analytics-data-intelligence' },
+    { name: 'Technology Consulting', href: '/services/technology-consulting' }
   ];
 
   const footerLinks = [

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-	title: 'Our Projects & Case Studies | TheCraftSync',
+	title: 'Our Projects & Case Studies',
 	description: 'Explore the portfolio and case studies of TheCraftSync. Discover how we have built scalable AI and custom software solutions for startups and enterprises.',
 	openGraph: {
 		title: 'Projects & Portfolio | TheCraftSync',

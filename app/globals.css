@@ -23,10 +23,13 @@ body {
 	font-family: var(--font-descriptive);
 	background-color: var(--snow-white);
 	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale; 
-    overflow-x: hidden;
+	-moz-osx-font-smoothing: grayscale;
     width: 100%;
     position: relative;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 button {
@@ -57,6 +60,31 @@ button {
 
 .animate-fadeIn {
 	animation: fadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Infinite horizontal marquee (mobile testimonials, etc.) — the track is
+   rendered twice back-to-back so translating by -50% loops seamlessly */
+@keyframes marquee-scroll {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+.animate-marquee {
+	animation: marquee-scroll 32s linear infinite;
+}
+
+/* Hide scrollbar on horizontally-scrollable strips (mobile pill nav, etc.)
+   while keeping the element scrollable */
+.scrollbar-hide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
 }
 
 /* Hide default cursor ONLY on desktop screens (>1024px) with fine pointer */
