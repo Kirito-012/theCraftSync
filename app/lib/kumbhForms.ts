@@ -33,6 +33,8 @@ export interface KumbhField {
 	/** 'mobile' = Indian mobile / international, 'any' = also accepts landline-style 10 digit numbers */
 	phoneMode?: 'mobile' | 'any'
 	autoComplete?: string
+	/** shorter column title for the Excel export (defaults to the label) */
+	exportLabel?: string
 	/** span both columns on desktop */
 	full?: boolean
 }
@@ -104,7 +106,7 @@ export const KUMBH_FORMS: Record<KumbhType, KumbhFormConfig> = {
 			{ name: 'portfolio', label: 'Portfolio / CV / Drive link', type: 'url', maxLength: 300, full: true, placeholder: 'https://', help: 'A link to your work, LinkedIn or a shared CV.' },
 			{ name: 'languages', label: 'Languages you speak', type: 'text', maxLength: 160, placeholder: 'Hindi, English, Garhwali…' },
 			{ name: 'availability', label: 'Availability', type: 'select', required: true, options: AVAILABILITY },
-			{ name: 'training', label: 'I agree to attend the orientation and training before deployment.', type: 'checkbox', required: true, full: true },
+			{ name: 'training', label: 'I agree to attend the orientation and training before deployment.', type: 'checkbox', required: true, full: true, exportLabel: 'Agreed to orientation & training' },
 		],
 	},
 	media: {
