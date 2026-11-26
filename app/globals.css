@@ -100,6 +100,29 @@ button {
 	}
 }
 
+/* Pages without the custom cursor (admin etc.) keep the normal system cursor.
+   Add the `native-cursor` class to the page's root element. */
+body:has(.native-cursor),
+body:has(.native-cursor) * {
+	cursor: auto !important;
+}
+body:has(.native-cursor) a,
+body:has(.native-cursor) button,
+body:has(.native-cursor) select,
+body:has(.native-cursor) label,
+body:has(.native-cursor) summary,
+body:has(.native-cursor) [role="button"],
+body:has(.native-cursor) [role="tab"] {
+	cursor: pointer !important;
+}
+body:has(.native-cursor) input:not([type="checkbox"]):not([type="radio"]),
+body:has(.native-cursor) textarea {
+	cursor: text !important;
+}
+body:has(.native-cursor) button:disabled {
+	cursor: not-allowed !important;
+}
+
 /* Completely hide custom cursor on mobile & tablets */
 @media (max-width: 1024px), (pointer: coarse) {
 	.custom-cursor-wrapper {

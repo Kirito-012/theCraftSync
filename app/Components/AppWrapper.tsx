@@ -14,6 +14,8 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
   const pathname = usePathname();
 
   const isAdminRoute = pathname?.startsWith('/admin');
+  // Campaign page keeps the normal system cursor
+  const useNativeCursor = isAdminRoute || pathname?.startsWith('/kumbh-2027');
 
   // Use a 'mounted' state to avoid hydration mismatch and ensure SEO-friendly initial HTML
   const [mounted, setMounted] = React.useState(false);
@@ -21,13 +23,19 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
     setMounted(true);
   }, []);
 
-  const isVisible = !mounted || !isLoading;
+  // Campaign page opens instantly, without the intro loader
+  const skipLoader = !!pathname?.startsWith('/kumbh-2027');
+  React.useEffect(() => {
+    if (skipLoader && isLoading) setIsLoading(false);
+  }, [skipLoader, isLoading, setIsLoading]);
+
+  const isVisible = !mounted || !isLoading || skipLoader;
 
   return (
     <>
-      {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
+      {isLoading && !skipLoader && <Loader onComplete={() => setIsLoading(false)} />}
       <div className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-        {!isAdminRoute && <CustomCursor />}
+        {!useNativeCursor && <CustomCursor />}
         {!isAdminRoute && <Navbar />}
         {children}
         {!isAdminRoute && <ChatBot />}
