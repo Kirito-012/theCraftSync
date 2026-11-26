@@ -26,13 +26,6 @@ const authHeaders = () => ({
 
 const fmtValue = (v) => (Array.isArray(v) ? v.join(', ') : v === true ? 'Yes' : String(v ?? ''))
 
-// Quote for CSV and neutralise spreadsheet formulas (cells starting with = + - @ are prefixed with ')
-const csvCell = (v) => {
-    let s = String(v ?? '')
-    if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`
-    return `"${s.replace(/"/g, '""')}"`
-}
-
 export default function KumbhApplications() {
     const [items, setItems] = useState([])
     const [counts, setCounts] = useState({ institution: 0, volunteer: 0, media: 0 })
@@ -43,6 +36,7 @@ export default function KumbhApplications() {
     const [loading, setLoading] = useState(true)
     const [selected, setSelected] = useState(null)
     const [notes, setNotes] = useState('')
+    const [exporting, setExporting] = useState('')
 
     const load = useCallback(async () => {
         setLoading(true)
@@ -107,35 +101,33 @@ export default function KumbhApplications() {
         }
     }
 
-    const exportCsv = () => {
-        if (!items.length) return toast.info('Nothing to export')
-        // Union of all field names across the current list, labelled from config
-        const cols = []
-        const seen = new Set()
-        for (const it of items) {
-            for (const f of KUMBH_FORMS[it.type].fields) {
-                const k = `${it.type}:${f.name}`
-                if (!seen.has(k)) {
-                    seen.add(k)
-                    cols.push({ k, type: it.type, name: f.name, label: `${KUMBH_FORMS[it.type].short} – ${f.label}` })
-                }
+    // One Excel file per type (never combined). The server builds it so the admin check applies.
+    const exportExcel = async (t) => {
+        if (exporting) return
+        setExporting(t)
+        try {
+            const res = await fetch(`${API}/api/kumbh/export?type=${t}`, { headers: authHeaders() })
+            if (!res.ok) {
+                const j = await res.json().catch(() => ({}))
+                throw new Error(j.message || 'Export failed')
             }
+            const blob = await res.blob()
+            const name =
+                /filename="([^"]+)"/.exec(res.headers.get('Content-Disposition') || '')?.[1] ||
+                `kumbh-2027-${t}-${new Date().toISOString().slice(0, 10)}.xlsx`
+            const a = document.createElement('a')
+            a.href = URL.createObjectURL(blob)
+            a.download = name
+            document.body.appendChild(a)
+            a.click()
+            a.remove()
+            URL.revokeObjectURL(a.href)
+            toast.success(`${KUMBH_FORMS[t].label} sheet downloaded`)
+        } catch (e) {
+            toast.error(e.message || 'Export failed')
+        } finally {
+            setExporting('')
         }
-        const head = ['Submitted', 'Type', 'Status', 'Admin notes', ...cols.map((c) => c.label)]
-        const rows = items.map((it) => [
-            new Date(it.createdAt).toLocaleString(),
-            KUMBH_FORMS[it.type].label,
-            it.status,
-            it.adminNotes,
-            ...cols.map((c) => (c.type === it.type ? fmtValue(it.data?.[c.name]) : '')),
-        ])
-        const csv = [head, ...rows].map((r) => r.map(csvCell).join(',')).join('\n')
-        const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' })
-        const a = document.createElement('a')
-        a.href = URL.createObjectURL(blob)
-        a.download = `kumbh-2027-applications-${new Date().toISOString().slice(0, 10)}.csv`
-        a.click()
-        URL.revokeObjectURL(a.href)
     }
 
     const total = counts.institution + counts.volunteer + counts.media
@@ -147,24 +139,32 @@ export default function KumbhApplications() {
                     <h1 className='text-3xl font-bold text-slate-800'>Kumbh 2027 Applications</h1>
                     <p className='mt-1 text-slate-500'>Institutions, student volunteers and media partners from /kumbh-2027</p>
                 </div>
-                <button
-                    onClick={exportCsv}
-                    className='rounded-lg bg-slate-800 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700'>
-                    Export CSV
-                </button>
             </div>
 
-            {/* Counters */}
+            {/* Counters + one Excel export per type */}
             <div className='mb-6 grid grid-cols-2 gap-4 md:grid-cols-4'>
+                <div className='rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200'>
+                    <p className='text-xs font-semibold uppercase tracking-wide text-slate-400'>Total</p>
+                    <p className='mt-1 text-3xl font-bold text-slate-800'>{total}</p>
+                </div>
                 {[
-                    ['Total', total, 'text-slate-800'],
-                    ['Institutions', counts.institution, 'text-amber-600'],
-                    ['Volunteers', counts.volunteer, 'text-orange-600'],
-                    ['Media partners', counts.media, 'text-teal-600'],
-                ].map(([l, n, c]) => (
-                    <div key={l} className='rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200'>
+                    ['institution', 'Institutions', counts.institution, 'text-amber-600'],
+                    ['volunteer', 'Volunteers', counts.volunteer, 'text-orange-600'],
+                    ['media', 'Media partners', counts.media, 'text-teal-600'],
+                ].map(([key, l, n, c]) => (
+                    <div key={key} className='flex flex-col rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200'>
                         <p className='text-xs font-semibold uppercase tracking-wide text-slate-400'>{l}</p>
                         <p className={`mt-1 text-3xl font-bold ${c}`}>{n}</p>
+                        <button
+                            onClick={() => exportExcel(key)}
+                            disabled={!n || !!exporting}
+                            title={n ? `Download ${l} as an Excel sheet` : 'Nothing to export yet'}
+                            className='mt-3 inline-flex items-center justify-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400'>
+                            <svg className='h-3.5 w-3.5' fill='none' stroke='currentColor' strokeWidth={2} viewBox='0 0 24 24'>
+                                <path strokeLinecap='round' strokeLinejoin='round' d='M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3' />
+                            </svg>
+                            {exporting === key ? 'Preparing…' : 'Export Excel'}
+                        </button>
                     </div>
                 ))}
             </div>
