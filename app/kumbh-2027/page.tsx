@@ -9,9 +9,9 @@ import ApplySection from './ApplySection'
 
 const CLD = 'https://res.cloudinary.com/dhlvq35cc/video/upload'
 const CLD_ID = 'v1795684707/1000116616_1_rug02i'
-// Optimised: H.264, 1600px wide, auto-eco quality (original is 7 MB). Poster = first frame.
-const HERO_VIDEO = process.env.NEXT_PUBLIC_KUMBH_HERO_VIDEO || `${CLD}/f_mp4,vc_h264,q_auto:eco,w_1600/${CLD_ID}.mp4`
-const HERO_POSTER = `${CLD}/so_0,f_jpg,q_auto,w_1600/${CLD_ID}.jpg`
+// Optimised: H.264 high profile, 1920px wide, good quality (original is 7.5 MB). Poster = first frame.
+const HERO_VIDEO = process.env.NEXT_PUBLIC_KUMBH_HERO_VIDEO || `${CLD}/f_mp4,vc_h264:high,q_auto:good,w_1920/${CLD_ID}.mp4`
+const HERO_POSTER = `${CLD}/so_0,f_jpg,q_auto:good,w_1920/${CLD_ID}.jpg`
 
 export const metadata: Metadata = {
 	title: 'Kumbh 2027 Internship & Volunteer Programme, Haridwar',
@@ -32,8 +32,8 @@ const TRACK_CARDS = [
 		n: '01',
 		title: 'Video Editing & Content Creation',
 		text: 'Cut reels, highlights and documentary pieces from the ghats, camps and ceremonies.',
-		img: '/kumbh/aerial-boats.jpg',
-		alt: 'Aerial view of colourful boats and a vast crowd at the Kumbh Mela',
+		img: '/kumbh/har-ki-pauri-ghat.jpg',
+		alt: 'Pilgrims bathing at Har Ki Pauri in Haridwar, with the red clock tower and bridge',
 		span: 'md:col-span-3',
 		h: 'h-[200px] sm:h-[280px] md:h-[420px]',
 	},
@@ -117,8 +117,8 @@ export default function Kumbh2027Page() {
 						/>
 					</div>
 					<HeroVideo src={HERO_VIDEO} poster={HERO_POSTER} />
-					<div className='absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.12)_55%,#140b07)] lg:bg-[linear-gradient(to_bottom,rgba(0,0,0,0.6),rgba(0,0,0,0.15)_55%,#140b07)]' />
-					<div className='absolute inset-0 hidden bg-linear-to-r from-[var(--ink)]/85 via-[var(--ink)]/35 to-transparent lg:block' />
+					<div className='absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.35),rgba(0,0,0,0.05)_55%,#140b07)] lg:bg-[linear-gradient(to_bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.05)_55%,#140b07)]' />
+					<div className='absolute inset-0 hidden bg-linear-to-r from-[var(--ink)]/70 via-[var(--ink)]/20 to-transparent lg:block' />
 				</div>
 
 				<div className='relative z-10 mx-auto w-full max-w-6xl px-5 pb-16 pt-40 md:px-8 md:pb-24'>
