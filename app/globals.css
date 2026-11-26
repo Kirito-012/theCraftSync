@@ -100,6 +100,30 @@ button {
 	}
 }
 
+/* Pages without the custom cursor (admin etc.) keep the normal system cursor.
+   AppWrapper adds the `native-cursor` class to <body> on those routes (no :has(), the CSS build drops it). */
+html.native-cursor,
+body.native-cursor,
+body.native-cursor * {
+	cursor: auto !important;
+}
+body.native-cursor a,
+body.native-cursor button,
+body.native-cursor select,
+body.native-cursor label,
+body.native-cursor summary,
+body.native-cursor [role="button"],
+body.native-cursor [role="tab"] {
+	cursor: pointer !important;
+}
+body.native-cursor input:not([type="checkbox"]):not([type="radio"]),
+body.native-cursor textarea {
+	cursor: text !important;
+}
+body.native-cursor button:disabled {
+	cursor: not-allowed !important;
+}
+
 /* Completely hide custom cursor on mobile & tablets */
 @media (max-width: 1024px), (pointer: coarse) {
 	.custom-cursor-wrapper {

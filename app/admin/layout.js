@@ -62,7 +62,7 @@ export default function AdminLayout({ children }) {
 
     if (isChecking) {
         return (
-            <div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100'>
+            <div className='native-cursor min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100'>
                 <ToastContainer />
                 <div className='text-center'>
                     <div className='animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-4'></div>
@@ -77,7 +77,7 @@ export default function AdminLayout({ children }) {
     }
 
     return (
-        <div className='flex min-h-screen bg-gradient-to-br from-slate-50 to-slate-100'>
+        <div className='native-cursor flex min-h-screen bg-gradient-to-br from-slate-50 to-slate-100'>
             <ToastContainer />
             <Sidebar />
             <div className='ml-64 flex-1 p-8'>

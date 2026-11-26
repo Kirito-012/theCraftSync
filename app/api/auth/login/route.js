@@ -2,6 +2,7 @@ import connectDB from '@/app/config/database';
 import User from '@/app/models/User';
 import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
+import { matchesEnvAdmin, ensureEnvAdminUser } from '@/app/utils/envAdmin';
 
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -20,6 +21,27 @@ export async function POST(req) {
             return NextResponse.json(
                 { success: false, message: 'Please provide email and password' },
                 { status: 400 }
+            );
+        }
+
+        // Env-defined admin (ADMIN_EMAIL / ADMIN_PASSWORD): create or promote on a matching login
+        if (matchesEnvAdmin(email, password)) {
+            const envUser = await ensureEnvAdminUser();
+            return NextResponse.json(
+                {
+                    success: true,
+                    message: 'Login successful',
+                    data: {
+                        user: {
+                            id: envUser._id,
+                            name: envUser.name,
+                            email: envUser.email,
+                            role: envUser.role,
+                        },
+                        token: generateToken(envUser._id),
+                    },
+                },
+                { status: 200 }
             );
         }
 
