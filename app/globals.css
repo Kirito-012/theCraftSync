@@ -101,25 +101,26 @@ button {
 }
 
 /* Pages without the custom cursor (admin etc.) keep the normal system cursor.
-   Add the `native-cursor` class to the page's root element. */
-body:has(.native-cursor),
-body:has(.native-cursor) * {
+   AppWrapper adds the `native-cursor` class to <body> on those routes (no :has(), the CSS build drops it). */
+html.native-cursor,
+body.native-cursor,
+body.native-cursor * {
 	cursor: auto !important;
 }
-body:has(.native-cursor) a,
-body:has(.native-cursor) button,
-body:has(.native-cursor) select,
-body:has(.native-cursor) label,
-body:has(.native-cursor) summary,
-body:has(.native-cursor) [role="button"],
-body:has(.native-cursor) [role="tab"] {
+body.native-cursor a,
+body.native-cursor button,
+body.native-cursor select,
+body.native-cursor label,
+body.native-cursor summary,
+body.native-cursor [role="button"],
+body.native-cursor [role="tab"] {
 	cursor: pointer !important;
 }
-body:has(.native-cursor) input:not([type="checkbox"]):not([type="radio"]),
-body:has(.native-cursor) textarea {
+body.native-cursor input:not([type="checkbox"]):not([type="radio"]),
+body.native-cursor textarea {
 	cursor: text !important;
 }
-body:has(.native-cursor) button:disabled {
+body.native-cursor button:disabled {
 	cursor: not-allowed !important;
 }
 

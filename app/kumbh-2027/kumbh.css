@@ -20,28 +20,6 @@
 	color: var(--ink);
 }
 
-/* Normal system cursor on this page (the site hides it globally for the custom cursor) */
-body:has(.kumbh),
-body:has(.kumbh) * {
-	cursor: auto !important;
-}
-body:has(.kumbh) a,
-body:has(.kumbh) button,
-body:has(.kumbh) select,
-body:has(.kumbh) label,
-body:has(.kumbh) summary,
-body:has(.kumbh) [role='button'],
-body:has(.kumbh) [role='tab'] {
-	cursor: pointer !important;
-}
-body:has(.kumbh) input:not([type='checkbox']):not([type='radio']),
-body:has(.kumbh) textarea {
-	cursor: text !important;
-}
-body:has(.kumbh) button:disabled {
-	cursor: not-allowed !important;
-}
-
 /* Reveal on scroll */
 .kb-reveal {
 	opacity: 0;
