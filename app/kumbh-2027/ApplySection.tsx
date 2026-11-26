@@ -253,12 +253,12 @@ export default function ApplySection() {
 			<div className='pointer-events-none absolute inset-0 opacity-[0.07] [background-image:radial-gradient(#f28c1a_1px,transparent_1px)] [background-size:26px_26px]' />
 
 			<div className='relative mx-auto max-w-6xl px-5 md:px-8'>
-				<div className='mb-7 max-w-2xl md:mb-12'>
+				<div className='mb-7 max-w-2xl md:mb-12 lg:max-w-none'>
 					<p className='mb-3 text-xs font-bold uppercase tracking-[0.3em] text-[var(--marigold)] md:mb-4'>
 						Apply
 					</p>
-					<h2 className='font-heading text-3xl font-light leading-[1.05] text-[var(--cream)] sm:text-4xl md:text-6xl'>
-						Apply for the internship.
+					<h2 className='font-heading text-3xl font-light leading-[1.05] text-[var(--cream)] sm:text-4xl md:text-6xl lg:whitespace-nowrap'>
+						Be a part of Kumbh 2027.
 					</h2>
 					<p className='mt-5 hidden text-[15px] leading-relaxed text-[var(--cream)]/70 md:block'>
 						Choose how you want to join. Each path has its own short form.

@@ -8,7 +8,7 @@ import HeroVideo from './HeroVideo'
 import ApplySection from './ApplySection'
 
 const CLD = 'https://res.cloudinary.com/dhlvq35cc/video/upload'
-const CLD_ID = 'v1795680479/DJI_0539_3_uudnfd'
+const CLD_ID = 'v1795684707/1000116616_1_rug02i'
 // Optimised: H.264, 1600px wide, auto-eco quality (original is 7 MB). Poster = first frame.
 const HERO_VIDEO = process.env.NEXT_PUBLIC_KUMBH_HERO_VIDEO || `${CLD}/f_mp4,vc_h264,q_auto:eco,w_1600/${CLD_ID}.mp4`
 const HERO_POSTER = `${CLD}/so_0,f_jpg,q_auto,w_1600/${CLD_ID}.jpg`
@@ -122,11 +122,12 @@ export default function Kumbh2027Page() {
 				</div>
 
 				<div className='relative z-10 mx-auto w-full max-w-6xl px-5 pb-16 pt-40 md:px-8 md:pb-24'>
-					<h1 className='max-w-4xl font-heading text-[2.7rem] font-light leading-[1.02] tracking-tight text-[var(--cream)] sm:text-6xl md:text-7xl lg:text-[5.6rem]'>
-						Intern at the Kumbh 2027,{' '}
-						<em className='font-light not-italic text-[var(--saffron)]'>Haridwar.</em>
+					<h1 className='max-w-5xl font-heading text-[2.4rem] font-light leading-[1.05] tracking-tight text-[var(--cream)] [text-shadow:0_2px_28px_rgba(0,0,0,0.6)] sm:text-5xl md:text-6xl lg:text-[4.8rem]'>
+						Kumbh Mela 2027
+						<br />
+						<em className='font-light not-italic text-[var(--saffron)]'>Haridwar Volunteer Programme</em>
 					</h1>
-					<p className='mt-7 max-w-xl text-[15px] leading-relaxed text-[var(--cream)]/80 md:text-lg'>
+					<p className='mt-7 max-w-xl text-[15px] leading-relaxed text-white md:text-lg'>
 						Hands-on internships for college students, working alongside officials and administration
 						teams at one of the largest gatherings in the world.
 					</p>
@@ -242,11 +243,11 @@ export default function Kumbh2027Page() {
 			<section id='tracks' className='relative scroll-mt-16 bg-[var(--ink)] py-24 md:py-32'>
 				<div className='mx-auto max-w-6xl px-5 md:px-8'>
 					<Reveal className='mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end'>
-						<div className='max-w-2xl'>
+						<div className='max-w-2xl lg:max-w-none'>
 							<p className='mb-4 text-xs font-bold uppercase tracking-[0.3em] text-[var(--marigold)]'>
 								Internship roles
 							</p>
-							<h2 className='font-heading text-4xl font-light leading-[1.05] md:text-6xl'>
+							<h2 className='font-heading text-4xl font-light leading-[1.05] md:text-6xl lg:whitespace-nowrap'>
 								Choose your internship track.
 							</h2>
 						</div>
